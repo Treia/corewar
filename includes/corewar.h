@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/20 18:41:34 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/20 18:42:37 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,24 @@ typedef	struct			s_pc
 	int					wait;
 	struct s_pc			*next;
 }						t_pc;
+
+typedef	struct			s_game
+{
+	t_player			*players;
+	t_pc				*pcs;
+	char				arena[MEM_SIZE];
+	int					dump;
+	int					verb;
+}						t_game;
+
+typedef	struct			s_cycle
+{
+	int					current;
+	int					to_die;
+	int					delta;
+	int					check;
+	int					nb_check;
+}						t_cycle;
 
 typedef struct			s_argvparse
 {
