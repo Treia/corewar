@@ -15,9 +15,15 @@
 
 # include "op.h"
 
+# include <stdlib.h>
+
 # define LABEL_LENGTH_MAX		128
 # define INSTRUCT_LENGTH_MAX 	5
 # define PARAM_MAX				3
+
+/*
+** ASM_INSTRUCT
+*/
 
 typedef struct				s_asm_instruct
 {
@@ -32,12 +38,20 @@ typedef struct				s_asm_instruct
 	struct s_asm_instruct	*next;
 }							t_asm_instruct;
 
+/*
+** INSTRUCT
+*/
+
 typedef struct				s_instruct
 {
 	char					name[INSTRUCT_LENGTH_MAX + 1];
 	char					*param[PARAM_MAX];
 	struct s_instruct		*next;
 }							t_instruct;
+
+/*
+** LABEL
+*/
 
 typedef struct				s_label
 {
@@ -47,18 +61,21 @@ typedef struct				s_label
 	struct s_label			*next;
 }							t_label;
 
+/*
+** ASM
+*/
+
 typedef struct				s_asm
 {
 	t_header				header;
 	t_label					*label_list;
 }							t_asm;
 
-
 /* STRUCTS */
 
 t_asm						*asm_t_asm_new(void);
 int							asm_t_asm_init();
-void						asm_t_asm_del(t_asm **asm);
+void						asm_t_asm_del(t_asm **to_del);
 
 t_label						*asm_t_label_new(void);
 int							asm_t_label_init();
