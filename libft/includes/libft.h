@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 18:09:19 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/20 18:33:10 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/20 19:47:01 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 # define BUFF_SIZE 512
 # define FD_MAX 100
 /*
@@ -51,5 +52,8 @@ char	*ft_strcat(char *s1, const char *s2);
 int		error(int id, int ret);
 int		syntax_error(int id, int ret);
 int		print_error(int ret, const char *message);
+int		ft_atoi(const char *str);
+int		ft_isdigit(int c);
+void	ft_putnbr(int n);
 
 #endif

@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cor_main.c                                         :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/26 15:19:13 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/20 18:59:31 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/10/20 19:44:56 by mdezitte          #+#    #+#             */
+/*   Updated: 2017/10/20 19:46:50 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+void	ft_putnbr(int n)
 {
-	t_player	*players;
-	t_pc		*pcs;
-	char		arena[MEM_SIZE];
-	int			dump;
-
-	if ((players = get_players(ac, av, &dump)) == NULL)
-		return (usage());
-	// pcs = get_pc(players);
-	// prepare_arena(players, pcs, arena);
-	// run(players, pcs, arena, dump);
-	return (0);
-	(void)pcs;
-	(void)arena;
+	if (n == INT_MIN)
+		ft_putstr("-2147483648");
+	else
+	{
+		if (n < 0)
+		{
+			ft_putchar('-');
+			n = -n;
+		}
+		if (n > 9)
+		{
+			ft_putnbr(n / 10);
+			ft_putnbr(n % 10);
+		}
+		else
+			ft_putchar(n + 48);
+	}
 }
