@@ -25,7 +25,8 @@ PATH_INC = ./includes/
 
 # ASM #
 
-ASM_CORE = main.c
+ASM_CORE = main.c \
+			asm_usage.c
 ASM_SRC_CORE = $(addprefix core/, $(ASM_CORE))
 
 ASM_READDER = asm_read_file.c

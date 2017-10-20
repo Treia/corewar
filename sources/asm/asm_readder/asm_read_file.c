@@ -14,38 +14,17 @@
 #include <stdlib.h>
 #include "libft.h"
 
-#define BUF_READ	2048
-
-static int	internal_read_file_content(int fd, char **out_content)
+int			asm_read_file(const char *filename, char **out_content, int *size)
 {
-	char		*content;
-	char		buf[BUF_READ];
-	int			ret;
-
-	// content =
-	while ((ret = read(fd, buf, BUF_READ)) > 0)
-	{
-
-	}
-	return (ret);
-}
-
-int			asm_read_file(const char *filename, char **out_content)
-{
-	int		fd;
-
-	if (out_content == NULL || *out_content == NULL || filename == NULL)
+	if (size == NULL)
 	{
 		ft_putstr_fd("Param error on "__FILE__ , 2);
 		return (EXIT_FAILURE);
 	}
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-	{
-		// error message
+	*size = ft_read_file_with_filename(filename, out_content);
+	if (*size == -1)
 		return (EXIT_FAILURE);
-	}
-	if (internal_read_file_content(fd, out_content) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+	else
+		ft_putmemory(*out_content, *size);
 	return (EXIT_SUCCESS);
 }

@@ -71,6 +71,17 @@ typedef struct				s_asm
 	t_label					*label_list;
 }							t_asm;
 
+/* CORE */
+
+int							asm_usage(void);
+
+/* READDER */
+
+int							asm_read_file(const char *filename,
+								char **out_content, int *size);
+
+
+
 /* STRUCTS */
 
 t_asm						*asm_t_asm_new(void);
