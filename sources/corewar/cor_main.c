@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   cor_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/20 15:01:07 by pzarmehr         ###   ########.fr       */
+/*   Created: 2017/09/26 15:19:13 by pzarmehr          #+#    #+#             */
+/*   Updated: 2017/10/20 15:04:21 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#include "op.h"
 
-typedef	struct	s_player
+int		main(int ac, char **av)
 {
-	char				name[PROG_NAME_LENGTH];
-	char				comment[COMMENT_LENGTH];
-	int					live;
-	int					nb_live;
-	struct s_player		next;
-}				t_player;
+	t_player	*players;
+	t_pc		*pcs;
+	char		arena[MEM_SIZE];
+	int			dump;
 
-typedef	struct	s_pc
-{
-	int					addr;
-	int					reg[REG_NUMBER];
-	int					carry;
-	int					last_live;
-	int					wait;
-	struct s_pc			next;
-}				t_pc;
-
-#endif
+	//players = get_players(ac, av, &dump);
+	//pcs = get_pc(players);
+	//arena = prepare_arena(players, pcs);
+	//run(players, pcs, arena, dump)
+	return (0);
+}
