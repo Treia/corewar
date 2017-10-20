@@ -26,7 +26,7 @@ static int		internal_get_filename_on_arg(int ac, char **av, char **out_filename)
 
 static int		internal_get_basic_file_content(const char *filename, t_asm *file_content)
 {
-	// t_asm		temp_file_content;
+	t_asm		content;
 
 	(void)filename;
 	(void)file_content;
