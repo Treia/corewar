@@ -6,7 +6,7 @@
 #    By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/05 11:48:22 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/09/26 11:36:35 by mplanell         ###   ########.fr        #
+#    Updated: 2017/10/20 15:57:34 by pzarmehr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,15 +18,18 @@ FLAGS = -Wall -Werror -Wextra
 PATH_LIBFT = ./libft/includes
 LFT = -L ./libft/ -l ft
 
-PATH_SRC = ./src/
+PATH_ASM = ./sources/asm/
+PATH_COR = ./sources/corewar/
+PATH_SRC = ./sources/
 PATH_INC = ./includes/
 
 SRCASM = asm_main.c
-SRCCOR = cor_main.c
+SRCCOR = cor_main.c \
+	cor_run.c
 SRCALL = 
 
-OBJASM = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRCASM)))
-OBJCOR = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRCCOR)))
+OBJASM = $(patsubst %.c,%.o,$(addprefix $(PATH_ASM), $(SRCASM)))
+OBJCOR = $(patsubst %.c,%.o,$(addprefix $(PATH_COR), $(SRCCOR)))
 OBJALL = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRCALL)))
 
 
