@@ -6,7 +6,7 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/08 16:13:50 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/20 15:37:39 by mdezitte         ###   ########.fr        #
+#    Updated: 2017/10/20 16:42:49 by mdezitte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,9 @@ SRC = ft_strlen.c \
 	  ft_bzero.c \
 	  ft_memalloc.c \
 	  ft_strequ.c \
-	  ft_strtrim.c
+	  ft_strtrim.c \
+	  ft_memdel.c \
+	  ft_strcat.c
 
 OBJ = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRC)))
 

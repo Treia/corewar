@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_str.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 15:07:36 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/08/22 15:18:07 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/20 16:40:54 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	char	*ft_strcpy(char *dst, const char *src)
+char			*ft_strcpy(char *dst, const char *src)
 {
 	size_t	i;
 

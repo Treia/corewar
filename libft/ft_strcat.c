@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cor_main.c                                         :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/26 15:19:13 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/20 16:22:53 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/10/20 16:42:25 by mdezitte          #+#    #+#             */
+/*   Updated: 2017/10/20 16:42:40 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+char	*ft_strcat(char *s1, const char *s2)
 {
-	t_player	*players;
-	t_pc		*pcs;
-	char		arena[MEM_SIZE];
-	int			dump;
+	int a;
+	int b;
 
-	if ((players = get_players(ac, av, &dump)) == NULL)
-		return (-1);
-	// pcs = get_pc(players);
-	// prepare_arena(players, pcs, arena);
-	// run(players, pcs, arena, dump);
-	return (0);
-	(void)pcs;
-	(void)arena;
+	if (!s2 || s2 == NULL)
+		return (s1);
+	b = ft_strlen(s1);
+	a = 0;
+	while (s2[a] != '\0')
+	{
+		s1[b] = s2[a];
+		b++;
+		a++;
+	}
+	s1[b] = '\0';
+	return (s1);
 }

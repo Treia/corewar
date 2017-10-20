@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 18:09:19 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/20 15:36:52 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/20 16:43:13 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ void	*ft_memalloc(size_t size);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 int		ft_strequ(char const *s1, char const *s2);
 char	*ft_strtrim(char const *str);
+void	ft_memdel(void **ap);
 int		get_next_line(const int fd, char **line);
+char	*ft_strcpy(char *dst, const char *src);
+char	*ft_strcat(char *s1, const char *s2);
 
 #endif

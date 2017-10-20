@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+         #
+#    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/05 11:48:22 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/20 15:57:34 by pzarmehr         ###   ########.fr        #
+#    Updated: 2017/10/20 16:49:52 by mdezitte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,10 @@ PATH_INC = ./includes/
 
 SRCASM = asm_main.c
 SRCCOR = cor_main.c \
-	cor_run.c
+		cor_run.c \
+		error.c \
+		print_error.c \
+		get_players.c
 SRCALL = 
 
 OBJASM = $(patsubst %.c,%.o,$(addprefix $(PATH_ASM), $(SRCASM)))

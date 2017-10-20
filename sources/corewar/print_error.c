@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cor_main.c                                         :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/26 15:19:13 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/20 16:22:53 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/10/20 16:38:23 by mdezitte          #+#    #+#             */
+/*   Updated: 2017/10/20 16:43:13 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+# include "corewar.h"
 
-int		main(int ac, char **av)
+int			print_error(int ret, const char *message)
 {
-	t_player	*players;
-	t_pc		*pcs;
-	char		arena[MEM_SIZE];
-	int			dump;
+	char	error_mess[160];
 
-	if ((players = get_players(ac, av, &dump)) == NULL)
-		return (-1);
-	// pcs = get_pc(players);
-	// prepare_arena(players, pcs, arena);
-	// run(players, pcs, arena, dump);
-	return (0);
-	(void)pcs;
-	(void)arena;
+	ft_bzero(error_mess, 160);
+	ft_strcpy(error_mess, "[\033[31m ERROR \033[0m] \033[33m");
+	ft_strcat(error_mess, message);
+	ft_strcat(error_mess, ".\n\033[0m");
+	ft_putstr_fd(error_mess, 2);
+	return (ret);
 }
