@@ -43,12 +43,12 @@ int		main(int ac, char **av)
 
 	if (internal_get_basic_file_content(filename, &file_content) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	
+
 	//if (internal_get_asm_from_file_content(file_content) == EXIT_FAILURE)
 	//	return (EXIT_FAILURE);
-	
+
 	//if (internal_print_asm_to_file(file_content) == EXIT_FAILURE)
 	//	return (EXIT_FAILURE);
-	
+
 	return (EXIT_SUCCESS);
 }
