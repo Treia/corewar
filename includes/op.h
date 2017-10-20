@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 12:34:52 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/09/26 13:57:09 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/20 14:03:56 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,26 +73,5 @@ typedef	struct	s_header
 	unsigned int	prog_size;
 	char			comment[COMMENT_LENGTH + 1];
 }				t_header;
-
-/*
-** Player
-*/
-typedef	struct	s_player
-{
-	char			*name;
-	char			*comment;
-	int				live;
-}				t_player;
-
-/*
-** PCs list
-*/
-typedef	struct	s_pc
-{
-	int				addr;
-	int				reg[REG_NUMBER];
-	int				carry;
-	struct s_pc		next;
-}				t_pc;
 
 #endif
