@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cor_main.c                                         :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/26 15:19:13 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/20 15:34:19 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/04/06 12:06:46 by mdezitte          #+#    #+#             */
+/*   Updated: 2017/10/20 15:38:05 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	t_player	*players;
-	t_pc		*pcs;
-	char		arena[MEM_SIZE];
-	int			dump;
+	size_t	i;
+	char	*tmp_dst;
+	char	*tmp_src;
 
-	players = get_players(ac, av, &dump);
-	pcs = get_pc(players);
-	prepare_arena(players, pcs, arena);
-	run(players, pcs, arena, dump);
-	return (0);
+	i = 0;
+	if (n == 0 || dst == src)
+		return (dst);
+	tmp_dst = (char *)dst;
+	tmp_src = (char *)src;
+	while (i < (n - 1))
+	{
+		tmp_dst[i] = tmp_src[i];
+		i++;
+	}
+	tmp_dst[i] = tmp_src[i];
+	return (dst);
 }

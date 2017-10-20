@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cor_main.c                                         :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/26 15:19:13 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/20 15:34:19 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/04/24 11:32:49 by mdezitte          #+#    #+#             */
+/*   Updated: 2017/10/20 15:37:59 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+void	*ft_memalloc(size_t size)
 {
-	t_player	*players;
-	t_pc		*pcs;
-	char		arena[MEM_SIZE];
-	int			dump;
+	char	*dst;
+	size_t	i;
 
-	players = get_players(ac, av, &dump);
-	pcs = get_pc(players);
-	prepare_arena(players, pcs, arena);
-	run(players, pcs, arena, dump);
-	return (0);
+	if (!size)
+		return (NULL);
+	i = 0;
+	dst = malloc(sizeof(dst) * (size));
+	if (!dst)
+		return (NULL);
+	while (i < size)
+	{
+		dst[i] = 0;
+		i++;
+	}
+	return (dst);
 }

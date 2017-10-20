@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cor_main.c                                         :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/26 15:19:13 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/20 15:34:19 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/05/30 10:29:46 by mdezitte          #+#    #+#             */
+/*   Updated: 2017/10/20 15:38:09 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+int		ft_strequ(char const *s1, char const *s2)
 {
-	t_player	*players;
-	t_pc		*pcs;
-	char		arena[MEM_SIZE];
-	int			dump;
+	size_t i;
 
-	players = get_players(ac, av, &dump);
-	pcs = get_pc(players);
-	prepare_arena(players, pcs, arena);
-	run(players, pcs, arena, dump);
-	return (0);
+	i = 0;
+	if (!s1 && !s2)
+		return (1);
+	if (!s1 || !s2)
+		return (0);
+	while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
+		i++;
+	if (s1[i] == s2[i])
+		return (1);
+	else
+		return (0);
 }

@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cor_main.c                                         :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/26 15:19:13 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/20 15:34:19 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/04/05 16:17:52 by mdezitte          #+#    #+#             */
+/*   Updated: 2017/10/20 15:37:52 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+void	ft_bzero(void *s, size_t n)
 {
-	t_player	*players;
-	t_pc		*pcs;
-	char		arena[MEM_SIZE];
-	int			dump;
+	unsigned char	*tmp_ptr;
 
-	players = get_players(ac, av, &dump);
-	pcs = get_pc(players);
-	prepare_arena(players, pcs, arena);
-	run(players, pcs, arena, dump);
-	return (0);
+	tmp_ptr = (unsigned char *)s;
+	if (n == 0)
+		return ;
+	else
+	{
+		while (n--)
+			tmp_ptr[n] = 0;
+	}
 }

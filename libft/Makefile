@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+         #
+#    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/08 16:13:50 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/09/06 08:55:02 by pzarmehr         ###   ########.fr        #
+#    Updated: 2017/10/20 15:37:39 by mdezitte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,11 @@ SRC = ft_strlen.c \
 	  ft_put2.c \
 	  ft_error.c \
 	  ft_str.c \
-	  get_next_line.c
+	  get_next_line.c \
+	  ft_bzero.c \
+	  ft_memalloc.c \
+	  ft_strequ.c \
+	  ft_strtrim.c
 
 OBJ = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRC)))
 
