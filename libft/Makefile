@@ -32,6 +32,10 @@ SRC = ft_strlen.c \
 	  ft_strcat.c \
 	  print_error.c \
 	  syntax_error.c \
+	  ft_read_file.c \
+	  ft_memjoin.c \
+	  ft_putmemory.c \
+	  ft_memcpy.c \
 	  error.c
 
 OBJ = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRC)))
