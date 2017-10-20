@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 18:09:19 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/09/06 08:55:43 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/20 15:36:52 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ void	ft_putendl(char const *s);
 void	ft_putendl_fd(char const *s, int fd);
 void	ft_error(int status, char *str);
 void	ft_error_fd(int status, char *str, int fd);
+void	ft_bzero(void *s, size_t n);
+void	*ft_memalloc(size_t size);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+int		ft_strequ(char const *s1, char const *s2);
+char	*ft_strtrim(char const *str);
 int		get_next_line(const int fd, char **line);
 
 #endif
