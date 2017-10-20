@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/20 18:42:37 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/20 20:10:45 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ typedef	struct			s_game
 	char				arena[MEM_SIZE];
 	int					dump;
 	int					verb;
+	int					winner;
 }						t_game;
 
 typedef	struct			s_cycle
 {
 	int					current;
 	int					to_die;
-	int					delta;
 	int					check;
 	int					nb_check;
 }						t_cycle;
