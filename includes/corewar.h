@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/20 18:33:28 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/20 18:41:34 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ typedef	struct			s_pc
 	int					wait;
 	struct s_pc			*next;
 }						t_pc;
+
+typedef struct			s_argvparse
+{
+	char				*name;
+	int					id;
+	struct s_argvparse	*next;
+}						t_argvparse;
 
 t_player				*get_players(int argc, char **argv, int *dump);
 t_pc					*get_pc(t_player *player);

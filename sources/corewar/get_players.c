@@ -6,17 +6,17 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:28:42 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/20 18:35:30 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/20 18:41:57 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static int				parse_my_argv(char **argv, int *dump)
+static int				parse_my_argv(char **av, int *dump)
 {
+	t_argvparse		*argv;
+
 	return (0);
-	(void)argv;
-	(void)dump;
 }
 
 t_player				*get_players(int argc, char **argv, int *dump)
