@@ -23,7 +23,7 @@ PATH_COR = ./sources/corewar/
 PATH_SRC = ./sources/
 PATH_INC = ./includes/
 
-SRCASM = asm_main.c
+SRCASM = core/main.c
 SRCCOR = cor_main.c \
 		cor_run.c \
 		error.c \
