@@ -23,12 +23,24 @@ PATH_COR = ./sources/corewar/
 PATH_SRC = ./sources/
 PATH_INC = ./includes/
 
-SRCASM = core/main.c
+# ASM #
+
+ASM_CORE = main.c
+ASM_SRC_CORE = $(addprefix core/, $(ASM_CORE))
+
+ASM_READDER = main.c
+ASM_SRC_READDER = $(addprefix asm_readder/, $(ASM_READDER))
+
+SRCASM = $(ASM_SRC_CORE) $(ASM_SRC_READDER)
+
+# COR #
+
 SRCCOR = cor_main.c \
 		cor_run.c \
-		get_players.c \
-		struct_player.c
-SRCALL = 
+		error.c \
+		print_error.c \
+		get_players.c
+SRCALL =
 
 OBJASM = $(patsubst %.c,%.o,$(addprefix $(PATH_ASM), $(SRCASM)))
 OBJCOR = $(patsubst %.c,%.o,$(addprefix $(PATH_COR), $(SRCCOR)))
