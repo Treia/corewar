@@ -6,7 +6,7 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/08 16:13:50 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/20 18:34:03 by mdezitte         ###   ########.fr        #
+#    Updated: 2017/10/20 19:47:12 by mdezitte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,10 @@ SRC = ft_strlen.c \
 	  ft_memjoin.c \
 	  ft_putmemory.c \
 	  ft_memcpy.c \
-	  error.c
+	  error.c \
+	  ft_atoi.c \
+	  ft_isdigit.c \
+	  ft_putnbr.c
 
 OBJ = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRC)))
 
