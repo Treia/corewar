@@ -6,11 +6,11 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 16:38:23 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/20 16:43:13 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/20 18:34:28 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "corewar.h"
+# include "libft.h"
 
 int			print_error(int ret, const char *message)
 {

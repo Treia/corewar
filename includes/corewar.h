@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/20 16:45:45 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/20 18:33:28 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 # include "op.h"
 # include "libft.h"
 # include <stdlib.h>
-
-# define SYNTAX 100
-# define EMPTYARGV 101
 
 typedef	struct			s_player
 {
@@ -43,12 +40,6 @@ t_player				*get_players(int argc, char **argv, int *dump);
 t_pc					*get_pc(t_player *player);
 int						prepare_arena(t_player *player, t_pc *pc, char *arena);
 int						run(t_player *players, t_pc *pc, char *arena, int dump);
-
-/*
-** error
-*/
-int						print_error(int ret, const char *message);
-int						error(int id, int ret);
 
 /*
 ** structure player

@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 18:09:19 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/20 16:43:13 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/20 18:33:10 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 # include <stdlib.h>
 # define BUFF_SIZE 512
 # define FD_MAX 100
+/*
+** Error
+*/
+# define SYNTAX 100
+# define EMPTYARGV 101
+# define DUMPAV 102
+
+# define SYSTEM 200
 
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
@@ -40,5 +48,8 @@ void	ft_memdel(void **ap);
 int		get_next_line(const int fd, char **line);
 char	*ft_strcpy(char *dst, const char *src);
 char	*ft_strcat(char *s1, const char *s2);
+int		error(int id, int ret);
+int		syntax_error(int id, int ret);
+int		print_error(int ret, const char *message);
 
 #endif

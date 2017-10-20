@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_players.c                                      :+:      :+:    :+:   */
+/*   usage.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/20 15:28:42 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/20 18:35:30 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/10/20 17:03:56 by mdezitte          #+#    #+#             */
+/*   Updated: 2017/10/20 17:06:03 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static int				parse_my_argv(char **argv, int *dump)
+int			usage(void)
 {
-	return (0);
-	(void)argv;
-	(void)dump;
-}
-
-t_player				*get_players(int argc, char **argv, int *dump)
-{
-	t_player		*player;
-
-	if (argc < 2)
-	{
-		error(EMPTYARGV, 0);
-		return (NULL);
-	}
-	if (parse_my_argv(argv, dump) < 0)
-		return (NULL);
-	player = new_player();
-	return (player);
-	(void)dump;
-	(void)argv;
+	ft_putstr_fd("[\033[32m USAGE \033[0m] \033[33m", 2);
+	ft_putstr_fd("./corewar [-dump nbr_cycles] [[-n number] champion] ...", 2);
+	ft_putstr_fd("\n\033[0m", 2);
+	return (-1);
 }

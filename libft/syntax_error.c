@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_players.c                                      :+:      :+:    :+:   */
+/*   syntax_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/20 15:28:42 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/20 18:35:30 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/10/20 17:13:02 by mdezitte          #+#    #+#             */
+/*   Updated: 2017/10/20 18:34:32 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "libft.h"
 
-static int				parse_my_argv(char **argv, int *dump)
+static int		lib_error_one_ten(int id, int ret)
 {
-	return (0);
-	(void)argv;
-	(void)dump;
+	if (id == EMPTYARGV)
+		return (print_error(ret, "Empty argv"));
+	else if (id == DUMPAV)
+		return (print_error(ret, "Dump argv error"));
+	return (ret);
 }
 
-t_player				*get_players(int argc, char **argv, int *dump)
+int				syntax_error(int id, int ret)
 {
-	t_player		*player;
-
-	if (argc < 2)
-	{
-		error(EMPTYARGV, 0);
-		return (NULL);
-	}
-	if (parse_my_argv(argv, dump) < 0)
-		return (NULL);
-	player = new_player();
-	return (player);
-	(void)dump;
-	(void)argv;
+	if (id <= (SYNTAX + 10))
+		return (lib_error_one_ten(id, ret));
+	return (ret);
 }

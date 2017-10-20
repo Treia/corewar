@@ -6,7 +6,7 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/05 11:48:22 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/20 16:59:12 by mdezitte         ###   ########.fr        #
+#    Updated: 2017/10/20 18:33:39 by mdezitte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,6 @@ PATH_INC = ./includes/
 SRCASM = asm_main.c
 SRCCOR = cor_main.c \
 		cor_run.c \
-		error.c \
-		print_error.c \
 		get_players.c \
 		struct_player.c
 SRCALL = 
