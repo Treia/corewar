@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 18:12:15 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 18:32:09 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,10 @@ void					print_game(t_game *game);
 int						run(t_game *game);
 int						run_pc(t_game *game, t_cycle *c);
 int						get_wait(int opcode);
+
+/*
+** end game
+*/
+void	print_winner(t_game *game);
 
 #endif

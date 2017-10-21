@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:29:35 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 16:43:03 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/21 18:10:49 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,9 @@ void	check_cycle(t_cycle *cycle, t_game *game)
 void	end_game(t_game *game)
 {
 	if (!(game->pcs))
-	{
-		;//xxx win
-	}
+		print_winner(game);
 	else
-		;//	dump memory
+		;
 }
 
 int		run(t_game *game)
@@ -79,8 +77,7 @@ int		run(t_game *game)
 	while ((game->pcs != 0) &&
 		(c.current < game->dump || game->dump == -1))
 	{
-		ret = run_pc(game, &c);
-		if (ret != 0)
+		if ((ret = run_pc(game, &c)) != 0)
 			return (ret);
 		c.current++;
 		check_cycle(&c, game);
