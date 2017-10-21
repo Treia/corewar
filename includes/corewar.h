@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 14:27:23 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 14:47:49 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef	struct			s_pc
 	int					carry;
 	int					last_live;
 	int					wait;
+	void				*cmd(t_game *, int *, t_pc *)
+	int					param[3];
 	struct s_pc			*next;
 }						t_pc;
 
