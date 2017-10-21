@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 16:42:15 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/21 17:06:01 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ void					add_in_argvparse_list(t_argvparse **argvparse,
 */
 int						run(t_game *game);
 int						run_pc(t_game *game, t_cycle *c);
+int						get_wait(int opcode);
 
 #endif

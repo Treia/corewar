@@ -6,7 +6,7 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/05 11:48:22 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/21 16:42:48 by pzarmehr         ###   ########.fr        #
+#    Updated: 2017/10/21 17:05:52 by pzarmehr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ SRCCOR = cor_main.c \
 		resolve_n.c \
 		resolve_champ.c \
 		cor_run.c \
-		cor_run_pc.c
+		cor_run_pc.c \
+		get_wait.c
 SRCALL =
 
 OBJASM = $(patsubst %.c,%.o,$(addprefix $(PATH_ASM), $(SRCASM)))
