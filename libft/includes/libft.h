@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 18:09:19 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 14:39:15 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 14:49:14 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define EMPTYARGV 101
 # define DUMPAV 102
 # define OPTNAV 103
+# define TOO_MANY_CHAMP 104
 
 # define SYSTEM 200
 

@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 14:16:58 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/21 14:39:19 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 14:50:33 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,18 @@ static int 		is_champ(const char *name)
 int				check_is_correct_champ(t_argvparse *argv)
 {
 	t_argvparse *begin;
+	int			nb;
 
 	begin = argv;
+	nb = 0;
 	while (argv)
 	{
 		if (is_champ(argv->name) < 0)
 			return (bad_name(argv->name, -1));
+		argv = argv->next;
+		nb++;
 	}
+	if (nb > MAX_PLAYERS)
+		return (error(TOO_MANY_CHAMP, -1));
 	return (0);
 }
