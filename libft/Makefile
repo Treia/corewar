@@ -6,7 +6,7 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/08 16:13:50 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/21 14:38:52 by mdezitte         ###   ########.fr        #
+#    Updated: 2017/10/21 18:47:24 by mdezitte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,8 @@ SRC = ft_strlen.c \
 	  ft_isnum.c \
 	  ft_strsplit.c \
 	  ft_strncpy.c \
-	  ft_tablen.c
+	  ft_tablen.c \
+	  ft_memtabdel.c
 
 OBJ = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRC)))
 

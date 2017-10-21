@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tablen.c                                        :+:      :+:    :+:   */
+/*   ft_memtabdel.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/21 14:37:50 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/21 18:47:27 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/10/21 18:46:50 by mdezitte          #+#    #+#             */
+/*   Updated: 2017/10/21 18:47:53 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			ft_len_tab(char **tab)
+void		ft_memtabdel(void ***tab)
 {
-	int		ret;
+	int i;
 
-	ret = 0;
-	while (tab[ret])
-		ret++;
-	return (ret);
+	i = 0;
+	while ((*tab)[i])
+	{
+		ft_memdel((void *)&(*tab)[i]);
+		i++;
+	}
+	free(*tab);
+	*tab = NULL;
 }

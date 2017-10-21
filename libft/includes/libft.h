@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 18:09:19 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 17:19:22 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 18:47:16 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ int		ft_isnum(const char *str);
 char	**ft_strsplit(char const *s, char c);
 char	*ft_strncpy(char *dst, const char *src, size_t n);
 int		ft_len_tab(char **tab);
+void	ft_memtabdel(void ***tab);
 
 #endif
