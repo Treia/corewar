@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/20 20:19:45 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 14:27:23 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,13 @@ t_pc					*get_pc(t_player *player);
 int						prepare_arena(t_player *player, t_pc *pc, char *arena);
 int						run(t_player *players, t_pc *pc, char *arena, int dump);
 int						usage(void);
+
+/*
+** parsing
+*/
 int						clear_dump(int *dump, t_argvparse **argv);
+int						clear_n_option(t_argvparse **argv);
+int						check_is_correct_champ(t_argvparse *argv);
 
 /*
 ** struct player

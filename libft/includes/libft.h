@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 18:09:19 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/20 19:47:01 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 14:39:15 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define SYNTAX 100
 # define EMPTYARGV 101
 # define DUMPAV 102
+# define OPTNAV 103
 
 # define SYSTEM 200
 
@@ -66,5 +67,9 @@ int		print_error(int ret, const char *message);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
 void	ft_putnbr(int n);
+int		ft_isnum(const char *str);
+char	**ft_strsplit(char const *s, char c);
+char	*ft_strncpy(char *dst, const char *src, size_t n);
+int		ft_len_tab(char **tab);
 
 #endif

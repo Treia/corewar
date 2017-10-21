@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cor_main.c                                         :+:      :+:    :+:   */
+/*   ft_isnum.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/26 15:19:13 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 13:43:04 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/10/21 13:52:46 by mdezitte          #+#    #+#             */
+/*   Updated: 2017/10/21 13:53:41 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+int		ft_isnum(const char *str)
 {
-	t_player	*players;
-	t_pc		*pcs;
-	char		arena[MEM_SIZE];
-	int			dump;
+	int		index;
 
-	if ((players = get_players(ac, av, &dump)) == NULL)
-		return (usage());
-	// pcs = get_pc(players);
-	// prepare_arena(players, pcs, arena);
-	// run(players, pcs, arena, dump);
-	return (0);
-	(void)pcs;
-	(void)arena;
+	index = 0;
+	while (str[index])
+	{
+		if (ft_isdigit(str[index]) != 1)
+			return (0);
+		index++;
+	}
+	return (1);
 }

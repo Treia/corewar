@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:28:42 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/20 20:15:20 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 14:15:58 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void					print_argv(t_argvparse *argv)
 {
 	while (argv)
 	{
-		ft_putendl(argv->name);
+		ft_putstr(argv->name);
+		ft_putnbr(argv->id);
+		ft_putendl(" ");
 		argv = argv->next;
 	}
 }
@@ -45,10 +47,21 @@ static int				parse_my_argv(char **av, int *dump)
 
 	argv = make_argv_list(av);
 	if (clear_dump(dump, &argv) < 0)
+	{
+		release_argvparse(&argv);
 		return (-1);
+	}
+	if (clear_n_option(&argv) < 0)
+	{
+		release_argvparse(&argv);
+		return (-1);
+	}
+	if (check_is_correct_champ(argv) < 0)
+	{
+		release_argvparse(&argv);
+		return (-1);
+	}
 	print_argv(argv);
-	ft_putendl("ANNNNND DUMP = ");
-	ft_putnbr(*dump);
 	release_argvparse(&argv);
 	return (0);
 	(void)dump;

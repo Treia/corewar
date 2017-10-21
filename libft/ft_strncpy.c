@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cor_main.c                                         :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/26 15:19:13 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 13:43:04 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/10/08 16:02:49 by mdezitte          #+#    #+#             */
+/*   Updated: 2017/10/21 14:39:40 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+char	*ft_strncpy(char *dst, const char *src, size_t n)
 {
-	t_player	*players;
-	t_pc		*pcs;
-	char		arena[MEM_SIZE];
-	int			dump;
+	size_t	i;
 
-	if ((players = get_players(ac, av, &dump)) == NULL)
-		return (usage());
-	// pcs = get_pc(players);
-	// prepare_arena(players, pcs, arena);
-	// run(players, pcs, arena, dump);
-	return (0);
-	(void)pcs;
-	(void)arena;
+	i = 0;
+	while (src[i] != '\0' && i < n)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	while (i < n)
+	{
+		dst[i] = '\0';
+		i++;
+	}
+	return (dst);
 }

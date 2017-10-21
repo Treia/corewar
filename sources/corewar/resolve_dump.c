@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   resolve_argv.c                                     :+:      :+:    :+:   */
+/*   resolve_dump.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 19:12:25 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/20 20:16:35 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 14:39:21 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static int		ft_isnum(const char *str)
+static int		free_dump_and_val(t_argvparse *item)
 {
-	int		index;
-
-	index = 0;
-	while (str[index])
-	{
-		if (ft_isdigit(str[index]) != 1)
-			return (0);
-		index++;
-	}
-	return (1);
+	free_item_argvparse(item->next);
+	free_item_argvparse(item);
+	return (0);
 }
 
 static int		clear_first(t_argvparse **argv, int *dump)
@@ -37,8 +30,7 @@ static int		clear_first(t_argvparse **argv, int *dump)
 		*dump = ft_atoi((*argv)->next->name);
 		tmp = (*argv);
 		(*argv) = (*argv)->next->next;
-		free_item_argvparse(tmp->next);
-		free_item_argvparse(tmp);
+		free_dump_and_val(tmp);
 	}
 	return (0);
 }
@@ -46,27 +38,28 @@ static int		clear_first(t_argvparse **argv, int *dump)
 int				clear_dump(int *dump, t_argvparse **argv)
 {
 	t_argvparse		*tmp;
+	t_argvparse		*begin;
 
-	if (!(*argv)->next)
+	if (!(*argv) || !(*argv)->next)
 		return (0);
 	if (clear_first(argv, dump) < 0)
 		return (-1);
-	while ((*argv) && (*argv)->next)
+	begin = *argv;
+	while (begin && begin->next)
 	{
-		if (ft_strequ((*argv)->next->name, "-dump"))
+		if (ft_strequ(begin->next->name, "-dump"))
 		{
-			if ((*argv)->next->next == NULL)
+			if (begin->next->next == NULL)
 				return (0);
-			if (ft_isnum((*argv)->next->next->name) == 0)
+			if (ft_isnum(begin->next->next->name) == 0)
 				return (error(DUMPAV, -1));
-			*dump = ft_atoi((*argv)->next->next->name);
-			tmp = (*argv)->next;
-			(*argv)->next = (*argv)->next->next->next;
-			free_item_argvparse(tmp->next);
-			free_item_argvparse(tmp);
+			*dump = ft_atoi(begin->next->next->name);
+			tmp = begin->next;
+			begin->next = begin->next->next->next;
+			free_dump_and_val(tmp);
 		}
 		else
-			(*argv) = (*argv)->next;
+			begin = begin->next;
 	}
 	return (0);
 }
