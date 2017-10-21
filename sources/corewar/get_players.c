@@ -6,24 +6,19 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:28:42 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/21 15:07:10 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 17:08:33 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void					print_argv(t_argvparse *argv)
+static t_argvparse		*clean_argv(t_argvparse **argv)
 {
-	while (argv)
-	{
-		ft_putstr(argv->name);
-		ft_putnbr(argv->id);
-		ft_putendl(" ");
-		argv = argv->next;
-	}
+	release_argvparse(argv);
+	return (NULL);
 }
 
-static t_argvparse 		*make_argv_list(char **av)
+static t_argvparse		*make_argv_list(char **av)
 {
 	t_argvparse		*ret;
 	t_argvparse		*tmp;
@@ -41,46 +36,37 @@ static t_argvparse 		*make_argv_list(char **av)
 	return (ret);
 }
 
-static int				parse_my_argv(char **av, int *dump)
+static t_argvparse		*parse_my_argv(char **av, t_game *game)
 {
 	t_argvparse		*argv;
 
 	argv = make_argv_list(av);
-	if (clear_dump(dump, &argv) < 0)
-	{
-		release_argvparse(&argv);
-		return (-1);
-	}
+	if (clear_dump(&game->dump, &argv) < 0)
+		return (clean_argv(&argv));
+	if (clear_verbose_option(&game->verb, &argv) < 0)
+		return (clean_argv(&argv));
 	if (clear_n_option(&argv) < 0)
-	{
-		release_argvparse(&argv);
-		return (-1);
-	}
+		return (clean_argv(&argv));
 	if (check_is_correct_champ(argv) < 0)
-	{
-		release_argvparse(&argv);
-		return (-1);
-	}
-	print_argv(argv);
-	release_argvparse(&argv);
-	return (0);
-	(void)dump;
+		return (clean_argv(&argv));
+	return (argv);
 }
 
-t_player				*get_players(int argc, char **argv, int *dump)
+t_game				*get_players(int argc, char **argv)
 {
-	t_player		*player;
+//	t_player		*player;
+	t_game			*game;
+	t_argvparse		*l_argv;
 
 	if (argc < 2)
 	{
 		error(EMPTYARGV, 0);
 		return (NULL);
 	}
-	*dump = -1;
-	if (parse_my_argv(argv, dump) < 0)
+	game = new_game();
+	if ((l_argv = parse_my_argv(argv, game)) == NULL)
 		return (NULL);
-	player = new_player();
-	return (player);
-	(void)dump;
-	(void)argv;
+//	player = make_player_list(l_argv);
+	release_argvparse(&l_argv);
+	return (game);
 }

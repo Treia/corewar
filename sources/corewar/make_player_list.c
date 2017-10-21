@@ -1,21 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   usage.c                                            :+:      :+:    :+:   */
+/*   make_player_list.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/20 17:03:56 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/21 16:48:34 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/10/21 15:59:54 by mdezitte          #+#    #+#             */
+/*   Updated: 2017/10/21 16:00:05 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
-int			usage(void)
-{
-	ft_putstr_fd("[\033[32m USAGE \033[0m] \033[33m", 2);
-	ft_putstr_fd("./corewar [-dump nbr_cycles] [-v 0-7] ", 2);
-	ft_putstr_fd("[[-n number] champion] ...\n\033[0m", 2);
-	return (-1);
-}

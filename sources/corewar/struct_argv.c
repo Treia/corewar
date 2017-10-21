@@ -6,11 +6,25 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 18:43:42 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/20 20:00:02 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 15:30:10 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+int				check_if_id_use(int id, t_argvparse *argv)
+{
+	t_argvparse *begin;
+
+	begin = argv;
+	while (argv)
+	{
+		if (argv->id == id)
+			return (1);
+		argv = argv->next;
+	}
+	return (0);
+}
 
 void			free_item_argvparse(t_argvparse *argvparse)
 {

@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 15:10:49 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 17:07:48 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,24 +63,39 @@ typedef struct			s_argvparse
 	struct s_argvparse	*next;
 }						t_argvparse;
 
-t_player				*get_players(int argc, char **argv, int *dump);
+t_game					*get_players(int argc, char **argv);
 t_pc					*get_pc(t_player *player);
 int						prepare_arena(t_player *player, t_pc *pc, char *arena);
 int						run(t_player *players, t_pc *pc, char *arena, int dump);
+int						check_if_id_use(int id, t_argvparse *argv);
 int						usage(void);
 
 /*
 ** parsing
 */
 int						clear_dump(int *dump, t_argvparse **argv);
+int						clear_verbose(int *verb, t_argvparse **argv);
 int						clear_n_option(t_argvparse **argv);
 int						check_is_correct_champ(t_argvparse *argv);
+int						clear_verbose_option(int *dump, t_argvparse **argv);
+
+/*
+** struct game
+*/
+t_game					*new_game();
+void					release_game(t_game *game);
 
 /*
 ** struct player
 */
 t_player				*new_player(void);
 void					release_player(t_player **player);
+
+/*
+** struct pcs
+*/
+void					release_pcs(t_pc **pcs);
+t_pc					*new_pc(int live);
 
 /*
 ** struct argvparse
@@ -90,5 +105,14 @@ void					release_argvparse(t_argvparse **argvparse);
 void					free_item_argvparse(t_argvparse *argvparse);
 void					add_in_argvparse_list(t_argvparse **argvparse,
 												t_argvparse *to_add);
+
+/*
+** debug
+*/
+void					print_argv(t_argvparse *argv);
+void					print_register(int *reg);
+void					print_pcs_list(t_pc *pcs);
+void					print_players_list(t_player *player);
+void					print_game(t_game *game);
 
 #endif
