@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 17:14:23 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 17:53:02 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 
 typedef struct			s_player	t_player;
-typedef struct			s_pc	t_pc;
+typedef struct			s_pc		t_pc;
 
 typedef	struct			s_game
 {
@@ -32,8 +32,8 @@ typedef	struct			s_game
 
 typedef	struct			s_player
 {
-	char				name[PROG_NAME_LENGTH];
-	char				comment[COMMENT_LENGTH];
+	char				name[PROG_NAME_LENGTH + 1];
+	char				comment[COMMENT_LENGTH + 1];
 	int					live;
 	int					nb_live;
 	int					size_prog;
@@ -125,5 +125,10 @@ void					print_game(t_game *game);
 int						run(t_game *game);
 int						run_pc(t_game *game, t_cycle *c);
 int						get_wait(int opcode);
+
+/*
+** end game
+*/
+void	print_winner(t_game *game);
 
 #endif
