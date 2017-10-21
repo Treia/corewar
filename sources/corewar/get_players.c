@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:28:42 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/21 14:15:58 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 15:07:10 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ t_player				*get_players(int argc, char **argv, int *dump)
 		error(EMPTYARGV, 0);
 		return (NULL);
 	}
+	*dump = -1;
 	if (parse_my_argv(argv, dump) < 0)
 		return (NULL);
 	player = new_player();

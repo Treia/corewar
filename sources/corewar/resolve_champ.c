@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 14:16:58 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/21 14:50:33 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 14:51:08 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int		bad_name(const char *name, int ret)
 		return (ret);
 	ft_strcpy(error, "ARGUMENT : ");
 	ft_strcat(error, name);
-	ft_strcat(error, "is not a champion...");
+	ft_strcat(error, " is not a champion...");
 	return (print_error(ret, error));
 }
 

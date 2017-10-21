@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 17:13:02 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/21 14:50:28 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 14:53:03 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static int		lib_error_one_ten(int id, int ret)
 {
 	if (id == EMPTYARGV)
-		return (print_error(ret, "SYNTAX : Empty argv"));
+		return (print_error(ret, "ARGUMENT : Empty argv"));
 	else if (id == DUMPAV)
-		return (print_error(ret, "SYNTAX : Dump argv error"));
+		return (print_error(ret, "ARGUMENT : Dump argv error"));
 	else if (id == OPTNAV)
 		return (print_error(ret, "SYNTAX : flag n argv is incorrect"));
 	else if (id == TOO_MANY_CHAMP)
