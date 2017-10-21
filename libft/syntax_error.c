@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 17:13:02 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/21 14:53:03 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 17:20:01 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static int		lib_error_one_ten(int id, int ret)
 		return (print_error(ret, "SYNTAX : flag n argv is incorrect"));
 	else if (id == TOO_MANY_CHAMP)
 		return (print_error(ret, "SYNTAX : too many champion"));
+	else if (id == VERBAV)
+		return (print_error(ret, "ARGUMENT : verbose argv invalid"));
 	return (ret);
 }
 

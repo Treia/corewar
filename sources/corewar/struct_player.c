@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 16:11:24 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/20 16:20:01 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 18:12:16 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,24 @@ void				release_player(t_player **player)
 	free_item_player(*player);
 }
 
+void			add_in_player_list(t_player **player,
+											t_player *to_add)
+{
+	t_player *begin;
+
+	if (!player || !to_add)
+		return ;
+	else if (!*player)
+		*player = to_add;
+	else
+	{
+		begin = *player;
+		while (begin->next)
+			begin = begin->next;
+		begin->next = to_add;
+	}
+}
+
 t_player			*new_player(void)
 {
 	t_player	*ret;
@@ -32,6 +50,8 @@ t_player			*new_player(void)
 	ret = (t_player *)malloc(sizeof(t_player));
 	if (ret == NULL)
 		return (NULL);
+	ft_bzero(ret->name, PROG_NAME_LENGTH + 1);
+	ft_bzero(ret->comment, COMMENT_LENGTH + 1);
 	ret->live = 0;
 	ret->nb_live = 0;
 	ret->next = NULL;

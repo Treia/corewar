@@ -6,11 +6,26 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:28:42 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/21 17:08:33 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 18:30:34 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+static int 				len_argv(t_argvparse *argv)
+{
+	t_argvparse	*begin;
+	int			nb;
+
+	begin = argv;
+	nb = 0;
+	while (begin)
+	{
+		nb++;
+		begin = begin->next;
+	}
+	return (nb);
+}
 
 static t_argvparse		*clean_argv(t_argvparse **argv)
 {
@@ -47,16 +62,16 @@ static t_argvparse		*parse_my_argv(char **av, t_game *game)
 		return (clean_argv(&argv));
 	if (clear_n_option(&argv) < 0)
 		return (clean_argv(&argv));
-	if (check_is_correct_champ(argv) < 0)
+	if (check_is_correct_champ(argv, game) < 0)
 		return (clean_argv(&argv));
 	return (argv);
 }
 
 t_game				*get_players(int argc, char **argv)
 {
-//	t_player		*player;
 	t_game			*game;
 	t_argvparse		*l_argv;
+	int				nb_players;
 
 	if (argc < 2)
 	{
@@ -66,7 +81,15 @@ t_game				*get_players(int argc, char **argv)
 	game = new_game();
 	if ((l_argv = parse_my_argv(argv, game)) == NULL)
 		return (NULL);
-//	player = make_player_list(l_argv);
+	if (game->verb < 0 || game->verb > 7)
+	{
+		error(VERBAV, 0);
+		release_game(game);
+		release_argvparse(&l_argv);
+		return (NULL);
+	}
+	nb_players = len_argv(l_argv);
+	game->players = make_player_list(l_argv, game, (MEM_SIZE / nb_players));
 	release_argvparse(&l_argv);
 	return (game);
 }

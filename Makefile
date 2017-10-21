@@ -6,7 +6,7 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/05 11:48:22 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/21 17:13:16 by mdezitte         ###   ########.fr        #
+#    Updated: 2017/10/21 18:26:20 by mdezitte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,8 @@ SRCCOR = cor_main.c \
 		struct_game.c \
 		cor_run.c \
 		cor_run_pc.c \
-		get_wait.c
+		get_wait.c \
+		make_player_list.c
 SRCALL =
 
 OBJASM = $(patsubst %.c,%.o,$(addprefix $(PATH_ASM), $(SRCASM)))

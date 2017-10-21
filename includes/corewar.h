@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 17:14:23 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 18:12:15 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@
 # include "op.h"
 # include "libft.h"
 # include <stdlib.h>
+# include <fcntl.h>
+
+# define HEADER_SIZE  (PROG_NAME_LENGTH + COMMENT_LENGTH + 10)
 
 typedef struct			s_player	t_player;
-typedef struct			s_pc	t_pc;
+typedef struct			s_pc		t_pc;
 
 typedef	struct			s_game
 {
@@ -32,12 +35,10 @@ typedef	struct			s_game
 
 typedef	struct			s_player
 {
-	char				name[PROG_NAME_LENGTH];
-	char				comment[COMMENT_LENGTH];
+	char				name[PROG_NAME_LENGTH + 1];
+	char				comment[COMMENT_LENGTH + 1];
 	int					live;
 	int					nb_live;
-	int					size_prog;
-	char				prog[CHAMP_MAX_SIZE];
 	struct s_player		*next;
 }						t_player;
 
@@ -73,6 +74,7 @@ t_pc					*get_pc(t_player *player);
 int						prepare_arena(t_player *player, t_pc *pc, char *arena);
 int						check_if_id_use(int id, t_argvparse *argv);
 int						usage(void);
+t_player				*make_player_list(t_argvparse *argv, t_game *game, int interval);
 
 /*
 ** parsing
@@ -80,7 +82,7 @@ int						usage(void);
 int						clear_dump(int *dump, t_argvparse **argv);
 int						clear_verbose(int *verb, t_argvparse **argv);
 int						clear_n_option(t_argvparse **argv);
-int						check_is_correct_champ(t_argvparse *argv);
+int						check_is_correct_champ(t_argvparse *argv, t_game *game);
 int						clear_verbose_option(int *dump, t_argvparse **argv);
 
 /*
@@ -94,6 +96,8 @@ void					release_game(t_game *game);
 */
 t_player				*new_player(void);
 void					release_player(t_player **player);
+void					add_in_player_list(t_player **player,
+											t_player *to_add);
 
 /*
 ** struct pcs

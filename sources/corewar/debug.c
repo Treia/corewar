@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 16:04:14 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/21 16:27:25 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 18:26:37 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ void					print_players_list(t_player *player)
 		ft_putnbr(player->live);
 		ft_putstr("\nnb_live : ");
 		ft_putnbr(player->nb_live);
-		ft_putstr("\nsize_prog : ");
-		ft_putnbr(player->size_prog);
 		ft_putendl(".");
 		ft_putendl("End Players");
 		player = player->next;

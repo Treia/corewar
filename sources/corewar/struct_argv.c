@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 18:43:42 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/21 15:30:10 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 17:30:51 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_argvparse		*new_argvparse(void)
 	if ((ret = (t_argvparse *)malloc(sizeof(t_argvparse))) == NULL)
 		return (NULL);
 	ret->name = NULL;
-	ret->id = 0;
+	ret->id = -999;
 	ret->next = NULL;
 	return (ret);
 }
