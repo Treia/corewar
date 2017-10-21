@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 14:27:23 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 15:10:49 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef	struct			s_player
 	int					live;
 	int					nb_live;
 	int					size_prog;
-	void				*prog;
+	char				prog[CHAMP_MAX_SIZE];
 	struct s_player		*next;
 }						t_player;
 

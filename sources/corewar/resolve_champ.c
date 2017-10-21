@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 14:16:58 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/21 14:51:08 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 15:13:15 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,16 @@ static int 		is_champ(const char *name)
 		return (-1);
 	ret = ft_len_tab(tmp);
 	if (ret < 2)
+	{
+		ft_memdel((void *)&tmp);
 		return (-1);
+	}
 	if (ft_strequ(tmp[ret - 1], "cor"))
+	{
+		ft_memdel((void *)&tmp);
 		return (1);
+	}
+	ft_memdel((void *)&tmp);
 	return (-1);
 }
 
