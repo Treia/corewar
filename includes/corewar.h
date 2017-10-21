@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 17:07:48 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 17:14:23 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@
 # include "op.h"
 # include "libft.h"
 # include <stdlib.h>
+
+typedef struct			s_player	t_player;
+typedef struct			s_pc	t_pc;
+
+typedef	struct			s_game
+{
+	t_player			*players;
+	t_pc				*pcs;
+	char				arena[MEM_SIZE];
+	int					dump;
+	int					verb;
+	int					winner;
+}						t_game;
 
 typedef	struct			s_player
 {
@@ -35,18 +48,10 @@ typedef	struct			s_pc
 	int					carry;
 	int					last_live;
 	int					wait;
+	void				(*cmd)(t_game *, t_pc *);
 	struct s_pc			*next;
 }						t_pc;
 
-typedef	struct			s_game
-{
-	t_player			*players;
-	t_pc				*pcs;
-	char				arena[MEM_SIZE];
-	int					dump;
-	int					verb;
-	int					winner;
-}						t_game;
 
 typedef	struct			s_cycle
 {
@@ -66,7 +71,6 @@ typedef struct			s_argvparse
 t_game					*get_players(int argc, char **argv);
 t_pc					*get_pc(t_player *player);
 int						prepare_arena(t_player *player, t_pc *pc, char *arena);
-int						run(t_player *players, t_pc *pc, char *arena, int dump);
 int						check_if_id_use(int id, t_argvparse *argv);
 int						usage(void);
 
@@ -114,5 +118,12 @@ void					print_register(int *reg);
 void					print_pcs_list(t_pc *pcs);
 void					print_players_list(t_player *player);
 void					print_game(t_game *game);
+
+/*
+** run game
+*/
+int						run(t_game *game);
+int						run_pc(t_game *game, t_cycle *c);
+int						get_wait(int opcode);
 
 #endif

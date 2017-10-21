@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:29:35 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/20 20:10:31 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/21 16:43:03 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	reset_cycle(t_cycle *cycle, t_game *game)
 
 	cycle->to_die -= CYCLE_DELTA;
 	cycle->check += cycle->to_die;
-	cycle->nb_check = 0
+	cycle->nb_check = 0;
 	tmp = game->players;
-	while (!tmp)
+	while (tmp != 0)
 	{
 		tmp->nb_live = 0;
 		tmp = tmp->next;
@@ -44,7 +44,7 @@ void	check_cycle(t_cycle *cycle, t_game *game)
 	{
 		flag = 0;
 		tmp = game->players;
-		while (!tmp)
+		while (tmp != 0)
 		{
 			flag = tmp->nb_live < NBR_LIVE ? flag : 1;
 			tmp = tmp->next;
@@ -67,27 +67,24 @@ void	end_game(t_game *game)
 		;//xxx win
 	}
 	else
-		;//	dump memory	
+		;//	dump memory
 }
 
 int		run(t_game *game)
 {
-	t_cycle	cycle;
+	t_cycle	c;
+	int		ret;
 
-	init_cycle(&cycle);
-	while ((game->pcs != 0) && (c.current < game->dump || game->dump == -1))
+	init_cycle(&c);
+	while ((game->pcs != 0) &&
+		(c.current < game->dump || game->dump == -1))
 	{
-		//pour chaque pc
-		// si (cycle > pc->last_live + cycle_to_die)
-		//		kill pc
-		// sinon si (wait == 0)
-		//		do cmd
-		//		addr = next addr
-		//		wait = next cmd;
-		// sinon
-		//		wait--;
-		cycle.current++;
-		check_cycle(&c);
+		ret = run_pc(game, &c);
+		if (ret != 0)
+			return (ret);
+		c.current++;
+		check_cycle(&c, game);
 	}
 	end_game(game);
+	return (0);
 }
