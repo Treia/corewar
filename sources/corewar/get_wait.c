@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_wait.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 16:50:36 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 17:06:07 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/21 18:39:38 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"corewar.h"
+#include "corewar.h"
 
 int		get_wait(int opcode)
 {

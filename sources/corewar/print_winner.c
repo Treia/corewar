@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   print_winner.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 17:20:33 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 18:05:24 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/21 18:39:24 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"corewar.h"
+#include "corewar.h"
 
 int		nb_winner(t_game *game)
 {
-	int		nb;
+	int			nb;
 	t_player	*tmp;
 
 	nb = 0;

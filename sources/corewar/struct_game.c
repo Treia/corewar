@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 16:53:32 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/21 17:07:53 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 18:39:11 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void			release_game(t_game *game)
 	ft_memdel((void *)&game);
 }
 
-t_game			*new_game()
+t_game			*new_game(void)
 {
 	t_game		*ret;
 

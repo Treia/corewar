@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 16:11:24 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/21 18:12:16 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 18:38:04 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void				release_player(t_player **player)
 	free_item_player(*player);
 }
 
-void			add_in_player_list(t_player **player,
-											t_player *to_add)
+void				add_in_player_list(t_player **player,
+												t_player *to_add)
 {
 	t_player *begin;
 

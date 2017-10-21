@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 16:48:54 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/21 16:52:25 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 18:37:59 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,4 @@ int				clear_verbose_option(int *dump, t_argvparse **argv)
 			begin = begin->next;
 	}
 	return (0);
-}	
+}

@@ -6,13 +6,13 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:28:42 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/21 18:30:34 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/21 18:38:51 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static int 				len_argv(t_argvparse *argv)
+static int				len_argv(t_argvparse *argv)
 {
 	t_argvparse	*begin;
 	int			nb;
@@ -67,7 +67,7 @@ static t_argvparse		*parse_my_argv(char **av, t_game *game)
 	return (argv);
 }
 
-t_game				*get_players(int argc, char **argv)
+t_game					*get_players(int argc, char **argv)
 {
 	t_game			*game;
 	t_argvparse		*l_argv;
