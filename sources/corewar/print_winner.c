@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 17:20:33 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 17:55:40 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/21 18:05:24 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	print_player(t_game *game, int nb)
 			i++;
 			ft_putstr(tmp->name);
 			if (i == nb)
-				ft_putstr(".\n");
+				ft_putstr(" !\n");
 			else if (i == nb - 1)
 				ft_putstr(" & ");
 			else
@@ -58,8 +58,8 @@ void	print_winner(t_game *game)
 
 	nb = nb_winner(game);
 	if (nb > 1)
-		;//"les gagnants sont "
+		ft_putstr("And the winners are ");
 	else
-		;//"le gagnant est "
+		ft_putstr("And the winner is ");
 	print_player(game, nb);
 }
