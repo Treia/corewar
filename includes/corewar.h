@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 18:51:15 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 18:52:23 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef	struct			s_pc
 	int					carry;
 	int					last_live;
 	int					wait;
-	int					(*cmd)(void *, void *);
+	int					(*cmd)(void *, void *, void *);
 	struct s_pc			*next;
 }						t_pc;
 
@@ -135,10 +135,17 @@ void					print_game(t_game *game);
 ** run game
 */
 int						run(t_game *game);
-int						run_pc(t_game *game);
+int						run_pc(t_game *game, t_cycle *cycle);
 void					*get_cmd(int opcode);
 int						get_wait(int opcode);
 void					check_cycle(t_cycle *cycle, t_game *game);
+
+/*
+**	cmd
+*/
+int						read_nb(char *arena, int addr, int size);
+int						cmd_zjmp(t_game *game, t_pc *pc, t_cycle *cycle);
+int						cmd_fork(t_game *game, t_pc *pc, t_cycle *cycle);
 
 /*
 ** print
