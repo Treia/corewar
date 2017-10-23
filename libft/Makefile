@@ -46,6 +46,11 @@ SRC = ft_strlen.c \
 	  ft_strncpy.c \
 	  ft_tablen.c \
 	  ft_memtabdel.c \
+	  ft_isspace.c \
+	  ft_str_first_not.c \
+	  ft_count_char.c \
+	  ft_strrchr.c \
+	  ft_strnequ.c \
 	  swap_endian.c \
 	  ft_itoa.c
 

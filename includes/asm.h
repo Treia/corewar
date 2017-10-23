@@ -71,22 +71,74 @@ typedef struct				s_asm
 	t_label					*label_list;
 }							t_asm;
 
-/* CORE */
+/*
+** CORE
+*/
 
+/*
+** asm_usage.c
+*/
 int							asm_usage(void);
 
-/* READDER */
+/*
+** asm_syntax_error.c
+*/
+int							asm_syntax_error(const char *init_ptr,
+								const char *error_ptr, const char *message);
 
+/*
+** READDER
+*/
+
+typedef struct				s_parser
+{
+	char					*file_content;
+	char					*current_ptr;
+}							t_parser;
+
+/*
+** get_file_content.c
+*/
 int							asm_get_file_content(const char *filename,
 								char **out_content);
 
+/*
+** asm_line_is_comment.c
+*/
+int							asm_line_is_comment(const char *line);
+char						*asm_skip_commented_lines(const char *line);
+
+/*
+** asm_get_next_instruct.c
+*/
+char						*asm_get_next_instruct(const char *file_content);
+
+/*
+** asm_get_asm_from_file_content.c
+*/
+int							asm_get_asm_from_file_content(const char *file,
+								t_asm *asm_content);
+
+/*
+** STRUCTS
+*/
+
+/*
+** header
+*/
+
+typedef int					(*t_ft_parse_header)(t_parser *, t_header *);
+
+int							asm_t_header_init_from_file(t_parser *parser,
+								t_header *out_header);
 
 
-/* STRUCTS */
+int							asm_t_header_get_name(t_parser *parser,
+								t_header *header);
+int							asm_t_header_get_comment(t_parser *parser,
+								t_header *header);
 
-t_asm						*asm_t_asm_new(void);
-int							asm_t_asm_init();
-void						asm_t_asm_del(t_asm **to_del);
+/* temp */
 
 t_label						*asm_t_label_new(void);
 int							asm_t_label_init();
@@ -98,6 +150,6 @@ void						asm_t_instruct_del(t_instruct **instruct);
 
 t_asm_instruct				*asm_t_asm_instruct_new(void);
 int							asm_t_asm_instruct_init();
-void						asm_t_asm_instruct_del(t_asm_instruct **asm_instruct);
+void						asm_t_asm_instruct_del(t_asm_instruct **asm_inst);
 
 #endif

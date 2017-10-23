@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 18:09:19 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 17:55:08 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 19:06:47 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,18 @@
 # define NO_CHAMP 106
 # define SYSTEM 200
 # define INVALID_FILE 201
+# define MALLOC_FAILED 202
 
 size_t		ft_strlen(const char *s);
 char		*ft_strdup(const char *s1);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strjoin(const char *s1, const char *s2);
 int			ft_strcmp(const char *s1, const char *s2);
+int			ft_count_char(const char *str, int c);
+int			ft_count_char_with_limit(const char *str, const char *end, int c);
+char		*ft_strrchr(const char *s, int c);
+void		*ft_memrchr(const void *mem_start, const void *mem_end, int c);
+int			ft_strnequ(const char *s1, const char *s2, size_t n);
 
 void		ft_putchar(char c);
 void		ft_putchar_fd(char c, int fd);
@@ -55,6 +61,8 @@ int			ft_strequ(char const *s1, char const *s2);
 char		*ft_strtrim(char const *str);
 char		*ft_strcpy(char *dst, const char *src);
 char		*ft_strcat(char *s1, const char *s2);
+char 		*ft_str_first_not(const char *str, int (*ft_is)(int));
+char 		*ft_str_first(const char *str, int (*ft_is)(int));
 
 int			get_next_line(const int fd, char **line);
 int			ft_read_file(int fd, char **out_content);
@@ -70,6 +78,7 @@ int			system_error(int id, int ret);
 int			print_error(int ret, const char *message);
 int			ft_atoi(const char *str);
 int			ft_isdigit(int c);
+int			ft_isspace(int c);
 void		ft_putnbr(int n);
 int			ft_isnum(const char *str);
 char		**ft_strsplit(char const *s, char c);

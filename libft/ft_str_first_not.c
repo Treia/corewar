@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm_get_asm_struct_from_file_content.c             :+:      :+:    :+:   */
+/*   ft_str_is_not.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/23 11:02:42 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/23 11:02:43 by mressier         ###   ########.fr       */
+/*   Created: 2017/10/23 13:45:05 by mressier          #+#    #+#             */
+/*   Updated: 2017/10/23 13:45:07 by mressier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
 #include "libft.h"
 
-int			asm_get_asm_struct_from_file_content(const char *file_content,
-				t_asm *asm_content)
+char 	*ft_str_first(const char *str, int (*ft_is)(int))
 {
-	(void)file_content;
-	(void)asm_content;
-	return (EXIT_FAILURE);
+	char	*ptr;
+
+	ptr = (char *)str;
+	while (ptr && *ptr && !ft_is(*ptr))
+		ptr++;
+	return (ptr);
+}
+
+char 	*ft_str_first_not(const char *str, int (*ft_is)(int))
+{
+	char	*ptr;
+
+	ptr = (char *)str;
+	while (ptr && *ptr && ft_is(*ptr))
+		ptr++;
+	return (ptr);
 }
