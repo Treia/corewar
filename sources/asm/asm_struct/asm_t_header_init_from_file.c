@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
 #include "libft.h"
+#include "asm.h"
 #include <stdbool.h>
 
 #define PROG_NAME 0
