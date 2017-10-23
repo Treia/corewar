@@ -21,12 +21,15 @@
 # define DIRECT_CHAR			'%'
 # define SEPARATOR_CHAR			','
 # define COMMENT_CHAR			'#'
+# define STRING_CHAR			'"'
 
 /*
 ** Header
 */
-# define NAME_CMD_STRING		".name"
-# define COMMENT_CMD_STRING		".comment"
+# define NAME_CMD_STRING			".name"
+# define NAME_CMD_STRING_SIZE		sizeof(".name")
+# define COMMENT_CMD_STRING			".comment"
+# define COMMENT_CMD_STRING_SIZE	sizeof(".comment")
 
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
