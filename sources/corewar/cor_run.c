@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:29:35 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 18:10:49 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/23 12:02:58 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,46 +18,6 @@ void	init_cycle(t_cycle *cycle)
 	cycle->to_die = CYCLE_TO_DIE;
 	cycle->check = CYCLE_TO_DIE;
 	cycle->nb_check = 0;
-}
-
-void	reset_cycle(t_cycle *cycle, t_game *game)
-{
-	t_player	*tmp;
-
-	cycle->to_die -= CYCLE_DELTA;
-	cycle->check += cycle->to_die;
-	cycle->nb_check = 0;
-	tmp = game->players;
-	while (tmp != 0)
-	{
-		tmp->nb_live = 0;
-		tmp = tmp->next;
-	}
-}
-
-void	check_cycle(t_cycle *cycle, t_game *game)
-{
-	int			flag;
-	t_player	*tmp;
-
-	if (cycle->current == cycle->check)
-	{
-		flag = 0;
-		tmp = game->players;
-		while (tmp != 0)
-		{
-			flag = tmp->nb_live < NBR_LIVE ? flag : 1;
-			tmp = tmp->next;
-		}
-		if (flag)
-			reset_cycle(cycle, game);
-		else
-		{
-			cycle->nb_check++;
-			if (cycle->nb_check == MAX_CHECKS)
-				reset_cycle(cycle, game);
-		}
-	}
 }
 
 void	end_game(t_game *game)
@@ -74,10 +34,12 @@ int		run(t_game *game)
 	int		ret;
 
 	init_cycle(&c);
+	//init_pc(game);
 	while ((game->pcs != 0) &&
 		(c.current < game->dump || game->dump == -1))
 	{
-		if ((ret = run_pc(game, &c)) != 0)
+		print_cycle_current(game, c.current);
+		if ((ret = run_pc(game)) != 0)
 			return (ret);
 		c.current++;
 		check_cycle(&c, game);
