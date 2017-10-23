@@ -6,22 +6,29 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 11:48:52 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 12:04:14 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/23 13:16:11 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	check_pc(t_cycle *cycle, t_game *game)
+t_pc	*check_pc(t_cycle *cycle, t_pc *pc, t_game *game)
 {
-	t_pc	*pc;
+	t_pc	*tmp;
 
-	pc = game->pcs;
-	while (pc != 0)
+	if (pc == 0)
+		return (0);
+	tmp = check_pc(cycle, pc->next, game);
+	if (cycle->current >= pc->last_live + cycle->to_die)
 	{
-		if (cycle->current >= pc->last_live + cycle->to_die)
-			;//kill pc
-		pc = pc->next;
+		free(pc);
+		print_pc_kill(game);
+		return (tmp);
+	}
+	else
+	{
+		pc->next = tmp;
+		return (pc);
 	}
 }
 
@@ -48,7 +55,7 @@ void	check_cycle(t_cycle *cycle, t_game *game)
 
 	if (cycle->current == cycle->check)
 	{
-		check_pc(cycle, game);
+		game->pcs = check_pc(cycle, game->pcs, game);
 		flag = 0;
 		tmp = game->players;
 		while (tmp != 0)
