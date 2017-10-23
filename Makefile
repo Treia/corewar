@@ -6,7 +6,7 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/05 11:48:22 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/21 18:32:35 by mdezitte         ###   ########.fr        #
+#    Updated: 2017/10/23 16:54:14 by mdezitte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,11 +66,17 @@ SRCCOR = cor_main.c \
 		debug.c \
 		struct_pcs.c \
 		struct_game.c \
+		check_cycle.c \
+		print_verb.c \
 		cor_run.c \
 		cor_run_pc.c \
 		get_wait.c \
+		get_cmd.c \
 		make_player_list.c \
-		print_winner.c
+		print_winner.c \
+		print_arena.c \
+		get_pcs.c \
+		error_get_players.c
 SRCALL =
 
 OBJASM = $(patsubst %.c,%.o,$(addprefix $(PATH_ASM), $(SRCASM)))

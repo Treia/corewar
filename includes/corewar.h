@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 18:32:09 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 17:03:31 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,10 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-# define HEADER_SIZE  (PROG_NAME_LENGTH + COMMENT_LENGTH + 10)
-
-typedef struct			s_player	t_player;
-typedef struct			s_pc		t_pc;
-
-typedef	struct			s_game
-{
-	t_player			*players;
-	t_pc				*pcs;
-	char				arena[MEM_SIZE];
-	int					dump;
-	int					verb;
-	int					winner;
-}						t_game;
+# define HEADER_SIZE sizeof(t_header)
+# define LEN_HEXA 16
+# define BASE_HEXA "0123456789abcdef"
+# define NB_OCTET_DISPLAY 64
 
 typedef	struct			s_player
 {
@@ -49,10 +39,19 @@ typedef	struct			s_pc
 	int					carry;
 	int					last_live;
 	int					wait;
-	void				(*cmd)(t_game *, t_pc *);
+	int					(*cmd)(void *, void *);
 	struct s_pc			*next;
 }						t_pc;
 
+typedef	struct			s_game
+{
+	t_player			*players;
+	t_pc				*pcs;
+	char				arena[MEM_SIZE];
+	int					dump;
+	int					verb;
+	int					winner;
+}						t_game;
 
 typedef	struct			s_cycle
 {
@@ -74,7 +73,11 @@ t_pc					*get_pc(t_player *player);
 int						prepare_arena(t_player *player, t_pc *pc, char *arena);
 int						check_if_id_use(int id, t_argvparse *argv);
 int						usage(void);
-t_player				*make_player_list(t_argvparse *argv, t_game *game, int interval);
+int						get_pcs_struct(t_pc **pcs, t_player *player, int index);
+t_game					*exit_error_get_player(int id, t_game *game,
+															t_argvparse *argv);
+t_player				*make_player_list(t_argvparse *argv, t_game *game,
+																int interval);
 
 /*
 ** parsing
@@ -104,6 +107,7 @@ void					add_in_player_list(t_player **player,
 */
 void					release_pcs(t_pc **pcs);
 t_pc					*new_pc(int live);
+void					push_in_front_pc(t_pc **pcs, t_pc *add);
 
 /*
 ** struct argvparse
@@ -127,12 +131,20 @@ void					print_game(t_game *game);
 ** run game
 */
 int						run(t_game *game);
-int						run_pc(t_game *game, t_cycle *c);
+int						run_pc(t_game *game);
+void					*get_cmd(int opcode);
 int						get_wait(int opcode);
+void					check_cycle(t_cycle *cycle, t_game *game);
 
 /*
-** end game
+** print
 */
-void	print_winner(t_game *game);
+void					print_winner(t_game *game);
+void					print_cycle_current(t_game *game, int current);
+void					print_cycle_to_die(t_game *game, int to_die);
+void					print_pc_live(t_game *game, int live);
+void					print_pc_kill(t_game *game);
+void					print_aff(t_game *game, int c);
+void					print_arena(const char *arena, int nb_octet);
 
 #endif

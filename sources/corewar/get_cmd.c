@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cor_main.c                                         :+:      :+:    :+:   */
+/*   get_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/26 15:19:13 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 17:02:48 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/10/23 13:14:54 by pzarmehr          #+#    #+#             */
+/*   Updated: 2017/10/23 14:22:45 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		main(int ac, char **av)
+int		cmd_base(t_game *game, t_pc *pc)
 {
-	t_game		*game;
+	(void)game;
+	return ((pc->addr + 1) % MEM_SIZE);
+}
 
-	if ((game = get_players(ac, av)) == NULL)
-		return (usage());
-	print_pcs_list(game->pcs);
-	run(game);
-	release_game(game);
-	return (0);
+void	*get_cmd(int opcode)
+{
+	if (opcode == 1)
+		return (&cmd_base);
+	return (&cmd_base);
 }

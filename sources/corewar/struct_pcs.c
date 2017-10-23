@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 16:59:02 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/21 17:07:49 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 16:59:00 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,17 @@ void				release_pcs(t_pc **pcs)
 		return ;
 	release_pcs(&((*pcs)->next));
 	free_item_pcs(*pcs);
+}
+
+void				push_in_front_pc(t_pc **pcs, t_pc *add)
+{
+	if (!*pcs || !pcs)
+		*pcs = add;
+	else
+	{
+		add->next = (*pcs);
+		*pcs = add;
+	}
 }
 
 static void			init_register(int *reg, int live)
@@ -49,6 +60,7 @@ t_pc				*new_pc(int live)
 	ret->addr = 0;
 	ret->last_live = 0;
 	ret->carry = 0;
+	ret->cmd = NULL;
 	init_register(ret->reg, live);
 	ret->next = NULL;
 	return (ret);

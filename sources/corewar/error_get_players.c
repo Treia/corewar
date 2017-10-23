@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cor_main.c                                         :+:      :+:    :+:   */
+/*   error_get_players.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/26 15:19:13 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 17:02:48 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/10/23 16:48:49 by mdezitte          #+#    #+#             */
+/*   Updated: 2017/10/23 16:50:48 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		main(int ac, char **av)
+t_game			*exit_error_get_player(int id, t_game *game, t_argvparse *argv)
 {
-	t_game		*game;
-
-	if ((game = get_players(ac, av)) == NULL)
-		return (usage());
-	print_pcs_list(game->pcs);
-	run(game);
+	error(id, 0);
 	release_game(game);
-	return (0);
+	release_argvparse(&argv);
+	return (NULL);
 }

@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cor_main.c                                         :+:      :+:    :+:   */
+/*   swap_endian.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/26 15:19:13 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 17:02:48 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/10/23 16:20:26 by mdezitte          #+#    #+#             */
+/*   Updated: 2017/10/23 16:20:45 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+uint32_t	swap_byte_32(uint32_t value)
 {
-	t_game		*game;
-
-	if ((game = get_players(ac, av)) == NULL)
-		return (usage());
-	print_pcs_list(game->pcs);
-	run(game);
-	release_game(game);
-	return (0);
+	value = ((value << 8) & 0xFF00FF00) | ((value >> 8) & 0xFF00FF);
+	return (value << 16) | (value >> 16);
 }
