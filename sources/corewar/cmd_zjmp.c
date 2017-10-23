@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cor_main.c                                         :+:      :+:    :+:   */
+/*   cmd_zjmp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/26 15:19:13 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 17:48:54 by pzarmehr         ###   ########.fr       */
+/*   Created: 2017/10/23 17:00:43 by pzarmehr          #+#    #+#             */
+/*   Updated: 2017/10/23 17:48:37 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		main(int ac, char **av)
+int		cmd_zjmp(t_game *game, t_pc *pc, t_cycle *cycle)
 {
-	t_game		*game;
+	int		tmp;
 
-	if ((game = get_players(ac, av)) == NULL)
-		return (usage());
-	run(game);
-	release_game(game);
-	return (0);
+	(void)cycle;
+	if (pc->carry)
+		tmp = read_nb(game->arena, pc->addr + 1, 2) % IDX_MOD;
+	else
+		tmp = 3;
+	return ((pc->addr + tmp) % MEM_SIZE);
 }

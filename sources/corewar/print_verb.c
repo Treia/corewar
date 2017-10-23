@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 11:24:26 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 12:50:45 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/23 18:46:59 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_cycle_current(t_game *game, int current)
 {
-	if (game->verb & 1)
+	if (game->verb & 1 && game->verb != -1)
 	{
 		ft_putstr("It is now cycle ");
 		ft_putnbr(current);
@@ -24,7 +24,7 @@ void	print_cycle_current(t_game *game, int current)
 
 void	print_cycle_to_die(t_game *game, int to_die)
 {
-	if (game->verb & 1)
+	if (game->verb & 1 && game->verb != -1)
 	{
 		ft_putstr("Cycle to die is now ");
 		ft_putnbr(to_die);
@@ -34,7 +34,7 @@ void	print_cycle_to_die(t_game *game, int to_die)
 
 void	print_pc_live(t_game *game, int live)
 {
-	if (game->verb & 2)
+	if (game->verb & 2 && game->verb != -1)
 	{
 		ft_putstr("A process is alive (live %");
 		ft_putnbr(live);
@@ -44,7 +44,7 @@ void	print_pc_live(t_game *game, int live)
 
 void	print_pc_kill(t_game *game)
 {
-	if (game->verb & 2)
+	if (game->verb & 2 && game->verb != -1)
 	{
 		ft_putstr("A process has been killed.\n");
 	}
@@ -52,7 +52,7 @@ void	print_pc_kill(t_game *game)
 
 void	print_aff(t_game *game, int c)
 {
-	if (game->verb & 4)
+	if (game->verb & 4 && game->verb != -1)
 	{
 		ft_putstr("AFF : '");
 		ft_putchar(c);

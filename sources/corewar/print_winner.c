@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 17:20:33 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 14:34:30 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/23 18:48:54 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,13 @@ void	print_winner(t_game *game)
 {
 	int		nb;
 
-	nb = nb_winner(game);
-	if (nb > 1)
-		ft_putstr("And the winners are ");
-	else
-		ft_putstr("And the winner is ");
-	print_player(game, nb);
+	if (game->verb != -1)
+	{
+		nb = nb_winner(game);
+		if (nb > 1)
+			ft_putstr("And the winners are ");
+		else
+			ft_putstr("And the winner is ");
+		print_player(game, nb);
+	}
 }
