@@ -77,8 +77,8 @@ int							asm_usage(void);
 
 /* READDER */
 
-int							asm_read_file(const char *filename,
-								char **out_content, int *size);
+int							asm_get_file_content(const char *filename,
+								t_asm *file_content);
 
 
 

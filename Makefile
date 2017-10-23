@@ -29,7 +29,7 @@ ASM_CORE = main.c \
 			asm_usage.c
 ASM_SRC_CORE = $(addprefix core/, $(ASM_CORE))
 
-ASM_READDER = asm_read_file.c
+ASM_READDER = asm_get_file_content.c
 ASM_SRC_READDER = $(addprefix asm_readder/, $(ASM_READDER))
 
 SRCASM = $(ASM_SRC_CORE) $(ASM_SRC_READDER)

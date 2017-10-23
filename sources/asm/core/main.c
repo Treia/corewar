@@ -22,17 +22,6 @@ static int		internal_get_filename_on_arg(int ac, char **av, char **out_filename)
 	return (EXIT_SUCCESS);
 }
 
-static int		internal_get_basic_file_content(const char *filename, t_asm *file_content)
-{
-	t_asm		content;
-	char		*read_file_content;
-	int			size;
-
-	asm_read_file(filename, &read_file_content, &size);
-	(void)file_content;
-	(void)content;
-	return (EXIT_FAILURE);
-}
 
 int		main(int ac, char **av)
 {
@@ -42,7 +31,7 @@ int		main(int ac, char **av)
 	if (internal_get_filename_on_arg(ac, av, &filename) == EXIT_FAILURE)
 		return (asm_usage());
 
-	if (internal_get_basic_file_content(filename, &file_content) == EXIT_FAILURE)
+	if (asm_get_file_content(filename, &file_content) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 
 	//if (internal_get_asm_from_file_content(file_content) == EXIT_FAILURE)
