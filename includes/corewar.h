@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 16:36:04 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 16:40:28 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef	struct			s_pc
 	int					carry;
 	int					last_live;
 	int					wait;
-	void				*cmd;
+	int					(*cmd)(void *, void *);
 	struct s_pc			*next;
 }						t_pc;
 

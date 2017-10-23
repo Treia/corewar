@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:29:35 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 14:33:39 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/23 15:22:42 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		run(t_game *game)
 	init_cycle(&c);
 	init_pc(game);
 	while ((game->pcs != 0) &&
-		(c.current < game->dump || game->dump == -1))
+		(c.current < game->dump || game->dump < 0))
 	{
 		print_cycle_current(game, c.current);
 		if ((ret = run_pc(game)) != 0)

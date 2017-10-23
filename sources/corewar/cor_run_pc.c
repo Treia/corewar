@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 16:22:54 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 14:19:59 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/23 16:08:46 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int		run_pc(t_game *game)
 		if (pc->wait == 0)
 		{
 			pc->addr = (pc->cmd)(game, pc);
+			if (pc->addr == -1)
+				return (-1);
 			pc->cmd = get_cmd((game->arena)[pc->addr]);
 			pc->wait = get_wait((game->arena)[pc->addr]) - 1;
 		}
