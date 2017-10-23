@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 18:32:09 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 12:20:32 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef	struct			s_pc
 	int					carry;
 	int					last_live;
 	int					wait;
-	void				(*cmd)(t_game *, t_pc *);
+	int					(*cmd)(t_game *, t_pc *);
 	struct s_pc			*next;
 }						t_pc;
 
@@ -127,12 +127,18 @@ void					print_game(t_game *game);
 ** run game
 */
 int						run(t_game *game);
-int						run_pc(t_game *game, t_cycle *c);
+int						run_pc(t_game *game);
 int						get_wait(int opcode);
+void					check_cycle(t_cycle *cycle, t_game *game);
 
 /*
-** end game
+** print
 */
-void	print_winner(t_game *game);
+void					print_winner(t_game *game);
+void					print_cycle_current(t_game *game, int current);
+void					print_cycle_to_die(t_game *game, int to_die);
+void					print_pc_live(t_game *game, int live);
+void					print_pc_kill(t_game *game);
+void					print_aff(t_game *game, int c);
 
 #endif

@@ -6,26 +6,23 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 16:22:54 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 17:53:11 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/23 12:02:39 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "corewar.h"
 
-int		run_pc(t_game *game, t_cycle *c)
+int		run_pc(t_game *game)
 {
 	t_pc	*pc;
 
 	pc = game->pcs;
 	while (pc != 0)
 	{
-		if (c->current >= pc->last_live + c->to_die)
-			;//kill pc
-		else if (pc->wait == 0)
+		if (pc->wait == 0)
 		{
-			//(pc->cmd)(game, pc); //do cmd et addr = next addr
-			//(pc->cmd) = next cmd;
+			//pc->addr = (pc->cmd)(game, pc);
+			//pc->cmd = get_cmd((game->arena)[pc->addr]);
 			pc->wait = get_wait((game->arena)[pc->addr]) - 1;
 		}
 		else
