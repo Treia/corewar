@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:28:42 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/23 16:57:48 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 18:49:39 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ static t_argvparse		*parse_my_argv(char **av, t_game *game)
 		return (clean_argv(&argv));
 	if (clear_verbose_option(&game->verb, &argv) < 0)
 		return (clean_argv(&argv));
+	if (clear_graph_option(&game->verb, &argv) < 0)
+		return (clean_argv(&argv));
 	if (clear_n_option(&argv) < 0)
 		return (clean_argv(&argv));
 	if (check_is_correct_champ(argv, game) < 0)
@@ -81,7 +83,7 @@ t_game					*get_players(int argc, char **argv)
 	game = new_game();
 	if ((l_argv = parse_my_argv(argv, game)) == NULL)
 		return (NULL);
-	if (game->verb < 0 || game->verb > 7)
+	if (game->verb < -1 || game->verb > 7)
 		return (exit_error_get_player(VERBAV, game, l_argv));
 	nb_players = len_argv(l_argv);
 	if (nb_players < 1)

@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 17:03:31 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 18:52:23 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@
 # include "libft.h"
 # include <stdlib.h>
 # include <fcntl.h>
+# include <ncurses.h>
 
 # define HEADER_SIZE sizeof(t_header)
 # define LEN_HEXA 16
 # define BASE_HEXA "0123456789abcdef"
 # define NB_OCTET_DISPLAY 64
+# define MAX_L 70
+# define MAX_H 250
 
 typedef	struct			s_player
 {
@@ -39,7 +42,7 @@ typedef	struct			s_pc
 	int					carry;
 	int					last_live;
 	int					wait;
-	int					(*cmd)(void *, void *);
+	int					(*cmd)(void *, void *, void *);
 	struct s_pc			*next;
 }						t_pc;
 
@@ -86,6 +89,7 @@ int						clear_dump(int *dump, t_argvparse **argv);
 int						clear_verbose(int *verb, t_argvparse **argv);
 int						clear_n_option(t_argvparse **argv);
 int						check_is_correct_champ(t_argvparse *argv, t_game *game);
+int						clear_graph_option(int *graph, t_argvparse **argv);
 int						clear_verbose_option(int *dump, t_argvparse **argv);
 
 /*
@@ -131,10 +135,17 @@ void					print_game(t_game *game);
 ** run game
 */
 int						run(t_game *game);
-int						run_pc(t_game *game);
+int						run_pc(t_game *game, t_cycle *cycle);
 void					*get_cmd(int opcode);
 int						get_wait(int opcode);
 void					check_cycle(t_cycle *cycle, t_game *game);
+
+/*
+**	cmd
+*/
+int						read_nb(char *arena, int addr, int size);
+int						cmd_zjmp(t_game *game, t_pc *pc, t_cycle *cycle);
+int						cmd_fork(t_game *game, t_pc *pc, t_cycle *cycle);
 
 /*
 ** print
@@ -146,5 +157,11 @@ void					print_pc_live(t_game *game, int live);
 void					print_pc_kill(t_game *game);
 void					print_aff(t_game *game, int c);
 void					print_arena(const char *arena, int nb_octet);
+
+/*
+** ncurses
+*/
+int						init_window(void);
+int						clear_window(void);
 
 #endif
