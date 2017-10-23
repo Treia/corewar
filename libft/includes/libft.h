@@ -28,6 +28,7 @@
 # define TOO_MANY_CHAMP 104
 # define VERBAV 105
 # define SYSTEM 200
+# define INVALID_FILE 201
 
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
@@ -59,11 +60,12 @@ int		ft_read_file(int fd, char **out_content);
 int		ft_read_file_with_filename(const char *filename,
 				char **out_content);
 
-
 void	ft_error(int status, char *str);
 void	ft_error_fd(int status, char *str, int fd);
 int		error(int id, int ret);
 int		syntax_error(int id, int ret);
+int		system_error(int id, int ret);
+
 int		print_error(int ret, const char *message);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);

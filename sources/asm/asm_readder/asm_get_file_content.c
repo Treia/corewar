@@ -13,30 +13,20 @@
 #include "asm.h"
 #include "libft.h"
 
-static int		internal_read_file(const char *filename, char **out_content,
-					int *size)
+/*
+** asm_get_file_content
+**
+** Read the content of the file.
+** Return EXIT_FAILURE on error, after outputing the error.
+*/
+int				asm_get_file_content(const char *filename, char **out_content)
 {
-	if (size == NULL)
-	{
-		ft_putstr_fd("Param error on "__FILE__ , 2);
-		return (EXIT_FAILURE);
-	}
-	*size = ft_read_file_with_filename(filename, out_content);
-	if (*size == -1)
-		return (EXIT_FAILURE);
+	int			ret;
+
+	ret = ft_read_file_with_filename(filename, out_content);
+	if (ret == -1)
+		return (error(INVALID_FILE, EXIT_FAILURE));
 	else
-		ft_putmemory(*out_content, *size);
+		ft_putmemory(*out_content, ret);
 	return (EXIT_SUCCESS);
-}
-
-int				asm_get_file_content(const char *filename, t_asm *file_content)
-{
-	t_asm		content;
-	char		*read_file_content;
-	int			size;
-
-	internal_read_file(filename, &read_file_content, &size);
-	(void)file_content;
-	(void)content;
-	return (EXIT_FAILURE);
 }

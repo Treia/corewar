@@ -32,6 +32,7 @@ SRC = ft_strlen.c \
 	  ft_strcat.c \
 	  print_error.c \
 	  syntax_error.c \
+	  system_error.c \
 	  ft_read_file.c \
 	  ft_memjoin.c \
 	  ft_putmemory.c \

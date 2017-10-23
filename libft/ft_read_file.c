@@ -37,10 +37,7 @@ int			ft_read_file(int fd, char **out_content)
 	}
 	*out_content = content;
 	if (ret < 0 || size < 0)
-	{
-		// error message
 		return (-1);
-	}
 	return (size);
 }
 
@@ -50,17 +47,14 @@ int			ft_read_file_with_filename(const char *filename,
 	int		size;
 	int		fd;
 
-	if (filename == NULL)
+	if (filename == NULL || out_content == NULL)
 	{
 		ft_putstr_fd("Param error on "__FILE__ , 2);
 		return (EXIT_FAILURE);
 	}
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-	{
-		// error message
 		return (-1);
-	}
 	size = ft_read_file(fd, out_content);
 	return (size);
 }

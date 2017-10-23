@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   system_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/20 16:25:04 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/20 18:34:23 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/10/23 10:51:56 by mressier          #+#    #+#             */
+/*   Updated: 2017/10/23 10:51:57 by mressier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int				error(int id, int ret)
+static int		lib_error_one_ten(int id, int ret)
 {
-	if (id > SYNTAX && id < SYSTEM)
-		return (syntax_error(id, ret));
-	if (id > SYSTEM)
-		return (system_error(id, ret));
+	if (id == INVALID_FILE)
+		return (print_error(ret, "Can't read source file."));
+	return (ret);
+}
+
+int				system_error(int id, int ret)
+{
+	if (id <= (SYSTEM + 10))
+		return (lib_error_one_ten(id, ret));
 	return (ret);
 }
