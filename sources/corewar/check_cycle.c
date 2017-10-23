@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 11:48:52 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 13:16:11 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/23 15:16:50 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,11 @@ void	check_cycle(t_cycle *cycle, t_game *game)
 			reset_cycle(cycle, game);
 		else
 		{
-			cycle->nb_check++;
+			(cycle->nb_check)++;
 			if (cycle->nb_check == MAX_CHECKS)
 				reset_cycle(cycle, game);
+			else
+				cycle->check += cycle->to_die;
 		}
 	}
 }

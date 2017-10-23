@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cor_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 15:19:13 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 15:29:05 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 16:08:06 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		main(int ac, char **av)
 
 	if ((game = get_players(ac, av)) == NULL)
 		return (usage());
-	print_arena(game->arena, NB_OCTET_DISPLAY);
+	//print_arena(game->arena, NB_OCTET_DISPLAY);
 	// pcs = get_pc(players);
 	// prepare_arena(players, pcs, arena);
 	run(game);
