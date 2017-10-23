@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 14:16:58 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/23 14:39:38 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 14:42:10 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int				check_is_correct_champ(t_argvparse *argv, t_game *game)
 		begin = begin->next;
 		nb++;
 	}
-	print_argv(argv);
 	if (nb > MAX_PLAYERS)
 		return (error(TOO_MANY_CHAMP, -1));
 	if (nb == 0)
