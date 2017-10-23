@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_asm_instruct.c                              :+:      :+:    :+:   */
+/*   asm_convert_int_to_byte.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/23 10:33:34 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/23 12:25:28 by mplanell         ###   ########.fr       */
+/*   Created: 2017/10/23 14:09:17 by mplanell          #+#    #+#             */
+/*   Updated: 2017/10/23 17:22:18 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include "libft.h"
 
-t_asm_instruct		*asm_t_asm_instruct_new(void)
+void	asm_convert_int_param_to_bytes(char *param, char *dest, int size)
 {
-	t_asm_instruct	*new;
+	int		to_conv;
 
-	new = (t_asm_instruct *)ft_memalloc(sizeof(t_asm_instruct));
-	return (new);
-}
-
-t_asm_instruct		*create_asm_instruct(void (*fill)(t_asm_instruct*, t_instruct*), t_instruct *target)
-{
-	t_asm_instruct	*new;
-
-	new = asm_t_asm_instruct_new();
-	fill(new, target);
-	return (new);
+	if (*param == '%')
+		param++;
+	to_conv = ft_atoi(param);
+	if (size == 4)
+	{
+		dest[0] = (to_conv >> 24) & 0xFF;
+		dest[1] = (to_conv >> 16) & 0xFF;
+		dest[2] = (to_conv >> 8) & 0xFF;
+		dest[3] = to_conv & 0xFF;
+	}
+	else
+	{
+		dest[0] = (to_conv >> 8) & 0xFF;
+		dest[1] = to_conv & 0xFF;
+	}
 }

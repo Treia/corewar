@@ -6,17 +6,43 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 11:11:24 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/23 11:33:42 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/23 19:08:34 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+/*
+** #include "libft.h"
+*/
 
-void	fill_asm_instruct(t_asm_instruct *new, t_instruct *target)
+void	fill_asm_instruct_live(t_asm_instruct *new, t_instruct *target)
 {
 	new->op_code = 1;
 	new->param_code = 0;
 	new->param_size = 0;
-	get_param(new, T_DIR, 4);
-	new->byte_count = 5;
+	new->byte_count = 1;
+	ft_bzero(new->param);
+	asm_convert_params(new, target, 4);
 }
+
+void	fill_asm_instruct_ld(t_asm_instruct *new, t_instruct *target)
+{
+	new->op_code = 2;
+	new->param_code = asm_get_param_code(target->param);
+	new->param_size = 0;
+	new->byte_count = 2;
+	ft_bzero(new->param);
+	asm_convert_params(new, target, 4);
+}
+
+void	fill_asm_instruct_st(t_asm_instruct *new, t_instruct *target)
+{
+	new->op_code = 3;
+	new->param_code = asm_get_param_code(target->param);
+	new->param_size = 0;
+	new->byte_count = 2;
+	ft_bzero(new->param);
+	asm_convert_params(new, target, 0);
+}
+
+void	fill_asm_instruct_add(t_asm_instruct *new, t_instruct *target)

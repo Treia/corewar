@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_asm_instruct.c                              :+:      :+:    :+:   */
+/*   asm_get_param_code.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/23 10:33:34 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/23 12:25:28 by mplanell         ###   ########.fr       */
+/*   Created: 2017/10/23 11:45:29 by mplanell          #+#    #+#             */
+/*   Updated: 2017/10/23 17:22:13 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-#include "libft.h"
 
-t_asm_instruct		*asm_t_asm_instruct_new(void)
+int			asm_param_type(char *param)
 {
-	t_asm_instruct	*new;
-
-	new = (t_asm_instruct *)ft_memalloc(sizeof(t_asm_instruct));
-	return (new);
+	if (param[0] == 'r')
+		return (REG_CODE);
+	if (param[0] == '%')
+		return (DIR_CODE);
+	else
+		return (IND_CODE);
 }
 
-t_asm_instruct		*create_asm_instruct(void (*fill)(t_asm_instruct*, t_instruct*), t_instruct *target)
+char		asm_get_param_code(char **params)
 {
-	t_asm_instruct	*new;
+	char	param_code;
 
-	new = asm_t_asm_instruct_new();
-	fill(new, target);
-	return (new);
+	param_code = asm_param_type(params[0]) << 6;
+	if (params[1])
+		param_code += asm_param_type(params[1]) << 4;
+	if (params[2])
+		param_code += asm_param_type(params[2]) << 2;
+
+	return (param_code);
 }
