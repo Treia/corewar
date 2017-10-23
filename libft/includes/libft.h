@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 18:09:19 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 18:47:16 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 12:03:18 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define OPTNAV 103
 # define TOO_MANY_CHAMP 104
 # define VERBAV 105
+# define NO_CHAMP 106
 # define SYSTEM 200
 # define INVALID_FILE 201
 
