@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 16:02:59 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 16:36:04 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ t_pc					*get_pc(t_player *player);
 int						prepare_arena(t_player *player, t_pc *pc, char *arena);
 int						check_if_id_use(int id, t_argvparse *argv);
 int						usage(void);
+int						get_pcs_struct(t_pc **pcs, t_player *player, int index);
 t_player				*make_player_list(t_argvparse *argv, t_game *game,
 																int interval);
 
@@ -104,6 +105,7 @@ void					add_in_player_list(t_player **player,
 */
 void					release_pcs(t_pc **pcs);
 t_pc					*new_pc(int live);
+void					push_in_front_pc(t_pc **pcs, t_pc *add);
 
 /*
 ** struct argvparse

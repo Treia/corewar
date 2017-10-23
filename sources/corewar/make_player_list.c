@@ -6,17 +6,23 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 15:59:54 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/23 15:47:44 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 16:24:13 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 #include <stdio.h>
 
-uint32_t	swap_byte_32(uint32_t value)
+static t_player		*error_and_close_file(const char *message, 
+											const char *name, int fd)
 {
-	value = ((value << 8) & 0xFF00FF00) | ((value >> 8) & 0xFF00FF);
-	return (value << 16) | (value >> 16);
+	char		error[128];
+
+	ft_strcpy(error, message);
+	ft_strcat(error, name);
+	print_error(0, error);
+	close(fd);
+	return (NULL);	
 }
 
 static t_player		*error_file(const char *message, const char *name)
@@ -60,9 +66,11 @@ t_player			*make_player(const char *file, int id, t_game *game, int index)
 	player = new_player();
 	ft_memcpy(player->comment, header->comment, COMMENT_LENGTH);
 	ft_memcpy(player->name, header->prog_name, PROG_NAME_LENGTH);
-	if (write_prog_in_arena(index, fd, game, header->prog_size) < 0)
-		return (error_file("SYSTEM : Can't read : ", file));
 	player->live = id;
+	if (write_prog_in_arena(index, fd, game, header->prog_size) < 0)
+		return (error_and_close_file("SYSTEM : Can't read : ", file, fd));
+	if (get_pcs_struct(&game->pcs, player, index) < 0)
+		return (error_and_close_file("SYSTEM : Can't make pc : ", file, fd));
 	close(fd);
 	return (player);
 }
