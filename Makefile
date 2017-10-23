@@ -6,7 +6,7 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/05 11:48:22 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/23 16:54:14 by mdezitte         ###   ########.fr        #
+#    Updated: 2017/10/23 18:26:31 by mdezitte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = gcc
 FLAGS = -Wall -Werror -Wextra
 
 PATH_LIBFT = ./libft/includes
-LFT = -L ./libft/ -l ft
+LFT = -L ./libft/ -l ft -lncurses
 
 PATH_ASM = ./sources/asm/
 PATH_COR = ./sources/corewar/
@@ -61,7 +61,9 @@ SRCCOR = cor_main.c \
 		print_winner.c \
 		print_arena.c \
 		get_pcs.c \
-		error_get_players.c
+		error_get_players.c \
+		resolve_graph.c \
+		graph_init.c
 SRCALL =
 
 OBJASM = $(patsubst %.c,%.o,$(addprefix $(PATH_ASM), $(SRCASM)))

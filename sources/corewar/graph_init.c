@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cor_main.c                                         :+:      :+:    :+:   */
+/*   graph_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/26 15:19:13 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 18:47:02 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/10/23 17:56:17 by mdezitte          #+#    #+#             */
+/*   Updated: 2017/10/23 18:50:23 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		main(int ac, char **av)
+void			resize_handler(int sig)
 {
-	t_game		*game;
+	printw("Hello resize");
+	refresh();
+	(void)sig;
+}
 
-	if ((game = get_players(ac, av)) == NULL)
-		return (usage());
-	if (game->verb == -1)
-		init_window();
-	run(game);
-	if (game->verb == -1)
-		clear_window();
-	release_game(game);
+int				init_window(void)
+{
+	signal(SIGWINCH, resize_handler);
+	initscr();
+	noecho();
+	printw("Corewar");
+	refresh();
+	return (0);
+}
+
+int				clear_window(void)
+{
+	getch();
+	endwin();
 	return (0);
 }
