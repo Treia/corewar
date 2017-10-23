@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 16:40:28 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 17:03:31 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int						prepare_arena(t_player *player, t_pc *pc, char *arena);
 int						check_if_id_use(int id, t_argvparse *argv);
 int						usage(void);
 int						get_pcs_struct(t_pc **pcs, t_player *player, int index);
+t_game					*exit_error_get_player(int id, t_game *game,
+															t_argvparse *argv);
 t_player				*make_player_list(t_argvparse *argv, t_game *game,
 																int interval);
 

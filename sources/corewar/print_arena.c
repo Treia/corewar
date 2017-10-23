@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 12:00:48 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/23 13:39:15 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 16:43:30 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void			print_hexa(void *ptr)
 	ft_putstr(res);
 }
 
-void			print_arena(const char *arena, int nb_octet)
+void				print_arena(const char *arena, int nb_octet)
 {
 	unsigned int	index;
 	size_t			cmp;

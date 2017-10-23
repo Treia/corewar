@@ -6,14 +6,14 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 15:59:54 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/23 16:24:13 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 16:58:42 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 #include <stdio.h>
 
-static t_player		*error_and_close_file(const char *message, 
+static t_player		*error_and_close_file(const char *message,
 											const char *name, int fd)
 {
 	char		error[128];
@@ -22,7 +22,7 @@ static t_player		*error_and_close_file(const char *message,
 	ft_strcat(error, name);
 	print_error(0, error);
 	close(fd);
-	return (NULL);	
+	return (NULL);
 }
 
 static t_player		*error_file(const char *message, const char *name)
@@ -35,7 +35,8 @@ static t_player		*error_file(const char *message, const char *name)
 	return (NULL);
 }
 
-static int			write_prog_in_arena(int index, int fd, t_game *game, unsigned int size)
+static int			write_prog_in_arena(int index, int fd, t_game *game,
+														unsigned int size)
 {
 	char	buffer[CHAMP_MAX_SIZE];
 	int		ret;
@@ -46,7 +47,8 @@ static int			write_prog_in_arena(int index, int fd, t_game *game, unsigned int s
 	return (0);
 }
 
-t_player			*make_player(const char *file, int id, t_game *game, int index)
+t_player			*make_player(const char *file, int id, t_game *game,
+																int index)
 {
 	t_header	*header;
 	t_player	*player;
@@ -75,7 +77,8 @@ t_player			*make_player(const char *file, int id, t_game *game, int index)
 	return (player);
 }
 
-t_player			*make_player_list(t_argvparse *argv, t_game *game, int interval)
+t_player			*make_player_list(t_argvparse *argv, t_game *game,
+															int interval)
 {
 	t_player	*players;
 	t_player	*tmp;

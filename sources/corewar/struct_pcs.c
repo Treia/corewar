@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 16:59:02 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/23 16:35:47 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 16:59:00 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void				push_in_front_pc(t_pc **pcs, t_pc *add)
 {
 	if (!*pcs || !pcs)
 		*pcs = add;
-	else 
+	else
 	{
 		add->next = (*pcs);
 		*pcs = add;

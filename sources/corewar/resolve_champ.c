@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 14:16:58 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/23 14:42:10 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 17:02:10 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ static int		is_champ(const char *name)
 	return (-1);
 }
 
+static void		attrib_id_number(int *id, t_argvparse *item, t_argvparse *list)
+{
+	while (check_if_id_use(*id, list))
+		*id = *id - 1;
+	item->id = *id;
+}
+
 int				check_is_correct_champ(t_argvparse *argv, t_game *game)
 {
 	t_argvparse *begin;
@@ -61,11 +68,7 @@ int				check_is_correct_champ(t_argvparse *argv, t_game *game)
 		if (is_champ(begin->name) < 0)
 			return (bad_name(begin->name, -1));
 		if (begin->id == -999)
-		{
-			while (check_if_id_use(id, argv))
-				id--;
-			begin->id = id;
-		}
+			attrib_id_number(&id, begin, argv);
 		game->winner = begin->id;
 		begin = begin->next;
 		nb++;

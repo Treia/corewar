@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:28:42 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/23 15:39:00 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 16:57:48 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,13 @@ t_game					*get_players(int argc, char **argv)
 	if ((l_argv = parse_my_argv(argv, game)) == NULL)
 		return (NULL);
 	if (game->verb < 0 || game->verb > 7)
-	{
-		error(VERBAV, 0);
-		release_game(game);
-		release_argvparse(&l_argv);
-		return (NULL);
-	}
+		return (exit_error_get_player(VERBAV, game, l_argv));
 	nb_players = len_argv(l_argv);
 	if (nb_players < 1)
-		return (NULL);
-	if ((game->players = make_player_list(l_argv, game, (MEM_SIZE / nb_players))) == NULL)
-		return (NULL);
+		return (exit_error_get_player(NO_CHAMP, game, l_argv));
+	if ((game->players = make_player_list(l_argv, game,
+								(MEM_SIZE / nb_players))) == NULL)
+		return (exit_error_get_player(-1, game, l_argv));
 	release_argvparse(&l_argv);
 	return (game);
 }

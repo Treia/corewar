@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_pcs.c                                          :+:      :+:    :+:   */
+/*   error_get_players.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/23 16:10:30 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/23 16:51:12 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/10/23 16:48:49 by mdezitte          #+#    #+#             */
+/*   Updated: 2017/10/23 16:50:48 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int				get_pcs_struct(t_pc **pcs, t_player *player, int index)
+t_game			*exit_error_get_player(int id, t_game *game, t_argvparse *argv)
 {
-	t_pc		*temp;
-
-	if ((temp = new_pc(player->live)) == NULL)
-		return (-1);
-	temp->addr = index;
-	push_in_front_pc(pcs, temp);
-	return (0);
+	error(id, 0);
+	release_game(game);
+	release_argvparse(&argv);
+	return (NULL);
 }
