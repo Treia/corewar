@@ -38,15 +38,15 @@ static char		*internal_get_ptr_on_end(const char *start)
 	return (end);
 }
 
-static int	internal_get_element_inside_quotes(const char *file_content,
-				size_t size_max, char *out_element, char **next)
+static int	internal_get_element_inside_quotes(t_parser *parser,
+				size_t size_max, char *out_element)
 {
 	char	*start;
 	char	*end;
 	size_t	diff;
 
 	ft_bzero(out_element, PROG_NAME_LENGTH + 1);
-	start = internal_get_ptr_on_start(file_content);
+	start = internal_get_ptr_on_start(parser->current_ptr);
 	if (start == NULL)
 		return (print_error(EXIT_FAILURE, "mauvais caractere"));
 	end = internal_get_ptr_on_end(start);
@@ -57,31 +57,26 @@ static int	internal_get_element_inside_quotes(const char *file_content,
 		return (print_error(EXIT_FAILURE, "too big"));
 	ft_strncpy(out_element, start, diff);
 	out_element[diff] = '\0';
-	*next = end;
+	parser->current_ptr = end + 1;
+	ft_putendl(parser->current_ptr);
 	return (EXIT_SUCCESS);
 }
 
-int			asm_t_header_get_name(const char *file_content,
-				t_header *header, char **next)
+int			asm_t_header_get_name(t_parser *parser, t_header *header)
 {
-	char	*start;
-
-	start = ((char *)file_content + NAME_CMD_STRING_SIZE);
-	if (internal_get_element_inside_quotes(start,
-			PROG_NAME_LENGTH, header->prog_name, next) == EXIT_FAILURE)
+	parser->current_ptr = ((char *)parser->current_ptr + NAME_CMD_STRING_SIZE);
+	if (internal_get_element_inside_quotes(parser, PROG_NAME_LENGTH,
+			header->prog_name) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	ft_putendl(header->prog_name);
 	return (EXIT_SUCCESS);
 }
 
-int			asm_t_header_get_comment(const char *file_content,
-				t_header *header, char **next)
+int			asm_t_header_get_comment(t_parser *parser, t_header *header)
 {
-	char	*start;
-
-	start = ((char *)file_content + COMMENT_CMD_STRING_SIZE);
-	if (internal_get_element_inside_quotes(start,
-			COMMENT_LENGTH, header->comment, next) == EXIT_FAILURE)
+	parser->current_ptr = ((char *)parser->current_ptr + COMMENT_CMD_STRING_SIZE);
+	if (internal_get_element_inside_quotes(parser, COMMENT_LENGTH,
+			header->comment) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	ft_putendl(header->comment);
 	return (EXIT_SUCCESS);
