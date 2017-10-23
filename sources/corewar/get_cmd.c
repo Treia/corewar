@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cor_run_pc.c                                       :+:      :+:    :+:   */
+/*   get_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/21 16:22:54 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 14:19:59 by pzarmehr         ###   ########.fr       */
+/*   Created: 2017/10/23 13:14:54 by pzarmehr          #+#    #+#             */
+/*   Updated: 2017/10/23 14:22:45 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		run_pc(t_game *game)
+int		cmd_base(t_game *game, t_pc *pc)
 {
-	t_pc	*pc;
+	(void)game;
+	return ((pc->addr + 1) % MEM_SIZE);
+}
 
-	pc = game->pcs;
-	while (pc != 0)
-	{
-		if (pc->wait == 0)
-		{
-			pc->addr = (pc->cmd)(game, pc);
-			pc->cmd = get_cmd((game->arena)[pc->addr]);
-			pc->wait = get_wait((game->arena)[pc->addr]) - 1;
-		}
-		else
-			(pc->wait)--;
-		pc = pc->next;
-	}
-	return (0);
+void	*get_cmd(int opcode)
+{
+	if (opcode == 1)
+		return (&cmd_base);
+	return (&cmd_base);
 }

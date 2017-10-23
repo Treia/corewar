@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:29:35 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 13:13:08 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/23 14:33:39 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_pc(t_game *game)
 	pc = game->pcs;
 	while (pc != 0)
 	{
-		//pc->cmd = get_cmd((game->arena)[pc->addr]);
+		pc->cmd = get_cmd((game->arena)[pc->addr]);
 		pc->wait = get_wait((game->arena)[pc->addr]) - 1;
 		pc = pc->next;
 	}
@@ -38,7 +38,7 @@ void	end_game(t_game *game)
 	if (!(game->pcs))
 		print_winner(game);
 	else
-		;
+		print_arena(game->arena, NB_OCTET_DISPLAY);
 }
 
 int		run(t_game *game)
