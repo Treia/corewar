@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:29:35 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 12:02:58 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/23 13:13:08 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,19 @@ void	init_cycle(t_cycle *cycle)
 	cycle->to_die = CYCLE_TO_DIE;
 	cycle->check = CYCLE_TO_DIE;
 	cycle->nb_check = 0;
+}
+
+void	init_pc(t_game *game)
+{
+	t_pc	*pc;
+
+	pc = game->pcs;
+	while (pc != 0)
+	{
+		//pc->cmd = get_cmd((game->arena)[pc->addr]);
+		pc->wait = get_wait((game->arena)[pc->addr]) - 1;
+		pc = pc->next;
+	}
 }
 
 void	end_game(t_game *game)
@@ -34,7 +47,7 @@ int		run(t_game *game)
 	int		ret;
 
 	init_cycle(&c);
-	//init_pc(game);
+	init_pc(game);
 	while ((game->pcs != 0) &&
 		(c.current < game->dump || game->dump == -1))
 	{
