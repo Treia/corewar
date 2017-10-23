@@ -23,13 +23,7 @@ static void	internal_get_line_and_char_error(const char *init_ptr,
 	char	*ptr;
 
 	nb_line = ft_count_char_with_limit(init_ptr, error_ptr, '\n');
-	ft_putendl("init ptr : ");
-	ft_putendl(init_ptr);
-	ft_putendl("error ptr : ");
-	ft_putendl(error_ptr);
 	ptr = ft_memrchr(init_ptr, error_ptr, '\n');
-	ft_putendl("ptr : ");
-	ft_putendl(ptr);
 	if (ptr == NULL)
 		nb_char = 1;
 	else
