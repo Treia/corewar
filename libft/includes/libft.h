@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 18:09:19 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 16:21:39 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 17:55:08 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ char		*ft_strncpy(char *dst, const char *src, size_t n);
 int			ft_len_tab(char **tab);
 void		ft_memtabdel(void ***tab);
 uint32_t	swap_byte_32(uint32_t value);
+char		*ft_itoa(int n);
 
 #endif

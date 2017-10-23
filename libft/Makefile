@@ -6,7 +6,7 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/08 16:13:50 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/23 16:21:50 by mdezitte         ###   ########.fr        #
+#    Updated: 2017/10/23 17:55:13 by mdezitte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,8 @@ SRC = ft_strlen.c \
 	  ft_strncpy.c \
 	  ft_tablen.c \
 	  ft_memtabdel.c \
-	  swap_endian.c
+	  swap_endian.c \
+	  ft_itoa.c
 
 OBJ = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRC)))
 
