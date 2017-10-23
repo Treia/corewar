@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm_get_asm_struct_from_file_content.c             :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/23 11:02:42 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/23 11:02:43 by mressier         ###   ########.fr       */
+/*   Created: 2015/11/24 15:55:02 by mressier          #+#    #+#             */
+/*   Updated: 2017/01/17 19:00:06 by mressier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
-#include "libft.h"
+/*
+**	Return true or false if two strings are equals
+*/
 
-int			asm_get_asm_struct_from_file_content(const char *file_content,
-				t_asm *asm_content)
+#include <stdbool.h>
+#include <string.h>
+
+int			ft_strnequ(const char *s1, const char *s2, size_t n)
 {
-	(void)file_content;
-	(void)asm_content;
-	return (EXIT_FAILURE);
+	if (!n || (s1 == NULL && s2 == NULL))
+		return (true);
+	if (s1 == NULL || s2 == NULL)
+		return (false);
+	while (*s1 == *s2 && *s1 && *s2 && --n)
+	{
+		s1++;
+		s2++;
+	}
+	if (*s1 == *s2)
+		return (true);
+	return (false);
 }

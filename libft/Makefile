@@ -45,7 +45,12 @@ SRC = ft_strlen.c \
 	  ft_strsplit.c \
 	  ft_strncpy.c \
 	  ft_tablen.c \
-	  ft_memtabdel.c
+	  ft_memtabdel.c \
+	  ft_isspace.c \
+	  ft_str_first_not.c \
+	  ft_count_char.c \
+	  ft_strrchr.c \
+	  ft_strnequ.c
 
 OBJ = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRC)))
 

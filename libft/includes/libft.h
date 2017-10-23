@@ -35,6 +35,9 @@ char	*ft_strdup(const char *s1);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(const char *s1, const char *s2);
 int		ft_strcmp(const char *s1, const char *s2);
+int		ft_count_char(const char *str, int c);
+char	*ft_strrchr(const char *s, int c);
+int		ft_strnequ(const char *s1, const char *s2, size_t n);
 
 void	ft_putchar(char c);
 void	ft_putchar_fd(char c, int fd);
@@ -54,6 +57,7 @@ int		ft_strequ(char const *s1, char const *s2);
 char	*ft_strtrim(char const *str);
 char	*ft_strcpy(char *dst, const char *src);
 char	*ft_strcat(char *s1, const char *s2);
+char 	*ft_str_first_not(const char *str, int (*ft_is)(int));
 
 int		get_next_line(const int fd, char **line);
 int		ft_read_file(int fd, char **out_content);
@@ -69,6 +73,7 @@ int		system_error(int id, int ret);
 int		print_error(int ret, const char *message);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
+int		ft_isspace(int c);
 void	ft_putnbr(int n);
 int		ft_isnum(const char *str);
 char	**ft_strsplit(char const *s, char c);
