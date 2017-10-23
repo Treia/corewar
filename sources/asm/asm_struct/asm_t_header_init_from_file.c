@@ -60,11 +60,13 @@ static int		internal_parse_header(t_parser *parser,
 			return (asm_syntax_error(parser->file_content,
 				parser->current_ptr, "unexpected command"));
 		else
-			return (print_error(EXIT_FAILURE, "Tu fais du caca")); // invalid command
+			return (print_error(EXIT_FAILURE, "Tu fais du caca"));
 	}
 	if (header_datas_get[parse_mode] != 0)
+	{
 		return (asm_syntax_error(parser->file_content, parser->current_ptr,
-				(parse_mode == PROG_NAME) ? "COMMAND_NAME" : "COMMENT"));
+			(parse_mode == PROG_NAME) ? "COMMAND_NAME" : "COMMENT"));
+	}
 	header_datas_get[parse_mode] = 1;
 	return (ft_parse[parse_mode](parser, header));
 }
@@ -91,5 +93,3 @@ int				asm_t_header_init_from_file(t_parser *parser,
 	}
 	return (EXIT_SUCCESS);
 }
-
-
