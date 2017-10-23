@@ -32,7 +32,10 @@ ASM_SRC_CORE = $(addprefix core/, $(ASM_CORE))
 ASM_READDER = asm_get_file_content.c
 ASM_SRC_READDER = $(addprefix asm_readder/, $(ASM_READDER))
 
-SRCASM = $(ASM_SRC_CORE) $(ASM_SRC_READDER)
+ASM_STRUCT = asm_t_asm.c
+ASM_SRC_STRUCT = $(addprefix asm_struct/, $(ASM_STRUCT))
+
+SRCASM = $(ASM_SRC_CORE) $(ASM_SRC_READDER) $(ASM_SRC_STRUCT)
 
 # COR #
 

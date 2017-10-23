@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm_get_file_content.c                             :+:      :+:    :+:   */
+/*   t_asm.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/23 10:34:48 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/23 10:34:49 by mressier         ###   ########.fr       */
+/*   Created: 2017/10/23 11:18:21 by mressier          #+#    #+#             */
+/*   Updated: 2017/10/23 11:18:22 by mressier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include "libft.h"
 
-/*
-** asm_get_file_content
-**
-** Read the content of the file.
-** Return EXIT_FAILURE on error, after outputing the error.
-*/
-int				asm_get_file_content(const char *filename, char **out_content)
+t_asm						*asm_t_asm_new(void)
 {
-	int			ret;
+	t_asm		*new_asm;
 
-	ret = ft_read_file_with_filename(filename, out_content);
-	if (ret == -1)
-		return (error(INVALID_FILE, EXIT_FAILURE));
+	new_asm = (t_asm *)ft_memalloc(sizeof(t_asm));
+	return (new_asm);
+}
+
+int							asm_t_asm_init(t_asm *to_init)
+{
+	(void)to_init;
 	return (EXIT_SUCCESS);
+}
+
+void						asm_t_asm_del(t_asm **to_del)
+{
+	ft_memdel((void **)to_del);
 }

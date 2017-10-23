@@ -12,7 +12,6 @@
 
 #include "asm.h"
 #include "libft.h"
-#include <unistd.h>
 
 static int		internal_get_filename_on_arg(int ac, char **av, char **out_filename)
 {
@@ -30,7 +29,6 @@ int		main(int ac, char **av)
 
 	if (internal_get_filename_on_arg(ac, av, &filename) == EXIT_FAILURE)
 		return (asm_usage());
-
 	if (asm_get_file_content(filename, &file_content) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 
@@ -39,6 +37,8 @@ int		main(int ac, char **av)
 
 	//if (internal_print_asm_to_file(asm_file_content) == EXIT_FAILURE)
 	//	return (EXIT_FAILURE);
+
+	ft_memdel((void **)&file_content);
 
 	return (EXIT_SUCCESS);
 }
