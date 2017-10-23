@@ -30,3 +30,20 @@ char		*ft_strrchr(const char *s, int c)
 	}
 	return (NULL);
 }
+
+void		*ft_memrchr(const void *mem_start, const void *mem_end, int c)
+{
+	int		i;
+
+	i = mem_end - mem_start;
+	if (i < 0)
+		return (NULL);
+	while (i >= 0)
+	{
+		if (((unsigned char *)mem_start)[i] == (unsigned char)c)
+			return ((char *)&mem_start[i]);
+		i--;
+	}
+	return (NULL);
+
+}

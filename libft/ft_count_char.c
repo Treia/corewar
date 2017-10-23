@@ -25,7 +25,7 @@
 ** @return 0 if null or there is no c in str, else the number of occurence of c
 */
 
-int				ft_count_char(const char *str, int c)
+int			ft_count_char(const char *str, int c)
 {
 	int		i;
 	int		n;
@@ -39,6 +39,22 @@ int				ft_count_char(const char *str, int c)
 		if (str[i] == c)
 			n++;
 		i++;
+	}
+	return (n);
+}
+
+int			ft_count_char_with_limit(const char *str, const char *end, int c)
+{
+	int		n;
+
+	n = 0;
+	if (str == NULL)
+		return (0);
+	while (*str && str != end)
+	{
+		if (*str == c)
+			n++;
+		str++;
 	}
 	return (n);
 }

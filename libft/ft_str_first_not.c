@@ -12,6 +12,16 @@
 
 #include "libft.h"
 
+char 	*ft_str_first(const char *str, int (*ft_is)(int))
+{
+	char	*ptr;
+
+	ptr = (char *)str;
+	while (ptr && *ptr && !ft_is(*ptr))
+		ptr++;
+	return (ptr);
+}
+
 char 	*ft_str_first_not(const char *str, int (*ft_is)(int))
 {
 	char	*ptr;
