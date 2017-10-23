@@ -6,11 +6,18 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 15:59:54 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/23 11:56:09 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 14:13:48 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+#include <stdio.h>
+
+uint32_t	swap_byte_32(uint32_t value)
+{
+	value = ((value << 8) & 0xFF00FF00) | ((value >> 8) & 0xFF00FF);
+	return (value << 16) | (value >> 16);
+}
 
 static t_player		*error_file(const char *message, const char *name)
 {
@@ -46,6 +53,8 @@ t_player			*make_player(const char *file, int id, t_game *game, int index)
 	if ((ret = read(fd, buffer, HEADER_SIZE)) < HEADER_SIZE)
 		return (error_file("SYSTEM : Can't read : ", file));
 	header = (t_header *)(buffer);
+	header->prog_size = swap_byte_32(header->prog_size);
+	header->magic = swap_byte_32(header->magic);
 	if (header->magic != COREWAR_EXEC_MAGIC)
 		return (error_file("SYSTEM : this file is not champ : ", file));
 	player = new_player();

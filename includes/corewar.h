@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 12:20:32 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/23 13:43:53 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <fcntl.h>
 
 # define HEADER_SIZE  (PROG_NAME_LENGTH + COMMENT_LENGTH + 10)
+# define LEN_HEXA 16
+# define BASE_HEXA "0123456789abcdef"
+# define NB_OCTET_DISPLAY 32
 
 typedef struct			s_player	t_player;
 typedef struct			s_pc		t_pc;
@@ -140,5 +143,6 @@ void					print_cycle_to_die(t_game *game, int to_die);
 void					print_pc_live(t_game *game, int live);
 void					print_pc_kill(t_game *game);
 void					print_aff(t_game *game, int c);
+void					print_arena(const char *arena, int nb_octet);
 
 #endif
