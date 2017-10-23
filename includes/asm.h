@@ -6,7 +6,7 @@
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 14:44:13 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/20 15:44:22 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/23 11:42:27 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,10 @@ typedef struct				s_asm_instruct
 {
 	char					op_code;
 	char					param_code;
-
 	char					param[PARAM_MAX * 4];
 	unsigned int			param_size;
-
 	unsigned int			byte_count;
-
+	char					has_label;
 	struct s_asm_instruct	*next;
 }							t_asm_instruct;
 
@@ -57,8 +55,9 @@ typedef struct				s_instruct
 
 typedef struct				s_label
 {
-	char					name[LABEL_LENGTH_MAX + 1];
-	t_instruct				*instruct_list;
+	char					name[LABEL_LENGTH_MAX];
+	int						starting_byte;
+	t_instruct				*instruc_list;
 	t_asm_instruct			*asm_instruct_list;
 	struct s_label			*next;
 }							t_label;

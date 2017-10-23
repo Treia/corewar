@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 12:34:52 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/21 18:10:51 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/23 11:39:14 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@
 # define REG_CODE				0b01
 # define DIR_CODE				0b10
 # define IND_CODE				0b11
+
+/*
+** Type
+*/
+# define T_REG					1
+# define T_DIR					2
+# define T_IND					4
+# define T_LAB					8
 
 /*
 ** Registre
