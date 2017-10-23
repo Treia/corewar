@@ -13,9 +13,6 @@
 #include "asm.h"
 #include "libft.h"
 
-/*
-**
-*/
 int			asm_line_is_comment(const char *line)
 {
 	char	*tmp;

@@ -19,6 +19,7 @@
 ** return a ptr on the next valid instruction on the file
 ** it search from the end of the current line
 */
+
 char			*asm_get_next_instruct(const char *file_content)
 {
 	char	*ptr;
