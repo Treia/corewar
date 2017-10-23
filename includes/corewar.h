@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 14:33:15 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/23 16:02:59 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,10 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-# define HEADER_SIZE  (PROG_NAME_LENGTH + COMMENT_LENGTH + 10)
+# define HEADER_SIZE sizeof(t_header)
 # define LEN_HEXA 16
 # define BASE_HEXA "0123456789abcdef"
-# define NB_OCTET_DISPLAY 32
-
-typedef struct			s_player	t_player;
-typedef struct			s_pc		t_pc;
-
-typedef	struct			s_game
-{
-	t_player			*players;
-	t_pc				*pcs;
-	char				arena[MEM_SIZE];
-	int					dump;
-	int					verb;
-	int					winner;
-}						t_game;
+# define NB_OCTET_DISPLAY 64
 
 typedef	struct			s_player
 {
@@ -52,10 +39,19 @@ typedef	struct			s_pc
 	int					carry;
 	int					last_live;
 	int					wait;
-	int					(*cmd)(t_game *, t_pc *);
+	void				*cmd;
 	struct s_pc			*next;
 }						t_pc;
 
+typedef	struct			s_game
+{
+	t_player			*players;
+	t_pc				*pcs;
+	char				arena[MEM_SIZE];
+	int					dump;
+	int					verb;
+	int					winner;
+}						t_game;
 
 typedef	struct			s_cycle
 {
@@ -77,7 +73,8 @@ t_pc					*get_pc(t_player *player);
 int						prepare_arena(t_player *player, t_pc *pc, char *arena);
 int						check_if_id_use(int id, t_argvparse *argv);
 int						usage(void);
-t_player				*make_player_list(t_argvparse *argv, t_game *game, int interval);
+t_player				*make_player_list(t_argvparse *argv, t_game *game,
+																int interval);
 
 /*
 ** parsing

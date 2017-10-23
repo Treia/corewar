@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 15:59:54 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/23 14:13:48 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 15:47:44 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ static t_player		*error_file(const char *message, const char *name)
 	return (NULL);
 }
 
-static int			write_prog_in_arena(int index, int fd, t_game *game)
+static int			write_prog_in_arena(int index, int fd, t_game *game, unsigned int size)
 {
 	char	buffer[CHAMP_MAX_SIZE];
 	int		ret;
 
-	if ((ret = read(fd, buffer, CHAMP_MAX_SIZE)) < 0)
+	if ((ret = read(fd, buffer, size)) < 0)
 		return (-1);
-	ft_memcpy(&game->arena[index], buffer, CHAMP_MAX_SIZE);
+	ft_memcpy(&game->arena[index], buffer, size);
 	return (0);
 }
 
@@ -50,7 +50,7 @@ t_player			*make_player(const char *file, int id, t_game *game, int index)
 
 	if ((fd = open(file, O_RDONLY)) < 0)
 		return (error_file("SYSTEM : Can't open : ", file));
-	if ((ret = read(fd, buffer, HEADER_SIZE)) < HEADER_SIZE)
+	if ((ret = read(fd, buffer, HEADER_SIZE)) < (int)HEADER_SIZE)
 		return (error_file("SYSTEM : Can't read : ", file));
 	header = (t_header *)(buffer);
 	header->prog_size = swap_byte_32(header->prog_size);
@@ -60,7 +60,7 @@ t_player			*make_player(const char *file, int id, t_game *game, int index)
 	player = new_player();
 	ft_memcpy(player->comment, header->comment, COMMENT_LENGTH);
 	ft_memcpy(player->name, header->prog_name, PROG_NAME_LENGTH);
-	if (write_prog_in_arena(index, fd, game) < 0)
+	if (write_prog_in_arena(index, fd, game, header->prog_size) < 0)
 		return (error_file("SYSTEM : Can't read : ", file));
 	player->live = id;
 	close(fd);
