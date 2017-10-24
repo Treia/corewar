@@ -27,5 +27,7 @@ int			asm_get_asm_from_file_content(const char *file, t_asm *asm_content)
 	if (asm_t_label_init_from_file(&parser, &label_list) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	asm_content->header = header;
+	asm_content->label_list = label_list;
+	asm_t_label_display_list(asm_content->label_list);
 	return (EXIT_SUCCESS);
 }
