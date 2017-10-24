@@ -33,7 +33,8 @@ typedef struct				s_asm_instruct
 	char					param[PARAM_MAX * 4];
 	unsigned int			param_size;
 
-	unsigned int			byte_count; // fonction calcul taille -> sizeof(char) * 2 + param_size
+	unsigned int			byte_count;
+	// fonction calcul taille -> sizeof(char) * 2 + param_size
 
 	struct s_asm_instruct	*next;
 }							t_asm_instruct;
@@ -85,7 +86,7 @@ typedef struct				s_parser
 ** WORD TYPE
 */
 
-typedef enum 				e_word_type
+typedef enum				e_word_type
 {
 	INVALID_WORD_TYPE = -1,
 	COMMAND_NAME = 0,
@@ -174,7 +175,6 @@ typedef int					(*t_ft_parse_header)(t_parser *, t_header *);
 
 int							asm_t_header_init_from_file(t_parser *parser,
 								t_header *out_header);
-
 
 int							asm_t_header_get_name(t_parser *parser,
 								t_header *header);

@@ -13,10 +13,10 @@
 #include "libft.h"
 #include "asm.h"
 
-# define WORD_ERROR_SIZE_MAX	25
-# define MESSAGE_SIZE_MAX		(1024 + WORD_ERROR_SIZE_MAX)
+#define WORD_ERROR_SIZE_MAX	25
+#define MESSAGE_SIZE_MAX		(1024 + WORD_ERROR_SIZE_MAX)
 
-# define DETAILS_LINE_SIZE_MAX	255
+#define DETAILS_LINE_SIZE_MAX	255
 
 static char	*internal_get_str_matching_word_type(const char *word)
 {
@@ -31,7 +31,7 @@ static char	*internal_get_str_matching_word_type(const char *word)
 	type = asm_get_asm_word_type(word);
 	if (type == INVALID_WORD_TYPE || type >= NB_WORD_TYPE)
 		return ("unknow");
-	return words[type];
+	return (words[type]);
 }
 
 static void	internal_add_problematic_word(const char *error_ptr, char *error)

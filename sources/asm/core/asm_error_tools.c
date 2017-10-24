@@ -14,7 +14,7 @@
 
 static int		internal_get_nb_line(const char *start, const char *ptr)
 {
-	return ft_count_char_with_limit(start, ptr, '\n');
+	return (ft_count_char_with_limit(start, ptr, '\n'));
 }
 
 static int		internal_get_nb_char(const char *start, const char *ptr)
@@ -49,11 +49,11 @@ void			asm_error_concat_line_and_char(const char *start,
 	ft_strcat_nb(str_error, nb_line + 1);
 	ft_strcat(str_error, ",");
 	ft_strcat_nb(str_error, nb_char);
- 	ft_strcat(str_error, "]");
+	ft_strcat(str_error, "]");
 }
 
-void		asm_error_get_word_error(const char *error_ptr, char *word_error,
-				int size_max)
+void			asm_error_get_word_error(const char *error_ptr,
+					char *word_error, int size_max)
 {
 	char	*end_error_ptr;
 	int		size;

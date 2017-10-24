@@ -22,7 +22,7 @@ static int		internal_get_filename_on_arg(int ac, char **av,
 	return (EXIT_SUCCESS);
 }
 
-int		main(int ac, char **av)
+int				main(int ac, char **av)
 {
 	char		*filename;
 	char		*file_content;
@@ -35,11 +35,8 @@ int		main(int ac, char **av)
 	if (asm_get_asm_from_file_content(file_content,
 			&asm_file_content) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-
 	//if (internal_print_asm_to_file(asm_file_content) == EXIT_FAILURE)
 	//	return (EXIT_FAILURE);
-
 	ft_memdel((void **)&file_content);
-
 	return (EXIT_SUCCESS);
 }

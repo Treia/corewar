@@ -14,7 +14,7 @@
 #include "asm.h"
 #include <stdbool.h>
 
-# define HANDLE_WORDS_TYPES 2
+#define HANDLE_WORDS_TYPES 2
 
 static int		internal_all_datas_are_get(int *header_datas_get)
 {
