@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/24 17:38:50 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/24 18:10:58 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,5 +202,6 @@ int						clear_window(t_display *display);
 void					set_winner_data(const char *str, WINDOW *box);
 void					set_process_data(unsigned int process, WINDOW *box);
 void					set_cycle_data(unsigned int	cycles, WINDOW *box);
+void					print_int(int index, t_game *game);
 
 #endif

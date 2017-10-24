@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 17:56:17 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/24 17:16:02 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/24 17:43:47 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_display		*init_window(t_display *display, t_game *game)
 	mvwprintw(display->box, POS_HEAD_INFO, (POS_C_CYCLE - 9), "cycles : ");
 	set_cycle_data(0, display->box);
 	mvwprintw(display->box, POS_HEAD_INFO, (POS_C_NB_PC - 10), "process : ");
-	set_cycle_data(game->nb_pc, display->box);
+	set_process_data(game->nb_pc, display->box);
 	mvwprintw(display->box, POS_HEAD_INFO, (POS_C_WINNER - 9), "winner : ");
 	set_winner_data("In progress", display->box);
 	wrefresh(display->box);
