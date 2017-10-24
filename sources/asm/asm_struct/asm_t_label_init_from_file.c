@@ -22,7 +22,8 @@ static int				internal_get_all_labels_on_file(t_parser *parser,
 	{
 		word_type = asm_get_word_type(parser->current_ptr);
 		if (word_type == INVALID_WORD_TYPE)
-			return (asm_syntax_error(parser, ""));
+			return (asm_syntax_error(parser->file_content,
+				parser->current_ptr));
 		ft_putendl(asm_t_word_type_to_string(word_type));
 		parser->current_ptr = asm_get_next_instruct(parser->current_ptr);
 	}
