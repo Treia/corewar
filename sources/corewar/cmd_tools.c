@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_zjmp.c                                         :+:      :+:    :+:   */
+/*   cmd_tools.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/23 17:00:43 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/24 17:31:04 by pzarmehr         ###   ########.fr       */
+/*   Created: 2017/10/24 15:34:03 by pzarmehr          #+#    #+#             */
+/*   Updated: 2017/10/24 17:21:10 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		cmd_zjmp(t_game *game, t_pc *pc, t_cycle *cycle)
+int		read_nb(char *arena, int addr, int size)
 {
-	(void)cycle;
-	if (pc->carry)
+	int		tmp;
+
+	tmp = 0;
+	while (size > 0)
 	{
-		pc->addr += (short)read_nb(game->arena, (pc->addr + 1) % MEM_SIZE, 2);
-		pc->addr %= IDX_MOD;
+		tmp = tmp << 8;
+		tmp += (unsigned char)(arena[addr % MEM_SIZE]);
+		addr++;
+		size--;
 	}
-	else
-		pc->addr += 3;
-	pc->addr = pc->addr % MEM_SIZE;
-	if (pc->addr < 0)
-		pc->addr += MEM_SIZE;
-	return (0);
+	return (tmp);
 }

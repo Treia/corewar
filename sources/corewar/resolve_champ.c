@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resolve_champ.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 14:16:58 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/23 17:02:10 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/24 16:54:33 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int				check_is_correct_champ(t_argvparse *argv, t_game *game)
 		begin = begin->next;
 		nb++;
 	}
+	game->nb_pc = nb;
 	if (nb > MAX_PLAYERS)
 		return (error(TOO_MANY_CHAMP, -1));
 	if (nb == 0)

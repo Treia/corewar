@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 13:14:54 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 18:39:43 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/24 15:38:00 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,48 @@ int		cmd_base(t_game *game, t_pc *pc, t_cycle *cycle)
 {
 	(void)game;
 	(void)cycle;
-	return ((pc->addr + 1) % MEM_SIZE);
+	pc->addr = (pc->addr + 1) % MEM_SIZE;
+	return (0);
 }
 
-int		read_nb(char *arena, int addr, int size)
+void	*get_cmd2(int opcode)
 {
-	int		tmp;
-
-	tmp = 0;
-	while (size > 0)
-	{
-		tmp *= 256;
-		tmp += (int)(arena[addr % MEM_SIZE]);
-		addr++;
-		size--;
-	}
-	return (tmp);
+	if (opcode == 10)
+		return (&cmd_base);
+	if (opcode == 11)
+		return (&cmd_base);
+	if (opcode == 12)
+		return (&cmd_fork);
+	if (opcode == 13)
+		return (&cmd_base);
+	if (opcode == 14)
+		return (&cmd_base);
+	if (opcode == 15)
+		return (&cmd_lfork);
+	if (opcode == 16)
+		return (&cmd_base);
+	return (&cmd_base);
 }
 
 void	*get_cmd(int opcode)
 {
+	if (opcode == 1)
+		return (&cmd_live);
+	if (opcode == 2)
+		return (&cmd_base);
+	if (opcode == 3)
+		return (&cmd_base);
+	if (opcode == 4)
+		return (&cmd_base);
+	if (opcode == 5)
+		return (&cmd_base);
+	if (opcode == 6)
+		return (&cmd_base);
+	if (opcode == 7)
+		return (&cmd_base);
+	if (opcode == 8)
+		return (&cmd_base);
 	if (opcode == 9)
 		return (&cmd_zjmp);
-	if (opcode == 12)
-		return (&cmd_fork);
-	return (&cmd_base);
+	return (get_cmd2(opcode));
 }

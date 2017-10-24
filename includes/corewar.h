@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/24 17:29:20 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/24 17:38:50 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef	struct			s_game
 	t_player			*players;
 	t_pc				*pcs;
 	t_display			*display;
+	int					nb_pc;
 	char				arena[MEM_SIZE];
 	int					dump;
 	int					verb;
@@ -163,8 +164,22 @@ void					check_cycle(t_cycle *cycle, t_game *game);
 **	cmd
 */
 int						read_nb(char *arena, int addr, int size);
+int						cmd_live(t_game *game, t_pc *pc, t_cycle *cycle);
+//
+//
+//
+//
+//
+//
+//
 int						cmd_zjmp(t_game *game, t_pc *pc, t_cycle *cycle);
+//
+//
 int						cmd_fork(t_game *game, t_pc *pc, t_cycle *cycle);
+//
+//
+int						cmd_lfork(t_game *game, t_pc *pc, t_cycle *cycle);
+//
 
 /*
 ** print

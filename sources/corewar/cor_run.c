@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cor_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:29:35 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 18:52:00 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/24 15:07:53 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		run(t_game *game)
 		print_cycle_current(game, c.current);
 		if ((ret = run_pc(game, &c)) != 0)
 			return (ret);
-		c.current++;
+		(c.current)++;
 		check_cycle(&c, game);
 	}
 	end_game(game);
