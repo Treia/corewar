@@ -34,7 +34,8 @@ INCLUDES = $(addprefix $(PATH_INC), $(INC_FILES))
 
 ASM_CORE = main.c \
 			asm_usage.c \
-			asm_syntax_error.c
+			asm_syntax_error.c \
+			asm_error_tools.c
 ASM_SRC_CORE = $(addprefix core/, $(ASM_CORE))
 
 ASM_READDER = asm_get_file_content.c \

@@ -92,6 +92,7 @@ typedef enum 				e_word_type
 	COMMAND_COMMENT,
 	LABEL,
 	INSTRUCTION,
+	END_OF_FILE,
 	NB_WORD_TYPE
 }							t_word_type;
 
@@ -107,8 +108,16 @@ int							asm_usage(void);
 /*
 ** asm_syntax_error.c
 */
-int							asm_syntax_error(const char *init_ptr,
-								const char *error_ptr, const char *message);
+int							asm_syntax_error(t_parser *parser,
+								const char *message);
+
+/*
+** asm_error_tools.c
+*/
+void						asm_error_concat_line_and_char(const char *start,
+								const char *ptr, char *str_error);
+void						asm_error_get_word_error(const char *error_ptr,
+								char *word_error, int size_max);
 
 /*
 ** READDER
@@ -151,6 +160,7 @@ int							asm_is_command_name(const char *word);
 int							asm_is_command_comment(const char *word);
 int							asm_is_label(const char *word);
 int							asm_is_instruction(const char *word);
+int							asm_is_end_of_file(const char *word);
 
 /*
 ** STRUCTS
