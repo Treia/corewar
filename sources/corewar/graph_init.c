@@ -6,33 +6,25 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 17:56:17 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/23 19:20:30 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/24 13:25:08 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void			resize_handler(int sig)
+int				init_window(WINDOW *box)
 {
-	clear();
-	printw("Hey resize");
-	refresh();
-	(void)sig;
-}
-
-int				init_window(void)
-{
-	signal(SIGWINCH, resize_handler);
 	initscr();
-	noecho();
-	printw("Corewar");
-	refresh();
+	box = subwin(stdscr, LINES, COLS, 0, 0);
+	box(box, ACS_VLINE, ACS_HLINE);
+	wrefresh(box);
 	return (0);
 }
 
-int				clear_window(void)
+int				clear_window(WINDOW *box)
 {
 	getch();
 	endwin();
+	free(box);
 	return (0);
 }

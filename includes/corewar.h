@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 19:11:36 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/24 12:27:21 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ void					print_arena(const char *arena, int nb_octet);
 /*
 ** ncurses
 */
-int						init_window(void);
-int						clear_window(void);
+int						init_window(WINDOW *box);
+int						clear_window(WINDOW *box);
 
 #endif
