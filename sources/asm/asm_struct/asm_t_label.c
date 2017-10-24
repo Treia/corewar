@@ -32,9 +32,24 @@ void				asm_t_label_del(t_label **label)
 	if (label && *label)
 	{
 		ptr = *label;
-		asm_t_instruct_del(&(ptr->instruct_list));
-		asm_t_asm_instruct_del(&(ptr->asm_instruct_list));
+		asm_t_instruct_del_list(ptr->instruct_list);
+		ptr->instruct_list = NULL;
+		// asm_t_asm_instruct_del_list(&(ptr->asm_instruct_list));
+		ptr->asm_instruct_list = NULL;
 		ft_memdel((void **)label);
+	}
+}
+
+void				asm_t_label_del_list(t_label *list)
+{
+	t_label		*ptr;
+
+	if (list)
+	{
+		ptr = list;
+		if (ptr->next)
+			asm_t_label_del_list(ptr->next);
+		asm_t_label_del(&list);
 	}
 }
 
@@ -51,3 +66,21 @@ t_label				*asm_t_label_add_end(t_label *list, t_label *add)
 	return (list);
 }
 
+void				t_label_display_list(t_label *list)
+{
+	t_label		*ptr;
+	int			i;
+
+	i = 0;
+	ptr = list;
+	while (ptr)
+	{
+		ft_putstr("label (");
+		ft_putnbr(i);
+		ft_putstr(") : ");
+		ft_putendl(ptr->name);
+		asm_t_instruct_display_list(ptr->instruct_list);
+		ptr = ptr->next;
+		i++;
+	}
+}

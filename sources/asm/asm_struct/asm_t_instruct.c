@@ -36,6 +36,19 @@ void			asm_t_instruct_del(t_instruct **instruct)
 	}
 }
 
+void			asm_t_instruct_del_list(t_instruct *list)
+{
+	t_instruct		*ptr;
+
+	if (list)
+	{
+		ptr = list;
+		if (ptr->next)
+			asm_t_instruct_del_list(ptr->next);
+		asm_t_instruct_del(&list);
+	}
+}
+
 t_instruct		*asm_t_instruct_add_end(t_instruct *list, t_instruct *add)
 {
 	t_instruct	*ptr;
@@ -47,4 +60,23 @@ t_instruct		*asm_t_instruct_add_end(t_instruct *list, t_instruct *add)
 		ptr = ptr->next;
 	ptr->next = add;
 	return (list);
+}
+
+void			asm_t_instruct_display_list(t_instruct *list)
+{
+	t_instruct	*ptr;
+	int			i;
+
+	ptr = list;
+	i = 0;
+	while (ptr)
+	{
+		ft_putstr("instruct (");
+		ft_putnbr(i);
+		ft_putstr(") : ");
+		ft_putendl(ptr->name);
+		asm_t_instruct_param_display(ptr->param);
+		ptr = ptr->next;
+		i++;
+	}
 }

@@ -38,3 +38,20 @@ void		asm_t_instruct_param_del(char **params)
 	}
 }
 
+void		asm_t_instruct_param_display(char **params)
+{
+	int		i;
+
+	i = 0;
+	while (i < PARAM_MAX)
+	{
+		ft_putchar('[');
+		ft_putnbr(i);
+		ft_putstr("] : ");
+		if (params[i])
+			ft_putendl(params[i]);
+		else
+			ft_putendl("(null)");
+		i++;
+	}
+}
