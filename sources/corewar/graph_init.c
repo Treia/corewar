@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 17:56:17 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/23 18:50:23 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/23 19:20:30 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void			resize_handler(int sig)
 {
-	printw("Hello resize");
+	clear();
+	printw("Hey resize");
 	refresh();
 	(void)sig;
 }
