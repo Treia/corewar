@@ -48,17 +48,16 @@ static int		internal_get_element_inside_quotes(t_parser *parser,
 	ft_bzero(out_element, PROG_NAME_LENGTH + 1);
 	start = internal_get_ptr_on_start(parser->current_ptr);
 	if (start == NULL)
-		return (print_error(EXIT_FAILURE, "mauvais caractere"));
+		return (asm_syntax_error(parser, "unexpected"));
 	end = internal_get_ptr_on_end(start);
 	if (end == NULL)
-		return (print_error(EXIT_FAILURE, "not terminated string"));
+		return (asm_syntax_error(parser, "unexpected"));
 	diff = end - start;
 	if (diff > size_max)
-		return (print_error(EXIT_FAILURE, "too big"));
+		return (print_error(EXIT_FAILURE, "name or comment too long"));
 	ft_strncpy(out_element, start, diff);
 	out_element[diff] = '\0';
 	parser->current_ptr = end + 1;
-	ft_putendl(parser->current_ptr);
 	return (EXIT_SUCCESS);
 }
 
@@ -68,7 +67,6 @@ int				asm_t_header_get_name(t_parser *parser, t_header *header)
 	if (internal_get_element_inside_quotes(parser, PROG_NAME_LENGTH,
 			header->prog_name) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	ft_putendl(header->prog_name);
 	return (EXIT_SUCCESS);
 }
 
@@ -79,6 +77,5 @@ int				asm_t_header_get_comment(t_parser *parser, t_header *header)
 	if (internal_get_element_inside_quotes(parser, COMMENT_LENGTH,
 			header->comment) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	ft_putendl(header->comment);
 	return (EXIT_SUCCESS);
 }

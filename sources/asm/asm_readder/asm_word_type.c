@@ -39,3 +39,10 @@ int				asm_is_instruction(const char *word)
 	(void)word;
 	return (false);
 }
+
+int				asm_is_end_of_file(const char *word)
+{
+	if (word && (*word == '\0' || ft_strequ(word, "(null)")))
+		return (true);
+	return (false);
+}
