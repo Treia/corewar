@@ -182,7 +182,7 @@ t_label						*asm_t_label_new(void);
 void						asm_t_label_del(t_label **label);
 void						asm_t_label_del_list(t_label *label);
 t_label						*asm_t_label_add_end(t_label *list, t_label *add);
-void						t_label_display_list(t_label *list);
+void						asm_t_label_display_list(t_label *list);
 
 int							asm_t_label_init_from_file(); // todo
 

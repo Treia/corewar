@@ -66,7 +66,7 @@ t_label				*asm_t_label_add_end(t_label *list, t_label *add)
 	return (list);
 }
 
-void				t_label_display_list(t_label *list)
+void				asm_t_label_display_list(t_label *list)
 {
 	t_label		*ptr;
 	int			i;
