@@ -29,6 +29,8 @@ static char		*internal_get_str_word_type(const char *word)
 static void		internal_add_problematic_word(const char *type_word,
 					const char *word_error, char *error)
 {
+	if (ft_strequ(type_word, "unknow"))
+		return ;
 	ft_strcat(error, " ");
 	ft_strcat(error, type_word);
 	ft_strcat(error, " \"");

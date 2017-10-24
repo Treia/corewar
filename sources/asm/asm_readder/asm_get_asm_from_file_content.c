@@ -21,6 +21,7 @@ int			asm_get_asm_from_file_content(const char *file, t_asm *asm_content)
 
 	parser.file_content = (char *)file;
 	parser.current_ptr = parser.file_content;
+	label_list = NULL;
 	if (asm_t_header_init_from_file(&parser, &header) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (asm_t_label_init_from_file(&parser, &label_list) == EXIT_FAILURE)

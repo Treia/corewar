@@ -13,7 +13,7 @@
 #include <fcntl.h>
 #include "libft.h"
 
-#define BUF_READ	2048
+#define BUF_READ	(2048 * 8)
 
 int			ft_read_file(int fd, char **out_content)
 {
