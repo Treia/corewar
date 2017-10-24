@@ -30,13 +30,27 @@ int				asm_is_command_comment(const char *word)
 
 int				asm_is_label(const char *word)
 {
-	(void)word;
-	return (false);
+	char	*ptr;
+
+	ptr = (char *)word;
+	while (ptr && *ptr && asm_is_label_char(*ptr))
+		ptr++;
+	if (*ptr != LABEL_CHAR)
+		return (false);
+	return (true);
 }
 
 int				asm_is_instruction(const char *word)
 {
-	(void)word;
+	char	*ptr;
+
+	ptr = (char *)word;
+	while (ptr && *ptr && ft_isalpha(*ptr))
+		ptr++;
+	if (*ptr != LABEL_CHAR)
+		return (false);
+	return (true);
+
 	return (false);
 }
 
