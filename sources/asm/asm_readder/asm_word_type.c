@@ -50,8 +50,6 @@ int				asm_is_instruction(const char *word)
 	if (*ptr != LABEL_CHAR)
 		return (false);
 	return (true);
-
-	return (false);
 }
 
 int				asm_is_end_of_file(const char *word)
