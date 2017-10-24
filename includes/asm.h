@@ -113,14 +113,6 @@ int							asm_syntax_error(t_parser *parser,
 								const char *message);
 
 /*
-** asm_error_tools.c
-*/
-void						asm_error_concat_line_and_char(const char *start,
-								const char *ptr, char *str_error);
-void						asm_error_get_word_error(const char *error_ptr,
-								char *word_error, int size_max);
-
-/*
 ** READDER
 */
 
@@ -195,5 +187,22 @@ void						asm_t_instruct_del(t_instruct **instruct);
 t_asm_instruct				*asm_t_asm_instruct_new(void);
 int							asm_t_asm_instruct_init();
 void						asm_t_asm_instruct_del(t_asm_instruct **asm_inst);
+
+/*
+** TOOLS
+*/
+
+/*
+** asm_is_label_char.c
+*/
+int							asm_is_label_char(int c);
+
+/*
+** asm_error_tools.c
+*/
+void						asm_error_concat_line_and_char(const char *start,
+								const char *ptr, char *str_error);
+void						asm_error_get_word_error(const char *error_ptr,
+								char *word_error, int size_max);
 
 #endif
