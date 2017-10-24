@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 19:11:36 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/24 18:10:58 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,18 @@
 # define LEN_HEXA 16
 # define BASE_HEXA "0123456789abcdef"
 # define NB_OCTET_DISPLAY 64
-# define MAX_L 70
-# define MAX_H 250
+/*
+** Graphique
+*/
+# define HEAD_GRAPH 5
+# define POS_HEAD_INFO 1
+# define POS_C_CYCLE (((NB_OCTET_DISPLAY / 4) * 3) + 2)
+# define POS_C_NB_PC (((NB_OCTET_DISPLAY / 2) * 3 )+ 2)
+# define POS_C_WINNER ((((NB_OCTET_DISPLAY / 4) * 3) * 3) + 2)
+# define PADDING_COL 4
+# define MAX_L ((MEM_SIZE / NB_OCTET_DISPLAY) + HEAD_GRAPH)
+# define MAX_C ((NB_OCTET_DISPLAY * 3) + PADDING_COL)
+# define HEAD_GRAPH 5
 
 typedef	struct			s_player
 {
@@ -42,14 +52,23 @@ typedef	struct			s_pc
 	int					carry;
 	int					last_live;
 	int					wait;
+	int					id_player;
 	int					(*cmd)(void *, void *, void *);
 	struct s_pc			*next;
 }						t_pc;
+
+typedef struct			s_display
+{
+	WINDOW				*box;
+	WINDOW				*head;
+}						t_display;
 
 typedef	struct			s_game
 {
 	t_player			*players;
 	t_pc				*pcs;
+	t_display			*display;
+	int					nb_pc;
 	char				arena[MEM_SIZE];
 	int					dump;
 	int					verb;
@@ -112,6 +131,7 @@ void					add_in_player_list(t_player **player,
 void					release_pcs(t_pc **pcs);
 t_pc					*new_pc(int live);
 void					push_in_front_pc(t_pc **pcs, t_pc *add);
+void					set_pcs_id(t_pc *pcs);
 
 /*
 ** struct argvparse
@@ -144,8 +164,22 @@ void					check_cycle(t_cycle *cycle, t_game *game);
 **	cmd
 */
 int						read_nb(char *arena, int addr, int size);
+int						cmd_live(t_game *game, t_pc *pc, t_cycle *cycle);
+//
+//
+//
+//
+//
+//
+//
 int						cmd_zjmp(t_game *game, t_pc *pc, t_cycle *cycle);
+//
+//
 int						cmd_fork(t_game *game, t_pc *pc, t_cycle *cycle);
+//
+//
+int						cmd_lfork(t_game *game, t_pc *pc, t_cycle *cycle);
+//
 
 /*
 ** print
@@ -161,7 +195,13 @@ void					print_arena(const char *arena, int nb_octet);
 /*
 ** ncurses
 */
-int						init_window(void);
-int						clear_window(void);
+void					release_display(t_display *display);
+t_display				*init_display(void);
+t_display				*init_window(t_display *display, t_game *game);
+int						clear_window(t_display *display);
+void					set_winner_data(const char *str, WINDOW *box);
+void					set_process_data(unsigned int process, WINDOW *box);
+void					set_cycle_data(unsigned int	cycles, WINDOW *box);
+void					print_int(int index, t_game *game);
 
 #endif

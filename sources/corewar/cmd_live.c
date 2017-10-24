@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_zjmp.c                                         :+:      :+:    :+:   */
+/*   cmd_live.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/23 17:00:43 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/24 18:09:59 by pzarmehr         ###   ########.fr       */
+/*   Created: 2017/10/24 13:11:32 by pzarmehr          #+#    #+#             */
+/*   Updated: 2017/10/24 18:03:42 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		cmd_zjmp(t_game *game, t_pc *pc, t_cycle *cycle)
+int		cmd_live(t_game *game, t_pc *pc, t_cycle *cycle)
 {
-	(void)cycle;
-	if (pc->carry)
+	int			live;
+	t_player	*tmp;
+
+	live = (int)read_nb(game->arena, pc->addr + 1, 4);
+	tmp = game->players;
+	while (tmp != 0)
 	{
-		pc->addr += (short)read_nb(game->arena, pc->addr + 1, 2) % IDX_MOD;
+		if (tmp->live == live)
+			(tmp->live)++;
+		tmp = tmp->next;
 	}
-	else
-		pc->addr += 3;
-	pc->addr = pc->addr % MEM_SIZE;
-	if (pc->addr < 0)
-		pc->addr += MEM_SIZE;
+	pc->last_live = cycle->current;
+	print_pc_live(game, live);
+	pc->addr = ((pc->addr + 5) % MEM_SIZE);
 	return (0);
 }

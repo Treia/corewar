@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct_game.c                                      :+:      :+:    :+:   */
+/*   struct_display.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/21 16:53:32 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/24 17:39:03 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/10/24 16:10:49 by mdezitte          #+#    #+#             */
+/*   Updated: 2017/10/24 17:13:44 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void			release_game(t_game *game)
+t_display	*init_display(void)
 {
-	if (game->players != NULL)
-		release_player(&game->players);
-	if (game->pcs != NULL)
-		release_pcs(&game->pcs);
-	ft_memdel((void *)&game);
-}
+	t_display	*ret;
 
-t_game			*new_game(void)
-{
-	t_game		*ret;
-
-	ret = (t_game *)malloc(sizeof(t_game));
+	ret = (t_display *)malloc(sizeof(t_display));
 	if (ret == NULL)
 		return (NULL);
-	ret->display = NULL;
-	ret->verb = 0;
-	ret->players = NULL;
-	ret->pcs = NULL;
-	ret->nb_pc = 0;
-	ft_bzero(ret->arena, MEM_SIZE);
-	ret->dump = -999;
-	ret->winner = 0;
+	ret->box = subwin(stdscr, MAX_L, MAX_C, 0, 0);
+	ret->head = subwin(stdscr, 3, MAX_C, 0, 0);
 	return (ret);
+}
+
+void		release_display(t_display *display)
+{
+	if (display->head)
+		free(display->head);
+	if (display->box)
+		free(display->box);
+	free(display);
 }
