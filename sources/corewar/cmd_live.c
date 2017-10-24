@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 13:11:32 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/24 17:31:32 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/24 18:03:42 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		cmd_live(t_game *game, t_pc *pc, t_cycle *cycle)
 	int			live;
 	t_player	*tmp;
 
-	live = (int)read_nb(game->arena, (pc->addr + 1) % MEM_SIZE, 4);
+	live = (int)read_nb(game->arena, pc->addr + 1, 4);
 	tmp = game->players;
 	while (tmp != 0)
 	{
