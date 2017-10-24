@@ -11,68 +11,61 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "asm.h"
 
-# define MESSAGE_SIZE_MAX 1024
-# define DETAILS_LINE_SIZE_MAX 255
+#define WORD_ERROR_SIZE_MAX	25
+#define MESSAGE_SIZE_MAX		(1024 + WORD_ERROR_SIZE_MAX)
 
-static void	internal_get_line_and_char_error(const char *init_ptr,
-				const char *error_ptr, char *error)
+#define DETAILS_LINE_SIZE_MAX	255
+
+static char	*internal_get_str_matching_word_type(const char *word)
 {
-	int		nb_line;
-	int		nb_char;
-	char	*ptr;
+	char			*words[NB_WORD_TYPE];
+	t_word_type		type;
 
-	nb_line = ft_count_char_with_limit(init_ptr, error_ptr, '\n');
-	ft_putendl("init ptr : ");
-	ft_putendl(init_ptr);
-	ft_putendl("error ptr : ");
-	ft_putendl(error_ptr);
-	ptr = ft_memrchr(init_ptr, error_ptr, '\n');
-	ft_putendl("ptr : ");
-	ft_putendl(ptr);
-	if (ptr == NULL)
-		nb_char = 1;
-	else
-		nb_char = error_ptr - ptr;
-	ft_strcat(error, "[");
-	ptr = ft_itoa(nb_line + 1);
-	ft_strcat(error, ptr);
-	free(ptr);
-	ft_strcat(error, ",");
-	ptr = ft_itoa(nb_char);
-	ft_strcat(error, ptr);
-	free(ptr);
- 	ft_strcat(error, "]");
+	words[COMMAND_NAME] = "COMMAND_NAME";
+	words[COMMAND_COMMENT] = "COMMAND_COMMENT";
+	words[LABEL] = "LABEL";
+	words[INSTRUCTION] = "INSTRUCTION";
+	words[END_OF_FILE] = "END";
+	type = asm_get_asm_word_type(word);
+	if (type == INVALID_WORD_TYPE || type >= NB_WORD_TYPE)
+		return ("unknow");
+	return (words[type]);
 }
 
 static void	internal_add_problematic_word(const char *error_ptr, char *error)
 {
-	char	*end_error_ptr;
-	char	*end_error_str;
+	char	word_error[WORD_ERROR_SIZE_MAX + 1];
+	char	*type_word;
 
-	end_error_ptr = ft_str_first(error_ptr, ft_isspace);
-	end_error_str = error + ft_strlen(error);
-	ft_strncpy(error + ft_strlen(error), error_ptr, end_error_ptr - error_ptr);
+	ft_bzero(word_error, WORD_ERROR_SIZE_MAX + 1);
+	asm_error_get_word_error(error_ptr, word_error, WORD_ERROR_SIZE_MAX);
+	type_word = internal_get_str_matching_word_type(word_error);
+	ft_strcat(error, " ");
+	ft_strcat(error, type_word);
+	ft_strcat(error, " \"");
+	ft_strcat(error, word_error);
+	ft_strcat(error, "\"");
 }
 
-int			asm_syntax_error(const char *init_ptr, const char *error_ptr,
+int			asm_syntax_error(t_parser *parser,
 				const char *message)
 {
 	char		error[MESSAGE_SIZE_MAX + 1];
 
 	ft_bzero(error, MESSAGE_SIZE_MAX + 1);
 	ft_strcpy(error, "SYNTAX ERROR: ");
-	if (!error_ptr)
+	if (!parser->current_ptr)
 		ft_strcat(error, "\"[null]\"");
 	else
-		internal_get_line_and_char_error(init_ptr, error_ptr, error);
+		asm_error_concat_line_and_char(parser->file_content,
+			parser->current_ptr, error);
 	if (message)
 	{
 		ft_strcat(error, " ");
 		ft_strcat(error, message);
 	}
-	ft_strcat(error, " : \"");
-	internal_add_problematic_word(error_ptr, error);
-	ft_strcat(error, "\"");
+	internal_add_problematic_word(parser->current_ptr, error);
 	return (print_error(EXIT_FAILURE, error));
 }

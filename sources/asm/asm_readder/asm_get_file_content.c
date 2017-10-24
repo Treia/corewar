@@ -19,6 +19,7 @@
 ** Read the content of the file.
 ** Return EXIT_FAILURE on error, after outputing the error.
 */
+
 int				asm_get_file_content(const char *filename, char **out_content)
 {
 	int			ret;
