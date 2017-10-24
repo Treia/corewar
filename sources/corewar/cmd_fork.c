@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 17:40:44 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/24 17:31:53 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/24 18:10:00 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ int		cmd_fork(t_game *game, t_pc *pc, t_cycle *cycle)
 	(void)cycle;
 	if (fork_cpy(game, pc) == -1)
 		return (-1);
-	pc->addr += (short)read_nb(game->arena, (pc->addr + 1) % MEM_SIZE, 2);
-	pc->addr %= IDX_MOD;
+	pc->addr += (short)read_nb(game->arena, pc->addr + 1, 2) % IDX_MOD;
 	pc->addr = pc->addr % MEM_SIZE;
 	if (pc->addr < 0)
 		pc->addr += MEM_SIZE;
@@ -47,7 +46,7 @@ int		cmd_lfork(t_game *game, t_pc *pc, t_cycle *cycle)
 	(void)cycle;
 	if (fork_cpy(game, pc) == -1)
 		return (-1);
-	pc->addr += (short)read_nb(game->arena, (pc->addr + 1) % MEM_SIZE, 2);
+	pc->addr += (short)read_nb(game->arena, pc->addr + 1, 2);
 	pc->addr = pc->addr % MEM_SIZE;
 	if (pc->addr < 0)
 		pc->addr += MEM_SIZE;
