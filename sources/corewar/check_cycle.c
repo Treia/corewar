@@ -6,29 +6,67 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 11:48:52 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/24 15:23:25 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/24 20:47:38 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-t_pc	*check_pc(t_cycle *cycle, t_pc *pc, t_game *game)
+/*t_pc	*check_pc2(t_cycle *cycle, t_pc *pc, t_game *game)
 {
-	t_pc	*tmp;
-
-	if (pc == 0)
+	if (!pc)
 		return (0);
-	tmp = check_pc(cycle, pc->next, game);
+	tmp = check_pc2(cycle, pc->next, game);
 	if (cycle->current >= pc->last_live + cycle->to_die)
 	{
 		free(pc);
 		print_pc_kill(game);
+		(game->nb_pc)--;
 		return (tmp);
 	}
 	else
 	{
 		pc->next = tmp;
 		return (pc);
+	}
+}*/
+
+void	destroy_pc(t_pc *pc, t_game *game)
+{
+				free(pc);
+				print_pc_kill(game);
+				(game->nb_pc)--;
+}
+
+void	check_pc(t_cycle *cycle, t_game *game)
+{
+	t_pc	*ptr;
+	t_pc	*tmp;
+
+	if (game->pcs != 0)
+	{
+		ptr = game->pcs;
+		tmp = game->pcs->next;
+		while (tmp != 0)
+		{
+			if (cycle->current >= tmp->last_live + cycle->to_die)
+			{
+				tmp = tmp->next;
+				destroy_pc(ptr->next, game);
+				ptr->next = tmp;
+			}
+			else
+			{
+				tmp = tmp->next;
+				ptr = ptr->next;
+			}
+		}
+		if (cycle->current >= game->pcs->last_live + cycle->to_die)
+		{
+				tmp = game->pcs;
+				game->pcs = game->pcs->next;
+				destroy_pc(tmp, game);
+		}
 	}
 }
 
@@ -60,6 +98,7 @@ void	check_cycle(t_cycle *cycle, t_game *game)
 		while (tmp != 0)
 		{
 			flag = tmp->nb_live < NBR_LIVE ? flag : 1;
+			tmp->nb_live = 0;
 			tmp = tmp->next;
 		}
 		if (flag)
@@ -72,6 +111,6 @@ void	check_cycle(t_cycle *cycle, t_game *game)
 			else
 				cycle->check += cycle->to_die;
 		}
-		game->pcs = check_pc(cycle, game->pcs, game);
+		check_pc(cycle, game);
 	}
 }

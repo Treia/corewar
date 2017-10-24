@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 15:34:03 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/24 18:03:55 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/24 18:25:17 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int		read_nb(char *arena, int addr, int size)
 {
 	int		tmp;
 
-	addr %= MEM_SIZE;
 	tmp = 0;
 	while (size > 0)
 	{
