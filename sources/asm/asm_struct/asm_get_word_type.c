@@ -22,7 +22,7 @@ static void		internal_init_word_type_tab(t_ft_is_word_type *ft_is)
 	ft_is[END_OF_FILE] = asm_is_end_of_file;
 }
 
-t_word_type		asm_get_asm_word_type(const char *word)
+t_word_type		asm_get_word_type(const char *word)
 {
 	t_ft_is_word_type		ft_is[NB_WORD_TYPE];
 	int						i;

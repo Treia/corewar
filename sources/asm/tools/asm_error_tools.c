@@ -23,7 +23,7 @@ static int		internal_get_nb_char(const char *start, const char *ptr)
 
 	prev_newline = ft_memrchr(start, ptr, '\n');
 	if (prev_newline == NULL)
-		return (1);
+		return ((ptr - start) + 1);
 	return (ptr - prev_newline);
 }
 
@@ -43,6 +43,11 @@ void			asm_error_concat_line_and_char(const char *start,
 	int		nb_line;
 	int		nb_char;
 
+	if (!start || !ptr || !str_error)
+	{
+		ft_strcat(str_error, "\"[null]\"");
+		return ;
+	}
 	nb_line = internal_get_nb_line(start, ptr);
 	nb_char = internal_get_nb_char(start, ptr);
 	ft_strcat(str_error, "[");

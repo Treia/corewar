@@ -15,13 +15,7 @@
 
 static char		*internal_get_ptr_on_start(const char *file_content)
 {
-	char	*start;
-
-	start = ft_str_first_not(file_content, ft_isspace);
-	if (start && *start != STRING_CHAR)
-		return (NULL);
-	start++;
-	return (start);
+	return (ft_str_first_not(file_content, ft_isspace));
 }
 
 static char		*internal_get_ptr_on_end(const char *start)
@@ -29,12 +23,8 @@ static char		*internal_get_ptr_on_end(const char *start)
 	char	*end;
 
 	end = (char *)start;
-	while (*end != STRING_CHAR)
-	{
-		if (*end == '\0')
-			return (NULL);
+	while (*end != STRING_CHAR && *end != '\0')
 		end++;
-	}
 	return (end);
 }
 
@@ -47,11 +37,12 @@ static int		internal_get_element_inside_quotes(t_parser *parser,
 
 	ft_bzero(out_element, PROG_NAME_LENGTH + 1);
 	start = internal_get_ptr_on_start(parser->current_ptr);
-	if (start == NULL)
-		return (asm_syntax_error(parser, "unexpected"));
+	if (!start || *start != STRING_CHAR)
+		return (asm_syntax_error(parser->file_content, start));
+	start++;
 	end = internal_get_ptr_on_end(start);
-	if (end == NULL)
-		return (asm_syntax_error(parser, "unexpected"));
+	if (!end || *end == '\0')
+		return (asm_syntax_error(parser->file_content, end));
 	diff = end - start;
 	if (diff > size_max)
 		return (print_error(EXIT_FAILURE, "name or comment too long"));
@@ -59,7 +50,7 @@ static int		internal_get_element_inside_quotes(t_parser *parser,
 	out_element[diff] = '\0';
 	parser->current_ptr = asm_get_eol_or_next_instruct(end + 1);
 	if (*(parser->current_ptr) != '\n')
-		return (asm_syntax_error(parser, "unexpected"));
+		return (asm_syntax_error(parser->file_content, parser->current_ptr));
 	return (EXIT_SUCCESS);
 }
 

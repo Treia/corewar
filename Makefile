@@ -40,9 +40,7 @@ ASM_SRC_CORE = $(addprefix core/, $(ASM_CORE))
 ASM_READDER = asm_get_file_content.c \
 				asm_skip_commented_line.c \
 				asm_get_next_instruct.c \
-				asm_get_asm_from_file_content.c \
-				asm_get_asm_word_type.c \
-				asm_word_type.c
+				asm_get_asm_from_file_content.c
 ASM_SRC_READDER = $(addprefix asm_readder/, $(ASM_READDER))
 
 ASM_STRUCT = asm_t_header_init_from_file.c \
@@ -50,7 +48,11 @@ ASM_STRUCT = asm_t_header_init_from_file.c \
 				asm_t_label.c \
 				asm_t_label_init_from_file.c \
 				asm_t_instruct.c \
-				asm_t_instruct_param.c
+				asm_t_instruct_param.c \
+				asm_t_word_type_is.c \
+				asm_t_word_type_to_string.c \
+				asm_get_word_type.c
+
 ASM_SRC_STRUCT = $(addprefix asm_struct/, $(ASM_STRUCT))
 
 ASM_TOOLS = asm_error_tools.c \

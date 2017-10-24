@@ -47,7 +47,7 @@ int				asm_is_instruction(const char *word)
 	ptr = (char *)word;
 	while (ptr && *ptr && ft_isalpha(*ptr))
 		ptr++;
-	if (*ptr != LABEL_CHAR)
+	if (ft_isspace(*ptr) == false && *ptr != '\0')
 		return (false);
 	return (true);
 }

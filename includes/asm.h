@@ -109,8 +109,8 @@ int							asm_usage(void);
 /*
 ** asm_syntax_error.c
 */
-int							asm_syntax_error(t_parser *parser,
-								const char *message);
+int							asm_syntax_error(const char *start_file,
+								const char *error_ptr);
 
 /*
 ** READDER
@@ -141,29 +141,12 @@ int							asm_get_asm_from_file_content(const char *file,
 								t_asm *asm_content);
 
 /*
-** asm_get_asm_word_type.c
-*/
-typedef int					(*t_ft_is_word_type)(const char *);
-
-t_word_type					asm_get_asm_word_type(const char *word);
-
-/*
-** asm_word_type_is.c
-*/
-int							asm_is_command_name(const char *word);
-int							asm_is_command_comment(const char *word);
-int							asm_is_label(const char *word);
-int							asm_is_instruction(const char *word);
-int							asm_is_end_of_file(const char *word);
-
-/*
 ** STRUCTS
 */
 
 /*
 ** header
 */
-
 typedef int					(*t_ft_parse_header)(t_parser *, t_header *);
 
 int							asm_t_header_init_from_file(t_parser *parser,
@@ -177,21 +160,20 @@ int							asm_t_header_get_comment(t_parser *parser,
 /*
 ** label
 */
-
 t_label						*asm_t_label_new(void);
 void						asm_t_label_del(t_label **label);
 void						asm_t_label_del_list(t_label *label);
 t_label						*asm_t_label_add_end(t_label *list, t_label *add);
 void						asm_t_label_display_list(t_label *list);
 
-int							asm_t_label_init_from_file(); // todo
+int							asm_t_label_init_from_file(t_parser *parser,
+								t_label **list_to_set);
 
 t_label						*asm_t_label_find(); // todo
 
 /*
 ** instruct
 */
-
 t_instruct					*asm_t_instruct_new(void);
 void						asm_t_instruct_del(t_instruct **instruct);
 void						asm_t_instruct_del_list(t_instruct *instruct);
@@ -211,13 +193,30 @@ void						asm_t_instruct_param_display(char **params);
 void						asm_t_instruct_param_init_from_file(void); // to do
 
 /*
-** asm_instruct
+** word_type
 */
-t_asm_instruct				*asm_t_asm_instruct_new(void);
-void						asm_t_asm_instruct_del(t_asm_instruct **asm_inst);
-void						asm_t_asm_instruct_del_list(t_asm_instruct *list);
-t_asm_instruct				*asm_t_asm_instruct_add_end(t_asm_instruct *list,
-								t_asm_instruct *add);
+char						*asm_t_word_type_to_string(t_word_type type);
+
+/*
+** asm_t_word_type_is.c
+*/
+int							asm_is_command_name(const char *word);
+int							asm_is_command_comment(const char *word);
+int							asm_is_label(const char *word);
+int							asm_is_instruction(const char *word);
+int							asm_is_end_of_file(const char *word);
+
+/*
+** asm_get_word_type.c
+*/
+typedef int					(*t_ft_is_word_type)(const char *);
+
+t_word_type					asm_get_word_type(const char *word);
+
+/*
+** asm_t_word_type_to_string.c
+*/
+char						*asm_t_word_type_to_string(t_word_type type);
 
 /*
 ** TOOLS
