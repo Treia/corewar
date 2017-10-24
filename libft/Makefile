@@ -52,7 +52,8 @@ SRC = ft_strlen.c \
 	  ft_strrchr.c \
 	  ft_strnequ.c \
 	  swap_endian.c \
-	  ft_itoa.c
+	  ft_itoa.c \
+	  ft_isalpha.c
 
 OBJ = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRC)))
 

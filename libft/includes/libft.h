@@ -79,6 +79,7 @@ int			print_error(int ret, const char *message);
 int			ft_atoi(const char *str);
 int			ft_isdigit(int c);
 int			ft_isspace(int c);
+int			ft_isalpha(int c);
 void		ft_putnbr(int n);
 int			ft_isnum(const char *str);
 char		**ft_strsplit(char const *s, char c);

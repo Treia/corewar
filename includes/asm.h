@@ -56,8 +56,8 @@ typedef struct				s_instruct
 
 typedef struct				s_label
 {
-	char					name[LABEL_LENGTH_MAX];
-	t_instruct				*instruc_list;
+	char					name[LABEL_LENGTH_MAX + 1];
+	t_instruct				*instruct_list;
 	t_asm_instruct			*asm_instruct_list;
 	struct s_label			*next;
 }							t_label;
@@ -109,16 +109,8 @@ int							asm_usage(void);
 /*
 ** asm_syntax_error.c
 */
-int							asm_syntax_error(t_parser *parser,
-								const char *message);
-
-/*
-** asm_error_tools.c
-*/
-void						asm_error_concat_line_and_char(const char *start,
-								const char *ptr, char *str_error);
-void						asm_error_get_word_error(const char *error_ptr,
-								char *word_error, int size_max);
+int							asm_syntax_error(const char *start_file,
+								const char *error_ptr);
 
 /*
 ** READDER
@@ -140,6 +132,7 @@ char						*asm_skip_commented_lines(const char *line);
 ** asm_get_next_instruct.c
 */
 char						*asm_get_next_instruct(const char *file_content);
+char						*asm_get_eol_or_next_instruct(const char *string);
 
 /*
 ** asm_get_asm_from_file_content.c
@@ -148,29 +141,12 @@ int							asm_get_asm_from_file_content(const char *file,
 								t_asm *asm_content);
 
 /*
-** asm_get_asm_word_type.c
-*/
-typedef int					(*t_ft_is_word_type)(const char *);
-
-t_word_type					asm_get_asm_word_type(const char *word);
-
-/*
-** asm_word_type_is.c
-*/
-int							asm_is_command_name(const char *word);
-int							asm_is_command_comment(const char *word);
-int							asm_is_label(const char *word);
-int							asm_is_instruction(const char *word);
-int							asm_is_end_of_file(const char *word);
-
-/*
 ** STRUCTS
 */
 
 /*
 ** header
 */
-
 typedef int					(*t_ft_parse_header)(t_parser *, t_header *);
 
 int							asm_t_header_init_from_file(t_parser *parser,
@@ -181,18 +157,82 @@ int							asm_t_header_get_name(t_parser *parser,
 int							asm_t_header_get_comment(t_parser *parser,
 								t_header *header);
 
-/* temp */
-
+/*
+** label
+*/
 t_label						*asm_t_label_new(void);
-int							asm_t_label_init();
 void						asm_t_label_del(t_label **label);
+void						asm_t_label_del_list(t_label *label);
+t_label						*asm_t_label_add_end(t_label *list, t_label *add);
+void						asm_t_label_display_list(t_label *list);
 
+int							asm_t_label_init_from_file(t_parser *parser,
+								t_label **list_to_set);
+
+t_label						*asm_t_label_find(); // todo
+
+/*
+** instruct
+*/
 t_instruct					*asm_t_instruct_new(void);
-int							asm_t_instruct_init();
 void						asm_t_instruct_del(t_instruct **instruct);
+void						asm_t_instruct_del_list(t_instruct *instruct);
+t_instruct					*asm_t_instruct_add_end(t_instruct *list,
+								t_instruct *add);
+void						asm_t_instruct_display_list(t_instruct *list);
 
-t_asm_instruct				*asm_t_asm_instruct_new(void);
-int							asm_t_asm_instruct_init();
-void						asm_t_asm_instruct_del(t_asm_instruct **asm_inst);
+int							asm_t_instruct_init_from_file(); //todo
+
+/*
+** instruct param
+*/
+void						asm_t_instruct_param_init(char **params);
+void						asm_t_instruct_param_del(char **params);
+void						asm_t_instruct_param_display(char **params);
+
+void						asm_t_instruct_param_init_from_file(void); // to do
+
+/*
+** word_type
+*/
+char						*asm_t_word_type_to_string(t_word_type type);
+
+/*
+** asm_t_word_type_is.c
+*/
+int							asm_is_command_name(const char *word);
+int							asm_is_command_comment(const char *word);
+int							asm_is_label(const char *word);
+int							asm_is_instruction(const char *word);
+int							asm_is_end_of_file(const char *word);
+
+/*
+** asm_get_word_type.c
+*/
+typedef int					(*t_ft_is_word_type)(const char *);
+
+t_word_type					asm_get_word_type(const char *word);
+
+/*
+** asm_t_word_type_to_string.c
+*/
+char						*asm_t_word_type_to_string(t_word_type type);
+
+/*
+** TOOLS
+*/
+
+/*
+** asm_is_label_char.c
+*/
+int							asm_is_label_char(int c);
+
+/*
+** asm_error_tools.c
+*/
+void						asm_error_concat_line_and_char(const char *start,
+								const char *ptr, char *str_error);
+void						asm_error_get_word_error(const char *error_ptr,
+								char *word_error, int size_max);
 
 #endif
