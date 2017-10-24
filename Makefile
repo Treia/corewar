@@ -40,7 +40,9 @@ ASM_SRC_CORE = $(addprefix core/, $(ASM_CORE))
 ASM_READDER = asm_get_file_content.c \
 				asm_skip_commented_line.c \
 				asm_get_next_instruct.c \
-				asm_get_asm_from_file_content.c
+				asm_get_asm_from_file_content.c \
+				asm_get_asm_word_type.c \
+				asm_word_type.c
 ASM_SRC_READDER = $(addprefix asm_readder/, $(ASM_READDER))
 
 ASM_STRUCT = asm_t_header_init_from_file.c \

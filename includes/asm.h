@@ -72,6 +72,30 @@ typedef struct				s_asm
 }							t_asm;
 
 /*
+** PARSER
+*/
+
+typedef struct				s_parser
+{
+	char					*file_content;
+	char					*current_ptr;
+}							t_parser;
+
+/*
+** WORD TYPE
+*/
+
+typedef enum 				e_word_type
+{
+	INVALID_WORD_TYPE = -1,
+	COMMAND_NAME = 0,
+	COMMAND_COMMENT,
+	LABEL,
+	INSTRUCTION,
+	NB_WORD_TYPE
+}							t_word_type;
+
+/*
 ** CORE
 */
 
@@ -89,12 +113,6 @@ int							asm_syntax_error(const char *init_ptr,
 /*
 ** READDER
 */
-
-typedef struct				s_parser
-{
-	char					*file_content;
-	char					*current_ptr;
-}							t_parser;
 
 /*
 ** get_file_content.c
@@ -118,6 +136,21 @@ char						*asm_get_next_instruct(const char *file_content);
 */
 int							asm_get_asm_from_file_content(const char *file,
 								t_asm *asm_content);
+
+/*
+** asm_get_asm_word_type.c
+*/
+typedef int					(*t_ft_is_word_type)(const char *);
+
+t_word_type					asm_get_asm_word_type(const char *word);
+
+/*
+** asm_word_type_is.c
+*/
+int							asm_is_command_name(const char *word);
+int							asm_is_command_comment(const char *word);
+int							asm_is_label(const char *word);
+int							asm_is_instruction(const char *word);
 
 /*
 ** STRUCTS
