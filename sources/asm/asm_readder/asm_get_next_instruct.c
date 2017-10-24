@@ -38,3 +38,13 @@ char			*asm_get_next_instruct(const char *file_content)
 	ptr = ft_str_first_not(ptr, ft_isspace);
 	return (ptr);
 }
+
+char			*asm_get_eol_or_next_instruct(const char *string)
+{
+	char		*ptr;
+
+	ptr = (char *)string;
+	while (ptr && ft_isspace(*ptr) && *ptr != '\n')
+		ptr++;
+	return (ptr);
+}

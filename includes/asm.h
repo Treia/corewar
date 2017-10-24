@@ -140,6 +140,7 @@ char						*asm_skip_commented_lines(const char *line);
 ** asm_get_next_instruct.c
 */
 char						*asm_get_next_instruct(const char *file_content);
+char						*asm_get_eol_or_next_instruct(const char *string);
 
 /*
 ** asm_get_asm_from_file_content.c
