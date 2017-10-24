@@ -14,16 +14,14 @@
 #include "asm.h"
 #include <stdbool.h>
 
-#define PROG_NAME 0
-#define COMMENT 1
-#define DATAS_SIZE 2
+# define HANDLE_WORDS_TYPES 2
 
 static int		internal_all_datas_are_get(int *header_datas_get)
 {
 	int		i;
 
 	i = 0;
-	while (i < DATAS_SIZE)
+	while (i < HANDLE_WORDS_TYPES)
 	{
 		if (header_datas_get[i] == 0)
 			return (false);
@@ -57,11 +55,11 @@ static int		internal_parse_header(t_parser *parser,
 int				asm_t_header_init_from_file(t_parser *parser,
 					t_header *out_header)
 {
-	int		header_datas_get[DATAS_SIZE];
+	int		header_datas_get[HANDLE_WORDS_TYPES];
 
 	parser->current_ptr = asm_skip_commented_lines(parser->current_ptr);
 	parser->current_ptr = ft_str_first_not(parser->current_ptr, ft_isspace);
-	ft_bzero(header_datas_get, sizeof(int) * DATAS_SIZE);
+	ft_bzero(header_datas_get, sizeof(int) * HANDLE_WORDS_TYPES);
 	while (internal_all_datas_are_get(header_datas_get) == false)
 	{
 		if (internal_parse_header(parser, out_header,
