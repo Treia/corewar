@@ -57,7 +57,12 @@ static int		internal_get_element_inside_quotes(t_parser *parser,
 		return (print_error(EXIT_FAILURE, "name or comment too long"));
 	ft_strncpy(out_element, start, diff);
 	out_element[diff] = '\0';
-	parser->current_ptr = end + 1;
+	end++;
+	while (ft_isspace(*end) && *end != '\n')
+		end++;
+	parser->current_ptr = end;
+	if (*(parser->current_ptr) != '\n')
+		return (asm_syntax_error(parser, "unexpected"));
 	return (EXIT_SUCCESS);
 }
 

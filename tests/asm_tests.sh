@@ -199,5 +199,5 @@ draw_line
 
 rm -rf ${TMP_OUT_FILE} ${TMP_ERR_FILE} || { error "cannot delete ${TMP_OUT_FILE} ${TMP_ERR_FILE}"; exit 1; }
 rm -rf ${TMP_REAL_OUT_FILE} ${TMP_REAL_ERR_FILE} || { error "cannot delete ${TMP_REAL_OUT_FILE} ${TMP_REAL_ERR_FILE}"; exit 1; }
-rm -rf ${ERROR_DIR}/*/*.cor || { error "cannot delete .cor on ${ERROR_DIR}"; }
-rm -rf ${SUCCESS_DIR}/*/*.cor || { error "cannot delete .cor on ${ERROR_DIR}"; }
+rm -rf `find ${ERROR_DIR} -name *.cor` || { error "cannot delete .cor on ${ERROR_DIR}"; }
+rm -rf `find ${SUCCESS_DIR} -name *.cor` || { error "cannot delete .cor on ${ERROR_DIR}"; }
