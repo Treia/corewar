@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 19:11:36 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/24 17:32:27 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef	struct			s_game
 {
 	t_player			*players;
 	t_pc				*pcs;
+	int					nb_pc;
 	char				arena[MEM_SIZE];
 	int					dump;
 	int					verb;
@@ -144,8 +145,22 @@ void					check_cycle(t_cycle *cycle, t_game *game);
 **	cmd
 */
 int						read_nb(char *arena, int addr, int size);
+int						cmd_live(t_game *game, t_pc *pc, t_cycle *cycle);
+//
+//
+//
+//
+//
+//
+//
 int						cmd_zjmp(t_game *game, t_pc *pc, t_cycle *cycle);
+//
+//
 int						cmd_fork(t_game *game, t_pc *pc, t_cycle *cycle);
+//
+//
+int						cmd_lfork(t_game *game, t_pc *pc, t_cycle *cycle);
+//
 
 /*
 ** print
