@@ -208,7 +208,7 @@ void						asm_t_instruct_param_init(char **params);
 void						asm_t_instruct_param_del(char **params);
 void						asm_t_instruct_param_display(char **params);
 
-void						asm_t_instruct_param_init_from_file(); // to do
+void						asm_t_instruct_param_init_from_file(void); // to do
 
 /*
 ** asm_instruct

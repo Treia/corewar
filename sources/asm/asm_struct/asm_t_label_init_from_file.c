@@ -10,4 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "asm.h"
+#include "libft.h"
 
+int							asm_t_instruct_init_from_file(void)
+{
+	return (EXIT_FAILURE);
+}
