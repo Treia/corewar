@@ -67,6 +67,7 @@ int				asm_t_header_get_name(t_parser *parser, t_header *header)
 	if (internal_get_element_inside_quotes(parser, PROG_NAME_LENGTH,
 			header->prog_name) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	ft_putendl(header->prog_name);
 	return (EXIT_SUCCESS);
 }
 
@@ -77,5 +78,6 @@ int				asm_t_header_get_comment(t_parser *parser, t_header *header)
 	if (internal_get_element_inside_quotes(parser, COMMENT_LENGTH,
 			header->comment) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	ft_putendl(header->comment);
 	return (EXIT_SUCCESS);
 }
