@@ -6,7 +6,7 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/05 11:48:22 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/24 17:29:28 by pzarmehr         ###   ########.fr        #
+#    Updated: 2017/10/24 17:34:50 by pzarmehr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,13 +34,16 @@ INCLUDES = $(addprefix $(PATH_INC), $(INC_FILES))
 
 ASM_CORE = main.c \
 			asm_usage.c \
-			asm_syntax_error.c
+			asm_syntax_error.c \
+			asm_error_tools.c
 ASM_SRC_CORE = $(addprefix core/, $(ASM_CORE))
 
 ASM_READDER = asm_get_file_content.c \
 				asm_skip_commented_line.c \
 				asm_get_next_instruct.c \
-				asm_get_asm_from_file_content.c
+				asm_get_asm_from_file_content.c \
+				asm_get_asm_word_type.c \
+				asm_word_type.c
 ASM_SRC_READDER = $(addprefix asm_readder/, $(ASM_READDER))
 
 ASM_STRUCT = asm_t_header_init_from_file.c \
@@ -79,7 +82,9 @@ SRCCOR = cor_main.c \
 		get_pcs.c \
 		error_get_players.c \
 		resolve_graph.c \
-		graph_init.c
+		graph_init.c \
+		graph_head.c \
+		struct_display.c
 SRCALL =
 
 OBJASM = $(patsubst %.c,%.o,$(addprefix $(PATH_ASM), $(SRCASM)))

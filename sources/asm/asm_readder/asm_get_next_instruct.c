@@ -19,12 +19,16 @@
 ** return a ptr on the next valid instruction on the file
 ** it search from the end of the current line
 */
+
 char			*asm_get_next_instruct(const char *file_content)
 {
 	char	*ptr;
 
 	if (!file_content || *file_content == '\0')
 		return (NULL);
+	ptr = ft_str_first_not(file_content, ft_isspace);
+	if (ptr != file_content)
+		return (ptr);
 	ptr = ft_strchr(file_content, '\n');
 	if (ptr == NULL || *ptr == '\0')
 		return (ptr);

@@ -38,8 +38,8 @@ static char		*internal_get_ptr_on_end(const char *start)
 	return (end);
 }
 
-static int	internal_get_element_inside_quotes(t_parser *parser,
-				size_t size_max, char *out_element)
+static int		internal_get_element_inside_quotes(t_parser *parser,
+					size_t size_max, char *out_element)
 {
 	char	*start;
 	char	*end;
@@ -48,21 +48,25 @@ static int	internal_get_element_inside_quotes(t_parser *parser,
 	ft_bzero(out_element, PROG_NAME_LENGTH + 1);
 	start = internal_get_ptr_on_start(parser->current_ptr);
 	if (start == NULL)
-		return (print_error(EXIT_FAILURE, "mauvais caractere"));
+		return (asm_syntax_error(parser, "unexpected"));
 	end = internal_get_ptr_on_end(start);
 	if (end == NULL)
-		return (print_error(EXIT_FAILURE, "not terminated string"));
+		return (asm_syntax_error(parser, "unexpected"));
 	diff = end - start;
 	if (diff > size_max)
-		return (print_error(EXIT_FAILURE, "too big"));
+		return (print_error(EXIT_FAILURE, "name or comment too long"));
 	ft_strncpy(out_element, start, diff);
 	out_element[diff] = '\0';
-	parser->current_ptr = end + 1;
-	ft_putendl(parser->current_ptr);
+	end++;
+	while (ft_isspace(*end) && *end != '\n')
+		end++;
+	parser->current_ptr = end;
+	if (*(parser->current_ptr) != '\n')
+		return (asm_syntax_error(parser, "unexpected"));
 	return (EXIT_SUCCESS);
 }
 
-int			asm_t_header_get_name(t_parser *parser, t_header *header)
+int				asm_t_header_get_name(t_parser *parser, t_header *header)
 {
 	parser->current_ptr = ((char *)parser->current_ptr + NAME_CMD_STRING_SIZE);
 	if (internal_get_element_inside_quotes(parser, PROG_NAME_LENGTH,
@@ -72,13 +76,13 @@ int			asm_t_header_get_name(t_parser *parser, t_header *header)
 	return (EXIT_SUCCESS);
 }
 
-int			asm_t_header_get_comment(t_parser *parser, t_header *header)
+int				asm_t_header_get_comment(t_parser *parser, t_header *header)
 {
-	parser->current_ptr = ((char *)parser->current_ptr + COMMENT_CMD_STRING_SIZE);
+	parser->current_ptr = (char *)parser->current_ptr
+		+ COMMENT_CMD_STRING_SIZE;
 	if (internal_get_element_inside_quotes(parser, COMMENT_LENGTH,
 			header->comment) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	ft_putendl(header->comment);
 	return (EXIT_SUCCESS);
 }
-

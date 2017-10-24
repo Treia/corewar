@@ -33,7 +33,8 @@ typedef struct				s_asm_instruct
 	char					param[PARAM_MAX * 4];
 	unsigned int			param_size;
 
-	unsigned int			byte_count; // fonction calcul taille -> sizeof(char) * 2 + param_size
+	unsigned int			byte_count;
+	// fonction calcul taille -> sizeof(char) * 2 + param_size
 
 	struct s_asm_instruct	*next;
 }							t_asm_instruct;
@@ -72,6 +73,31 @@ typedef struct				s_asm
 }							t_asm;
 
 /*
+** PARSER
+*/
+
+typedef struct				s_parser
+{
+	char					*file_content;
+	char					*current_ptr;
+}							t_parser;
+
+/*
+** WORD TYPE
+*/
+
+typedef enum				e_word_type
+{
+	INVALID_WORD_TYPE = -1,
+	COMMAND_NAME = 0,
+	COMMAND_COMMENT,
+	LABEL,
+	INSTRUCTION,
+	END_OF_FILE,
+	NB_WORD_TYPE
+}							t_word_type;
+
+/*
 ** CORE
 */
 
@@ -83,18 +109,20 @@ int							asm_usage(void);
 /*
 ** asm_syntax_error.c
 */
-int							asm_syntax_error(const char *init_ptr,
-								const char *error_ptr, const char *message);
+int							asm_syntax_error(t_parser *parser,
+								const char *message);
+
+/*
+** asm_error_tools.c
+*/
+void						asm_error_concat_line_and_char(const char *start,
+								const char *ptr, char *str_error);
+void						asm_error_get_word_error(const char *error_ptr,
+								char *word_error, int size_max);
 
 /*
 ** READDER
 */
-
-typedef struct				s_parser
-{
-	char					*file_content;
-	char					*current_ptr;
-}							t_parser;
 
 /*
 ** get_file_content.c
@@ -120,6 +148,22 @@ int							asm_get_asm_from_file_content(const char *file,
 								t_asm *asm_content);
 
 /*
+** asm_get_asm_word_type.c
+*/
+typedef int					(*t_ft_is_word_type)(const char *);
+
+t_word_type					asm_get_asm_word_type(const char *word);
+
+/*
+** asm_word_type_is.c
+*/
+int							asm_is_command_name(const char *word);
+int							asm_is_command_comment(const char *word);
+int							asm_is_label(const char *word);
+int							asm_is_instruction(const char *word);
+int							asm_is_end_of_file(const char *word);
+
+/*
 ** STRUCTS
 */
 
@@ -131,7 +175,6 @@ typedef int					(*t_ft_parse_header)(t_parser *, t_header *);
 
 int							asm_t_header_init_from_file(t_parser *parser,
 								t_header *out_header);
-
 
 int							asm_t_header_get_name(t_parser *parser,
 								t_header *header);

@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 17:00:43 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 17:48:37 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/24 17:31:04 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 int		cmd_zjmp(t_game *game, t_pc *pc, t_cycle *cycle)
 {
-	int		tmp;
-
 	(void)cycle;
 	if (pc->carry)
-		tmp = read_nb(game->arena, pc->addr + 1, 2) % IDX_MOD;
+	{
+		pc->addr += (short)read_nb(game->arena, (pc->addr + 1) % MEM_SIZE, 2);
+		pc->addr %= IDX_MOD;
+	}
 	else
-		tmp = 3;
-	return ((pc->addr + tmp) % MEM_SIZE);
+		pc->addr += 3;
+	pc->addr = pc->addr % MEM_SIZE;
+	if (pc->addr < 0)
+		pc->addr += MEM_SIZE;
+	return (0);
 }
