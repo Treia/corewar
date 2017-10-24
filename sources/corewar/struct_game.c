@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 16:53:32 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/24 16:53:45 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/24 17:39:03 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_game			*new_game(void)
 	ret = (t_game *)malloc(sizeof(t_game));
 	if (ret == NULL)
 		return (NULL);
+	ret->display = NULL;
 	ret->verb = 0;
 	ret->players = NULL;
 	ret->pcs = NULL;

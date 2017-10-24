@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/24 17:34:30 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/24 17:38:50 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,17 @@ typedef	struct			s_pc
 	struct s_pc			*next;
 }						t_pc;
 
+typedef struct			s_display
+{
+	WINDOW				*box;
+	WINDOW				*head;
+}						t_display;
+
 typedef	struct			s_game
 {
 	t_player			*players;
 	t_pc				*pcs;
+	t_display			*display;
 	int					nb_pc;
 	char				arena[MEM_SIZE];
 	int					dump;
@@ -82,12 +89,6 @@ typedef struct			s_argvparse
 	int					id;
 	struct s_argvparse	*next;
 }						t_argvparse;
-
-typedef struct			s_display
-{
-	WINDOW				*box;
-	WINDOW				*head;
-}						t_display;
 
 t_game					*get_players(int argc, char **argv);
 t_pc					*get_pc(t_player *player);
