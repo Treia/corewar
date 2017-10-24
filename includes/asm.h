@@ -56,8 +56,8 @@ typedef struct				s_instruct
 
 typedef struct				s_label
 {
-	char					name[LABEL_LENGTH_MAX];
-	t_instruct				*instruc_list;
+	char					name[LABEL_LENGTH_MAX + 1];
+	t_instruct				*instruct_list;
 	t_asm_instruct			*asm_instruct_list;
 	struct s_label			*next;
 }							t_label;
@@ -174,19 +174,43 @@ int							asm_t_header_get_name(t_parser *parser,
 int							asm_t_header_get_comment(t_parser *parser,
 								t_header *header);
 
-/* temp */
+/*
+** label
+*/
 
 t_label						*asm_t_label_new(void);
-int							asm_t_label_init();
 void						asm_t_label_del(t_label **label);
+t_label						*asm_t_label_add_end(t_label *list, t_label *add);
+
+int							asm_t_label_init_from_file(); // todo
+t_label						*asm_t_label_find(); // todo
+
+/*
+** instruct
+*/
 
 t_instruct					*asm_t_instruct_new(void);
-int							asm_t_instruct_init();
 void						asm_t_instruct_del(t_instruct **instruct);
+t_instruct					*asm_t_instruct_add_end(t_instruct *list,
+								t_instruct *add);
 
+int							asm_t_instruct_init_from_file(); //todo
+
+/*
+** instruct param
+*/
+void						asm_t_instruct_param_init(char **params);
+void						asm_t_instruct_param_del(char **params);
+
+void						asm_t_instruct_param_init_from_file();
+
+/*
+** asm_instruct
+*/
 t_asm_instruct				*asm_t_asm_instruct_new(void);
-int							asm_t_asm_instruct_init();
 void						asm_t_asm_instruct_del(t_asm_instruct **asm_inst);
+t_asm_instruct				*asm_t_asm_instruct_add_end(t_asm_instruct *list,
+								t_asm_instruct *add);
 
 /*
 ** TOOLS
