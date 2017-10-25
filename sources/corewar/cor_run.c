@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:29:35 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/25 16:43:21 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/25 17:00:07 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int		run(t_game *game)
 			return (ret);
 		(c.current)++;
 		check_cycle(&c, game);
-		display_end_cycle(game, c.current, c.to_die);
+		if (game->verb == -1)
+			display_end_cycle(game, c.current, c.to_die);
 	}
 	end_game(game);
 	return (0);
