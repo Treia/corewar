@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 13:11:32 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/24 18:03:42 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/25 20:18:33 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		cmd_live(t_game *game, t_pc *pc, t_cycle *cycle)
 	while (tmp != 0)
 	{
 		if (tmp->live == live)
-			(tmp->live)++;
+			(tmp->nb_live)++;
 		tmp = tmp->next;
 	}
 	pc->last_live = cycle->current;

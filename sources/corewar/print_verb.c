@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 11:24:26 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 18:46:59 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/25 18:49:38 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	print_aff(t_game *game, int c)
 {
 	if (game->verb & 4 && game->verb != -1)
 	{
-		ft_putstr("AFF : '");
+		ft_putstr("AFF : ' ");
 		ft_putchar(c);
-		ft_putstr("'\n");
+		ft_putstr(" '\n");
 	}
 }
