@@ -6,7 +6,7 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/05 11:48:22 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/25 17:47:19 by pzarmehr         ###   ########.fr        #
+#    Updated: 2017/10/25 19:17:26 by mdezitte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,8 @@ ASM_SRC_TOOLS = $(addprefix tools/, $(ASM_TOOLS))
 
 SRCASM = $(ASM_SRC_CORE) $(ASM_SRC_READDER) $(ASM_SRC_STRUCT) $(ASM_SRC_TOOLS)
 
+LIB = libft/libft.a
+
 # COR #
 
 SRCCOR = cor_main.c \
@@ -111,31 +113,42 @@ OBJASM = $(patsubst %.c,%.o,$(addprefix $(PATH_ASM), $(SRCASM)))
 OBJCOR = $(patsubst %.c,%.o,$(addprefix $(PATH_COR), $(SRCCOR)))
 OBJALL = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRCALL)))
 
+#############
+# ! COLOR ! #
+#############
 
-all: lib $(OBJASM) $(OBJCOR) $(OBJALL)
-	$(CC) $(FLAGS) -o $(NAMEASM) $(OBJASM) $(OBJALL) $(LFT)
-	$(CC) $(FLAGS) -o $(NAMECOR) $(OBJCOR) $(OBJALL) $(LFT)
+NONE = \033[0m
+GREEN = \033[32m
+YELLOW = \033[33m
+CYAN = \033[36m
 
-lib:
-	make -C libft
+all: $(LIB) $(NAMEASM) $(NAMECOR) $(OBJALL)
 
-$(NAMEASM): lib $(OBJASM) $(OBJALL)
-	$(CC) $(FLAGS) -o $(NAMEASM) $(OBJASM) $(OBJALL) $(LFT)
+$(LIB):
+	@make -C libft
+	@echo "$(CYAN)\n\nCompiling $(NAMEASM) and $(NAMECOR) :$(NONE)\n"
 
-$(NAMECOR): lib $(OBJCOR) $(OBJALL)
-	$(CC) $(FLAGS) -o $(NAMECOR) $(OBJCOR) $(OBJALL) $(LFT)
+$(NAMEASM): $(LIB) $(OBJASM) $(OBJALL)
+	@$(CC) $(FLAGS) -o $(NAMEASM) $(OBJASM) $(OBJALL) $(LFT)
+	@echo "[$(GREEN) CREATE $(NONE)]         $(YELLOW)$(NAMEASM)$(NONE)\n"
+
+$(NAMECOR): $(LIB) $(OBJCOR) $(OBJALL)
+	@$(CC) $(FLAGS) -o $(NAMECOR) $(OBJCOR) $(OBJALL) $(LFT)
+	@echo "[$(GREEN) CREATE $(NONE)]         $(YELLOW)$(NAMECOR)$(NONE)\n"
 
 %.o: %.c
-	$(CC) $(FLAGS) -c -o $@ $^ -I $(PATH_INC) -I $(PATH_LIBFT)
+	@$(CC) $(FLAGS) -c -o $@ $^ -I $(PATH_INC) -I $(PATH_LIBFT)
+	@echo "[$(GREEN) COMPIL $(NONE)]         $(YELLOW)$<$(NONE)"
 
 clean:
-	make -C libft clean
-	rm -f $(OBJASM) $(OBJCOR) $(OBJALL)
+	@make -C libft clean
+	@rm -f $(OBJASM) $(OBJCOR) $(OBJALL)
+	@echo "[$(GREEN) DELETED $(NONE)] $(YELLOW)Objects Project$(NONE)"
 
-fclean:
-	make -C libft fclean
-	rm -f $(OBJASM) $(OBJCOR) $(OBJALL)
-	rm -f $(NAMEASM) $(NAMECOR)
+fclean: clean
+	@make -C libft fclean
+	@rm -f $(NAMEASM) $(NAMECOR)
+	@echo "[$(GREEN) DELETED $(NONE)] $(YELLOW)Binary Project$(NONE)"
 
 re: fclean all
 

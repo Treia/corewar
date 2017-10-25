@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 18:09:19 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/23 19:06:47 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/25 19:26:03 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define SYSTEM 200
 # define INVALID_FILE 201
 # define MALLOC_FAILED 202
+# define TOOSMALL 203
 
 size_t		ft_strlen(const char *s);
 char		*ft_strdup(const char *s1);
