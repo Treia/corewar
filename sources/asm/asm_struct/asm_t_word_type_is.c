@@ -33,9 +33,9 @@ int				asm_is_label(const char *word)
 	char	*ptr;
 
 	ptr = (char *)word;
-	while (ptr && *ptr && asm_is_label_char(*ptr))
+	while (ptr && *ptr && asm_is_one_of_label_char(*ptr))
 		ptr++;
-	if (*ptr != LABEL_CHAR)
+	if (*ptr != LABEL_CHAR || ptr == word)
 		return (false);
 	return (true);
 }
@@ -47,7 +47,7 @@ int				asm_is_instruction(const char *word)
 	ptr = (char *)word;
 	while (ptr && *ptr && ft_isalpha(*ptr))
 		ptr++;
-	if (ft_isspace(*ptr) == false && *ptr != '\0')
+	if (ft_isspace(*ptr) == false && *ptr != '\0' && *ptr != COMMENT_CHAR)
 		return (false);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 17:56:17 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/25 17:36:28 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/25 19:25:11 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int				init_window(t_game *game)
 	initscr();
 	if (LINES < MAX_L || COLS < MAX_C)
 	{
+		error(TOOSMALL, 0);
 		game->verb = 0;
 		endwin();
 		return (0);

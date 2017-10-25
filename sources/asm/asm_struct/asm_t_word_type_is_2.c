@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm_t_asm.c                                        :+:      :+:    :+:   */
+/*   asm_t_word_type_is_2.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/25 13:39:58 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/25 13:39:59 by mressier         ###   ########.fr       */
+/*   Created: 2017/10/25 14:22:57 by mressier          #+#    #+#             */
+/*   Updated: 2017/10/25 14:22:58 by mressier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "asm.h"
+#include "libft.h"
+#include <stdbool.h>
 
-void		asm_t_asm_display(t_asm asm_content)
+int			asm_is_separator(const char *word)
 {
-	ft_putendl(asm_content.header.prog_name);
-	ft_putendl(asm_content.header.comment);
-	asm_t_label_display_list(asm_content.label_list);
+	if (*word == SEPARATOR_CHAR)
+		return (true);
+	return (false);
 }
 
-void		asm_t_asm_del_content(t_asm asm_content)
+int			asm_is_end_of_line(const char *word)
 {
-	asm_t_label_del_list(asm_content.label_list);
+	char	*ptr;
+
+	ptr = ft_str_first_not(word, ft_isspace);
+	if (ptr && *ptr == '\n')
+		return (true);
+	return (false);
+}
+
+int			asm_is_string(const char *word)
+{
+	if (*word == STRING_CHAR)
+		return (true);
+	return (false);
 }

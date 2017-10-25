@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   system_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 10:51:56 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/23 19:07:28 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/25 19:25:48 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static int		lib_error_one_ten(int id, int ret)
 		return (print_error(ret, "Can't read source file"));
 	if (id == MALLOC_FAILED)
 		return (print_error(ret, "Malloc() failed"));
+	if (id == TOOSMALL)
+		return (print_error(ret, "Terminal is too small for graphique"));
 	return (ret);
 }
 

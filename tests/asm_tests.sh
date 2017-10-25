@@ -8,7 +8,7 @@ typeset -r REAL_ASM="./"${ASM_NAME}
 ## tests dir
 typeset -r TEST_DIR="./break_files/"
 typeset -r ERROR_DIR=$(find ${TEST_DIR} -d -name "*_error")
-typeset -r SUCCESS_DIR=`$(find ${TEST_DIR} -d -name "*_success"); echo "./ia"`
+typeset -r SUCCESS_DIR=$(find ${TEST_DIR} -d -name "*_success")
 
 ## created files
 typeset -r TMP_OUT_FILE="/tmp/asm_out"
@@ -120,7 +120,7 @@ exec_file()
 	${REAL_ASM} ${FILE} 1>${TMP_REAL_OUT_FILE} 2>${TMP_REAL_ERR_FILE}
 	typeset REAL_EXIT_STATUS=$?
 
-	(( ${VERBOSE} != 0 )) && { echo -e "\n\t\t\t> asm output <"; cat ${TMP_ERR_FILE};
+	(( ${VERBOSE} > 1 )) && { echo -e "\n\t\t\t> asm output <"; cat ${TMP_ERR_FILE};
 								echo -e "\n\t\t\t> official asm output <"; cat ${TMP_REAL_OUT_FILE} | head -n 10; echo ""; }
 
 	(( ${FT_EXIT_STATUS} == ${REAL_EXIT_STATUS} )) || { warning "personnal asm and official asm doesn't return the same exit status"; }
@@ -139,8 +139,28 @@ test_file_error()
 
 	exec_file ${FILE}
 	typeset EXIT_STATUS=$?
-	(( ${EXIT_STATUS} != 0 )) || { error "${FILE} : expect return on error "; return 1; }
+	(( ${EXIT_STATUS} != 0 )) || { error "${FILE} : expect error "; return 1; }
 	success ${FILE}
+
+	if (( $VERBOSE == 1 ))
+	then
+		## check line and type of error diffs
+
+		typeset REAL_LINE_ERROR=$(cat ${TMP_REAL_OUT_FILE} | sed -E 's@^.*\[([[:digit:]]*):([[:digit:]]*)\].*$@\1 \2@g' | tr -d 0)
+		typeset MINE_LINE_ERROR=$(cat ${TMP_ERR_FILE} | sed -E 's@^.*\[([[:digit:]]*),([[:digit:]]*)\].*$@\1 \2@g')
+		echo -e "Line-mine : ${MINE_LINE_ERROR}\c"
+		echo "Line-real : ${REAL_LINE_ERROR}"
+
+		typeset REAL_TYPE_ERROR=$(cat $TMP_REAL_OUT_FILE | sed -E 's/^(.*) error at*$/\1/g')
+		typeset MINE_TYPE_ERROR=$(cat ${TMP_ERR_FILE} | sed -E 's/^.*\](.*)( at)?:.*$/\1/g')
+		echo -e "Type-mine : ${MINE_TYPE_ERROR}\c"
+		echo "Type-real : ${REAL_TYPE_ERROR}"
+
+		unset REAL_LINE_ERROR
+		unset MINE_LINE_ERROR
+		unset REAL_TYPE_ERROR
+		unset MINE_TYPE_ERROR
+	fi
 	(( ${VERBOSE} != 0 )) && draw_line
 	return 0
 }
@@ -157,7 +177,7 @@ test_file_success()
 
 	exec_file ${FILE}
 	typeset EXIT_STATUS=$?
-	(( ${EXIT_STATUS} == 0 )) || { error "${FILE} : expect return on success"; return 1; }
+	(( ${EXIT_STATUS} == 0 )) || { error "${FILE} : expect success"; return 1; }
 	success ${FILE}
 	(( ${VERBOSE} != 0 )) && draw_line
 	return 0
@@ -180,7 +200,7 @@ fi
 
 if (( ${SUCCESS_TESTS} ))
 then
-	for FILE in $(find ${SUCCESS_DIR} -name "*.s")
+	for FILE in $(find "${SUCCESS_DIR}" "./ia" -name "*.s")
 	do
 		test_file_success ${FILE}
 		typeset EXIT_STATUS=$?

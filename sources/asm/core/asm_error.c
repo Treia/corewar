@@ -56,3 +56,16 @@ int				asm_message_error(const char *message, const char *start_file,
 	internal_add_problematic_word(word_error, error);
 	return (print_error(EXIT_FAILURE, error));
 }
+
+int				asm_word_type_error(t_word_type word_type,
+					const char *start_file, const char *error_ptr)
+{
+	char		*error_type;
+
+	if (word_type == INVALID_WORD_TYPE)
+		error_type = LEXICAL_ERR;
+	else
+		error_type = SYNTAX_ERR;
+	return (asm_message_error(error_type, start_file,
+				error_ptr));
+}

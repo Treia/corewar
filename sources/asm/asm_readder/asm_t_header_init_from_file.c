@@ -74,7 +74,8 @@ int				asm_t_header_init_from_file(t_parser *parser,
 		parser->current_ptr = asm_get_next_instruct(parser->current_ptr);
 		if (parser->current_ptr == NULL)
 		{
-			asm_message_error(SYNTAX_ERR, parser->file_content, parser->current_ptr);
+			asm_message_error(SYNTAX_ERR, parser->file_content,
+				parser->current_ptr);
 			return (EXIT_FAILURE);
 		}
 	}

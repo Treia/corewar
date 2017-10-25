@@ -62,4 +62,3 @@ int					asm_t_instruct_init_from_file(t_parser *parser,
 		new_instruct);
 	return (EXIT_SUCCESS);
 }
-
