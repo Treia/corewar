@@ -94,6 +94,7 @@ typedef enum				e_word_type
 	LABEL,
 	INSTRUCTION,
 	SEPARATOR,
+	STRING,
 	END_OF_LINE,
 	END_OF_FILE,
 	NB_WORD_TYPE
@@ -130,12 +131,14 @@ typedef enum				e_instruct_type
 int							asm_usage(void);
 
 # define SYNTAX_ERR			"SYNTAX_ERROR"
-# define LEXICAL_ERR		"LEXICAL_ERR"
+# define LEXICAL_ERR		"LEXICAL_ERROR"
 
 /*
 ** asm_syntax_error.c
 */
 int							asm_message_error(const char *message,
+								const char *start_file, const char *error_ptr);
+int							asm_word_type_error(t_word_type word_type,
 								const char *start_file, const char *error_ptr);
 
 /*
@@ -169,6 +172,10 @@ int							asm_get_asm_from_file_content(const char *file,
 int							asm_get_labels_and_instructs(t_parser *parser,
 								t_label **list_to_set);
 
+/*
+** asm_file.c
+*/
+void						asm_file_skip_label(t_parser *parser);
 
 /*
 ** STRUCTS
@@ -262,6 +269,7 @@ int							asm_is_end_of_file(const char *word);
 */
 int							asm_is_separator(const char *word);
 int							asm_is_end_of_line(const char *word);
+int							asm_is_string(const char *word);
 
 /*
 ** asm_get_word_type.c
@@ -280,9 +288,9 @@ char						*asm_t_word_type_to_string(t_word_type type);
 */
 
 /*
-** asm_is_label_char.c
+** asm_is_one_of_label_char.c
 */
-int							asm_is_label_char(int c);
+int							asm_is_one_of_label_char(int c);
 
 /*
 ** asm_error_tools.c

@@ -56,5 +56,6 @@ int			ft_read_file_with_filename(const char *filename,
 	if (fd == -1)
 		return (-1);
 	size = ft_read_file(fd, out_content);
+	close(fd);
 	return (size);
 }
