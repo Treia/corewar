@@ -62,7 +62,7 @@ t_instruct		*asm_t_instruct_add_end(t_instruct *list, t_instruct *add)
 	return (list);
 }
 
-void			asm_t_instruct_display_list(t_instruct *list)
+void			asm_t_instruct_display_list(t_instruct *list, int tab)
 {
 	t_instruct	*ptr;
 	int			i;
@@ -71,11 +71,12 @@ void			asm_t_instruct_display_list(t_instruct *list)
 	i = 0;
 	while (ptr)
 	{
+		ft_putnchar(tab, '\t');
 		ft_putstr("instruct (");
 		ft_putnbr(i);
 		ft_putstr(") : ");
 		ft_putendl(ptr->name);
-		asm_t_instruct_param_display(ptr->param);
+		asm_t_instruct_param_display(ptr->param, tab + 1);
 		ptr = ptr->next;
 		i++;
 	}

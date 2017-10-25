@@ -79,7 +79,7 @@ void				asm_t_label_display_list(t_label *list)
 		ft_putnbr(i);
 		ft_putstr(") : ");
 		ft_putendl(ptr->name);
-		asm_t_instruct_display_list(ptr->instruct_list);
+		asm_t_instruct_display_list(ptr->instruct_list, 1);
 		ptr = ptr->next;
 		i++;
 	}

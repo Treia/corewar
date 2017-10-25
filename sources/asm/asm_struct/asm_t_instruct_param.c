@@ -55,13 +55,14 @@ int			asm_t_instrict_param_add_end(char **param, char *new_param)
 	return (EXIT_FAILURE);
 }
 
-void		asm_t_instruct_param_display(char **params)
+void		asm_t_instruct_param_display(char **params, int tab)
 {
 	int		i;
 
 	i = 0;
 	while (i < PARAM_MAX)
 	{
+		ft_putnchar(tab, '\t');
 		ft_putchar('[');
 		ft_putnbr(i);
 		ft_putstr("] : ");
