@@ -28,6 +28,7 @@ int			asm_line_is_comment(const char *line)
 ** Should return the last \0 if the file end with a comment
 */
 
+#include <stdio.h>
 char		*asm_skip_commented_lines(const char *line)
 {
 	char		*next_line;

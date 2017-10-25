@@ -46,6 +46,7 @@ ASM_SRC_READDER = $(addprefix asm_readder/, $(ASM_READDER))
 
 ASM_STRUCT = asm_t_header_init_from_file.c \
 				asm_t_header_get_datas.c \
+				asm_t_asm.c \
 				asm_t_label.c \
 				asm_t_label_init_from_file.c \
 				asm_t_instruct.c \

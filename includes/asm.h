@@ -152,6 +152,12 @@ int							asm_get_labels_and_instructs(t_parser *parser,
 */
 
 /*
+** asm_t_display.c
+*/
+void						asm_t_asm_display(t_asm asm_content);
+void						asm_t_asm_del_content(t_asm asm_content);
+
+/*
 ** header
 */
 typedef int					(*t_ft_parse_header)(t_parser *, t_header *);

@@ -22,7 +22,6 @@ int			asm_get_labels_and_instructs(t_parser *parser,
 	if (asm_t_label_init_from_file(parser, list_to_set) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	parser->current_ptr = ptr_on_file_start;
-	asm_t_label_display_list(*list_to_set);
 	if (asm_t_instruct_init_list_from_file(parser, *list_to_set) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

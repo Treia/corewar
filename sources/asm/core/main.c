@@ -35,8 +35,10 @@ int				main(int ac, char **av)
 	if (asm_get_asm_from_file_content(file_content,
 			&asm_file_content) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	asm_t_asm_display(asm_file_content);
 	//if (internal_print_asm_to_file(asm_file_content) == EXIT_FAILURE)
 	//	return (EXIT_FAILURE);
 	ft_memdel((void **)&file_content);
+	asm_t_asm_del_content(asm_file_content);
 	return (EXIT_SUCCESS);
 }
