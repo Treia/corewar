@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 13:14:54 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/25 17:51:05 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/25 18:05:45 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ void	*get_cmd(int opcode)
 		return (&cmd_xor);
 	if (opcode == 9)
 		return (&cmd_zjmp);
-//	return (&cmd_base); //remove later
+	//return (&cmd_base); //remove later
 	return (get_cmd2(opcode));
 }

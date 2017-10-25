@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 15:34:03 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/25 17:10:49 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/25 18:03:54 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int		get_param_value(char *arena, int addr, int *tab, int size)
 {
 	int		i;
 
-	i = 1;
-	while (i < 4)
+	i = 0;
+	while (++i < 4)
 	{
 		if (tab[i] == 1)
 		{
@@ -76,10 +76,8 @@ int		get_param_value(char *arena, int addr, int *tab, int size)
 		}
 		else if (tab[i] == 2)
 		{
-			if (size == 2)
-				tab[i] = (short)read_nb(arena, addr + 2, 2);
-			else
-				tab[i] = (int)read_nb(arena, addr + 2, 4);
+			tab[i] = (size == 2 ? (short)read_nb(arena, addr + 2, 2) :
+				(int)read_nb(arena, addr + 2, 4));
 			addr += size;
 		}
 		else if (tab[i] == 3)
@@ -87,7 +85,6 @@ int		get_param_value(char *arena, int addr, int *tab, int size)
 			tab[i] = (char)read_nb(arena, addr + 2, 2);
 			addr += 2;
 		}
-		i++;
 	}
 	return (4);
 }
