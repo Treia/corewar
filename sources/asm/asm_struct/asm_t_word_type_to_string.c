@@ -21,6 +21,8 @@ char		*asm_t_word_type_to_string(t_word_type type)
 	words[COMMAND_COMMENT] = "COMMAND_COMMENT";
 	words[LABEL] = "LABEL";
 	words[INSTRUCTION] = "INSTRUCTION";
+	words[SEPARATOR] = "SEPARATOR";
+	words[END_OF_LINE] = "ENDLINE";
 	words[END_OF_FILE] = "END";
 	if (type == INVALID_WORD_TYPE || type >= NB_WORD_TYPE)
 		return ("unknow");

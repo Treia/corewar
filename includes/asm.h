@@ -118,7 +118,7 @@ typedef enum				e_instruct_type
 	LFORK,
 	AFF,
 	NB_INSTRUCTION_TYPE
-}							t_instruct_type
+}							t_instruct_type;
 
 /*
 ** CORE
