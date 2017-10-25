@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 15:19:13 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/24 18:43:54 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/25 12:02:41 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		main(int ac, char **av)
 	if ((game = get_players(ac, av)) == NULL)
 		return (usage());
 	if (game->verb == -1)
-		game->display = init_window(game->display, game);
+		init_window(game);
 	run(game);
 	if (game->verb == -1)
 		clear_window(game->display);

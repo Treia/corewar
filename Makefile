@@ -6,7 +6,7 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/05 11:48:22 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/24 18:24:59 by mdezitte         ###   ########.fr        #
+#    Updated: 2017/10/25 13:14:38 by mdezitte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,7 +94,8 @@ SRCCOR = cor_main.c \
 		graph_init.c \
 		graph_head.c \
 		struct_display.c \
-		graph_arena.c
+		graph_arena.c \
+		graph_init_arena.c
 SRCALL =
 
 OBJASM = $(patsubst %.c,%.o,$(addprefix $(PATH_ASM), $(SRCASM)))

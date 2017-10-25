@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/24 18:51:34 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/25 13:15:32 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 /*
 ** Graphique
 */
-# define HEAD_GRAPH 5
+# define HEAD_GRAPH 4
 # define POS_HEAD_INFO 1
 # define POS_C_CYCLE (((NB_OCTET_DISPLAY / 4) * 3) + 2)
 # define POS_C_NB_PC (((NB_OCTET_DISPLAY / 2) * 3 )+ 2)
@@ -34,7 +34,6 @@
 # define PADDING_COL 4
 # define MAX_L ((MEM_SIZE / NB_OCTET_DISPLAY) + HEAD_GRAPH)
 # define MAX_C ((NB_OCTET_DISPLAY * 3) + PADDING_COL)
-# define HEAD_GRAPH 5
 
 typedef	struct			s_player
 {
@@ -42,6 +41,7 @@ typedef	struct			s_player
 	char				comment[COMMENT_LENGTH + 1];
 	int					live;
 	int					nb_live;
+	unsigned int		size_prog;
 	struct s_player		*next;
 }						t_player;
 
@@ -122,6 +122,7 @@ void					release_game(t_game *game);
 */
 t_player				*new_player(void);
 void					release_player(t_player **player);
+int						count_my_player(t_player *player);
 void					add_in_player_list(t_player **player,
 											t_player *to_add);
 
@@ -197,11 +198,13 @@ void					print_arena(const char *arena, int nb_octet);
 */
 void					release_display(t_display *display);
 t_display				*init_display(void);
-t_display				*init_window(t_display *display, t_game *game);
+int						init_window(t_game *game);
 int						clear_window(t_display *display);
 void					set_winner_data(const char *str, WINDOW *box);
 void					set_process_data(unsigned int process, WINDOW *box);
 void					set_cycle_data(unsigned int	cycles, WINDOW *box);
-void					print_int(int index, t_game *game, t_display *display);
+void					print_int(int index, t_game *game, int id);
+void					print_char(int index, t_game *game, int id);
+void					print_arena_start(t_game *game);
 
 #endif

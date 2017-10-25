@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 15:59:54 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/23 16:58:42 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/25 11:21:44 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ t_player			*make_player(const char *file, int id, t_game *game,
 	ft_memcpy(player->comment, header->comment, COMMENT_LENGTH);
 	ft_memcpy(player->name, header->prog_name, PROG_NAME_LENGTH);
 	player->live = id;
+	player->size_prog = header->prog_size;
 	if (write_prog_in_arena(index, fd, game, header->prog_size) < 0)
 		return (error_and_close_file("SYSTEM : Can't read : ", file, fd));
 	if (get_pcs_struct(&game->pcs, player, index) < 0)
