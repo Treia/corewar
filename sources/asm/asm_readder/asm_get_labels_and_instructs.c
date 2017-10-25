@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "asm.h"
+#include "libft.h"
 
 int			asm_get_labels_and_instructs(t_parser *parser,
 						t_label **list_to_set)

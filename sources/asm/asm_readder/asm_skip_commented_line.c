@@ -39,6 +39,8 @@ char		*asm_skip_commented_lines(const char *line)
 		tmp = ft_strchr(next_line, '\n');
 		if (tmp == NULL)
 			tmp = ft_strchr(next_line, '\0');
+		if (tmp == next_line)
+			tmp = ft_str_first_not(line, ft_isspace);
 		next_line = tmp;
 	}
 	return (next_line);

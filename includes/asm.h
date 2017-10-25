@@ -206,7 +206,7 @@ int							asm_t_instruct_init_from_file(t_parser *parser,
 */
 void						asm_t_instruct_param_init(char **params);
 void						asm_t_instruct_param_del(char **params);
-int							asm_t_instrict_param_add_end(char **param,
+int							asm_t_instruct_param_add_end(char **param,
 								char *new_param);
 void						asm_t_instruct_param_display(char **params,
 								int tab);
