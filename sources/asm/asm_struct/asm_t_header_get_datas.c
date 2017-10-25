@@ -38,19 +38,22 @@ static int		internal_get_element_inside_quotes(t_parser *parser,
 	ft_bzero(out_element, PROG_NAME_LENGTH + 1);
 	start = internal_get_ptr_on_start(parser->current_ptr);
 	if (!start || *start != STRING_CHAR)
-		return (asm_syntax_error(parser->file_content, start));
+		return (asm_message_error(SYNTAX_ERR, parser->file_content, start));
 	start++;
 	end = internal_get_ptr_on_end(start);
 	if (!end || *end == '\0')
-		return (asm_syntax_error(parser->file_content, end));
+		return (asm_message_error(SYNTAX_ERR, parser->file_content, end));
 	diff = end - start;
 	if (diff > size_max)
-		return (print_error(EXIT_FAILURE, "name or comment too long"));
+		return (print_error(EXIT_FAILURE, "Name or comment too long"));
 	ft_strncpy(out_element, start, diff);
 	out_element[diff] = '\0';
 	parser->current_ptr = asm_get_eol_or_next_instruct(end + 1);
 	if (*(parser->current_ptr) != '\n')
-		return (asm_syntax_error(parser->file_content, parser->current_ptr));
+	{
+		return (asm_message_error(SYNTAX_ERR, parser->file_content,
+			parser->current_ptr));
+	}
 	return (EXIT_SUCCESS);
 }
 

@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm_get_asm_from_file_content.c                    :+:      :+:    :+:   */
+/*   asm_get_label_and_instructs.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/23 11:02:42 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/23 11:02:43 by mressier         ###   ########.fr       */
+/*   Created: 2017/10/25 09:22:43 by mressier          #+#    #+#             */
+/*   Updated: 2017/10/25 09:22:45 by mressier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include "libft.h"
 
-int			asm_get_asm_from_file_content(const char *file, t_asm *asm_content)
+int			asm_get_labels_and_instructs(t_parser *parser,
+						t_label **list_to_set)
 {
-	t_header	header;
-	t_label		*label_list;
-	t_parser	parser;
+	char		*ptr_on_file_start;
 
-	label_list = NULL;
-	parser.file_content = (char *)file;
-	parser.current_ptr = parser.file_content;
-	if (asm_t_header_init_from_file(&parser, &header) == EXIT_FAILURE)
+	ptr_on_file_start = parser->current_ptr;
+	if (asm_t_label_init_from_file(parser, list_to_set) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (asm_get_labels_and_instructs(&parser, &label_list) == EXIT_FAILURE)
+	parser->current_ptr = ptr_on_file_start;
+	if (asm_t_instruct_init_list_from_file(parser, *list_to_set) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	asm_content->header = header;
-	asm_content->label_list = label_list;
 	return (EXIT_SUCCESS);
 }

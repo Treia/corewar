@@ -8,7 +8,7 @@ typeset -r REAL_ASM="./"${ASM_NAME}
 ## tests dir
 typeset -r TEST_DIR="./break_files/"
 typeset -r ERROR_DIR=$(find ${TEST_DIR} -d -name "*_error")
-typeset -r SUCCESS_DIR=$(find ${TEST_DIR} -d -name "*_success")
+typeset -r SUCCESS_DIR=`$(find ${TEST_DIR} -d -name "*_success"); echo "./ia"`
 
 ## created files
 typeset -r TMP_OUT_FILE="/tmp/asm_out"

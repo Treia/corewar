@@ -39,10 +39,21 @@ static int		internal_parse_header(t_parser *parser,
 	ft_parse[COMMAND_NAME] = asm_t_header_get_name;
 	ft_parse[COMMAND_COMMENT] = asm_t_header_get_comment;
 	parse_mode = asm_get_word_type(parser->current_ptr);
+	if (parse_mode == INVALID_WORD_TYPE)
+	{
+		return (asm_message_error(LEXICAL_ERR, parser->file_content,
+			parser->current_ptr));
+	}
 	if (parse_mode != COMMAND_NAME && parse_mode != COMMAND_COMMENT)
-		return (asm_syntax_error(parser->file_content, parser->current_ptr));
+	{
+		return (asm_message_error(SYNTAX_ERR, parser->file_content,
+			parser->current_ptr));
+	}
 	if (header_datas_get[parse_mode] != 0)
-		return (asm_syntax_error(parser->file_content, parser->current_ptr));
+	{
+		return (asm_message_error(SYNTAX_ERR, parser->file_content,
+			parser->current_ptr));
+	}
 	header_datas_get[parse_mode] = 1;
 	return (ft_parse[parse_mode](parser, header));
 }
@@ -63,7 +74,7 @@ int				asm_t_header_init_from_file(t_parser *parser,
 		parser->current_ptr = asm_get_next_instruct(parser->current_ptr);
 		if (parser->current_ptr == NULL)
 		{
-			asm_syntax_error(parser->file_content, parser->current_ptr);
+			asm_message_error(SYNTAX_ERR, parser->file_content, parser->current_ptr);
 			return (EXIT_FAILURE);
 		}
 	}

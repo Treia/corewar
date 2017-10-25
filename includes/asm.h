@@ -106,11 +106,14 @@ typedef enum				e_word_type
 */
 int							asm_usage(void);
 
+# define SYNTAX_ERR			"SYNTAX_ERROR"
+# define LEXICAL_ERR		"LEXICAL_ERR"
+
 /*
 ** asm_syntax_error.c
 */
-int							asm_syntax_error(const char *start_file,
-								const char *error_ptr);
+int							asm_message_error(const char *message,
+								const char *start_file, const char *error_ptr);
 
 /*
 ** READDER
@@ -140,9 +143,19 @@ char						*asm_get_eol_or_next_instruct(const char *string);
 int							asm_get_asm_from_file_content(const char *file,
 								t_asm *asm_content);
 
+int							asm_get_labels_and_instructs(t_parser *parser,
+								t_label **list_to_set);
+
+
 /*
 ** STRUCTS
 */
+
+/*
+** asm_t_display.c
+*/
+void						asm_t_asm_display(t_asm asm_content);
+void						asm_t_asm_del_content(t_asm asm_content);
 
 /*
 ** header
@@ -179,18 +192,33 @@ void						asm_t_instruct_del(t_instruct **instruct);
 void						asm_t_instruct_del_list(t_instruct *instruct);
 t_instruct					*asm_t_instruct_add_end(t_instruct *list,
 								t_instruct *add);
-void						asm_t_instruct_display_list(t_instruct *list);
+void						asm_t_instruct_display_list(t_instruct *list,
+								int tab);
 
-int							asm_t_instruct_init_from_file(); //todo
+/*
+** asm_t_instruct_init_list_from_file.c
+*/
+int							asm_t_instruct_init_list_from_file(t_parser *parser,
+								t_label *label_list);
+
+/*
+** asm_t_instruct_init_from_file.c
+*/
+int							asm_t_instruct_init_from_file(t_parser *parser,
+								t_label *label_list);
 
 /*
 ** instruct param
 */
 void						asm_t_instruct_param_init(char **params);
 void						asm_t_instruct_param_del(char **params);
-void						asm_t_instruct_param_display(char **params);
+int							asm_t_instruct_param_add_end(char **param,
+								char *new_param);
+void						asm_t_instruct_param_display(char **params,
+								int tab);
 
-void						asm_t_instruct_param_init_from_file(void); // to do
+int							asm_t_instruct_param_init_from_file(t_parser *prs,
+								char **param);
 
 /*
 ** word_type

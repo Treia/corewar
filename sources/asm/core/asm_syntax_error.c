@@ -26,9 +26,12 @@ static char		*internal_get_str_word_type(const char *word)
 	return (asm_t_word_type_to_string(type));
 }
 
-static void		internal_add_problematic_word(const char *type_word,
-					const char *word_error, char *error)
+static void		internal_add_problematic_word(const char *word_error,
+					char *error)
 {
+	char		*type_word;
+
+	type_word = internal_get_str_word_type(word_error);
 	if (ft_strequ(type_word, "unknow"))
 		return ;
 	ft_strcat(error, " ");
@@ -38,22 +41,18 @@ static void		internal_add_problematic_word(const char *type_word,
 	ft_strcat(error, "\"");
 }
 
-int				asm_syntax_error(const char *start_file, const char *error_ptr)
+int				asm_message_error(const char *message, const char *start_file,
+					const char *error_ptr)
 {
-	char		error[MESSAGE_SIZE_MAX + 1];
-	char		word_error[WORD_ERROR_SIZE_MAX + 1];
-	char		*type_word;
+	char			error[MESSAGE_SIZE_MAX + 1];
+	char			word_error[WORD_ERROR_SIZE_MAX + 1];
 
 	ft_bzero(error, MESSAGE_SIZE_MAX + 1);
 	ft_bzero(word_error, WORD_ERROR_SIZE_MAX + 1);
 	asm_error_get_word_error(error_ptr, word_error, WORD_ERROR_SIZE_MAX);
-	type_word = internal_get_str_word_type(word_error);
-	if (ft_strequ(type_word, "unknow"))
-		ft_strcpy(error, "LEXICAL ERROR: ");
-	else
-		ft_strcpy(error, "SYNTAX ERROR: ");
-	asm_error_concat_line_and_char(start_file,
-		error_ptr, error);
-	internal_add_problematic_word(type_word, word_error, error);
+	ft_strcpy(error, message);
+	ft_strcat(error, ": ");
+	asm_error_concat_line_and_char(start_file, error_ptr, error);
+	internal_add_problematic_word(word_error, error);
 	return (print_error(EXIT_FAILURE, error));
 }

@@ -38,13 +38,31 @@ void		asm_t_instruct_param_del(char **params)
 	}
 }
 
-void		asm_t_instruct_param_display(char **params)
+int			asm_t_instruct_param_add_end(char **param, char *new_param)
 {
 	int		i;
 
 	i = 0;
 	while (i < PARAM_MAX)
 	{
+		if (param[i] == NULL)
+		{
+			param[i] = new_param;
+			return (EXIT_SUCCESS);
+		}
+		i++;
+	}
+	return (EXIT_FAILURE);
+}
+
+void		asm_t_instruct_param_display(char **params, int tab)
+{
+	int		i;
+
+	i = 0;
+	while (i < PARAM_MAX)
+	{
+		ft_putnchar(tab, '\t');
 		ft_putchar('[');
 		ft_putnbr(i);
 		ft_putstr("] : ");

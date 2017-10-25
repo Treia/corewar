@@ -22,6 +22,15 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
+void	ft_putnchar(size_t n, int c)
+{
+	while (n > 0)
+	{
+		ft_putchar(c);
+		n--;
+	}
+}
+
 void	ft_putstr_fd(char const *s, int fd)
 {
 	if (s)
