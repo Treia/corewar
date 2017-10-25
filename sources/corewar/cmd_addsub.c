@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 15:40:56 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/25 17:22:58 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/25 17:25:37 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int		cmd_add(t_game *game, t_pc *pc, t_cycle *cycle)
 	(void)cycle;
 	get_param_code(game->arena, pc->addr, tab);
 	next = get_next_addr(pc->addr, tab, 4, 3);
+	if ((tab[0] & 252) == 84)
 	{
 		if (get_param_value(game->arena, pc->addr, tab, 4) > 3)
 		{
@@ -39,6 +40,7 @@ int		cmd_sub(t_game *game, t_pc *pc, t_cycle *cycle)
 	(void)cycle;
 	get_param_code(game->arena, pc->addr, tab);
 	next = get_next_addr(pc->addr, tab, 4, 3);
+	if ((tab[0] & 252) == 84)
 	{
 		if (get_param_value(game->arena, pc->addr, tab, 4) > 3)
 		{
