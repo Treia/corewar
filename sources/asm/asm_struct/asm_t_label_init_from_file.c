@@ -13,18 +13,19 @@
 #include "asm.h"
 #include "libft.h"
 
-static int		internal_set_label_name(const char *name, t_label *new_label)
+static int		internal_set_label_name(t_parser *parser, t_label *new_label)
 {
 	char			*name_end;
 	int				label_size;
 
-	name_end = ft_strchr(name, LABEL_CHAR);
+	name_end = ft_strchr(parser->current_ptr, LABEL_CHAR);
 	if (name_end == NULL)
 		return (print_error(EXIT_FAILURE, "Tu fais du caca !"));
-	label_size = name_end - name;
+	label_size = name_end - parser->current_ptr;
 	if (label_size >= LABEL_LENGTH_MAX)
 		return (print_error(EXIT_FAILURE, "Label name too long (max 128)")); // temp
-	ft_strncpy(new_label->name, name, label_size);
+	ft_strncpy(new_label->name, parser->current_ptr, label_size);
+	parser->current_ptr = name_end + 1;
 	return (EXIT_SUCCESS);
 }
 
@@ -34,8 +35,7 @@ static int			internal_init_and_add_one_label(t_parser *parser,
 	t_label			*new_label;
 
 	new_label = asm_t_label_new();
-	if (internal_set_label_name(parser->current_ptr,
-			new_label) == EXIT_FAILURE)
+	if (internal_set_label_name(parser, new_label) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	*list = asm_t_label_add_end(*list, new_label);
 	return (EXIT_SUCCESS);
@@ -51,7 +51,7 @@ static int			internal_get_all_labels_on_file(t_parser *parser,
 		word_type = asm_get_word_type(parser->current_ptr);
 		if (word_type == INVALID_WORD_TYPE)
 		{
-			return (asm_syntax_error(parser->file_content,
+			return (asm_message_error(LEXICAL_ERR, parser->file_content,
 				parser->current_ptr));
 		}
 		if (word_type == LABEL)

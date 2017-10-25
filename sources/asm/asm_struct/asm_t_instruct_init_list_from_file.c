@@ -61,7 +61,8 @@ int					asm_t_instruct_init_list_from_file(t_parser *parser,
 		}
 		else
 		{
-			return (asm_syntax_error(parser->file_content,
+			return (asm_message_error((word_type == INVALID_WORD_TYPE)
+				? LEXICAL_ERR : SYNTAX_ERR, parser->file_content,
 				parser->current_ptr));
 		}
 		parser->current_ptr = asm_get_next_instruct(parser->current_ptr);

@@ -21,7 +21,7 @@ static int			internal_init_instruct_name(t_parser *parser,
 
 	ptr = ft_str_first_not(parser->current_ptr, ft_isalpha);
 	if (!ft_isspace(*ptr))
-		return (asm_syntax_error(parser->file_content, ptr));
+		return (asm_message_error(SYNTAX_ERR, parser->file_content, ptr));
 	name_size = ptr - parser->current_ptr;
 	if (name_size > INSTRUCT_LENGTH_MAX)
 	{
