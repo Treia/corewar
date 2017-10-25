@@ -6,14 +6,14 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/05 11:48:22 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/25 17:13:16 by mdezitte         ###   ########.fr        #
+#    Updated: 2017/10/25 17:28:11 by mdezitte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAMEASM = asm
 NAMECOR = corewar
 CC = gcc
-FLAGS = -Wall -Werror -Wextra -g
+FLAGS = -Wall -Werror -Wextra
 
 PATH_LIBFT = ./libft/includes
 LFT = -L ./libft/ -l ft -lncurses
