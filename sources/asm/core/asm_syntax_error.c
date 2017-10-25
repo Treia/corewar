@@ -56,23 +56,3 @@ int				asm_message_error(const char *message, const char *start_file,
 	internal_add_problematic_word(word_error, error);
 	return (print_error(EXIT_FAILURE, error));
 }
-
-int				asm_syntax_error(const char *start_file, const char *error_ptr)
-{
-	char			error[MESSAGE_SIZE_MAX + 1];
-	char			word_error[WORD_ERROR_SIZE_MAX + 1];
-	t_word_type		type;
-
-	ft_bzero(error, MESSAGE_SIZE_MAX + 1);
-	ft_bzero(word_error, WORD_ERROR_SIZE_MAX + 1);
-	asm_error_get_word_error(error_ptr, word_error, WORD_ERROR_SIZE_MAX);
-	type = asm_get_word_type(word_error);
-	if (type == INVALID_WORD_TYPE)
-		ft_strcpy(error, "LEXICAL ERROR: ");
-	else
-		ft_strcpy(error, "SYNTAX ERROR: ");
-	asm_error_concat_line_and_char(start_file,
-		error_ptr, error);
-	internal_add_problematic_word(word_error, error);
-	return (print_error(EXIT_FAILURE, error));
-}
