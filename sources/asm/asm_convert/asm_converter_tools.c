@@ -6,7 +6,7 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 14:41:09 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/25 13:53:41 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/25 20:34:47 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,29 +64,11 @@ void	get_param_size(t_asm_instruct *new, t_instruct *target, int size)
 			param_size += size;
 		if (type == T_IND)
 			param_size += 2;
-		if (type == (T_DIR | T_LAB) || type == (T_DIR | T_IND))
-			
+		if (type == (T_DIR | T_LAB))
+			param_size += size;
+		if (type == (T_IND | T_LAB))
+			param_size += 2;
 		i++;
 	}
-}
-
-void	get_asm_instruct_byte_and_param_count(t_asm_instruct *new, 
-															t_instruct *target)
-{
-	if (new->op_code == 1 || new->op_code == 9 ||
-									new->op_code == 12 || new->op_code == 15)
-		new->byte_count = 1;
-	else
-		new->byte_count = 2;
-	if (new->op_code == 1 || new->op_code == 2 || new->op_code == 6 ||
-				new->op_code == 7 || new->op_code == 8 || new->op_code == 13)
-		get_param_size(new, target, 4);
-	else if (new->op_code == 9 || new->op_code == 10 || new->op_code == 11 ||
-			new->op_code == 12 || new->op_code == 14 || new->op_code == 15)
-		get_param_size(new, target, 2);
-	else
-		get_param_size(new, target, 0);
-	new->byte_count += new->param_size;
-
-	return (byte_count);
+	new->param_size = param_size;
 }

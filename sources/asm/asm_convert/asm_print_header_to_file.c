@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_asm_instruct.c                              :+:      :+:    :+:   */
+/*   asm_print_header_to_file.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/23 10:33:34 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/23 12:25:28 by mplanell         ###   ########.fr       */
+/*   Created: 2017/10/25 18:49:05 by mplanell          #+#    #+#             */
+/*   Updated: 2017/10/25 19:11:24 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-#include "libft.h"
 
-t_asm_instruct		*asm_t_asm_instruct_new(void)
+static int		internal_swap_endian(int data)
 {
-	t_asm_instruct	*new;
-
-	new = (t_asm_instruct *)ft_memalloc(sizeof(t_asm_instruct));
-	return (new);
+	return((data << 24) | ((data << 8) & 0x00FF) |
+									((data >> 8) & 0x0000FF) | (data >> 24));
 }
 
-t_asm_instruct		*create_asm_instruct(void (*fill)(t_asm_instruct*, t_instruct*), t_instruct *target)
+void			asm_print_header_to_file(t_asm *asm_file_content, int fd)
 {
-	t_asm_instruct	*new;
+	t_header *header;
 
-	new = asm_t_asm_instruct_new();
-	fill(new, target);
-	return (new);
+	header = &asm_file_content->header;
+	internal_swap_endian(header->magic);
+	internal_swap_endian(header->prog_size);
+	write(fd, header, sizeof(t_header));
 }
