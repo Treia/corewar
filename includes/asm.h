@@ -186,7 +186,8 @@ void						asm_t_instruct_del(t_instruct **instruct);
 void						asm_t_instruct_del_list(t_instruct *instruct);
 t_instruct					*asm_t_instruct_add_end(t_instruct *list,
 								t_instruct *add);
-void						asm_t_instruct_display_list(t_instruct *list);
+void						asm_t_instruct_display_list(t_instruct *list,
+								int tab);
 
 /*
 ** asm_t_instruct_init_list_from_file.c
@@ -207,7 +208,8 @@ void						asm_t_instruct_param_init(char **params);
 void						asm_t_instruct_param_del(char **params);
 int							asm_t_instrict_param_add_end(char **param,
 								char *new_param);
-void						asm_t_instruct_param_display(char **params);
+void						asm_t_instruct_param_display(char **params,
+								int tab);
 
 int							asm_t_instruct_param_init_from_file(t_parser *prs,
 								char **param);
