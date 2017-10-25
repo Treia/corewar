@@ -6,7 +6,7 @@
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 14:44:13 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/23 18:48:23 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/25 12:43:26 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct				s_asm_instruct
 	char					param[PARAM_MAX * 4];
 	unsigned int			param_size;
 	unsigned int			byte_count;
-	char					has_label;
+	unsigned int			starting_byte;
 	struct s_asm_instruct	*next;
 }							t_asm_instruct;
 
