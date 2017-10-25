@@ -6,7 +6,7 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/05 11:48:22 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/25 17:47:19 by pzarmehr         ###   ########.fr        #
+#    Updated: 2017/10/25 19:09:39 by mdezitte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,8 @@ ASM_SRC_TOOLS = $(addprefix tools/, $(ASM_TOOLS))
 
 SRCASM = $(ASM_SRC_CORE) $(ASM_SRC_READDER) $(ASM_SRC_STRUCT) $(ASM_SRC_TOOLS)
 
+LIB = libft/libft.a
+
 # COR #
 
 SRCCOR = cor_main.c \
@@ -110,17 +112,15 @@ OBJCOR = $(patsubst %.c,%.o,$(addprefix $(PATH_COR), $(SRCCOR)))
 OBJALL = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRCALL)))
 
 
-all: lib $(OBJASM) $(OBJCOR) $(OBJALL)
-	$(CC) $(FLAGS) -o $(NAMEASM) $(OBJASM) $(OBJALL) $(LFT)
-	$(CC) $(FLAGS) -o $(NAMECOR) $(OBJCOR) $(OBJALL) $(LFT)
+all: $(LIB) $(NAMEASM) $(NAMECOR) $(OBJALL)
 
-lib:
+$(LIB):
 	make -C libft
 
-$(NAMEASM): lib $(OBJASM) $(OBJALL)
+$(NAMEASM): $(LIB) $(OBJASM) $(OBJALL)
 	$(CC) $(FLAGS) -o $(NAMEASM) $(OBJASM) $(OBJALL) $(LFT)
 
-$(NAMECOR): lib $(OBJCOR) $(OBJALL)
+$(NAMECOR): $(LIB) $(OBJCOR) $(OBJALL)
 	$(CC) $(FLAGS) -o $(NAMECOR) $(OBJCOR) $(OBJALL) $(LFT)
 
 %.o: %.c
