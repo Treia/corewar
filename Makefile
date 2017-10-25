@@ -6,7 +6,7 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/05 11:48:22 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/25 19:17:26 by mdezitte         ###   ########.fr        #
+#    Updated: 2017/10/25 19:57:41 by pzarmehr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,10 +89,12 @@ SRCCOR = cor_main.c \
 		get_cmd.c \
 		cmd_tools.c \
 		cmd_live.c \
+		cmd_st.c \
 		cmd_addsub.c \
 		cmd_bit.c \
 		cmd_zjmp.c \
 		cmd_fork.c \
+		cmd_aff.c \
 		make_player_list.c \
 		print_winner.c \
 		print_arena.c \
