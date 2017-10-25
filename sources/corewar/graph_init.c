@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 17:56:17 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/25 16:17:30 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/25 16:41:30 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,18 @@ static void		init_color_set(void)
 static void		print_header(t_game *game)
 {
 	wattron(game->display->head, COLOR_PAIR(5));
-	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_CYCLE - 9), "cycles : ");
+	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_CYCLE - 9),
+															"cycles : ");
 	set_cycle_data(0, game->display->head);
-	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_NB_PC - 10), "process : ");
+	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_NB_PC - 10),
+															"process : ");
 	set_process_data(game->nb_pc, game->display->head);
-	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_WINNER - 9), "winner : ");
+	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_WINNER - 9),
+															"winner : ");
 	set_winner_data("In progress", game->display->head);
+	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_CYCLEDIE - 15),
+															"cycle to die : ");
+	set_cycle_to_die(CYCLE_TO_DIE, game->display->head);
 }
 
 int				init_window(t_game *game)
