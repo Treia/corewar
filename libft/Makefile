@@ -6,7 +6,7 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/08 16:13:50 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/25 17:03:50 by mdezitte         ###   ########.fr        #
+#    Updated: 2017/10/25 19:18:46 by mdezitte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,21 +57,36 @@ SRC = ft_strlen.c \
 
 OBJ = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRC)))
 
+#############
+# ! COLOR ! #
+#############
 
-all: $(NAME)
+NONE = \033[0m
+GREEN = \033[32m
+YELLOW = \033[33m
+CYAN = \033[36m
+
+all: compil_lib $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@echo "\r[$(GREEN) CREATED $(NONE)]        $(YELLOW)$(NAME)$(NONE)"
+
+compil_lib:
+	@echo "$(CYAN)\nCompiling Libft :$(NONE)\n"
 
 %.o: %.c
-	$(CC) $(FLAGS) -c -o $@ $^ -I $(PATH_INC)
+	@$(CC) $(FLAGS) -c -o $@ $^ -I $(PATH_INC)
+	@echo "[$(GREEN) COMPIL $(NONE)]         $(YELLOW)$<$(NONE)"
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
+	@echo "\r[$(GREEN) DELETED $(NONE)] $(YELLOW)Objects Library$(NONE)"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "\r[$(GREEN) DELETED $(NONE)] $(YELLOW)Binary Library$(NONE)"
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/05 11:48:22 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/25 19:09:39 by mdezitte         ###   ########.fr        #
+#    Updated: 2017/10/25 19:17:26 by mdezitte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,29 +111,42 @@ OBJASM = $(patsubst %.c,%.o,$(addprefix $(PATH_ASM), $(SRCASM)))
 OBJCOR = $(patsubst %.c,%.o,$(addprefix $(PATH_COR), $(SRCCOR)))
 OBJALL = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRCALL)))
 
+#############
+# ! COLOR ! #
+#############
+
+NONE = \033[0m
+GREEN = \033[32m
+YELLOW = \033[33m
+CYAN = \033[36m
 
 all: $(LIB) $(NAMEASM) $(NAMECOR) $(OBJALL)
 
 $(LIB):
-	make -C libft
+	@make -C libft
+	@echo "$(CYAN)\n\nCompiling $(NAMEASM) and $(NAMECOR) :$(NONE)\n"
 
 $(NAMEASM): $(LIB) $(OBJASM) $(OBJALL)
-	$(CC) $(FLAGS) -o $(NAMEASM) $(OBJASM) $(OBJALL) $(LFT)
+	@$(CC) $(FLAGS) -o $(NAMEASM) $(OBJASM) $(OBJALL) $(LFT)
+	@echo "[$(GREEN) CREATE $(NONE)]         $(YELLOW)$(NAMEASM)$(NONE)\n"
 
 $(NAMECOR): $(LIB) $(OBJCOR) $(OBJALL)
-	$(CC) $(FLAGS) -o $(NAMECOR) $(OBJCOR) $(OBJALL) $(LFT)
+	@$(CC) $(FLAGS) -o $(NAMECOR) $(OBJCOR) $(OBJALL) $(LFT)
+	@echo "[$(GREEN) CREATE $(NONE)]         $(YELLOW)$(NAMECOR)$(NONE)\n"
 
 %.o: %.c
-	$(CC) $(FLAGS) -c -o $@ $^ -I $(PATH_INC) -I $(PATH_LIBFT)
+	@$(CC) $(FLAGS) -c -o $@ $^ -I $(PATH_INC) -I $(PATH_LIBFT)
+	@echo "[$(GREEN) COMPIL $(NONE)]         $(YELLOW)$<$(NONE)"
 
 clean:
-	make -C libft clean
-	rm -f $(OBJASM) $(OBJCOR) $(OBJALL)
+	@make -C libft clean
+	@rm -f $(OBJASM) $(OBJCOR) $(OBJALL)
+	@echo "[$(GREEN) DELETED $(NONE)] $(YELLOW)Objects Project$(NONE)"
 
-fclean:
-	make -C libft fclean
-	rm -f $(OBJASM) $(OBJCOR) $(OBJALL)
-	rm -f $(NAMEASM) $(NAMECOR)
+fclean: clean
+	@make -C libft fclean
+	@rm -f $(NAMEASM) $(NAMECOR)
+	@echo "[$(GREEN) DELETED $(NONE)] $(YELLOW)Binary Project$(NONE)"
 
 re: fclean all
 
