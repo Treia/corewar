@@ -142,15 +142,25 @@ test_file_error()
 	(( ${EXIT_STATUS} != 0 )) || { error "${FILE} : expect error "; return 1; }
 	success ${FILE}
 
-	(( $VERBOSE == 1 )) || return 0
+	if (( $VERBOSE == 1 ))
+	then
+		## check line and type of error diffs
 
-	## check line and type of error diffs
+		typeset REAL_LINE_ERROR=$(cat ${TMP_REAL_OUT_FILE} | sed -E 's@^.*\[([[:digit:]]*):([[:digit:]]*)\].*$@\1 \2@g' | tr -d 0)
+		typeset MINE_LINE_ERROR=$(cat ${TMP_ERR_FILE} | sed -E 's@^.*\[([[:digit:]]*),([[:digit:]]*)\].*$@\1 \2@g')
+		echo -e "Line-mine : ${MINE_LINE_ERROR}\c"
+		echo "Line-real : ${REAL_LINE_ERROR}"
 
-	typeset REAL_LINE_ERROR=$(cat ${TMP_REAL_OUT_FILE} | sed -E 's@^.*\[([[:digit:]]*):([[:digit:]]*)\].*$@\1 \2@g' | tr -d 0)
-	typeset MINE_LINE_ERROR=$(cat ${TMP_ERR_FILE} | sed -E 's@^.*\[([[:digit:]]*),([[:digit:]]*)\].*$@\1 \2@g')
-	echo -e "Line error : mine : ${MINE_LINE_ERROR}\c"
-	echo "Line error : real : ${REAL_LINE_ERROR}"
+		typeset REAL_TYPE_ERROR=$(cat $TMP_REAL_OUT_FILE | sed -E 's/^(.*) error at*$/\1/g')
+		typeset MINE_TYPE_ERROR=$(cat ${TMP_ERR_FILE} | sed -E 's/^.*\](.*)( at)?:.*$/\1/g')
+		echo -e "Type-mine : ${MINE_TYPE_ERROR}\c"
+		echo "Type-real : ${REAL_TYPE_ERROR}"
 
+		unset REAL_LINE_ERROR
+		unset MINE_LINE_ERROR
+		unset REAL_TYPE_ERROR
+		unset MINE_TYPE_ERROR
+	fi
 	(( ${VERBOSE} != 0 )) && draw_line
 	return 0
 }
