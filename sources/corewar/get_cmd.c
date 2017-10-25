@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 13:14:54 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/24 21:16:35 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/25 16:36:00 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	*get_cmd2(int opcode)
 
 void	*get_cmd(int opcode)
 {
-	return (&cmd_base);
+	//return (&cmd_base); //remove later
 	if (opcode == 1)
 		return (&cmd_live);
 	if (opcode == 2)
@@ -49,9 +49,9 @@ void	*get_cmd(int opcode)
 	if (opcode == 3)
 		return (&cmd_base);
 	if (opcode == 4)
-		return (&cmd_base);
+		return (&cmd_add);
 	if (opcode == 5)
-		return (&cmd_base);
+		return (&cmd_sub);
 	if (opcode == 6)
 		return (&cmd_base);
 	if (opcode == 7)
@@ -60,5 +60,6 @@ void	*get_cmd(int opcode)
 		return (&cmd_base);
 	if (opcode == 9)
 		return (&cmd_zjmp);
+	return (&cmd_base); //remove later
 	return (get_cmd2(opcode));
 }
