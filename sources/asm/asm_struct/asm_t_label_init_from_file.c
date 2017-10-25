@@ -60,22 +60,24 @@ static int			internal_get_all_labels_on_file(t_parser *parser,
 					list_to_set) == EXIT_FAILURE)
 				return (EXIT_FAILURE);
 		}
+		else
+		{
+			if (*list_to_set == NULL)
+				*list_to_set = asm_t_label_add_end(*list_to_set, asm_t_label_new());
+		}
 		parser->current_ptr = asm_get_next_instruct(parser->current_ptr);
 	}
-	return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
 int					asm_t_label_init_from_file(t_parser *parser,
 						t_label **list_to_set)
 {
-	char		*ptr_on_file_start;
-
-	ptr_on_file_start = parser->current_ptr;
 	if (internal_get_all_labels_on_file(parser, list_to_set) == EXIT_FAILURE)
 	{
 		asm_t_label_del_list(*list_to_set);
 		*list_to_set = NULL;
 		return (EXIT_FAILURE);
 	}
-	return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
