@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/25 16:54:29 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/25 17:38:36 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@
 */
 # define HEAD_GRAPH 4
 # define POS_HEAD_INFO 1
-# define POS_C_CYCLE (((NB_OCTET_DISPLAY / 5) * 3) + 2)
-# define POS_C_CYCLEDIE ((((NB_OCTET_DISPLAY / 5) * 3 ) * 2) + 2)
-# define POS_C_NB_PC ((((NB_OCTET_DISPLAY / 5) * 3 ) * 3) + 2)
-# define POS_C_WINNER ((((NB_OCTET_DISPLAY / 5) * 3) * 4) + 2)
+# define POS_C_CYCLE (((NB_OCTET_DISPLAY / 6) * 3) + 2)
+# define POS_C_CYCLEDIE ((((NB_OCTET_DISPLAY / 6) * 3 ) * 2) + 2)
+# define POS_C_MAX_CHECK ((((NB_OCTET_DISPLAY / 6) * 3) * 3) + 2)
+# define POS_C_NB_PC ((((NB_OCTET_DISPLAY / 6) * 3 ) * 4) + 2)
+# define POS_C_WINNER ((((NB_OCTET_DISPLAY / 6) * 3) * 5) + 2)
 # define PADDING_COL 4
 # define MAX_L ((MEM_SIZE / NB_OCTET_DISPLAY) + HEAD_GRAPH)
 # define MAX_C ((NB_OCTET_DISPLAY * 3) + PADDING_COL)
@@ -215,7 +216,7 @@ void					set_cycle_to_die(unsigned int cycle_die, WINDOW *box);
 void					print_int(int index, t_game *game, int id);
 void					print_char(int index, t_game *game, int id);
 void					print_arena_start(t_game *game);
-void					display_end_cycle(t_game *game, int cycle,
-													int cycle_to_die);
+void					set_max_check(unsigned int check, WINDOW *box);
+void					display_end_cycle(t_game *game, t_cycle *cycle);
 
 #endif

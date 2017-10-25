@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 15:56:07 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/25 16:37:37 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/25 17:38:39 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,10 @@ void		set_winner_data(const char *str, WINDOW *box)
 void		set_cycle_to_die(unsigned int cycle_die, WINDOW *box)
 {
 	mvwprintw(box, POS_HEAD_INFO, POS_C_CYCLEDIE, "%d      ", cycle_die);
+}
+
+void		set_max_check(unsigned int check, WINDOW *box)
+{
+	mvwprintw(box, POS_HEAD_INFO, POS_C_MAX_CHECK, "%d/%d      ",
+														check, MAX_CHECKS);	
 }

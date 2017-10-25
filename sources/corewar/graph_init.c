@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 17:56:17 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/25 16:41:30 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/25 17:36:28 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ static void		print_header(t_game *game)
 	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_CYCLEDIE - 15),
 															"cycle to die : ");
 	set_cycle_to_die(CYCLE_TO_DIE, game->display->head);
+	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_MAX_CHECK - 8),
+															"check : ");
+	set_cycle_to_die(0, game->display->head);
 }
 
 int				init_window(t_game *game)
