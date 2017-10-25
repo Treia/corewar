@@ -93,9 +93,32 @@ typedef enum				e_word_type
 	COMMAND_COMMENT,
 	LABEL,
 	INSTRUCTION,
+	SEPARATOR,
+	END_OF_LINE,
 	END_OF_FILE,
 	NB_WORD_TYPE
 }							t_word_type;
+
+typedef enum				e_instruct_type
+{
+	LIVE = 0,
+	LD,
+	ST,
+	ADD,
+	SUB,
+	AND,
+	OR,
+	XOR,
+	ZJMP,
+	LDI,
+	STI,
+	FORK,
+	LLD,
+	LLDI,
+	LFORK,
+	AFF,
+	NB_INSTRUCTION_TYPE
+}							t_instruct_type
 
 /*
 ** CORE
