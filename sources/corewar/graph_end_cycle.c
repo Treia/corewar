@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cor_main.c                                         :+:      :+:    :+:   */
+/*   graph_end_cycle.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/26 15:19:13 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/25 16:15:00 by mdezitte         ###   ########.fr       */
+/*   Created: 2017/10/25 16:12:56 by mdezitte          #+#    #+#             */
+/*   Updated: 2017/10/25 16:43:13 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		main(int ac, char **av)
+void		display_end_cycle(t_game *game, int cycle, int cycle_to_die)
 {
-	t_game		*game;
-
-	if ((game = get_players(ac, av)) == NULL)
-		return (usage());
-	if (game->verb == -1)
-		init_window(game);
-	run(game);
-	if (game->verb == -1)
-		clear_window(game->display);
-	release_game(game);
-	return (0);
+	set_cycle_data(cycle, game->display->head);
+	set_process_data(game->nb_pc, game->display->head);
+	set_cycle_to_die(cycle_to_die, game->display->head);
+	wrefresh(game->display->head);
+	wrefresh(game->display->box);
 }

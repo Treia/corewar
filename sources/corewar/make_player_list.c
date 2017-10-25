@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 15:59:54 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/25 11:21:44 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/25 16:45:13 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ t_player			*make_player(const char *file, int id, t_game *game,
 		return (error_file("SYSTEM : Can't read : ", file));
 	header = (t_header *)(buffer);
 	header->prog_size = swap_byte_32(header->prog_size);
-	header->magic = swap_byte_32(header->magic);
-	if (header->magic != COREWAR_EXEC_MAGIC)
+	if (swap_byte_32(header->magic) != COREWAR_EXEC_MAGIC)
 		return (error_file("SYSTEM : this file is not champ : ", file));
 	player = new_player();
 	ft_memcpy(player->comment, header->comment, COMMENT_LENGTH);

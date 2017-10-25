@@ -6,13 +6,14 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 13:10:56 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/25 14:25:16 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/25 16:34:01 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static int	print_arena_player(t_game *game, t_player *player, int index, int id)
+static int	print_arena_player(t_game *game, t_player *player, int index,
+																	int id)
 {
 	int				next_player;
 	unsigned int	size_player;
@@ -44,7 +45,7 @@ static void	print_end_arena(int index, t_game *game)
 	{
 		print_char(index, game, 0);
 		index++;
-	}	
+	}
 }
 
 void		print_arena_start(t_game *game)
