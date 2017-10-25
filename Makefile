@@ -55,6 +55,7 @@ ASM_STRUCT = asm_t_header_get_datas.c \
 				asm_t_instruct.c \
 				asm_t_instruct_param.c \
 				asm_t_word_type_is.c \
+				asm_t_word_type_is_2.c \
 				asm_t_word_type_to_string.c \
 				asm_get_word_type.c
 ASM_SRC_STRUCT = $(addprefix asm_struct/, $(ASM_STRUCT))

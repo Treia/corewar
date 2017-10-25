@@ -258,6 +258,12 @@ int							asm_is_instruction(const char *word);
 int							asm_is_end_of_file(const char *word);
 
 /*
+** asm_t_word_type_is_2.c
+*/
+int							asm_is_separator(const char *word);
+int							asm_is_end_of_line(const char *word);
+
+/*
 ** asm_get_word_type.c
 */
 typedef int					(*t_ft_is_word_type)(const char *);
