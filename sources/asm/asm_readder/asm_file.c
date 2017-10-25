@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm_is_label_char.c                                :+:      :+:    :+:   */
+/*   asm_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/24 14:02:23 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/24 14:02:45 by mressier         ###   ########.fr       */
+/*   Created: 2017/10/25 18:10:38 by mressier          #+#    #+#             */
+/*   Updated: 2017/10/25 18:10:39 by mressier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "op.h"
+#include "asm.h"
 #include "libft.h"
-#include <stdbool.h>
 
-int			asm_is_label_char(int c)
+void			asm_file_skip_label(t_parser *parser)
 {
-	if (ft_strchr(LABEL_CHARS, c) == NULL)
-		return (false);
-	return (true);
+	parser->current_ptr = ft_str_first_not(parser->current_ptr,
+		asm_is_one_of_label_char);
+	parser->current_ptr++;
+	parser->current_ptr = asm_get_eol_or_next_instruct(parser->current_ptr);
+	parser->current_ptr = ft_str_first_not(parser->current_ptr, ft_isspace);
 }

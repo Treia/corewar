@@ -13,19 +13,22 @@
 #include "asm.h"
 #include "libft.h"
 
-static int		internal_set_label_name(t_parser *parser, t_label *new_label)
+static int			internal_set_label_name(t_parser *parser,
+						t_label *new_label)
 {
 	char			*name_end;
 	int				label_size;
 
-	name_end = ft_strchr(parser->current_ptr, LABEL_CHAR);
-	if (name_end == NULL)
-		return (print_error(EXIT_FAILURE, "Tu fais du caca !"));
+	name_end = ft_str_first_not(parser->current_ptr, asm_is_one_of_label_char);
+	if (*name_end != LABEL_CHAR || name_end == parser->current_ptr)
+	{
+		return (asm_message_error(LEXICAL_ERR, parser->file_content,
+			name_end));
+	}
 	label_size = name_end - parser->current_ptr;
 	if (label_size >= LABEL_LENGTH_MAX)
-		return (print_error(EXIT_FAILURE, "Label name too long (max 128)")); // temp
+		return (print_error(EXIT_FAILURE, "Label name too long (max 128)"));
 	ft_strncpy(new_label->name, parser->current_ptr, label_size);
-	parser->current_ptr = name_end + 1;
 	return (EXIT_SUCCESS);
 }
 
@@ -41,6 +44,11 @@ static int			internal_init_and_add_one_label(t_parser *parser,
 	return (EXIT_SUCCESS);
 }
 
+static int			internal_return_word_error(t_word_type wt, t_parser *prs)
+{
+	return (asm_word_type_error(wt, prs->file_content, prs->current_ptr));
+}
+
 static int			internal_get_all_labels_on_file(t_parser *parser,
 						t_label **list_to_set)
 {
@@ -49,23 +57,22 @@ static int			internal_get_all_labels_on_file(t_parser *parser,
 	while (parser->current_ptr && *parser->current_ptr)
 	{
 		word_type = asm_get_word_type(parser->current_ptr);
-		if (word_type == INVALID_WORD_TYPE)
-		{
-			return (asm_message_error(LEXICAL_ERR, parser->file_content,
-				parser->current_ptr));
-		}
 		if (word_type == LABEL)
 		{
 			if (internal_init_and_add_one_label(parser,
 					list_to_set) == EXIT_FAILURE)
 				return (EXIT_FAILURE);
+			asm_file_skip_label(parser);
 		}
-		else
+		else if (word_type == INSTRUCTION)
 		{
 			if (*list_to_set == NULL)
-				*list_to_set = asm_t_label_add_end(*list_to_set, asm_t_label_new());
+				*list_to_set = asm_t_label_add_end(*list_to_set,
+					asm_t_label_new());
+			parser->current_ptr = asm_get_next_instruct(parser->current_ptr);
 		}
-		parser->current_ptr = asm_get_next_instruct(parser->current_ptr);
+		else
+			return (internal_return_word_error(word_type, parser));
 	}
 	return (EXIT_SUCCESS);
 }

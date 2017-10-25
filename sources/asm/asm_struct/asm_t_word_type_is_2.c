@@ -30,3 +30,10 @@ int			asm_is_end_of_line(const char *word)
 		return (true);
 	return (false);
 }
+
+int			asm_is_string(const char *word)
+{
+	if (*word == STRING_CHAR)
+		return (true);
+	return (false);
+}

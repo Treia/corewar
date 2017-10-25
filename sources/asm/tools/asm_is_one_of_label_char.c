@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm_t_asm.c                                        :+:      :+:    :+:   */
+/*   asm_is_one_of_label_char.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/25 13:39:58 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/25 13:39:59 by mressier         ###   ########.fr       */
+/*   Created: 2017/10/24 14:02:23 by mressier          #+#    #+#             */
+/*   Updated: 2017/10/24 14:02:45 by mressier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "op.h"
 #include "libft.h"
-#include "asm.h"
+#include <stdbool.h>
 
-void		asm_t_asm_display(t_asm asm_content)
+int			asm_is_one_of_label_char(int c)
 {
-	ft_putendl(asm_content.header.prog_name);
-	ft_putendl(asm_content.header.comment);
-	asm_t_label_display_list(asm_content.label_list);
-}
-
-void		asm_t_asm_del_content(t_asm asm_content)
-{
-	asm_t_label_del_list(asm_content.label_list);
+	if (c == '\0' || ft_strchr(LABEL_CHARS, c) == NULL)
+		return (false);
+	return (true);
 }

@@ -20,6 +20,7 @@ static void		internal_init_word_type_tab(t_ft_is_word_type *ft_is)
 	ft_is[LABEL] = asm_is_label;
 	ft_is[INSTRUCTION] = asm_is_instruction;
 	ft_is[SEPARATOR] = asm_is_separator;
+	ft_is[STRING] = asm_is_string;
 	ft_is[END_OF_LINE] = asm_is_end_of_line;
 	ft_is[END_OF_FILE] = asm_is_end_of_file;
 }

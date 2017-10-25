@@ -13,7 +13,7 @@
 #include "asm.h"
 #include "libft.h"
 
-static int			internal_get_all_instructs_for_label(t_parser *parser,
+static int			internal_get_instructs_for_label(t_parser *parser,
 						t_label *label)
 {
 	t_word_type		word_type;
@@ -33,6 +33,11 @@ static int			internal_get_all_instructs_for_label(t_parser *parser,
 	return (EXIT_SUCCESS);
 }
 
+static int			internal_return_word_error(t_word_type wt, t_parser *prs)
+{
+	return (asm_word_type_error(wt, prs->file_content, prs->current_ptr));
+}
+
 int					asm_t_instruct_init_list_from_file(t_parser *parser,
 						t_label *label_list)
 {
@@ -40,33 +45,24 @@ int					asm_t_instruct_init_list_from_file(t_parser *parser,
 	t_label			*ptr;
 
 	ptr = NULL;
-	if (label_list == NULL)
-		return (print_error(EXIT_FAILURE, "Caca, label list = null!!"));
 	while (parser->current_ptr && *parser->current_ptr)
 	{
 		word_type = asm_get_word_type(parser->current_ptr);
 		if (word_type == LABEL)
 		{
-			ptr = (ptr == NULL) ? label_list : ptr->next;
-			if (ptr == NULL)
+			if ((ptr = (ptr == NULL) ? label_list : ptr->next) == NULL)
 				return (print_error(EXIT_FAILURE, "Caca dans les labels!!"));
+			asm_file_skip_label(parser);
 		}
 		else if (word_type == INSTRUCTION)
 		{
 			if (ptr == NULL)
 				ptr = label_list;
-			if (internal_get_all_instructs_for_label(parser,
-					ptr) == EXIT_FAILURE)
+			if (internal_get_instructs_for_label(parser, ptr) == EXIT_FAILURE)
 				return (EXIT_FAILURE);
-			continue;
 		}
 		else
-		{
-			return (asm_message_error((word_type == INVALID_WORD_TYPE)
-				? LEXICAL_ERR : SYNTAX_ERR, parser->file_content,
-				parser->current_ptr));
-		}
-		parser->current_ptr = asm_get_next_instruct(parser->current_ptr);
+			return (internal_return_word_error(word_type, parser));
 	}
 	return (EXIT_SUCCESS);
 }
