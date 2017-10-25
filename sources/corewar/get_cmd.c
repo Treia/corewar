@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 13:14:54 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/25 17:07:20 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/25 17:13:06 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ void	*get_cmd(int opcode)
 		return (&cmd_base);
 	if (opcode == 9)
 		return (&cmd_zjmp);
-	return (&cmd_base); //remove later
+//	return (&cmd_base); //remove later
 	return (get_cmd2(opcode));
 }
