@@ -106,11 +106,12 @@ typedef enum				e_word_type
 */
 int							asm_usage(void);
 
+# define SYNTAX_ERR			"SYNTAX_ERROR"
+# define LEXICAL_ERR		"LEXICAL_ERR"
+
 /*
 ** asm_syntax_error.c
 */
-int							asm_syntax_error(const char *start_file,
-								const char *error_ptr);
 int							asm_message_error(const char *message,
 								const char *start_file, const char *error_ptr);
 
@@ -208,7 +209,8 @@ int							asm_t_instrict_param_add_end(char **param,
 								char *new_param);
 void						asm_t_instruct_param_display(char **params);
 
-void						asm_t_instruct_param_init_from_file(void); // to do
+int							asm_t_instruct_param_init_from_file(t_parser *prs,
+								char **param);
 
 /*
 ** word_type

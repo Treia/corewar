@@ -36,8 +36,15 @@ static int			internal_init_instruct_name(t_parser *parser,
 static int			internal_init_instruct_param(t_parser *parser,
 						t_instruct *instruct)
 {
-	(void)parser;
-	(void)instruct;
+	while (parser->current_ptr && *parser->current_ptr)
+	{
+		parser->current_ptr = asm_get_eol_or_next_instruct(parser->current_ptr);
+		if (!parser->current_ptr || *parser->current_ptr == '\n')
+			break ;
+		if (asm_t_instruct_param_init_from_file(parser,
+				instruct->param) == EXIT_FAILURE)
+			return (EXIT_FAILURE);
+	}
 	return (EXIT_SUCCESS);
 }
 

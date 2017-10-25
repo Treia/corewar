@@ -44,6 +44,7 @@ char			*asm_get_eol_or_next_instruct(const char *string)
 	char		*ptr;
 
 	ptr = (char *)string;
+	ptr = asm_skip_commented_lines(ptr);
 	while (ptr && ft_isspace(*ptr) && *ptr != '\n')
 		ptr++;
 	return (ptr);

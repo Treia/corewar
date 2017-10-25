@@ -52,6 +52,7 @@ ASM_STRUCT = asm_t_header_init_from_file.c \
 				asm_t_instruct_init_from_file.c \
 				asm_t_instruct_init_list_from_file.c \
 				asm_t_instruct_param.c \
+				asm_t_instruct_param_init_from_file.c \
 				asm_t_word_type_is.c \
 				asm_t_word_type_to_string.c \
 				asm_get_word_type.c

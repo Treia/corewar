@@ -53,7 +53,8 @@ int					asm_t_instruct_init_list_from_file(t_parser *parser,
 		}
 		else if (word_type == INSTRUCTION)
 		{
-			ptr = (ptr == NULL) ? label_list : ptr->next;
+			if (ptr == NULL)
+				ptr = label_list;
 			if (internal_get_all_instructs_for_label(parser,
 					ptr) == EXIT_FAILURE)
 				return (EXIT_FAILURE);
