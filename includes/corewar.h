@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/25 13:15:32 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/25 16:24:29 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,14 +162,21 @@ int						get_wait(int opcode);
 void					check_cycle(t_cycle *cycle, t_game *game);
 
 /*
-**	cmd
+**	cmd tools
 */
 int						read_nb(char *arena, int addr, int size);
+void					get_param_code(char *arena, int addr, int *tab);
+int						get_next_addr(int addr, int *tab, int size, int nb);
+int						get_param_value(char *arena, int addr, int *tab, int size);
+
+/*
+**	cmd
+*/
 int						cmd_live(t_game *game, t_pc *pc, t_cycle *cycle);
 //
 //
-//
-//
+int						cmd_add(t_game *game, t_pc *pc, t_cycle *cycle);
+int						cmd_sub(t_game *game, t_pc *pc, t_cycle *cycle);
 //
 //
 //
