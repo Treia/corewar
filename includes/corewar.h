@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/25 13:15:32 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/25 16:15:31 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,5 +206,6 @@ void					set_cycle_data(unsigned int	cycles, WINDOW *box);
 void					print_int(int index, t_game *game, int id);
 void					print_char(int index, t_game *game, int id);
 void					print_arena_start(t_game *game);
+void					display_end_cycle(t_game *game, int cycle);
 
 #endif
