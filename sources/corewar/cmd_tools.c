@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 15:34:03 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/25 16:45:30 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/25 17:10:49 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ int		get_param_value(char *arena, int addr, int *tab, int size)
 	{
 		if (tab[i] == 1)
 		{
-			tab[i] = (char)read_nb(arena, addr + 2, 1);
-			if (tab[i] < 1 || tab[i] > REG_NUMBER)
+			tab[i] = (char)read_nb(arena, addr + 2, 1) - 1;
+			if (!(tab[i] >= 0 && tab[i] < REG_NUMBER))
 				return (i);
 			addr++;
 		}
