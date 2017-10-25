@@ -6,48 +6,65 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 17:56:17 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/24 18:51:42 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/25 17:36:28 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void		print_arena_start(t_game *game, t_display *display)
+static void		init_color_set(void)
 {
-	int		index;
-
-	index = 0;
-	while (index < MEM_SIZE)
-	{
-		print_int(index, game, display);
-		index += 4;
-	}
+	start_color();
+	init_pair(1, COLOR_GREEN, COLOR_BLACK);
+	init_pair(2, COLOR_CYAN, COLOR_BLACK);
+	init_pair(3, COLOR_RED, COLOR_BLACK);
+	init_pair(4, COLOR_BLUE, COLOR_BLACK);
+	init_pair(5, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(6, COLOR_MAGENTA, COLOR_BLACK);
+	init_pair(7, COLOR_BLACK, COLOR_CYAN);
+	init_pair(8, COLOR_BLACK, COLOR_WHITE);
 }
 
-t_display		*init_window(t_display *display, t_game *game)
+static void		print_header(t_game *game)
+{
+	wattron(game->display->head, COLOR_PAIR(5));
+	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_CYCLE - 9),
+															"cycles : ");
+	set_cycle_data(0, game->display->head);
+	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_NB_PC - 10),
+															"process : ");
+	set_process_data(game->nb_pc, game->display->head);
+	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_WINNER - 9),
+															"winner : ");
+	set_winner_data("In progress", game->display->head);
+	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_CYCLEDIE - 15),
+															"cycle to die : ");
+	set_cycle_to_die(CYCLE_TO_DIE, game->display->head);
+	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_MAX_CHECK - 8),
+															"check : ");
+	set_cycle_to_die(0, game->display->head);
+}
+
+int				init_window(t_game *game)
 {
 	initscr();
 	if (LINES < MAX_L || COLS < MAX_C)
 	{
 		game->verb = 0;
 		endwin();
-		return (NULL);
+		return (0);
 	}
-	display = init_display();
+	game->display = init_display();
 	noecho();
 	curs_set(0);
-	box(display->head, ACS_VLINE, ACS_HLINE);
-	box(display->box, ACS_VLINE, ACS_HLINE);
-	mvwprintw(display->head, POS_HEAD_INFO, (POS_C_CYCLE - 9), "cycles : ");
-	set_cycle_data(0, display->head);
-	mvwprintw(display->head, POS_HEAD_INFO, (POS_C_NB_PC - 10), "process : ");
-	set_process_data(game->nb_pc, display->head);
-	mvwprintw(display->head, POS_HEAD_INFO, (POS_C_WINNER - 9), "winner : ");
-	set_winner_data("In progress", display->head);
-	print_arena_start(game, display);
-	wrefresh(display->box);
-	wrefresh(display->head);
-	return (display);
+	box(game->display->head, ACS_VLINE, ACS_HLINE);
+	box(game->display->box, ACS_VLINE, ACS_HLINE);
+	init_color_set();
+	print_header(game);
+	print_arena_start(game);
+	wrefresh(game->display->box);
+	wrefresh(game->display->head);
+	return (0);
 }
 
 int				clear_window(t_display *display)

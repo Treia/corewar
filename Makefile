@@ -6,7 +6,7 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/05 11:48:22 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/24 18:24:59 by mdezitte         ###   ########.fr        #
+#    Updated: 2017/10/25 17:47:19 by pzarmehr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,6 +89,8 @@ SRCCOR = cor_main.c \
 		get_cmd.c \
 		cmd_tools.c \
 		cmd_live.c \
+		cmd_addsub.c \
+		cmd_bit.c \
 		cmd_zjmp.c \
 		cmd_fork.c \
 		make_player_list.c \
@@ -100,7 +102,9 @@ SRCCOR = cor_main.c \
 		graph_init.c \
 		graph_head.c \
 		struct_display.c \
-		graph_arena.c
+		graph_arena.c \
+		graph_init_arena.c \
+		graph_end_cycle.c
 SRCALL =
 
 OBJASM = $(patsubst %.c,%.o,$(addprefix $(PATH_ASM), $(SRCASM)))

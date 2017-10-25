@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 16:04:14 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/21 18:26:37 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/25 16:20:58 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void					print_register(int *reg)
 	int		index;
 
 	index = 0;
-	while (index < REG_NUMBER - 1)
+	while (index < REG_NUMBER)
 	{
 		ft_putstr("\nRegistre ");
 		ft_putnbr(index + 1);

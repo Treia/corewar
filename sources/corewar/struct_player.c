@@ -6,11 +6,26 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 16:11:24 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/21 18:38:04 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/25 13:51:25 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+int					count_my_player(t_player *player)
+{
+	t_player	*begin;
+	int			ret;
+
+	ret = 0;
+	begin = player;
+	while (begin)
+	{
+		ret++;
+		begin = begin->next;
+	}
+	return (ret);
+}
 
 static void			free_item_player(t_player *player)
 {
