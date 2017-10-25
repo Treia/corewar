@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 13:14:54 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/25 17:13:06 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/25 17:51:05 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ void	*get_cmd(int opcode)
 	if (opcode == 5)
 		return (&cmd_sub);
 	if (opcode == 6)
-		return (&cmd_base);
+		return (&cmd_and);
 	if (opcode == 7)
-		return (&cmd_base);
+		return (&cmd_or);
 	if (opcode == 8)
-		return (&cmd_base);
+		return (&cmd_xor);
 	if (opcode == 9)
 		return (&cmd_zjmp);
 //	return (&cmd_base); //remove later
