@@ -3,8 +3,16 @@
 
 #start instructions
 	ld		%0, r10
-	st		r1, 6
+	st		r1, 6#commentaire colle!
+	ld		%0, r10
 #be sure we live
 l:		# ninja comment :D
 	live	%0		# assure we live
-	zjmp	%:l
+	zjmp	%:l		
+test:
+#petit commentaire
+	ld %0,r10
+	#commentaire entre les deux
+	st r1,:test
+	#un commentaire
+	#deux commentaire
