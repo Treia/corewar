@@ -6,7 +6,7 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/05 11:48:22 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/26 12:10:24 by mdezitte         ###   ########.fr        #
+#    Updated: 2017/10/26 14:07:40 by pzarmehr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,6 +91,7 @@ SRCCOR = cor_main.c \
 		get_cmd.c \
 		cmd_tools.c \
 		cmd_live.c \
+		cmd_ld.c \
 		cmd_st.c \
 		cmd_addsub.c \
 		cmd_bit.c \

@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/26 13:39:41 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/26 14:15:11 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ int						get_param_value(char *arena, int addr, int *tab,
 **	cmd
 */
 int						cmd_live(t_game *game, t_pc *pc, t_cycle *cycle);
-//ld
+int						cmd_ld(t_game *game, t_pc *pc, t_cycle *cycle);
 int						cmd_st(t_game *game, t_pc *pc, t_cycle *cycle);
 int						cmd_add(t_game *game, t_pc *pc, t_cycle *cycle);
 int						cmd_sub(t_game *game, t_pc *pc, t_cycle *cycle);
@@ -188,7 +188,7 @@ int						cmd_zjmp(t_game *game, t_pc *pc, t_cycle *cycle);
 //ldi
 int						cmd_sti(t_game *game, t_pc *pc, t_cycle *cycle);
 int						cmd_fork(t_game *game, t_pc *pc, t_cycle *cycle);
-//lld
+int						cmd_lld(t_game *game, t_pc *pc, t_cycle *cycle);
 //lldi
 int						cmd_lfork(t_game *game, t_pc *pc, t_cycle *cycle);
 int						cmd_aff(t_game *game, t_pc *pc, t_cycle *cycle);
