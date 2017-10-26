@@ -46,7 +46,7 @@ int				asm_t_instruct_param_init_from_file(t_parser *parser,
 		return (asm_message_error(SYNTAX_ERR, parser->current_ptr, ptr));
 	one_param = internal_dup_and_trim(parser->current_ptr, ptr);
 	if (asm_t_instruct_param_add_end(instruct->param,
-		one_param) == EXIT_FAILURE)
+			one_param) == EXIT_FAILURE)
 	{
 		ft_memdel((void **)&one_param);
 		return (asm_param_error(instruct, parser->file_content,
