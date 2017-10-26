@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 17:56:17 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/26 16:13:47 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/26 17:07:43 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void		init_color_set(void)
 	init_pair(6, COLOR_MAGENTA, COLOR_BLACK);
 	init_pair(7, COLOR_BLACK, COLOR_CYAN);
 	init_pair(8, COLOR_BLACK, COLOR_WHITE);
+	init_pair(9, 238, COLOR_BLACK);
 }
 
 static void		print_header(t_game *game)
@@ -60,9 +61,9 @@ int				init_window(t_game *game)
 	game->display = init_display();
 	noecho();
 	curs_set(0);
+	init_color_set();
 	box(game->display->head, ACS_VLINE, ACS_HLINE);
 	box(game->display->box, ACS_VLINE, ACS_HLINE);
-	init_color_set();
 	print_header(game);
 	print_arena_start(game);
 	wrefresh(game->display->box);
