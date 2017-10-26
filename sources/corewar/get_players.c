@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:28:42 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/24 17:21:15 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/26 13:25:12 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_game					*get_players(int argc, char **argv)
 	if ((game->players = make_player_list(l_argv, game,
 								(MEM_SIZE / nb_players))) == NULL)
 		return (exit_error_get_player(-1, game, l_argv));
-	set_pcs_id(game->pcs);
+	set_pcs_id(game->pcs, game->players);
 	release_argvparse(&l_argv);
 	return (game);
 }

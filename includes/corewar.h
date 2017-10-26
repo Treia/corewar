@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/26 13:03:56 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/26 13:26:26 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void					add_in_player_list(t_player **player,
 void					release_pcs(t_pc **pcs);
 t_pc					*new_pc(int live);
 void					push_in_front_pc(t_pc **pcs, t_pc *add);
-void					set_pcs_id(t_pc *pcs);
+void					set_pcs_id(t_pc *pcs, t_player *player);
 
 /*
 ** struct argvparse

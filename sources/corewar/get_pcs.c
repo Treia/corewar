@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 16:10:30 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/26 11:50:39 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/26 13:27:50 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,19 @@ int				get_pcs_struct(t_pc **pcs, t_player *player, int index)
 	return (0);
 }
 
-void			set_pcs_id(t_pc *pcs)
+void			set_pcs_id(t_pc *pcs, t_player *player)
 {
-	t_pc	*begin;
-	int		id;
+	t_pc		*begin;
+	t_player	*tmp;
+	int			id;
 
-	id = 1;
+	tmp = player;
+	id = count_my_player(tmp);
 	begin = pcs;
 	while (begin)
 	{
 		begin->id_player = id;
-		id++;
+		id--;
 		begin = begin->next;
 	}
 }
