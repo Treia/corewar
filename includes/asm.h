@@ -137,24 +137,6 @@ void						asm_file_skip_label(t_parser *parser);
 int							asm_is_param_separator(int c);
 
 /*
-** asm_t_instruct_init_list_from_file.c
-*/
-int							asm_t_instruct_init_list_from_file(t_parser *parser,
-								t_label *label_list);
-
-/*
-** asm_t_instruct_init_from_file.c
-*/
-int							asm_t_instruct_init_from_file(t_parser *parser,
-								t_label *label_list);
-
-int							asm_t_instruct_param_init_from_file(t_parser *prs,
-								t_instruct *instruct);
-
-int							asm_t_label_init_from_file(t_parser *parser,
-								t_label **list_to_set);
-
-/*
 ** STRUCTS
 */
 
@@ -188,6 +170,9 @@ void						asm_t_label_display_list(t_label *list);
 
 t_label						*asm_t_label_find(); // todo
 
+int							asm_t_label_init_from_file(t_parser *parser,
+								t_label **list_to_set);
+
 /*
 ** instruct
 */
@@ -199,6 +184,12 @@ t_instruct					*asm_t_instruct_add_end(t_instruct *list,
 void						asm_t_instruct_display_list(t_instruct *list,
 								int tab);
 
+int							asm_t_instruct_init_list_from_file(t_parser *parser,
+								t_label *label_list);
+
+int							asm_t_instruct_init_from_file(t_parser *parser,
+								t_label *label_list);
+
 /*
 ** instruct param
 */
@@ -208,6 +199,11 @@ int							asm_t_instruct_param_add_end(char **param,
 								char *new_param);
 void						asm_t_instruct_param_display(char **params,
 								int tab);
+
+int							asm_t_instruct_param_init_from_file(t_parser *prs,
+								t_instruct *instruct);
+
+int							asm_t_instruct_params_are_valid(t_instruct *inst);
 
 /*
 ** TOOLS

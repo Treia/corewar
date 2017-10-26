@@ -47,7 +47,7 @@ static void			init_t_instruct_expected_params(t_instruct_type type,
 		init(params, T_REG, 0, 0);
 }
 
-void				asm_t_instruct_get_params(t_instruct_type type,
+void				asm_get_expected_params(t_instruct_type type,
 						int *params)
 {
 	init_t_instruct_expected_params(type, params);

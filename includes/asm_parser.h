@@ -99,7 +99,7 @@ typedef int					(*t_asm_is)(const char *);
 t_instruct_type				asm_get_instruct_type(const char *word);
 char						*asm_t_instruct_type_to_string(t_instruct_type tp);
 
-void						asm_t_instruct_get_params(t_instruct_type type,
+void						asm_get_expected_params(t_instruct_type type,
 								int *params);
 
 /*
