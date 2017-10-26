@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/26 13:26:26 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/26 13:39:41 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ int						cmd_or(t_game *game, t_pc *pc, t_cycle *cycle);
 int						cmd_xor(t_game *game, t_pc *pc, t_cycle *cycle);
 int						cmd_zjmp(t_game *game, t_pc *pc, t_cycle *cycle);
 //ldi
-//sti
+int						cmd_sti(t_game *game, t_pc *pc, t_cycle *cycle);
 int						cmd_fork(t_game *game, t_pc *pc, t_cycle *cycle);
 //lld
 //lldi

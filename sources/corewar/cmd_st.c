@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_st.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 19:31:14 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/26 13:31:09 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/26 13:47:27 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,34 @@ int		cmd_st(t_game *game, t_pc *pc, t_cycle *cycle)
 		{
 			addr = write_arena(game, pc->addr,
 				tab[2] % IDX_MOD, pc->reg[tab[1]]);
+			if (game->verb == -1)
+				print_int(addr, game, pc->id_player);
+		}
+	}
+	pc->addr = next;
+	return (0);
+}
+
+int		cmd_sti(t_game *game, t_pc *pc, t_cycle *cycle)
+{
+	int		tab[4];
+	int		next;
+	int		addr;
+	int		isreg[2];
+
+	(void)cycle;
+	get_param_code(game->arena, pc->addr, tab);
+	isreg[0] = tab[2];
+	isreg[1] = tab[3];
+	next = get_next_addr(pc->addr, tab, 4, 2);
+	if (tab[1] == 1 && tab[2] != 0 && (tab[3] == 1 || tab[3] == 3))
+	{
+		if (get_param_value(game->arena, pc->addr, tab, 4) > 3)
+		{
+			tab[2] = isreg[0] == 1 ? pc->reg[tab[2]] : tab[2];
+			tab[3] = isreg[1] == 1 ? pc->reg[tab[3]] : tab[3];
+			addr = write_arena(game, pc->addr,
+				(tab[2] + tab[3]) % IDX_MOD, pc->reg[tab[1]]);
 			if (game->verb == -1)
 				print_int(addr, game, pc->id_player);
 		}
