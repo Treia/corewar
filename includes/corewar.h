@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/26 15:54:37 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/26 16:17:01 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@
 */
 # define HEAD_GRAPH 4
 # define POS_HEAD_INFO 1
-# define POS_C_CYCLE (((NB_OCTET_DISPLAY / 6) * 3) + 2)
-# define POS_C_CYCLEDIE ((((NB_OCTET_DISPLAY / 6) * 3 ) * 2) + 2)
-# define POS_C_MAX_CHECK ((((NB_OCTET_DISPLAY / 6) * 3) * 3) + 2)
-# define POS_C_NB_PC ((((NB_OCTET_DISPLAY / 6) * 3 ) * 4) + 2)
+# define POS_C_CYCLE (((NB_OCTET_DISPLAY / 7) * 3) + 2)
+# define POS_C_CYCLEDIE ((((NB_OCTET_DISPLAY / 7) * 3 ) * 2) + 2)
+# define POS_C_MAX_CHECK ((((NB_OCTET_DISPLAY / 7) * 3) * 3) + 2)
+# define POS_C_SPEED ((((NB_OCTET_DISPLAY / 7) * 3) * 4) + 2)
+# define POS_C_NB_PC ((((NB_OCTET_DISPLAY / 7) * 3 ) * 5) - 4)
 # define POS_C_WINNER ((((NB_OCTET_DISPLAY / 6) * 3) * 5) + 2)
 # define PADDING_COL 4
 # define MAX_L ((MEM_SIZE / NB_OCTET_DISPLAY) + HEAD_GRAPH)
@@ -217,6 +218,7 @@ void					set_winner_data(const char *str, WINDOW *box);
 void					set_process_data(unsigned int process, WINDOW *box);
 void					set_cycle_data(unsigned int	cycles, WINDOW *box);
 void					set_cycle_to_die(unsigned int cycle_die, WINDOW *box);
+void					set_speed(unsigned int speed, WINDOW *box);
 void					print_int(int index, t_game *game, int id);
 void					print_char(int index, t_game *game, int id);
 void					print_arena_start(t_game *game);
