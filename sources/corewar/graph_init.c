@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 17:56:17 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/26 15:57:12 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/26 16:13:47 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ static void		print_header(t_game *game)
 {
 	wattron(game->display->head, COLOR_PAIR(5));
 	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_CYCLE - 9),
-															"cycles : ");
-	set_cycle_data(0, game->display->head);
+															"cycles : PAUSED");
 	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_NB_PC - 10),
 															"process : ");
 	set_process_data(game->nb_pc, game->display->head);
