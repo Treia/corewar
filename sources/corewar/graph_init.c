@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 17:56:17 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/26 14:32:21 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/26 15:57:12 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ static void		print_header(t_game *game)
 	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_MAX_CHECK - 8),
 															"check : ");
 	set_cycle_to_die(0, game->display->head);
+	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_SPEED - 8),
+															"speed : ");
+	set_speed(game->speed, game->display->head);
 }
 
 int				init_window(t_game *game)
