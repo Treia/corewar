@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 17:25:46 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/26 17:04:05 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/26 17:12:00 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void			print_char(int index, t_game *game, int id)
 	int		line;
 	int		col;
 
-	if (id == 0)
-		id = 9;
 	wattron(game->display->box, COLOR_PAIR(id));
 	line = (index / NB_OCTET_DISPLAY) + 3;
 	col = ((index % NB_OCTET_DISPLAY) * 3) + 2;
@@ -34,8 +32,6 @@ void			print_int(int index, t_game *game, int id)
 	int		octets;
 	int		real_index;
 
-	if (id == 0)
-		id = 9;
 	octets = 0;
 	wattron(game->display->box, COLOR_PAIR(id));
 	while (octets < 4)
