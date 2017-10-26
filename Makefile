@@ -6,7 +6,7 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/05 11:48:22 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/26 14:07:40 by pzarmehr         ###   ########.fr        #
+#    Updated: 2017/10/26 15:45:28 by pzarmehr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ SRCCOR = cor_main.c \
 		resolve_n.c \
 		resolve_champ.c \
 		resolve_verb.c \
+		resolve_speed.c \
 		debug.c \
 		struct_pcs.c \
 		struct_game.c \
