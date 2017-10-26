@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 17:56:17 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/26 14:32:21 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/26 17:07:43 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ static void		init_color_set(void)
 	init_pair(6, COLOR_MAGENTA, COLOR_BLACK);
 	init_pair(7, COLOR_BLACK, COLOR_CYAN);
 	init_pair(8, COLOR_BLACK, COLOR_WHITE);
+	init_pair(9, 238, COLOR_BLACK);
 }
 
 static void		print_header(t_game *game)
 {
 	wattron(game->display->head, COLOR_PAIR(5));
 	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_CYCLE - 9),
-															"cycles : ");
-	set_cycle_data(0, game->display->head);
+															"cycles : PAUSED");
 	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_NB_PC - 10),
 															"process : ");
 	set_process_data(game->nb_pc, game->display->head);
@@ -42,6 +42,9 @@ static void		print_header(t_game *game)
 	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_MAX_CHECK - 8),
 															"check : ");
 	set_cycle_to_die(0, game->display->head);
+	mvwprintw(game->display->head, POS_HEAD_INFO, (POS_C_SPEED - 8),
+															"speed : ");
+	set_speed(game->speed, game->display->head);
 }
 
 int				init_window(t_game *game)
@@ -58,9 +61,9 @@ int				init_window(t_game *game)
 	game->display = init_display();
 	noecho();
 	curs_set(0);
+	init_color_set();
 	box(game->display->head, ACS_VLINE, ACS_HLINE);
 	box(game->display->box, ACS_VLINE, ACS_HLINE);
-	init_color_set();
 	print_header(game);
 	print_arena_start(game);
 	wrefresh(game->display->box);

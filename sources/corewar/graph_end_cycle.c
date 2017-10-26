@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 16:12:56 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/26 15:43:29 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/26 16:11:24 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void	make_wait_cycles(int speed)
 		val = 5000;
 	if (speed == 250)
 		val = 4000;
+	if (speed == 1000)
+		val = 1000;
 	usleep(val);
 }
 

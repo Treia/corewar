@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 19:31:14 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/26 13:47:27 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/26 14:38:51 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ int		cmd_sti(t_game *game, t_pc *pc, t_cycle *cycle)
 	get_param_code(game->arena, pc->addr, tab);
 	isreg[0] = tab[2];
 	isreg[1] = tab[3];
-	next = get_next_addr(pc->addr, tab, 4, 2);
+	next = get_next_addr(pc->addr, tab, 2, 3);
 	if (tab[1] == 1 && tab[2] != 0 && (tab[3] == 1 || tab[3] == 3))
 	{
-		if (get_param_value(game->arena, pc->addr, tab, 4) > 3)
+		if (get_param_value(game->arena, pc->addr, tab, 2) > 3)
 		{
 			tab[2] = isreg[0] == 1 ? pc->reg[tab[2]] : tab[2];
 			tab[3] = isreg[1] == 1 ? pc->reg[tab[3]] : tab[3];
