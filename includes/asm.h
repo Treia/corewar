@@ -36,7 +36,6 @@ typedef struct				s_asm_instruct
 	unsigned int			param_size;
 
 	unsigned int			byte_count;
-	// fonction calcul taille -> sizeof(char) * 2 + param_size
 
 	struct s_asm_instruct	*next;
 }							t_asm_instruct;
