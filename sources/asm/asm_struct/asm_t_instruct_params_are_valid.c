@@ -25,7 +25,6 @@ static int		internal_get_param_code_from_type(t_param_type type)
 	return (params_code[type]);
 }
 
-#include <stdio.h>
 static int		internal_one_param_is_valid(const char *param, int exp_param)
 {
 	int					param_code;

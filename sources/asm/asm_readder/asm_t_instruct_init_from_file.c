@@ -54,7 +54,6 @@ static int			internal_init_instruct_param(t_parser *parser,
 	return (EXIT_SUCCESS);
 }
 
-
 int					asm_t_instruct_init_from_file(t_parser *parser,
 						t_label *label)
 {
