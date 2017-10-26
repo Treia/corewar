@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:29:35 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/25 17:38:55 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/26 11:58:57 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,15 @@ void	init_pc(t_game *game)
 
 void	end_game(t_game *game)
 {
-	if (!(game->pcs))
-		print_winner(game);
+	if (!(game->pcs) && game->verb == -1)
+		graph_print_winner(game);
 	else
-		print_arena(game->arena, NB_OCTET_DISPLAY);
+	{
+		if (!(game->pcs))
+			print_winner(game);
+		else
+			print_arena(game->arena, NB_OCTET_DISPLAY);
+	}
 }
 
 int		run(t_game *game)

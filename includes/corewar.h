@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/25 20:42:57 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/26 12:10:07 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,5 +218,6 @@ void					print_char(int index, t_game *game, int id);
 void					print_arena_start(t_game *game);
 void					set_max_check(unsigned int check, WINDOW *box);
 void					display_end_cycle(t_game *game, t_cycle *cycle);
+void					graph_print_winner(t_game *game);
 
 #endif

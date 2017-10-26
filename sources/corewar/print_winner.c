@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_winner.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 17:20:33 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/24 13:34:31 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/26 12:02:05 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,10 @@ void	print_winner(t_game *game)
 {
 	int		nb;
 
-	if (game->verb != -1)
-	{
-		nb = nb_winner(game);
-		if (nb > 1)
-			ft_putstr("And the winners are ");
-		else
-			ft_putstr("And the winner is ");
-		print_player(game, nb);
-	}
+	nb = nb_winner(game);
+	if (nb > 1)
+		ft_putstr("And the winners are ");
+	else
+		ft_putstr("And the winner is ");
+	print_player(game, nb);
 }

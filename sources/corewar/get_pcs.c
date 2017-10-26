@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 16:10:30 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/24 17:21:12 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/26 11:50:39 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void			set_pcs_id(t_pc *pcs)
 	t_pc	*begin;
 	int		id;
 
-	id = 0;
+	id = 1;
 	begin = pcs;
 	while (begin)
 	{
