@@ -28,16 +28,21 @@ int				main(int ac, char **av)
 	char		*file_content;
 	t_asm		asm_file_content;
 
+	asm_file_content.label_list = NULL;
 	if (internal_get_filename_on_arg(ac, av, &filename) == EXIT_FAILURE)
 		return (asm_usage());
 	if (asm_get_file_content(filename, &file_content) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (asm_get_asm_from_file_content(file_content,
 			&asm_file_content) == EXIT_FAILURE)
+	{
+		ft_memdel((void **)&file_content);
+		asm_t_asm_del_content(asm_file_content);
 		return (EXIT_FAILURE);
-	asm_t_asm_display(asm_file_content);
-	//if (internal_print_asm_to_file(asm_file_content) == EXIT_FAILURE)
+	}
+	//if (internal_print_asm_to_file(filename, asm_file_content) == EXIT_FAILURE)
 	//	return (EXIT_FAILURE);
+	asm_t_label_display_list(asm_file_content.label_list);
 	ft_memdel((void **)&file_content);
 	asm_t_asm_del_content(asm_file_content);
 	return (EXIT_SUCCESS);

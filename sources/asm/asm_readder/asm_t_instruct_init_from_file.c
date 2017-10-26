@@ -29,6 +29,11 @@ static int			internal_init_instruct_name(t_parser *parser,
 			parser->file_content, parser->current_ptr));
 	}
 	ft_strncpy(instruct->name, parser->current_ptr, name_size);
+	if (asm_get_instruct_type(instruct->name) == INVALID_INSTRUCT)
+	{
+		return (asm_message_error("Invalid instruction at",
+			parser->file_content, parser->current_ptr));
+	}
 	parser->current_ptr = ptr;
 	return (EXIT_SUCCESS);
 }
@@ -36,13 +41,19 @@ static int			internal_init_instruct_name(t_parser *parser,
 static int			internal_init_instruct_param(t_parser *parser,
 						t_instruct *instruct)
 {
+	t_instruct_type		type;
+
+	type = asm_get_instruct_type(instruct->name);
+	if (type == INVALID_INSTRUCT)
+		return (print_error(EXIT_FAILURE, "Tu fais du caca (instruct)"));
 	while (parser->current_ptr && *parser->current_ptr)
 	{
 		parser->current_ptr = asm_get_eol_or_next_instruct(parser->current_ptr);
-		if (!parser->current_ptr || *parser->current_ptr == '\n')
+		if (!parser->current_ptr || *parser->current_ptr == '\n'
+				|| *parser->current_ptr == '\0')
 			break ;
 		if (asm_t_instruct_param_init_from_file(parser,
-				instruct->param) == EXIT_FAILURE)
+				instruct) == EXIT_FAILURE)
 			return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
@@ -54,11 +65,11 @@ int					asm_t_instruct_init_from_file(t_parser *parser,
 	t_instruct		*new_instruct;
 
 	new_instruct = asm_t_instruct_new();
+	label->instruct_list = asm_t_instruct_add_end(label->instruct_list,
+		new_instruct);
 	if (internal_init_instruct_name(parser, new_instruct) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (internal_init_instruct_param(parser, new_instruct) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	label->instruct_list = asm_t_instruct_add_end(label->instruct_list,
-		new_instruct);
 	return (EXIT_SUCCESS);
 }

@@ -62,14 +62,16 @@ void		asm_t_instruct_param_display(char **params, int tab)
 	i = 0;
 	while (i < PARAM_MAX)
 	{
-		ft_putnchar(tab, '\t');
-		ft_putchar('[');
-		ft_putnbr(i);
-		ft_putstr("] : ");
 		if (params[i])
+		{
+			ft_putnchar(tab, '\t');
+			ft_putchar('[');
+			ft_putnbr(i);
+			ft_putstr("] : ");
 			ft_putendl(params[i]);
+		}
 		else
-			ft_putendl("(null)");
+			break ;
 		i++;
 	}
 }

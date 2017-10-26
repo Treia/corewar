@@ -21,3 +21,8 @@ void			asm_file_skip_label(t_parser *parser)
 	parser->current_ptr = asm_get_eol_or_next_instruct(parser->current_ptr);
 	parser->current_ptr = ft_str_first_not(parser->current_ptr, ft_isspace);
 }
+
+int				asm_is_param_separator(int c)
+{
+	return (c == '\n' || c == SEPARATOR_CHAR || c == COMMENT_CHAR);
+}

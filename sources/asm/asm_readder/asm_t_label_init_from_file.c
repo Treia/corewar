@@ -38,9 +38,9 @@ static int			internal_init_and_add_one_label(t_parser *parser,
 	t_label			*new_label;
 
 	new_label = asm_t_label_new();
+	*list = asm_t_label_add_end(*list, new_label);
 	if (internal_set_label_name(parser, new_label) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	*list = asm_t_label_add_end(*list, new_label);
 	return (EXIT_SUCCESS);
 }
 
@@ -81,10 +81,6 @@ int					asm_t_label_init_from_file(t_parser *parser,
 						t_label **list_to_set)
 {
 	if (internal_get_all_labels_on_file(parser, list_to_set) == EXIT_FAILURE)
-	{
-		asm_t_label_del_list(*list_to_set);
-		*list_to_set = NULL;
 		return (EXIT_FAILURE);
-	}
 	return (EXIT_SUCCESS);
 }

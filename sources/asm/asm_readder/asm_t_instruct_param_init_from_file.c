@@ -13,26 +13,44 @@
 #include "asm.h"
 #include "libft.h"
 
-static int	ft_is_eol_or_separator_char(int c)
+static char		*internal_dup_and_trim(const char *str, const char *end_str)
 {
-	return (c == '\n' || c == SEPARATOR_CHAR);
+	char		*new_str;
+	int			size;
+
+	size = end_str - str;
+	while (size > 0 && ft_isspace(str[size - 1]))
+		size--;
+	new_str = ft_memalloc(size + 1);
+	ft_strncpy(new_str, str, size);
+	return (new_str);
 }
 
-int			asm_t_instruct_param_init_from_file(t_parser *parser,
-				char **param)
+static void		internal_move_to_next_instruct(t_parser *parser, char *ptr)
 {
-	char	*one_param;
-	char	*ptr;
-	int		param_size;
-
-	ptr = ft_str_first(parser->current_ptr, ft_is_eol_or_separator_char);
-	if (ptr == NULL)
-		return (asm_message_error(SYNTAX_ERR, parser->current_ptr, ptr));
-	param_size = ptr - parser->current_ptr;
-	one_param = ft_memalloc(param_size + 1);
-	ft_strncpy(one_param, parser->current_ptr, param_size);
 	parser->current_ptr = ptr;
 	if (*ptr != '\n')
 		parser->current_ptr++;
-	return (asm_t_instruct_param_add_end(param, one_param));
+	if (*ptr == COMMENT_CHAR)
+		parser->current_ptr = asm_skip_commented_lines(ptr);
+}
+
+int				asm_t_instruct_param_init_from_file(t_parser *parser,
+					t_instruct *instruct)
+{
+	char	*one_param;
+	char	*ptr;
+
+	ptr = ft_str_first(parser->current_ptr, asm_is_param_separator);
+	if (ptr == NULL)
+		return (asm_message_error(SYNTAX_ERR, parser->current_ptr, ptr));
+	one_param = internal_dup_and_trim(parser->current_ptr, ptr);
+	if (asm_t_instruct_param_add_end(instruct->param, one_param) == EXIT_FAILURE)
+	{
+		ft_memdel((void **)&one_param);
+		return (asm_param_error(instruct, parser->file_content,
+			parser->current_ptr));
+	}
+	internal_move_to_next_instruct(parser, ptr);
+	return (EXIT_SUCCESS);
 }

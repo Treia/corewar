@@ -22,6 +22,7 @@
 # define SEPARATOR_CHAR			','
 # define COMMENT_CHAR			'#'
 # define STRING_CHAR			'"'
+# define REGISTER_CHAR			'r'
 
 /*
 ** Header

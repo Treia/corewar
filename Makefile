@@ -34,7 +34,8 @@ INCLUDES = $(addprefix $(PATH_INC), $(INC_FILES))
 
 ASM_CORE = main.c \
 			asm_usage.c \
-			asm_error.c
+			asm_error.c \
+			asm_param_error.c
 ASM_SRC_CORE = $(addprefix core/, $(ASM_CORE))
 
 ASM_READDER = asm_get_file_content.c \
@@ -57,8 +58,10 @@ ASM_STRUCT = asm_t_header_get_datas.c \
 				asm_t_instruct_param.c \
 				asm_t_word_type_is.c \
 				asm_t_word_type_is_2.c \
-				asm_t_word_type_to_string.c \
-				asm_get_word_type.c
+				asm_get_word_type.c \
+				asm_t_param_type_is.c \
+				asm_get_param_type.c \
+				asm_get_instruct_type.c
 ASM_SRC_STRUCT = $(addprefix asm_struct/, $(ASM_STRUCT))
 
 ASM_TOOLS = asm_error_tools.c \

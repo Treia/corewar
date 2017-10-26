@@ -14,11 +14,13 @@
 # define ASM_H
 
 # include "op.h"
+# include "asm_parser.h"
 
 # include <stdlib.h>
 
 # define LABEL_LENGTH_MAX		128
 # define INSTRUCT_LENGTH_MAX 	5
+# define REGISTER_LENGTH_MAX	2
 # define PARAM_MAX				3
 
 /*
@@ -73,55 +75,6 @@ typedef struct				s_asm
 }							t_asm;
 
 /*
-** PARSER
-*/
-
-typedef struct				s_parser
-{
-	char					*file_content;
-	char					*current_ptr;
-}							t_parser;
-
-/*
-** WORD TYPE
-*/
-
-typedef enum				e_word_type
-{
-	INVALID_WORD_TYPE = -1,
-	COMMAND_NAME = 0,
-	COMMAND_COMMENT,
-	LABEL,
-	INSTRUCTION,
-	SEPARATOR,
-	STRING,
-	END_OF_LINE,
-	END_OF_FILE,
-	NB_WORD_TYPE
-}							t_word_type;
-
-typedef enum				e_instruct_type
-{
-	LIVE = 0,
-	LD,
-	ST,
-	ADD,
-	SUB,
-	AND,
-	OR,
-	XOR,
-	ZJMP,
-	LDI,
-	STI,
-	FORK,
-	LLD,
-	LLDI,
-	LFORK,
-	AFF,
-	NB_INSTRUCTION_TYPE
-}							t_instruct_type;
-
-/*
 ** CORE
 */
 
@@ -139,6 +92,12 @@ int							asm_usage(void);
 int							asm_message_error(const char *message,
 								const char *start_file, const char *error_ptr);
 int							asm_word_type_error(t_word_type word_type,
+								const char *start_file, const char *error_ptr);
+
+/*
+** asm_param_error.c
+*/
+int							asm_param_error(t_instruct *instruct,
 								const char *start_file, const char *error_ptr);
 
 /*
@@ -176,6 +135,25 @@ int							asm_get_labels_and_instructs(t_parser *parser,
 ** asm_file.c
 */
 void						asm_file_skip_label(t_parser *parser);
+int							asm_is_param_separator(int c);
+
+/*
+** asm_t_instruct_init_list_from_file.c
+*/
+int							asm_t_instruct_init_list_from_file(t_parser *parser,
+								t_label *label_list);
+
+/*
+** asm_t_instruct_init_from_file.c
+*/
+int							asm_t_instruct_init_from_file(t_parser *parser,
+								t_label *label_list);
+
+int							asm_t_instruct_param_init_from_file(t_parser *prs,
+								t_instruct *instruct);
+
+int							asm_t_label_init_from_file(t_parser *parser,
+								t_label **list_to_set);
 
 /*
 ** STRUCTS
@@ -209,9 +187,6 @@ void						asm_t_label_del_list(t_label *label);
 t_label						*asm_t_label_add_end(t_label *list, t_label *add);
 void						asm_t_label_display_list(t_label *list);
 
-int							asm_t_label_init_from_file(t_parser *parser,
-								t_label **list_to_set);
-
 t_label						*asm_t_label_find(); // todo
 
 /*
@@ -226,18 +201,6 @@ void						asm_t_instruct_display_list(t_instruct *list,
 								int tab);
 
 /*
-** asm_t_instruct_init_list_from_file.c
-*/
-int							asm_t_instruct_init_list_from_file(t_parser *parser,
-								t_label *label_list);
-
-/*
-** asm_t_instruct_init_from_file.c
-*/
-int							asm_t_instruct_init_from_file(t_parser *parser,
-								t_label *label_list);
-
-/*
 ** instruct param
 */
 void						asm_t_instruct_param_init(char **params);
@@ -246,42 +209,6 @@ int							asm_t_instruct_param_add_end(char **param,
 								char *new_param);
 void						asm_t_instruct_param_display(char **params,
 								int tab);
-
-int							asm_t_instruct_param_init_from_file(t_parser *prs,
-								char **param);
-
-/*
-** word_type
-*/
-char						*asm_t_word_type_to_string(t_word_type type);
-
-/*
-** asm_t_word_type_is.c
-*/
-int							asm_is_command_name(const char *word);
-int							asm_is_command_comment(const char *word);
-int							asm_is_label(const char *word);
-int							asm_is_instruction(const char *word);
-int							asm_is_end_of_file(const char *word);
-
-/*
-** asm_t_word_type_is_2.c
-*/
-int							asm_is_separator(const char *word);
-int							asm_is_end_of_line(const char *word);
-int							asm_is_string(const char *word);
-
-/*
-** asm_get_word_type.c
-*/
-typedef int					(*t_ft_is_word_type)(const char *);
-
-t_word_type					asm_get_word_type(const char *word);
-
-/*
-** asm_t_word_type_to_string.c
-*/
-char						*asm_t_word_type_to_string(t_word_type type);
 
 /*
 ** TOOLS
