@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/26 15:45:55 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/26 15:54:37 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,11 +187,11 @@ int						cmd_and(t_game *game, t_pc *pc, t_cycle *cycle);
 int						cmd_or(t_game *game, t_pc *pc, t_cycle *cycle);
 int						cmd_xor(t_game *game, t_pc *pc, t_cycle *cycle);
 int						cmd_zjmp(t_game *game, t_pc *pc, t_cycle *cycle);
-//ldi
+int						cmd_ldi(t_game *game, t_pc *pc, t_cycle *cycle);
 int						cmd_sti(t_game *game, t_pc *pc, t_cycle *cycle);
 int						cmd_fork(t_game *game, t_pc *pc, t_cycle *cycle);
 int						cmd_lld(t_game *game, t_pc *pc, t_cycle *cycle);
-//lldi
+int						cmd_lldi(t_game *game, t_pc *pc, t_cycle *cycle);
 int						cmd_lfork(t_game *game, t_pc *pc, t_cycle *cycle);
 int						cmd_aff(t_game *game, t_pc *pc, t_cycle *cycle);
 
