@@ -43,7 +43,7 @@ int				main(int ac, char **av)
 	//if (internal_print_asm_to_file(filename, asm_file_content) == EXIT_FAILURE)
 	//	return (EXIT_FAILURE);
 	asm_t_label_display_list(asm_file_content.label_list);
-	ft_memdel((void **)&file_content);
 	asm_t_asm_del_content(asm_file_content);
+	ft_memdel((void **)&file_content);
 	return (EXIT_SUCCESS);
 }

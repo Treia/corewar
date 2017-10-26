@@ -13,7 +13,6 @@
 #include "asm.h"
 #include "libft.h"
 
-		#include <stdio.h>
 int			asm_get_asm_from_file_content(const char *file, t_asm *asm_content)
 {
 	t_parser	parser;
