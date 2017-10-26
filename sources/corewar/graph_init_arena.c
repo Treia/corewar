@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 13:10:56 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/25 16:34:01 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/26 17:12:13 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	print_arena_player(t_game *game, t_player *player, int index,
 			size_player--;
 		}
 		else
-			print_char(index, game, 0);
+			print_char(index, game, 9);
 		index++;
 		next_player--;
 	}
@@ -43,7 +43,7 @@ static void	print_end_arena(int index, t_game *game)
 {
 	while (index < MEM_SIZE)
 	{
-		print_char(index, game, 0);
+		print_char(index, game, 9);
 		index++;
 	}
 }
