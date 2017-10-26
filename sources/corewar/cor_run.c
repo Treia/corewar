@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:29:35 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/26 16:18:27 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/26 16:20:50 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,11 @@ int		run(t_game *game)
 
 	init_cycle(&c);
 	init_pc(game);
-	while (getch() != 32)
-		;
+	if (game->verb == -1)
+	{
+		while (getch() != 32)
+			;
+	}
 	while ((game->pcs != 0) &&
 		(c.current < game->dump || game->dump < 0))
 	{
