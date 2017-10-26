@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 17:03:56 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/26 15:41:21 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/26 16:10:50 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int			usage(void)
 	ft_putstr_fd("\n\t50 - cycle seconds", 2);
 	ft_putstr_fd("\n\t100 - cycle seconds", 2);
 	ft_putstr_fd("\n\t200 - cycle seconds", 2);
-	ft_putstr_fd("\n\t250 - cycle seconds\n\033[0m", 2);
+	ft_putstr_fd("\n\t250 - cycle seconds", 2);
+	ft_putstr_fd("\n\t1000 - cycle seconds\n\033[0m", 2);
 	return (-1);
 }
