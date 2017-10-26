@@ -200,7 +200,7 @@ fi
 
 if (( ${SUCCESS_TESTS} ))
 then
-	for FILE in $(find "${SUCCESS_DIR}" "./ia" -name "*.s")
+	for FILE in $(find ${SUCCESS_DIR} "./ia" -name "*.s")
 	do
 		test_file_success ${FILE}
 		typeset EXIT_STATUS=$?
