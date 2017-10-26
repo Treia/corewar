@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/26 12:10:07 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/26 13:03:56 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define LEN_HEXA 16
 # define BASE_HEXA "0123456789abcdef"
 # define NB_OCTET_DISPLAY 64
+
 /*
 ** Graphique
 */
@@ -169,7 +170,8 @@ void					check_cycle(t_cycle *cycle, t_game *game);
 int						read_nb(char *arena, int addr, int size);
 void					get_param_code(char *arena, int addr, int *tab);
 int						get_next_addr(int addr, int *tab, int size, int nb);
-int						get_param_value(char *arena, int addr, int *tab, int size);
+int						get_param_value(char *arena, int addr, int *tab,
+																int size);
 
 /*
 **	cmd

@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 11:59:14 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/26 12:51:09 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/26 13:02:19 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void		finish_string(char *str)
 	}
 }
 
-static int 		get_win(t_game *game, char *buff)
+static int		get_win(t_game *game, char *buff)
 {
 	int			nb;
 	t_player	*begin;
