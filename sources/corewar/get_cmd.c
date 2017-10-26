@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 13:14:54 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/26 13:39:13 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/26 16:02:34 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ int		cmd_base(t_game *game, t_pc *pc, t_cycle *cycle)
 void	*get_cmd2(int opcode)
 {
 	if (opcode == 10)
-		return (&cmd_base);
+		return (&cmd_ldi);
 	if (opcode == 11)
 		return (&cmd_sti);
 	if (opcode == 12)
 		return (&cmd_fork);
 	if (opcode == 13)
-		return (&cmd_base);
+		return (&cmd_lld);
 	if (opcode == 14)
-		return (&cmd_base);
+		return (&cmd_lldi);
 	if (opcode == 15)
 		return (&cmd_lfork);
 	if (opcode == 16)
@@ -44,7 +44,7 @@ void	*get_cmd(int opcode)
 	if (opcode == 1)
 		return (&cmd_live);
 	if (opcode == 2)
-		return (&cmd_base);
+		return (&cmd_ld);
 	if (opcode == 3)
 		return (&cmd_st);
 	if (opcode == 4)
