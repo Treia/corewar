@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/26 13:39:41 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/26 15:25:02 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef	struct			s_game
 	t_pc				*pcs;
 	t_display			*display;
 	int					nb_pc;
+	int					speed;
 	char				arena[MEM_SIZE];
 	int					dump;
 	int					verb;
@@ -113,6 +114,7 @@ int						clear_n_option(t_argvparse **argv);
 int						check_is_correct_champ(t_argvparse *argv, t_game *game);
 int						clear_graph_option(int *graph, t_argvparse **argv);
 int						clear_verbose_option(int *dump, t_argvparse **argv);
+int						clear_speed_option(int *speed, t_argvparse **argv);
 
 /*
 ** struct game

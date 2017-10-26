@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 16:04:14 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/26 11:49:45 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/26 15:24:26 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void					print_players_list(t_player *player)
 		ft_putstr("live : ");
 		ft_putnbr(player->live);
 		ft_putstr("\nnb_live : ");
+		ft_putnbr(player->nb_live);
+		ft_putstr("\nspeed : ");
 		ft_putnbr(player->nb_live);
 		ft_putendl(".");
 		ft_putendl("End Players");
