@@ -6,7 +6,7 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/05 11:48:22 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/25 19:57:41 by pzarmehr         ###   ########.fr        #
+#    Updated: 2017/10/26 15:26:55 by mdezitte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,7 @@ SRCCOR = cor_main.c \
 		resolve_n.c \
 		resolve_champ.c \
 		resolve_verb.c \
+		resolve_speed.c \
 		debug.c \
 		struct_pcs.c \
 		struct_game.c \
@@ -111,7 +112,8 @@ SRCCOR = cor_main.c \
 		struct_display.c \
 		graph_arena.c \
 		graph_init_arena.c \
-		graph_end_cycle.c
+		graph_end_cycle.c \
+		graph_print_winner.c
 SRCALL =
 
 OBJASM = $(patsubst %.c,%.o,$(addprefix $(PATH_ASM), $(SRCASM)))

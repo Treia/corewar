@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/25 20:42:57 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/26 15:25:02 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define LEN_HEXA 16
 # define BASE_HEXA "0123456789abcdef"
 # define NB_OCTET_DISPLAY 64
+
 /*
 ** Graphique
 */
@@ -71,6 +72,7 @@ typedef	struct			s_game
 	t_pc				*pcs;
 	t_display			*display;
 	int					nb_pc;
+	int					speed;
 	char				arena[MEM_SIZE];
 	int					dump;
 	int					verb;
@@ -112,6 +114,7 @@ int						clear_n_option(t_argvparse **argv);
 int						check_is_correct_champ(t_argvparse *argv, t_game *game);
 int						clear_graph_option(int *graph, t_argvparse **argv);
 int						clear_verbose_option(int *dump, t_argvparse **argv);
+int						clear_speed_option(int *speed, t_argvparse **argv);
 
 /*
 ** struct game
@@ -134,7 +137,7 @@ void					add_in_player_list(t_player **player,
 void					release_pcs(t_pc **pcs);
 t_pc					*new_pc(int live);
 void					push_in_front_pc(t_pc **pcs, t_pc *add);
-void					set_pcs_id(t_pc *pcs);
+void					set_pcs_id(t_pc *pcs, t_player *player);
 
 /*
 ** struct argvparse
@@ -169,7 +172,8 @@ void					check_cycle(t_cycle *cycle, t_game *game);
 int						read_nb(char *arena, int addr, int size);
 void					get_param_code(char *arena, int addr, int *tab);
 int						get_next_addr(int addr, int *tab, int size, int nb);
-int						get_param_value(char *arena, int addr, int *tab, int size);
+int						get_param_value(char *arena, int addr, int *tab,
+																int size);
 
 /*
 **	cmd
@@ -184,7 +188,7 @@ int						cmd_or(t_game *game, t_pc *pc, t_cycle *cycle);
 int						cmd_xor(t_game *game, t_pc *pc, t_cycle *cycle);
 int						cmd_zjmp(t_game *game, t_pc *pc, t_cycle *cycle);
 //ldi
-//sti
+int						cmd_sti(t_game *game, t_pc *pc, t_cycle *cycle);
 int						cmd_fork(t_game *game, t_pc *pc, t_cycle *cycle);
 //lld
 //lldi
@@ -218,5 +222,6 @@ void					print_char(int index, t_game *game, int id);
 void					print_arena_start(t_game *game);
 void					set_max_check(unsigned int check, WINDOW *box);
 void					display_end_cycle(t_game *game, t_cycle *cycle);
+void					graph_print_winner(t_game *game);
 
 #endif

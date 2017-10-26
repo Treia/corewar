@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 13:14:54 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/25 20:14:01 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/26 13:39:13 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*get_cmd2(int opcode)
 	if (opcode == 10)
 		return (&cmd_base);
 	if (opcode == 11)
-		return (&cmd_base);
+		return (&cmd_sti);
 	if (opcode == 12)
 		return (&cmd_fork);
 	if (opcode == 13)

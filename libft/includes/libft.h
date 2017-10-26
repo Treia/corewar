@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 18:09:19 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/25 19:26:03 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/26 14:59:57 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define TOO_MANY_CHAMP 104
 # define VERBAV 105
 # define NO_CHAMP 106
+# define SPEEDAV 107
 # define SYSTEM 200
 # define INVALID_FILE 201
 # define MALLOC_FAILED 202

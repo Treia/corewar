@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 16:04:14 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/25 16:20:58 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/26 15:24:26 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void					print_pcs_list(t_pc *pcs)
 		ft_putnbr(pcs->last_live);
 		ft_putstr("\nwait : ");
 		ft_putnbr(pcs->wait);
+		ft_putstr("\nid player : ");
+		ft_putnbr(pcs->id_player);
 		ft_putendl(".");
 		pcs = pcs->next;
 	}
@@ -68,6 +70,8 @@ void					print_players_list(t_player *player)
 		ft_putstr("live : ");
 		ft_putnbr(player->live);
 		ft_putstr("\nnb_live : ");
+		ft_putnbr(player->nb_live);
+		ft_putstr("\nspeed : ");
 		ft_putnbr(player->nb_live);
 		ft_putendl(".");
 		ft_putendl("End Players");
