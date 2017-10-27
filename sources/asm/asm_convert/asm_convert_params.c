@@ -6,14 +6,14 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 16:54:55 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/25 20:04:33 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/27 07:39:26 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include "libft.h"
 
-int		asm_convert_register(char *param, t_asm_instruct *new, int pos)
+static int		internal_asm_convert_register(char *param, t_asm_instruct *new, int pos)
 {
 	char	reg;
 
@@ -24,15 +24,17 @@ int		asm_convert_register(char *param, t_asm_instruct *new, int pos)
 	return (1);
 }
 
-int		asm_convert_dir(char *param, t_asm_instruct *new, int pos, int size)
+static int		internal_asm_convert_dir(char *param, t_asm_instruct *new, int pos)
 {
+	unsigned int	size;
+
 	asm_convert_int_param_to_bytes(param, new->param + pos, size);
 	new->byte_count += size;
 	new->param_size += size;
 	return (size);
 }
 
-int		asm_convert_ind(char *param, t_asm_instruct *new, int pos)
+static int		internal_asm_convert_ind(char *param, t_asm_instruct *new, int pos)
 {
 	asm_convert_int_param_to_bytes(param, new->param + pos, 2);
 	new->byte_count += 2;
@@ -40,30 +42,18 @@ int		asm_convert_ind(char *param, t_asm_instruct *new, int pos)
 	return (2);
 }
 
-int		asm_convert_label(char *param, t_asm_instruct *new, int pos, int type)
+static int		internal_asm_convert_label(char *param, t_asm_instruct *new, int pos, t_label *label_list)
 {
-	int size;
+	unsigned int	starting_byte;
 
-	size = 4;
-	if (type == (T_DIR | T_LAB))
-	{
-		if (new->op_code == 9 || new->op_code == 10 || new->op_code == 11 ||
-				new->op_code == 12 || new->op_code == 14 || new->op_code = 15)
-			size = 2;
-		new->byte_count += size;
-		new->param_size += size;
-		return (size);
-	}
-	if (type == (T_IND | T_LAB))
-	{
-		new->byte_count += 2;
-		new->param_size += 2;
-		return (2);
-	}
-	return (0);
+	starting_byte = asm_t_asm_instruct_find_label(param, label_list);
+	new->byte_count += 2;
+	new->param_size += 2;
+	return (2);
 }
 
-void	asm_convert_params(t_asm_instruct *new, t_instruct *target, unsigned int size,  unsigned int current_byte)
+void	asm_t_asm_instruc_fill_param(t_asm_instruct *new, t_instruct *target,
+															t_label *label_list)
 {
 	int		i;
 	int		type;
@@ -75,13 +65,14 @@ void	asm_convert_params(t_asm_instruct *new, t_instruct *target, unsigned int si
 	{
 		type = asm_identify_param_type(target->param[i]);
 		if (type == T_REG)
-			pos += asm_convert_register(target->param[i], new, pos);
+			pos += internal_asm_convert_register(target->param[i], new, pos);
 		if (type == T_DIR)
-			pos += asm_convert_dir(target->param[i], new, pos, size);
+			pos += internal_asm_convert_dir(target->param[i], new, pos);
 		if (type == T_IND)
-			pos += asm_convert_ind(target->param[i], new, pos);
+			pos += internal_asm_convert_ind(target->param[i], new, pos);
 		if (type == (T_DIR | T_LAB) || type == (T_IND | T_LAB))
-			pos += asm_convert_label(target->param[i], new, pos, type, size);
+			pos += internal_asm_convert_label(target->param[i], new, pos,
+																	label_list);
 		i++;
 	}
 }

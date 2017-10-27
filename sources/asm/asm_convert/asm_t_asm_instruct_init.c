@@ -6,11 +6,12 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 20:07:57 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/25 20:46:34 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/27 06:56:14 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+#include "libft.h"
 
 void	asm_t_asm_instruct_get_op_code_2(t_asm_instruct *new,
 															t_instruct *target)
@@ -54,27 +55,29 @@ void	asm_t_asm_instruct_get_op_code(t_asm_instruct *new, t_instruct *target)
 	asm_t_asm_instruct_get_op_code_2(new, target);
 }
 
-void	asm_t_asm_instruct_byte_and_param_count(t_asm_instruct *new,
-															t_instruct *target)
-{
-	if (new->op_code == 1 || new->op_code == 9 ||
-									new->op_code == 12 || new->op_code == 15)
-		new->byte_count = 1;
-	else
-		new->byte_count = 2;
-	if (new->op_code == 1 || new->op_code == 2 || new->op_code == 6 ||
-				new->op_code == 7 || new->op_code == 8 || new->op_code == 13)
-		get_param_size(new, target, 4);
-	else if (new->op_code == 9 || new->op_code == 10 || new->op_code == 11 ||
-			new->op_code == 12 || new->op_code == 14 || new->op_code == 15)
-		get_param_size(new, target, 2);
-	else
-		get_param_size(new, target, 0);
-	new->byte_count += new->param_size;
-}
+/*
+** void	asm_t_asm_instruct_byte_and_param_count(t_asm_instruct *new,
+**                                                             t_instruct *target)
+** {
+**     if (new->op_code == 1 || new->op_code == 9 ||
+**                                     new->op_code == 12 || new->op_code == 15)
+**         new->byte_count = 1;
+**     else
+**         new->byte_count = 2;
+**     if (new->op_code == 1 || new->op_code == 2 || new->op_code == 6 ||
+**                 new->op_code == 7 || new->op_code == 8 || new->op_code == 13)
+**         asm_get_param_size(new, target, 4);
+**     else if (new->op_code == 9 || new->op_code == 10 || new->op_code == 11 ||
+**             new->op_code == 12 || new->op_code == 14 || new->op_code == 15)
+**         asm_get_param_size(new, target, 2);
+**     else
+**         asm_get_param_size(new, target, 0);
+**     new->byte_count += new->param_size;
+** }
+*/
 
-void	asm_t_asm_instruct_init_from_t_instruct(t_asm_instruct *new, 
-															t_instruct *target)
+void	asm_t_asm_instruct_init(t_asm_instruct *new,
+								t_instruct *target, unsigned int current_byte)
 {
 	asm_t_asm_instruct_get_op_code(new, target);
 	if (new->op_code == 1 || new->op_code == 9 ||
@@ -82,5 +85,8 @@ void	asm_t_asm_instruct_init_from_t_instruct(t_asm_instruct *new,
 		new->param_code = 0;
 	else
 		new->param_code = asm_get_param_code(target->param);
-	asm_t_asm_instruct_get_byte_and_param_count(new, target);
+	/*
+	** asm_t_asm_instruct_get_byte_and_param_count(new, target);
+	*/
+	new->starting_byte = current_byte;
 }

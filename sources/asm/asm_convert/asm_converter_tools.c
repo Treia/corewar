@@ -6,14 +6,14 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 14:41:09 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/25 20:34:47 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/27 07:48:36 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include "libft.h"
 
-int		asm_identify_param_type(char *param)
+int				asm_identify_param_type(char *param)
 {
 	if (param[0] == 'r')
 		return (T_REG);
@@ -27,7 +27,8 @@ int		asm_identify_param_type(char *param)
 		return (T_IND);
 }
 
-void	asm_convert_int_param_to_bytes(char *param, char *dest, int size)
+void			asm_convert_int_param_to_bytes(char *param, char *dest,
+																	int size)
 {
 	int		to_conv;
 
@@ -48,7 +49,23 @@ void	asm_convert_int_param_to_bytes(char *param, char *dest, int size)
 	}
 }
 
-void	get_param_size(t_asm_instruct *new, t_instruct *target, int size)
+unsigned int	asm_t_asm_instruct_find_label(char *param, t_label *label_list)
+{
+	int		offset;
+
+	offset = 1;
+	if (param[1] == ':')
+		offset = 2;
+	while (label_list)
+	{
+		if (ft_strequ(param + offset, label_list->name))
+			return (label_list->starting_byte);
+		label_list = label_list->next;
+	}
+}
+
+void			asm_get_param_size(t_asm_instruct *new, t_instruct *target,
+																	int size)
 {
 	unsigned int	param_size;
 	unsigned int	type;
@@ -57,16 +74,14 @@ void	get_param_size(t_asm_instruct *new, t_instruct *target, int size)
 	i = 0;
 	while (target->param[i])
 	{
-		type = asm_identify_param_type(param[i])
+		type = asm_identify_param_type(target->param[i]);
 		if (type == T_REG)
 			param_size += 1;
 		if (type == T_DIR)
 			param_size += size;
 		if (type == T_IND)
 			param_size += 2;
-		if (type == (T_DIR | T_LAB))
-			param_size += size;
-		if (type == (T_IND | T_LAB))
+		if (type == (T_DIR | T_LAB) || type == (T_IND | T_LAB))
 			param_size += 2;
 		i++;
 	}
