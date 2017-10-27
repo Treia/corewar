@@ -39,7 +39,7 @@ static int			internal_init_instruct_name(t_parser *parser,
 }
 
 static int			internal_init_instruct_params(t_parser *parser,
-						t_instruct *instruct)
+						t_instruct *instruct, t_label *label_list)
 {
 	while (parser->current_ptr && *parser->current_ptr)
 	{
@@ -48,33 +48,24 @@ static int			internal_init_instruct_params(t_parser *parser,
 				|| *parser->current_ptr == '\0')
 			break ;
 		if (asm_t_instruct_param_init_from_file(parser,
-				instruct) == EXIT_FAILURE)
+				instruct, label_list) == EXIT_FAILURE)
 			return (EXIT_FAILURE);
 	}
-	return (EXIT_SUCCESS);
+	return (asm_t_instruct_param_number_is_valid(parser, instruct));
 }
 
 int					asm_t_instruct_init_from_file(t_parser *parser,
-						t_label *label)
+						t_label *label, t_label *label_list)
 {
 	t_instruct		*new_instruct;
-	char			*start_of_params;
-	char			*end_of_params;
 
 	new_instruct = asm_t_instruct_new();
 	label->instruct_list = asm_t_instruct_add_end(label->instruct_list,
 		new_instruct);
 	if (internal_init_instruct_name(parser, new_instruct) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	start_of_params = parser->current_ptr;
-	if (internal_init_instruct_params(parser, new_instruct) == EXIT_FAILURE)
+	if (internal_init_instruct_params(parser, new_instruct,
+			label_list) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	end_of_params = parser->current_ptr;
-	parser->current_ptr = start_of_params;
-	if (asm_t_instruct_params_are_valid(parser, new_instruct) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	if (parser->current_ptr != end_of_params)
-		print_error(EXIT_FAILURE, "petit couac");
-	parser->current_ptr = end_of_params;
 	return (EXIT_SUCCESS);
 }

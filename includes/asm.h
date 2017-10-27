@@ -168,7 +168,11 @@ void						asm_t_label_del_list(t_label *label);
 t_label						*asm_t_label_add_end(t_label *list, t_label *add);
 void						asm_t_label_display_list(t_label *list);
 
-t_label						*asm_t_label_find(); // todo
+typedef int					(*asm_label_cmp)(t_label *, void *);
+
+t_label						*asm_t_label_find(t_label *list,
+								void *data, asm_label_cmp find);
+int							asm_is_label_name_equal(t_label *label, void *data);
 
 int							asm_t_label_init_from_file(t_parser *parser,
 								t_label **list_to_set);
@@ -183,12 +187,13 @@ t_instruct					*asm_t_instruct_add_end(t_instruct *list,
 								t_instruct *add);
 void						asm_t_instruct_display_list(t_instruct *list,
 								int tab);
+int							asm_t_instruct_param_count(char **params);
 
 int							asm_t_instruct_init_list_from_file(t_parser *parser,
 								t_label *label_list);
 
 int							asm_t_instruct_init_from_file(t_parser *parser,
-								t_label *label_list);
+								t_label *label, t_label *label_list);
 void						asm_t_instruct_param_go_to_next_param(t_parser *p);
 
 /*
@@ -202,9 +207,12 @@ void						asm_t_instruct_param_display(char **params,
 								int tab);
 
 int							asm_t_instruct_param_init_from_file(t_parser *prs,
-								t_instruct *instruct);
+								t_instruct *instruct, t_label *label_list);
 
-int							asm_t_instruct_params_are_valid(t_parser *parser,
+int							asm_t_instruct_param_is_valid(t_parser *parser,
+								t_instruct *instruct, t_label *label_list,
+								const char *new_param);
+int							asm_t_instruct_param_number_is_valid(t_parser *parser,
 								t_instruct *instruct);
 
 /*

@@ -20,11 +20,20 @@ static int		internal_get_nb_line(const char *start, const char *ptr)
 static int		internal_get_nb_char(const char *start, const char *ptr)
 {
 	char	*prev_newline;
+	int		size;
 
+	size = 0;
+	if (*ptr == '\n')
+	{
+		ptr--;
+		size++;
+	}
 	prev_newline = ft_memrchr(start, ptr, '\n');
 	if (prev_newline == NULL)
-		return ((ptr - start) + 1);
-	return (ptr - prev_newline);
+		size += (ptr - start) + 1;
+	else
+		size += ptr - prev_newline;
+	return (size);
 }
 
 static char		*ft_strcat_nb(char *str, int nb)

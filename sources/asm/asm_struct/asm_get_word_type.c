@@ -24,9 +24,9 @@ static void		internal_init_word_type_tab(t_asm_is *ft_asm_is)
 	ft_asm_is[END_OF_FILE] = asm_is_end_of_file;
 	ft_asm_is[REG_PARAM_WORD] = asm_param_is_register;
 	ft_asm_is[DIR_PARAM_WORD] = asm_param_is_direct;
-	ft_asm_is[DIR_LABEL_PARAM_WORD] = asm_param_is_direct_label; // temp
+	ft_asm_is[DIR_LABEL_PARAM_WORD] = asm_param_is_direct_label;
 	ft_asm_is[INDIR_PARAM_WORD] = asm_param_is_indirect;
-	ft_asm_is[INDIR_LABEL_PARAM_WORD] = asm_param_is_indirect_label; //temp
+	ft_asm_is[INDIR_LABEL_PARAM_WORD] = asm_param_is_indirect_label;
 }
 
 t_word_type		asm_get_word_type(const char *word)

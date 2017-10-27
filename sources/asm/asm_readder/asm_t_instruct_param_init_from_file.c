@@ -39,7 +39,7 @@ void			asm_t_instruct_param_go_to_next_param(t_parser *parser)
 }
 
 int				asm_t_instruct_param_init_from_file(t_parser *parser,
-					t_instruct *instruct)
+					t_instruct *instruct, t_label *label_list)
 {
 	char	*one_param;
 	char	*ptr;
@@ -48,12 +48,17 @@ int				asm_t_instruct_param_init_from_file(t_parser *parser,
 	if (ptr == NULL)
 		return (asm_message_error(SYNTAX_ERR, parser->current_ptr, ptr));
 	one_param = internal_dup_and_trim(parser->current_ptr, ptr);
+	if (asm_t_instruct_param_is_valid(parser, instruct,
+			label_list, one_param) == EXIT_FAILURE)
+	{
+		ft_memdel((void **)&one_param);
+		return (EXIT_FAILURE);
+	}
 	if (asm_t_instruct_param_add_end(instruct->param,
 			one_param) == EXIT_FAILURE)
 	{
 		ft_memdel((void **)&one_param);
-		return (asm_param_error(instruct, parser->file_content,
-			parser->current_ptr));
+		return (print_error(EXIT_FAILURE, "caca params :O"));
 	}
 	asm_t_instruct_param_go_to_next_param(parser);
 	return (EXIT_SUCCESS);

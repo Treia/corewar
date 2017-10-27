@@ -14,7 +14,7 @@
 #include "libft.h"
 
 static int			internal_get_instructs_for_label(t_parser *parser,
-						t_label *label)
+						t_label *label, t_label *label_list)
 {
 	t_word_type		word_type;
 
@@ -23,7 +23,8 @@ static int			internal_get_instructs_for_label(t_parser *parser,
 		word_type = asm_get_word_type(parser->current_ptr);
 		if (word_type == INSTRUCTION)
 		{
-			if (asm_t_instruct_init_from_file(parser, label) == EXIT_FAILURE)
+			if (asm_t_instruct_init_from_file(parser, label,
+					label_list) == EXIT_FAILURE)
 				return (EXIT_FAILURE);
 		}
 		else
@@ -58,7 +59,8 @@ int					asm_t_instruct_init_list_from_file(t_parser *parser,
 		{
 			if (ptr == NULL)
 				ptr = label_list;
-			if (internal_get_instructs_for_label(parser, ptr) == EXIT_FAILURE)
+			if (internal_get_instructs_for_label(parser, ptr,
+					label_list) == EXIT_FAILURE)
 				return (EXIT_FAILURE);
 		}
 		else

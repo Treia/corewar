@@ -54,6 +54,7 @@ ASM_SRC_READDER = $(addprefix asm_readder/, $(ASM_READDER))
 ASM_STRUCT = asm_t_header_get_datas.c \
 				asm_t_asm.c \
 				asm_t_label.c \
+				asm_t_label_tools.c \
 				asm_t_instruct.c \
 				asm_t_instruct_param.c \
 				asm_t_word_type_is.c \
@@ -63,7 +64,7 @@ ASM_STRUCT = asm_t_header_get_datas.c \
 				asm_t_param_type_is_2.c \
 				asm_get_param_type.c \
 				asm_get_instruct_type.c \
-				asm_t_instruct_params_are_valid.c \
+				asm_t_instruct_param_is_valid.c \
 				asm_get_expected_params.c
 ASM_SRC_STRUCT = $(addprefix asm_struct/, $(ASM_STRUCT))
 
