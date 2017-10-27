@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm_file.c                                         :+:      :+:    :+:   */
+/*   asm_t_label_tools.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/25 18:10:38 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/25 18:10:39 by mressier         ###   ########.fr       */
+/*   Created: 2017/10/27 11:47:40 by mressier          #+#    #+#             */
+/*   Updated: 2017/10/27 11:47:41 by mressier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include "libft.h"
+#include <stdbool.h>
 
-void			asm_file_skip_label(t_parser *parser)
+int			asm_is_label_name_equal(t_label *label, void *data)
 {
-	parser->current_ptr = ft_str_first_not(parser->current_ptr,
-		asm_is_one_of_label_char);
-	parser->current_ptr++;
-	parser->current_ptr = asm_get_eol_or_next_instruct(parser->current_ptr);
-	parser->current_ptr = ft_str_first_not(parser->current_ptr, ft_isspace);
+	char	*name;
+
+	name = data;
+	if (label && ft_strequ(label->name, name))
+		return (true);
+	return (false);
 }
 
-int				asm_is_param_separator(int c)
+t_label		*asm_t_label_find(t_label *list, void *data, asm_label_cmp find)
 {
-	return (ft_isspace(c) || c == SEPARATOR_CHAR || c == COMMENT_CHAR);
+	t_label		*ptr;
+
+	ptr = list;
+	while (ptr != NULL)
+	{
+		if (find(ptr, data) == true)
+			return (ptr);
+		ptr = ptr->next;
+	}
+	return (ptr);
 }

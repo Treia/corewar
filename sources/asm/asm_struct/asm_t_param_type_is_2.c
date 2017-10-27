@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm_t_word_type_is_2.c                             :+:      :+:    :+:   */
+/*   asm_t_param_type_is_2.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/25 14:22:57 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/25 14:22:58 by mressier         ###   ########.fr       */
+/*   Created: 2017/10/27 09:32:26 by mressier          #+#    #+#             */
+/*   Updated: 2017/10/27 09:32:27 by mressier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,38 @@
 #include "libft.h"
 #include <stdbool.h>
 
-int			asm_is_separator(const char *word)
+int			asm_param_is_direct(const char *word)
 {
-	if (*word == SEPARATOR_CHAR)
+	if (*word == DIRECT_CHAR)
+	{
+		word++;
+		if (asm_is_numeric(word))
+			return (true);
+	}
+	return (false);
+}
+
+int			asm_param_is_direct_label(const char *word)
+{
+	if (*word == DIRECT_CHAR)
+	{
+		word++;
+		if (asm_is_param_label(word))
+			return (true);
+	}
+	return (false);
+}
+
+int			asm_param_is_indirect(const char *word)
+{
+	if (asm_is_numeric(word))
 		return (true);
 	return (false);
 }
 
-int			asm_is_end_of_line(const char *word)
+int			asm_param_is_indirect_label(const char *word)
 {
-	if (word && *word == '\n')
-		return (true);
-	return (false);
-}
-
-int			asm_is_string(const char *word)
-{
-	if (*word == STRING_CHAR)
+	if (asm_is_param_label(word))
 		return (true);
 	return (false);
 }

@@ -49,6 +49,8 @@ int				asm_is_instruction(const char *word)
 		ptr++;
 	if (ft_isspace(*ptr) == false && *ptr != '\0' && *ptr != COMMENT_CHAR)
 		return (false);
+	if (ptr == word)
+		return (false);
 	return (true);
 }
 

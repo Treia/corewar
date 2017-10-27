@@ -20,11 +20,20 @@ static int		internal_get_nb_line(const char *start, const char *ptr)
 static int		internal_get_nb_char(const char *start, const char *ptr)
 {
 	char	*prev_newline;
+	int		size;
 
+	size = 0;
+	if (*ptr == '\n')
+	{
+		ptr--;
+		size++;
+	}
 	prev_newline = ft_memrchr(start, ptr, '\n');
 	if (prev_newline == NULL)
-		return ((ptr - start) + 1);
-	return (ptr - prev_newline);
+		size += (ptr - start) + 1;
+	else
+		size += ptr - prev_newline;
+	return (size);
 }
 
 static char		*ft_strcat_nb(char *str, int nb)
@@ -74,6 +83,8 @@ void			asm_error_get_word_error(const char *error_ptr,
 	}
 	if (size > 0)
 		ft_strncpy(word_error, error_ptr, size);
+	else if (*end_error_ptr == '\n')
+		ft_strncpy(word_error, error_ptr, 1);
 	else
 		ft_strcat(word_error, "(null)");
 }

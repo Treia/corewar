@@ -26,17 +26,28 @@ static char		*internal_dup_and_trim(const char *str, const char *end_str)
 	return (new_str);
 }
 
-static void		internal_move_to_next_instruct(t_parser *parser, char *ptr)
+int				asm_t_instruct_param_go_to_next_param(t_parser *parser)
 {
+	char		*ptr;
+
+	ptr = ft_str_first(parser->current_ptr, asm_is_param_separator);
+	while (*ptr != '\n' && ft_isspace(*ptr))
+		ptr++;
 	parser->current_ptr = ptr;
-	if (*ptr != '\n')
+	if (*ptr == SEPARATOR_CHAR)
 		parser->current_ptr++;
-	if (*ptr == COMMENT_CHAR)
+	else if (*ptr == COMMENT_CHAR)
 		parser->current_ptr = asm_skip_commented_lines(ptr);
+	else if (*ptr != '\n')
+	{
+		return (asm_message_error(SYNTAX_ERR, parser->file_content,
+			ptr));
+	}
+	return (EXIT_SUCCESS);
 }
 
 int				asm_t_instruct_param_init_from_file(t_parser *parser,
-					t_instruct *instruct)
+					t_instruct *instruct, t_label *label_list)
 {
 	char	*one_param;
 	char	*ptr;
@@ -45,13 +56,17 @@ int				asm_t_instruct_param_init_from_file(t_parser *parser,
 	if (ptr == NULL)
 		return (asm_message_error(SYNTAX_ERR, parser->current_ptr, ptr));
 	one_param = internal_dup_and_trim(parser->current_ptr, ptr);
+	if (asm_t_instruct_param_is_valid(parser, instruct,
+			label_list, one_param) == EXIT_FAILURE)
+	{
+		ft_memdel((void **)&one_param);
+		return (EXIT_FAILURE);
+	}
 	if (asm_t_instruct_param_add_end(instruct->param,
 			one_param) == EXIT_FAILURE)
 	{
 		ft_memdel((void **)&one_param);
-		return (asm_param_error(instruct, parser->file_content,
-			parser->current_ptr));
+		return (print_error(EXIT_FAILURE, "caca params :O"));
 	}
-	internal_move_to_next_instruct(parser, ptr);
-	return (EXIT_SUCCESS);
+	return (asm_t_instruct_param_go_to_next_param(parser));
 }

@@ -58,6 +58,7 @@ int			asm_t_instruct_param_add_end(char **param, char *new_param)
 void		asm_t_instruct_param_display(char **params, int tab)
 {
 	int		i;
+	int		type;
 
 	i = 0;
 	while (i < PARAM_MAX)
@@ -67,11 +68,24 @@ void		asm_t_instruct_param_display(char **params, int tab)
 			ft_putnchar(tab, '\t');
 			ft_putchar('[');
 			ft_putnbr(i);
-			ft_putstr("] : ");
+			ft_putstr("] : (");
+			type = asm_get_param_type(params[i]);
+			ft_putstr(asm_t_param_type_to_string(type));
+			ft_putstr(") ");
 			ft_putendl(params[i]);
 		}
 		else
 			break ;
 		i++;
 	}
+}
+
+int			asm_t_instruct_param_count(char **params)
+{
+	int			i;
+
+	i = 0;
+	while (i < PARAM_MAX && params[i])
+		i++;
+	return (i);
 }
