@@ -44,7 +44,9 @@ typedef enum				e_word_type
 	END_OF_FILE,
 	REG_PARAM_WORD,
 	DIR_PARAM_WORD,
+	DIR_LABEL_PARAM_WORD,
 	INDIR_PARAM_WORD,
+	INDIR_LABEL_PARAM_WORD,
 	NB_WORD_TYPE
 }							t_word_type;
 
@@ -57,7 +59,9 @@ typedef enum				e_param_type
 	INVALID_PARAM = -1,
 	REG_PARAM = 0,
 	DIR_PARAM,
+	DIR_LABEL_PARAM,
 	INDIR_PARAM,
+	INDIR_LABEL_PARAM,
 	NB_PARAM_TYPE
 }							t_param_type;
 
@@ -129,9 +133,15 @@ int							asm_is_string(const char *word);
 */
 int							asm_is_numeric(const char *word);
 int							asm_is_param_label(const char *word);
+int							asm_param_is_register(const char *word);
+
+/*
+** asm_t_param_type_is_2.c
+*/
 int							asm_param_is_direct(const char *word);
 int							asm_param_is_indirect(const char *word);
-int							asm_param_is_register(const char *word);
+int							asm_param_is_direct_label(const char *word);
+int							asm_param_is_indirect_label(const char *word);
 
 /*
 ** asm_get_param_type.c

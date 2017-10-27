@@ -38,24 +38,6 @@ int			asm_is_param_label(const char *word)
 	return (false);
 }
 
-int			asm_param_is_direct(const char *word)
-{
-	if (*word == DIRECT_CHAR)
-	{
-		word++;
-		if (asm_is_param_label(word) || asm_is_numeric(word))
-			return (true);
-	}
-	return (false);
-}
-
-int			asm_param_is_indirect(const char *word)
-{
-	if (asm_is_param_label(word) || asm_is_numeric(word))
-		return (true);
-	return (false);
-}
-
 int			asm_param_is_register(const char *word)
 {
 	int		i;

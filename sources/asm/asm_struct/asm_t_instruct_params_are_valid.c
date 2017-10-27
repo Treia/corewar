@@ -21,7 +21,9 @@ static int		internal_get_param_code_from_type(t_param_type type)
 		return (0);
 	params_code[REG_PARAM] = T_REG;
 	params_code[DIR_PARAM] = T_DIR;
+	params_code[DIR_LABEL_PARAM] = T_DIR;
 	params_code[INDIR_PARAM] = T_IND;
+	params_code[INDIR_LABEL_PARAM] = T_IND;
 	return (params_code[type]);
 }
 

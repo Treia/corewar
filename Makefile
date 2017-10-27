@@ -60,6 +60,7 @@ ASM_STRUCT = asm_t_header_get_datas.c \
 				asm_t_word_type_is_2.c \
 				asm_get_word_type.c \
 				asm_t_param_type_is.c \
+				asm_t_param_type_is_2.c \
 				asm_get_param_type.c \
 				asm_get_instruct_type.c \
 				asm_t_instruct_params_are_valid.c \

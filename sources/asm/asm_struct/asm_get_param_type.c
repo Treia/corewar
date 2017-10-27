@@ -16,7 +16,9 @@ static void				internal_init_param_type_tab(t_asm_is *ft_asm_is)
 {
 	ft_asm_is[REG_PARAM] = asm_param_is_register;
 	ft_asm_is[DIR_PARAM] = asm_param_is_direct;
+	ft_asm_is[DIR_LABEL_PARAM] = asm_param_is_direct_label; // temp
 	ft_asm_is[INDIR_PARAM] = asm_param_is_indirect;
+	ft_asm_is[INDIR_LABEL_PARAM] = asm_param_is_indirect_label; // temp
 }
 
 t_param_type			asm_get_param_type(const char *word)
@@ -43,6 +45,8 @@ char					*asm_t_param_type_to_string(t_param_type type)
 		return ("unknow parameter type");
 	params[REG_PARAM] = "register";
 	params[DIR_PARAM] = "direct";
+	params[DIR_LABEL_PARAM] = "direct label";
 	params[INDIR_PARAM] = "indirect";
+	params[INDIR_LABEL_PARAM] = "indirect label";
 	return (params[type]);
 }
