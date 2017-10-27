@@ -26,8 +26,11 @@ static char		*internal_dup_and_trim(const char *str, const char *end_str)
 	return (new_str);
 }
 
-static void		internal_move_to_next_instruct(t_parser *parser, char *ptr)
+void			asm_t_instruct_param_go_to_next_param(t_parser *parser)
 {
+	char		*ptr;
+
+	ptr = ft_str_first(parser->current_ptr, asm_is_param_separator);
 	parser->current_ptr = ptr;
 	if (*ptr != '\n')
 		parser->current_ptr++;
@@ -52,6 +55,6 @@ int				asm_t_instruct_param_init_from_file(t_parser *parser,
 		return (asm_param_error(instruct, parser->file_content,
 			parser->current_ptr));
 	}
-	internal_move_to_next_instruct(parser, ptr);
+	asm_t_instruct_param_go_to_next_param(parser);
 	return (EXIT_SUCCESS);
 }

@@ -74,6 +74,8 @@ void			asm_error_get_word_error(const char *error_ptr,
 	}
 	if (size > 0)
 		ft_strncpy(word_error, error_ptr, size);
+	else if (*end_error_ptr == '\n')
+		ft_strncpy(word_error, error_ptr, 1);
 	else
 		ft_strcat(word_error, "(null)");
 }

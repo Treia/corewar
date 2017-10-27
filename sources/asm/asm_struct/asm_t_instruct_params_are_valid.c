@@ -43,7 +43,8 @@ static int		internal_one_param_is_valid(const char *param, int exp_param)
 	return (EXIT_FAILURE);
 }
 
-int				asm_t_instruct_params_are_valid(t_instruct *instruct)
+int				asm_t_instruct_params_are_valid(t_parser *parser,
+					t_instruct *instruct)
 {
 	t_instruct_type		type;
 	int					expect_params[PARAM_MAX];
@@ -58,8 +59,13 @@ int				asm_t_instruct_params_are_valid(t_instruct *instruct)
 	{
 		if (internal_one_param_is_valid(instruct->param[i],
 				expect_params[i]) == EXIT_FAILURE)
-			return (EXIT_FAILURE);
+		{
+			return (asm_param_error(instruct, parser->file_content,
+				parser->current_ptr));
+		}
 		i++;
+		if (*parser->current_ptr != '\n' && *parser->current_ptr != '\0')
+			asm_t_instruct_param_go_to_next_param(parser);
 	}
 	return (EXIT_SUCCESS);
 }

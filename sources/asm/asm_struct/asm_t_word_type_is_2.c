@@ -23,10 +23,7 @@ int			asm_is_separator(const char *word)
 
 int			asm_is_end_of_line(const char *word)
 {
-	char	*ptr;
-
-	ptr = ft_str_first_not(word, ft_isspace);
-	if (ptr && *ptr == '\n')
+	if (word && *word == '\n')
 		return (true);
 	return (false);
 }

@@ -36,6 +36,8 @@ static void		internal_add_problematic_word(const char *word_error,
 		return ;
 	ft_strcat(error, " ");
 	ft_strcat(error, type_word);
+	if (*word_error == '\n')
+		return ;
 	ft_strcat(error, " \"");
 	ft_strcat(error, word_error);
 	ft_strcat(error, "\"");

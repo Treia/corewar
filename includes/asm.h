@@ -189,6 +189,7 @@ int							asm_t_instruct_init_list_from_file(t_parser *parser,
 
 int							asm_t_instruct_init_from_file(t_parser *parser,
 								t_label *label_list);
+void						asm_t_instruct_param_go_to_next_param(t_parser *p);
 
 /*
 ** instruct param
@@ -203,7 +204,8 @@ void						asm_t_instruct_param_display(char **params,
 int							asm_t_instruct_param_init_from_file(t_parser *prs,
 								t_instruct *instruct);
 
-int							asm_t_instruct_params_are_valid(t_instruct *inst);
+int							asm_t_instruct_params_are_valid(t_parser *parser,
+								t_instruct *instruct);
 
 /*
 ** TOOLS
