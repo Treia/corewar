@@ -6,28 +6,29 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 14:41:09 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/27 07:48:36 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/27 15:27:27 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include "libft.h"
 
-int				asm_identify_param_type(char *param)
+unsigned int	asm_get_current_param_size(char *param, t_asm_instruct *new)
 {
-	if (param[0] == 'r')
-		return (T_REG);
-	if (param[0] == '%' && param[1] == ':')
-		return (T_DIR | T_LAB);
+	unsigned int	size;
+
 	if (param[0] == '%')
-		return (T_DIR);
-	if (param[0] == ':')
-		return (T_IND | T_LAB);
+	{
+		if (new->op_code == 1 || new->op_code == 2 || new->op_code == 6 ||
+				new->op_code == 7 || new->op_code == 8 || new->op_code == 13)
+			size = 4;
+	}
 	else
-		return (T_IND);
+		size = 2;
+	return (size);
 }
 
-void			asm_convert_int_param_to_bytes(char *param, char *dest,
+void			asm_convert_char_param_to_bytes(char *param, char *dest,
 																	int size)
 {
 	int		to_conv;
@@ -49,6 +50,23 @@ void			asm_convert_int_param_to_bytes(char *param, char *dest,
 	}
 }
 
+void			asm_convert_label_address_to_bytes(int param, char *dest,
+																	int size)
+{
+	if (size == 4)
+	{
+		dest[0] = (param >> 24) & 0xFF;
+		dest[1] = (param >> 16) & 0xFF;
+		dest[2] = (param >> 8) & 0xFF;
+		dest[3] = param & 0xFF;
+	}
+	else
+	{
+		dest[0] = (param >> 8) & 0xFF;
+		dest[1] = param & 0xFF;
+	}
+}
+
 unsigned int	asm_t_asm_instruct_find_label(char *param, t_label *label_list)
 {
 	int		offset;
@@ -62,6 +80,7 @@ unsigned int	asm_t_asm_instruct_find_label(char *param, t_label *label_list)
 			return (label_list->starting_byte);
 		label_list = label_list->next;
 	}
+	return (-1);
 }
 
 void			asm_get_param_size(t_asm_instruct *new, t_instruct *target,

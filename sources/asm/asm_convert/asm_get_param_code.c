@@ -6,11 +6,26 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 11:45:29 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/23 17:22:13 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/27 14:45:17 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+
+int				asm_identify_param_type(char *param)
+{
+	if (param[0] == 'r')
+		return (T_REG);
+	if (param[0] == '%' && param[1] == ':')
+		return (T_DIR | T_LAB);
+	if (param[0] == '%')
+		return (T_DIR);
+	if (param[0] == ':')
+		return (T_IND | T_LAB);
+	else
+		return (T_IND);
+}
 
 int			asm_param_type(char *param)
 {

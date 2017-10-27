@@ -6,7 +6,7 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 16:54:55 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/27 07:39:26 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/27 15:33:24 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ static int		internal_asm_convert_ind(char *param, t_asm_instruct *new, int pos)
 
 static int		internal_asm_convert_label(char *param, t_asm_instruct *new, int pos, t_label *label_list)
 {
-	unsigned int	starting_byte;
+	unsigned int	label_starting_byte;
+	unsigned int	size;
 
-	starting_byte = asm_t_asm_instruct_find_label(param, label_list);
-	new->byte_count += 2;
-	new->param_size += 2;
+	label_starting_byte = asm_t_asm_instruct_find_label(param, label_list);
+	size = asm_get_current_param_size(param, new);
+	asm_convert_label_to_bytes(label_starting_byte - new->starting_byte,
+														new->param + pos, size);
 	return (2);
 }
 

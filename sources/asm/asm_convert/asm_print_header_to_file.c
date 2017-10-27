@@ -6,7 +6,7 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 18:49:05 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/25 19:11:24 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/27 15:36:26 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int		internal_swap_endian(int data)
 									((data >> 8) & 0x0000FF) | (data >> 24));
 }
 
-void			asm_print_header_to_file(t_asm *asm_file_content, int fd)
+void			asm_write_header_to_file(t_asm *asm_file_content, int fd)
 {
 	t_header *header;
 
