@@ -24,5 +24,5 @@ void			asm_file_skip_label(t_parser *parser)
 
 int				asm_is_param_separator(int c)
 {
-	return (c == '\n' || c == SEPARATOR_CHAR || c == COMMENT_CHAR);
+	return (ft_isspace(c) || c == SEPARATOR_CHAR || c == COMMENT_CHAR);
 }

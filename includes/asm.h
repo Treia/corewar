@@ -194,7 +194,7 @@ int							asm_t_instruct_init_list_from_file(t_parser *parser,
 
 int							asm_t_instruct_init_from_file(t_parser *parser,
 								t_label *label, t_label *label_list);
-void						asm_t_instruct_param_go_to_next_param(t_parser *p);
+int							asm_t_instruct_param_go_to_next_param(t_parser *p);
 
 /*
 ** instruct param

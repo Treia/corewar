@@ -16,23 +16,33 @@
 
 int			asm_is_numeric(const char *word)
 {
-	if (*word == '-')
-		word++;
-	while (*word && ft_isdigit(*word))
-		word++;
-	if (asm_is_param_separator(*word) || ft_isspace(*word) || *word == '\0')
+	char	*ptr;
+
+	ptr = (char *)word;
+	if (*ptr == '-')
+		ptr++;
+	while (*ptr && ft_isdigit(*ptr))
+		ptr++;
+	if (ptr == word)
+		return (false);
+	if (asm_is_param_separator(*ptr) || ft_isspace(*ptr) || *ptr == '\0')
 		return (true);
 	return (false);
 }
 
 int			asm_is_param_label(const char *word)
 {
+	char	*ptr;
+
 	if (*word == LABEL_CHAR)
 	{
 		word++;
-		while (*word && asm_is_one_of_label_char(*word))
-			word++;
-		if (asm_is_param_separator(*word) || ft_isspace(*word) || *word == '\0')
+		ptr = (char *)word;
+		while (*ptr && asm_is_one_of_label_char(*ptr))
+			ptr++;
+		if (ptr == word)
+			return (false);
+		if (asm_is_param_separator(*ptr) || ft_isspace(*ptr) || *ptr == '\0')
 			return (true);
 	}
 	return (false);

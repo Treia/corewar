@@ -26,16 +26,24 @@ static char		*internal_dup_and_trim(const char *str, const char *end_str)
 	return (new_str);
 }
 
-void			asm_t_instruct_param_go_to_next_param(t_parser *parser)
+int				asm_t_instruct_param_go_to_next_param(t_parser *parser)
 {
 	char		*ptr;
 
 	ptr = ft_str_first(parser->current_ptr, asm_is_param_separator);
+	while (*ptr != '\n' && ft_isspace(*ptr))
+		ptr++;
 	parser->current_ptr = ptr;
-	if (*ptr != '\n')
+	if (*ptr == SEPARATOR_CHAR)
 		parser->current_ptr++;
-	if (*ptr == COMMENT_CHAR)
+	else if (*ptr == COMMENT_CHAR)
 		parser->current_ptr = asm_skip_commented_lines(ptr);
+	else if (*ptr != '\n')
+	{
+		return (asm_message_error(SYNTAX_ERR, parser->file_content,
+			ptr));
+	}
+	return (EXIT_SUCCESS);
 }
 
 int				asm_t_instruct_param_init_from_file(t_parser *parser,
@@ -60,6 +68,5 @@ int				asm_t_instruct_param_init_from_file(t_parser *parser,
 		ft_memdel((void **)&one_param);
 		return (print_error(EXIT_FAILURE, "caca params :O"));
 	}
-	asm_t_instruct_param_go_to_next_param(parser);
-	return (EXIT_SUCCESS);
+	return (asm_t_instruct_param_go_to_next_param(parser));
 }
