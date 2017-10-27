@@ -6,7 +6,7 @@
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 14:44:13 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/27 06:07:03 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/27 17:45:12 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "asm_parser.h"
 
 # include <stdlib.h>
+# include <unistd.h>
 
 # define LABEL_LENGTH_MAX		128
 # define INSTRUCT_LENGTH_MAX 	5
@@ -213,6 +214,33 @@ int							asm_t_instruct_param_is_valid(t_parser *parser,
 								const char *new_param);
 int							asm_t_instruct_param_number_is_valid(t_parser *parser,
 								t_instruct *instruct);
+
+/*
+** asm_instruct
+*/
+t_asm_instruct				*asm_t_asm_instruct_new(void);
+void						asm_t_asm_instruct_del(t_asm_instruct **instruct);
+void						asm_t_asm_instruct_del_list(t_asm_instruct *list);
+void						asm_t_asm_instruct_add_to_end(t_label *label,
+								t_asm_instruct *asm_instruct);
+void						asm_t_asm_instruct_init_list(t_asm
+								*asm_file_content);
+void						asm_t_asm_instruct_init(t_asm_instruct
+								*asm_instruct, t_instruct *target,
+								unsigned int current_byte);
+
+/*
+** WRITE
+*/
+
+int							asm_write_asm_to_file(t_asm *asm_file_content,
+								char *original_filename);
+void						asm_write_header_to_file(t_asm *asm_file_content,
+								int fd);
+void						asm_write_t_asm_instruct_list_to_file(
+								t_label *label, int fd);
+void						asm_write_t_asm_instruct_to_file(
+								t_asm_instruct *instruct, int fd);
 
 /*
 ** TOOLS
