@@ -6,7 +6,7 @@
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 14:44:13 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/27 17:45:12 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/29 04:49:45 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct				s_label
 {
 	char					name[LABEL_LENGTH_MAX];
 	int						starting_byte;
-	t_instruct				*instruc_list;
+	t_instruct				*instruct_list;
 	t_asm_instruct			*asm_instruct_list;
 	struct s_label			*next;
 }							t_label;
@@ -221,13 +221,41 @@ int							asm_t_instruct_param_number_is_valid(t_parser *parser,
 t_asm_instruct				*asm_t_asm_instruct_new(void);
 void						asm_t_asm_instruct_del(t_asm_instruct **instruct);
 void						asm_t_asm_instruct_del_list(t_asm_instruct *list);
-void						asm_t_asm_instruct_add_to_end(t_label *label,
-								t_asm_instruct *asm_instruct);
+void						asm_t_asm_instruct_add_to_end(t_asm_instruct **list,
+								t_asm_instruct *add);
 void						asm_t_asm_instruct_init_list(t_asm
 								*asm_file_content);
 void						asm_t_asm_instruct_init(t_asm_instruct
 								*asm_instruct, t_instruct *target,
 								unsigned int current_byte);
+void						asm_t_asm_instruct_byte_and_param_count(
+								t_asm_instruct *asm_instruct,
+								t_instruct *target);
+void						asm_t_asm_instruct_get_param_size(
+								t_asm_instruct *asm_instruct,
+								t_instruct *target, int size);
+void						asm_t_asm_instruct_display_list(
+								t_asm_instruct *list, int tab);
+
+/*
+** asm_instruct_param
+*/
+char						asm_t_asm_instruct_get_param_code(char **params);
+void						asm_t_asm_instruct_init_params(
+								t_asm *asm_file_content);
+void						asm_t_asm_instruct_fill_param(t_asm_instruct
+								*asm_instruct, t_instruct *target,
+								t_label *label_list);
+int							asm_t_asm_instruct_identify_param_type(char *param);
+unsigned int				asm_t_asm_instruct_find_label(char *param,
+								t_label *label_list);
+unsigned int				asm_t_asm_instruct_get_current_param_size(
+								char *param, t_asm_instruct *asm_instruct);
+void						asm_t_asm_instruct_convert_label_address_to_bytes(
+								int param, char *dest, int size);
+void						asm_t_asm_instruct_convert_char_param_to_bytes(
+								char *param, char *dest, int size);
+
 
 /*
 ** WRITE

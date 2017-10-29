@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm_get_param_code.c                               :+:      :+:    :+:   */
+/*   asm_t_asm_instruct_encoding_byte.c                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 11:45:29 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/27 14:45:17 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/28 20:51:49 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
 
-int				asm_identify_param_type(char *param)
+int				asm_t_asm_instruct_identify_param_type(char *param)
 {
 	if (param[0] == 'r')
 		return (T_REG);
@@ -27,7 +27,7 @@ int				asm_identify_param_type(char *param)
 		return (T_IND);
 }
 
-int			asm_param_type(char *param)
+static int		internal_asm_param_type(char *param)
 {
 	if (param[0] == 'r')
 		return (REG_CODE);
@@ -37,15 +37,15 @@ int			asm_param_type(char *param)
 		return (IND_CODE);
 }
 
-char		asm_get_param_code(char **params)
+char			asm_t_asm_instruct_get_param_code(char **params)
 {
 	char	param_code;
 
-	param_code = asm_param_type(params[0]) << 6;
+	param_code = internal_asm_param_type(params[0]) << 6;
 	if (params[1])
-		param_code += asm_param_type(params[1]) << 4;
+		param_code += internal_asm_param_type(params[1]) << 4;
 	if (params[2])
-		param_code += asm_param_type(params[2]) << 2;
+		param_code += internal_asm_param_type(params[2]) << 2;
 
 	return (param_code);
 }

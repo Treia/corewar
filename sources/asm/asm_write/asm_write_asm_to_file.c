@@ -6,7 +6,7 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 18:03:02 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/27 17:24:29 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/29 03:14:29 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ static char	*internal_get_recipient_filename(char *original_filename)
 	char	*result;
 	int		i;
 
+	i = 0;
 	while (original_filename[i])
 		i++;
 	while (original_filename[i] != '.')
 		i--;
-	result = (char *)ft_memalloc(sizeof(char *) * i + 4);
+	result = (char *)ft_memalloc(sizeof(char *) * i + 5);
 	ft_strncpy(result, original_filename, i);
 	ft_strcat(result, ".cor");
 	return (result);

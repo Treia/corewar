@@ -6,14 +6,14 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/05 11:48:22 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/26 16:17:30 by pzarmehr         ###   ########.fr        #
+#    Updated: 2017/10/29 04:50:33 by mplanell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAMEASM = asm
 NAMECOR = corewar
 CC = gcc
-FLAGS = -Wall -Werror -Wextra
+#FLAGS = -Wall -Werror -Wextra
 
 PATH_LIBFT = ./libft/includes
 LFT = -L ./libft/ -l ft -lncurses
@@ -65,14 +65,27 @@ ASM_STRUCT = asm_t_header_get_datas.c \
 				asm_get_param_type.c \
 				asm_get_instruct_type.c \
 				asm_t_instruct_param_is_valid.c \
-				asm_get_expected_params.c
+				asm_get_expected_params.c \
+				asm_t_asm_instruct.c \
+				asm_t_asm_instruct_encoding_byte.c \
+				asm_t_asm_instruct_byte_count.c \
+				asm_t_asm_instruct_fill_param.c \
+				asm_t_asm_instruct_fill_param_tools.c \
+				asm_t_asm_instruct_init.c \
+				asm_t_asm_instruct_display.c
 ASM_SRC_STRUCT = $(addprefix asm_struct/, $(ASM_STRUCT))
+
+ASM_WRITE = asm_write_asm_to_file.c \
+			asm_write_header_to_file.c \
+			asm_write_asm_instruct_to_file.c
+ASM_SRC_WRITE = $(addprefix asm_write/, $(ASM_WRITE))
 
 ASM_TOOLS = asm_error_tools.c \
 				asm_is_one_of_label_char.c
 ASM_SRC_TOOLS = $(addprefix tools/, $(ASM_TOOLS))
 
-SRCASM = $(ASM_SRC_CORE) $(ASM_SRC_READDER) $(ASM_SRC_STRUCT) $(ASM_SRC_TOOLS)
+SRCASM = $(ASM_SRC_CORE) $(ASM_SRC_READDER) $(ASM_SRC_STRUCT) $(ASM_SRC_TOOLS) \
+		 $(ASM_SRC_WRITE)
 
 LIB = libft/libft.a
 
@@ -139,29 +152,29 @@ all: $(LIB) $(NAMEASM) $(NAMECOR) $(OBJALL)
 
 $(LIB):
 	@make -C libft
-	@echo "$(CYAN)\n\nCompiling $(NAMEASM) and $(NAMECOR) :$(NONE)\n"
+	@echo -e "$(CYAN)\n\nCompiling $(NAMEASM) and $(NAMECOR) :$(NONE)\n"
 
 $(NAMEASM): $(LIB) $(OBJASM) $(OBJALL)
 	@$(CC) $(FLAGS) -o $(NAMEASM) $(OBJASM) $(OBJALL) $(LFT)
-	@echo "[$(GREEN) CREATE $(NONE)]         $(YELLOW)$(NAMEASM)$(NONE)\n"
+	@echo -e "[$(GREEN) CREATE $(NONE)]         $(YELLOW)$(NAMEASM)$(NONE)\n"
 
 $(NAMECOR): $(LIB) $(OBJCOR) $(OBJALL)
 	@$(CC) $(FLAGS) -o $(NAMECOR) $(OBJCOR) $(OBJALL) $(LFT)
-	@echo "[$(GREEN) CREATE $(NONE)]         $(YELLOW)$(NAMECOR)$(NONE)\n"
+	@echo -e "[$(GREEN) CREATE $(NONE)]         $(YELLOW)$(NAMECOR)$(NONE)\n"
 
 %.o: %.c
 	@$(CC) $(FLAGS) -c -o $@ $^ -I $(PATH_INC) -I $(PATH_LIBFT)
-	@echo "[$(GREEN) COMPIL $(NONE)]         $(YELLOW)$<$(NONE)"
+	@echo -e "[$(GREEN) COMPIL $(NONE)]         $(YELLOW)$<$(NONE)"
 
 clean:
 	@make -C libft clean
 	@rm -f $(OBJASM) $(OBJCOR) $(OBJALL)
-	@echo "[$(GREEN) DELETED $(NONE)] $(YELLOW)Objects Project$(NONE)"
+	@echo -e "[$(GREEN) DELETED $(NONE)] $(YELLOW)Objects Project$(NONE)"
 
 fclean: clean
 	@make -C libft fclean
 	@rm -f $(NAMEASM) $(NAMECOR)
-	@echo "[$(GREEN) DELETED $(NONE)] $(YELLOW)Binary Project$(NONE)"
+	@echo -e "[$(GREEN) DELETED $(NONE)] $(YELLOW)Binary Project$(NONE)"
 
 re: fclean all
 

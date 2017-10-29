@@ -6,7 +6,7 @@
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 14:15:06 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/24 14:15:07 by mressier         ###   ########.fr       */
+/*   Updated: 2017/10/29 04:26:54 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,11 @@ void				asm_t_label_display_list(t_label *list)
 		ft_putnbr(i);
 		ft_putstr(") : ");
 		ft_putendl(ptr->name);
+		ft_putstr(" (");
+		ft_putnbr(ptr->starting_byte);
+		ft_putstr(")");
 		asm_t_instruct_display_list(ptr->instruct_list, 1);
+		asm_t_asm_instruct_display_list(ptr->asm_instruct_list, 1);
 		ptr = ptr->next;
 		i++;
 	}

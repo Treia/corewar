@@ -6,7 +6,7 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 20:07:57 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/27 16:44:29 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/29 04:22:25 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,26 +56,27 @@ static void		internal_asm_t_asm_instruct_get_op_code(t_asm_instruct
 	internal_asm_t_asm_instruct_get_op_code_2(asm_instruct, target);
 }
 
-/*
-** void	asm_t_asm_instruct_byte_and_param_count(t_asm_instruct *asm_instruct,
-**                                                             t_instruct *target)
-** {
-**     if (asm_instruct->op_code == 1 || asm_instruct->op_code == 9 ||
-**                                     asm_instruct->op_code == 12 || asm_instruct->op_code == 15)
-**         asm_instruct->byte_count = 1;
-**     else
-**         asm_instruct->byte_count = 2;
-**     if (asm_instruct->op_code == 1 || asm_instruct->op_code == 2 || asm_instruct->op_code == 6 ||
-**                 asm_instruct->op_code == 7 || asm_instruct->op_code == 8 || asm_instruct->op_code == 13)
-**         asm_get_param_size(asm_instruct, target, 4);
-**     else if (asm_instruct->op_code == 9 || asm_instruct->op_code == 10 || asm_instruct->op_code == 11 ||
-**             asm_instruct->op_code == 12 || asm_instruct->op_code == 14 || asm_instruct->op_code == 15)
-**         asm_get_param_size(asm_instruct, target, 2);
-**     else
-**         asm_get_param_size(asm_instruct, target, 0);
-**     asm_instruct->byte_count += asm_instruct->param_size;
-** }
-*/
+void	asm_t_asm_instruct_init_params(t_asm *asm_file_content)
+{
+	t_label				*label;
+	t_instruct			*instruct;
+	t_asm_instruct		*asm_instruct;
+
+	label = asm_file_content->label_list;
+	while (label)
+	{
+		instruct = label->instruct_list;
+		asm_instruct = label->asm_instruct_list;
+		while (instruct)
+		{
+			asm_t_asm_instruct_fill_param(asm_instruct, instruct,
+				asm_file_content->label_list);
+			instruct = instruct->next;
+			asm_instruct = asm_instruct->next;
+		}
+		label = label->next;
+	}
+}
 
 void	asm_t_asm_instruct_init(t_asm_instruct *asm_instruct,
 								t_instruct *target, unsigned int current_byte)
@@ -85,9 +86,34 @@ void	asm_t_asm_instruct_init(t_asm_instruct *asm_instruct,
 			asm_instruct->op_code == 12 || asm_instruct->op_code == 15)
 		asm_instruct->param_code = 0;
 	else
-		asm_instruct->param_code = asm_get_param_code(target->param);
-	/*
-	** asm_t_asm_instruct_get_byte_and_param_count(asm_instruct, target);
-	*/
+		asm_instruct->param_code = asm_t_asm_instruct_get_param_code(target->param);
 	asm_instruct->starting_byte = current_byte;
+}
+
+void				asm_t_asm_instruct_init_list(t_asm *asm_file_content)
+{
+	t_label				*label;
+	t_instruct			*instruct;
+	t_asm_instruct		*asm_instruct;
+	unsigned int		current_byte;
+
+	label = asm_file_content->label_list;
+	current_byte = 0;
+	while (label)
+	{
+		label->starting_byte = current_byte;
+		instruct = label->instruct_list;
+		while (instruct)
+		{
+			asm_instruct = asm_t_asm_instruct_new();
+			asm_t_asm_instruct_init(asm_instruct, instruct, current_byte);
+			asm_t_asm_instruct_byte_and_param_count(asm_instruct, instruct);
+			asm_t_asm_instruct_add_to_end(&label->asm_instruct_list, asm_instruct);
+			current_byte += asm_instruct->byte_count;
+			instruct = instruct->next;
+		}
+		label = label->next;
+	}
+	asm_file_content->header.prog_size = current_byte;
+	asm_t_asm_instruct_init_params(asm_file_content);
 }

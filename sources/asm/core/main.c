@@ -6,7 +6,7 @@
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:51:34 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/20 15:51:59 by mressier         ###   ########.fr       */
+/*   Updated: 2017/10/29 03:57:54 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ int				main(int ac, char **av)
 		asm_t_asm_del_content(asm_file_content);
 		return (EXIT_FAILURE);
 	}
-	//if (internal_print_asm_to_file(filename, asm_file_content) == EXIT_FAILURE)
-	//	return (EXIT_FAILURE);
+	asm_t_asm_instruct_init_list(&asm_file_content);
+	asm_t_label_display_list(asm_file_content.label_list);
+	if (asm_write_asm_to_file(&asm_file_content, filename) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	asm_t_label_display_list(asm_file_content.label_list);
 	asm_t_asm_del_content(asm_file_content);
 	ft_memdel((void **)&file_content);

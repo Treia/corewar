@@ -6,7 +6,7 @@
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 14:32:37 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/24 14:32:38 by mressier         ###   ########.fr       */
+/*   Updated: 2017/10/29 03:58:44 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void		asm_t_instruct_param_display(char **params, int tab)
 	int		type;
 
 	i = 0;
-	while (i < PARAM_MAX)
+	while (params[i])
 	{
 		if (params[i])
 		{
