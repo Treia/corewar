@@ -6,7 +6,7 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 16:54:55 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/29 04:01:22 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/29 17:53:02 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void			asm_t_asm_instruct_fill_param(t_asm_instruct *asm_instruct,
 
 	i = 0;
 	pos = 0;
-	while (target->param[i])
+	while (target->param[i] && i < PARAM_MAX)
 	{
 		type = asm_t_asm_instruct_identify_param_type(target->param[i]);
 		if (type == T_REG)
