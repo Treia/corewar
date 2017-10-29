@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/26 16:17:01 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/29 14:56:21 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ typedef	struct			s_player
 	char				name[PROG_NAME_LENGTH + 1];
 	char				comment[COMMENT_LENGTH + 1];
 	int					live;
-	int					nb_live;
 	unsigned int		size_prog;
 	struct s_player		*next;
 }						t_player;
@@ -73,6 +72,7 @@ typedef	struct			s_game
 	t_pc				*pcs;
 	t_display			*display;
 	int					nb_pc;
+	int					nb_live;
 	int					speed;
 	char				arena[MEM_SIZE];
 	int					dump;

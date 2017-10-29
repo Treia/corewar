@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 16:11:24 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/25 13:51:25 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/29 14:55:05 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ t_player			*new_player(void)
 	ft_bzero(ret->name, PROG_NAME_LENGTH + 1);
 	ft_bzero(ret->comment, COMMENT_LENGTH + 1);
 	ret->live = 0;
-	ret->nb_live = 0;
 	ret->next = NULL;
 	return (ret);
 }

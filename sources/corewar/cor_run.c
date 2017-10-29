@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cor_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:29:35 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/26 16:20:50 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/29 16:47:53 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	init_cycle(t_cycle *cycle)
 {
-	cycle->current = 0;
+	cycle->current = 1;
 	cycle->to_die = CYCLE_TO_DIE;
-	cycle->check = CYCLE_TO_DIE;
+	cycle->check = CYCLE_TO_DIE + 1;
 	cycle->nb_check = 0;
 }
 
@@ -53,6 +53,7 @@ int		run(t_game *game)
 
 	init_cycle(&c);
 	init_pc(game);
+	game->nb_live = 0;
 	if (game->verb == -1)
 	{
 		while (getch() != 32)

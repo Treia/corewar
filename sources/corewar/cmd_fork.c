@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_fork.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 17:40:44 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/26 11:48:51 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/29 18:23:16 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		fork_cpy(t_game *game, t_pc *pc)
+int		fork_cpy(t_game *game, t_pc *pc, int new_addr)
 {
 	t_pc	*fork;
 
@@ -20,35 +20,38 @@ int		fork_cpy(t_game *game, t_pc *pc)
 	if (!fork)
 		return (error(MALLOC_FAILED, -1));
 	fork = ft_memcpy(fork, pc, sizeof(t_pc));
-	fork->next = pc->next;
-	pc->next = fork;
-	fork->addr = ((fork->addr + 3) % MEM_SIZE);
+	fork->next = game->pcs;
+	game->pcs = fork;
+	fork->addr += new_addr;
+	fork->addr %= MEM_SIZE;
+	if (fork->addr < 0)
+		fork->addr += MEM_SIZE;
 	fork->cmd = get_cmd((game->arena)[fork->addr]);
-	fork->wait = get_wait((game->arena)[fork->addr]);
+	fork->wait = get_wait((game->arena)[fork->addr]) - 1;
 	(game->nb_pc)++;
 	return (0);
 }
 
 int		cmd_fork(t_game *game, t_pc *pc, t_cycle *cycle)
 {
+	int		new_addr;
+
 	(void)cycle;
-	if (fork_cpy(game, pc) == -1)
+	new_addr = (short)read_nb(game->arena, pc->addr + 1, 2) % IDX_MOD;
+	if (fork_cpy(game, pc, new_addr) == -1)
 		return (-1);
-	pc->addr += (short)read_nb(game->arena, pc->addr + 1, 2) % IDX_MOD;
-	pc->addr %= MEM_SIZE;
-	if (pc->addr < 0)
-		pc->addr += MEM_SIZE;
+	pc->addr = ((pc->addr + 3) % MEM_SIZE);
 	return (0);
 }
 
 int		cmd_lfork(t_game *game, t_pc *pc, t_cycle *cycle)
 {
+	int		new_addr;
+
 	(void)cycle;
-	if (fork_cpy(game, pc) == -1)
+	new_addr = (short)read_nb(game->arena, pc->addr + 1, 2);
+	if (fork_cpy(game, pc, new_addr) == -1)
 		return (-1);
-	pc->addr += (short)read_nb(game->arena, pc->addr + 1, 2);
-	pc->addr %= MEM_SIZE;
-	if (pc->addr < 0)
-		pc->addr += MEM_SIZE;
+	pc->addr = ((pc->addr + 3) % MEM_SIZE);
 	return (0);
 }
