@@ -6,7 +6,7 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 02:53:23 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/29 04:09:00 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/29 14:50:06 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	asm_t_asm_instruct_get_param_size(t_asm_instruct *asm_instruct,
 
 	i = 0;
 	param_size = 0;
-	while (target->param[i])
+	while (target->param[i] && i < PARAM_MAX)
 	{
 		type = asm_t_asm_instruct_identify_param_type(target->param[i]);
 		if (type == T_REG)

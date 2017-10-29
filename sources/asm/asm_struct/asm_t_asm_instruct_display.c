@@ -6,7 +6,7 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 04:02:25 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/29 04:59:47 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/29 14:48:35 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 
 void	to_delete(t_asm_instruct *list, int tab)
 {
-	int i;
+	unsigned int i;
 
 	i = 0;
 	ft_putnchar(tab, '\t');
 	while (i < list->param_size)
-		printf("%02x", list->param[i++]);
+		printf("%02hhx ", list->param[i++]);
+	printf("\n");
 }
 
 void	asm_t_asm_instruct_display_list(t_asm_instruct *list, int tab)
@@ -50,7 +51,6 @@ void	asm_t_asm_instruct_display_list(t_asm_instruct *list, int tab)
 		ft_putnbr(ptr->param_size);
 		ft_putchar('\n');
 		to_delete(ptr, tab + 1);
-		ft_putchar('\n');
 		ptr = ptr->next;
 		i++;
 	}

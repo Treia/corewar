@@ -6,7 +6,7 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 14:41:09 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/29 03:06:10 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/29 14:16:52 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ unsigned int	asm_t_asm_instruct_get_current_param_size(char *param,
 				asm_instruct->op_code == 6 || asm_instruct->op_code == 7 ||
 				asm_instruct->op_code == 8 || asm_instruct->op_code == 13)
 			size = 4;
+		else
+			size = 2;
 	}
 	else
 		size = 2;

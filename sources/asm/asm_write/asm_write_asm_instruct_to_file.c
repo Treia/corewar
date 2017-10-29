@@ -6,7 +6,7 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 19:04:53 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/25 19:24:05 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/29 14:47:01 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	asm_write_t_asm_instruct_list_to_file(t_label *label, int fd)
 	t_label			*label_ptr;
 	t_asm_instruct	*current;
 
+	label_ptr = label;
 	while (label_ptr)
 	{
 		current = label_ptr->asm_instruct_list;
@@ -33,6 +34,6 @@ void	asm_write_t_asm_instruct_list_to_file(t_label *label, int fd)
 			asm_write_t_asm_instruct_to_file(current, fd);
 			current = current->next;
 		}
-		label = label->next;
+		label_ptr = label_ptr->next;
 	}
 }

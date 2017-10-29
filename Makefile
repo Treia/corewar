@@ -6,14 +6,14 @@
 #    By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/05 11:48:22 by pzarmehr          #+#    #+#              #
-#    Updated: 2017/10/29 04:50:33 by mplanell         ###   ########.fr        #
+#    Updated: 2017/10/29 14:15:10 by mplanell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAMEASM = asm
 NAMECOR = corewar
 CC = gcc
-#FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 
 PATH_LIBFT = ./libft/includes
 LFT = -L ./libft/ -l ft -lncurses
@@ -152,29 +152,29 @@ all: $(LIB) $(NAMEASM) $(NAMECOR) $(OBJALL)
 
 $(LIB):
 	@make -C libft
-	@echo -e "$(CYAN)\n\nCompiling $(NAMEASM) and $(NAMECOR) :$(NONE)\n"
+	@echo "$(CYAN)\n\nCompiling $(NAMEASM) and $(NAMECOR) :$(NONE)\n"
 
 $(NAMEASM): $(LIB) $(OBJASM) $(OBJALL)
 	@$(CC) $(FLAGS) -o $(NAMEASM) $(OBJASM) $(OBJALL) $(LFT)
-	@echo -e "[$(GREEN) CREATE $(NONE)]         $(YELLOW)$(NAMEASM)$(NONE)\n"
+	@echo "[$(GREEN) CREATE $(NONE)]         $(YELLOW)$(NAMEASM)$(NONE)\n"
 
 $(NAMECOR): $(LIB) $(OBJCOR) $(OBJALL)
 	@$(CC) $(FLAGS) -o $(NAMECOR) $(OBJCOR) $(OBJALL) $(LFT)
-	@echo -e "[$(GREEN) CREATE $(NONE)]         $(YELLOW)$(NAMECOR)$(NONE)\n"
+	@echo "[$(GREEN) CREATE $(NONE)]         $(YELLOW)$(NAMECOR)$(NONE)\n"
 
 %.o: %.c
 	@$(CC) $(FLAGS) -c -o $@ $^ -I $(PATH_INC) -I $(PATH_LIBFT)
-	@echo -e "[$(GREEN) COMPIL $(NONE)]         $(YELLOW)$<$(NONE)"
+	@echo "[$(GREEN) COMPIL $(NONE)]         $(YELLOW)$<$(NONE)"
 
 clean:
 	@make -C libft clean
 	@rm -f $(OBJASM) $(OBJCOR) $(OBJALL)
-	@echo -e "[$(GREEN) DELETED $(NONE)] $(YELLOW)Objects Project$(NONE)"
+	@echo "[$(GREEN) DELETED $(NONE)] $(YELLOW)Objects Project$(NONE)"
 
 fclean: clean
 	@make -C libft fclean
 	@rm -f $(NAMEASM) $(NAMECOR)
-	@echo -e "[$(GREEN) DELETED $(NONE)] $(YELLOW)Binary Project$(NONE)"
+	@echo "[$(GREEN) DELETED $(NONE)] $(YELLOW)Binary Project$(NONE)"
 
 re: fclean all
 
