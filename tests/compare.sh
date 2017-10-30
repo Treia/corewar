@@ -4,8 +4,6 @@ typeset -r MY_ASM_DIR="/Users/mressier/Documents/corewar/"
 typeset -r REAL_ASM_DIR="/Users/mressier/Documents/corewar/tests/"
 typeset -r ASM="asm"
 
-typeset -r FILES=$*
-
 typeset -r MY_OUT_FILE="/tmp/my_out_file"
 typeset -r REAL_OUT_FILE="/tmp/real_out_file"
 typeset -r MY_STDOUT="/tmp/mystdout"
@@ -51,7 +49,7 @@ do
 		"v")
 			(( VERBOSE++ ))
 			;;
-		?)
+		\?)
 			usage
 			exit 1
 			;;
@@ -59,6 +57,9 @@ do
 done
 
 [[ -x ${MY_ASM_DIR}${ASM} ]] || make -C ${MY_ASM_DIR}
+
+shift $((OPTIND - 1))
+typeset -r FILES=$*
 
 for FILE in ${FILES}
 do
@@ -83,7 +84,7 @@ do
 		if (( ${MY_EXIT_STATUS} == 0 ))
 		then
 			typeset COMPARE_COMMAND="diff ${MY_OUT_FILE} ${REAL_OUT_FILE}"
-			`${COMPARE_COMMAND}` > ${COMPARE_FILE}
+			echo `${COMPARE_COMMAND}` > ${COMPARE_FILE}
 			typeset EXIT_STATUS=$?
 			(( EXIT_STATUS == 0 )) && { success "${FILE} : return success OK and diff OK "; }
 			(( EXIT_STATUS != 0)) && { error "${COMPARE_COMMAND} (return success OK and diff KO) : "; cat ${COMPARE_FILE}; }
@@ -92,6 +93,7 @@ do
 			if (( VERBOSE ))
 			then
 				draw_line; echo "My stderr:"
+				# cat ${MY_STDOUT}; draw_line;
 				cat ${MY_STDERR}
 				draw_line; echo "Real stderr:"
 				cat ${REAL_STDERR}; cat ${REAL_STDOUT};
@@ -106,4 +108,4 @@ do
 done
 
 rm -rf ${MY_OUT_FILE} ${REAL_OUT_FILE} ${MY_STDOUT} ${MY_STDERR} ${REAL_STDOUT} ${REAL_STDERR}
-rm -rf "./break_files/**/*.cor" || error { "Cannot delete break_files/**/*.cor"; }
+rm -f ./break_files/**/*.cor || error "Cannot delete break_files/**/*.cor";
