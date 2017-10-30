@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 13:10:56 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/26 17:12:13 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/30 14:12:30 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,18 @@ static void	print_end_arena(int index, t_game *game)
 	}
 }
 
+static void	print_head(t_pc *pcs, t_game *game)
+{
+	t_pc	*begin;
+
+	begin = pcs;
+	while (begin)
+	{
+		print_head_read(begin->addr, game, begin->id_player);
+		begin = begin->next;
+	}
+}
+
 void		print_arena_start(t_game *game)
 {
 	t_player		*begin;
@@ -66,4 +78,5 @@ void		print_arena_start(t_game *game)
 		begin = begin->next;
 	}
 	print_end_arena(index, game);
+	print_head(game->pcs, game);
 }

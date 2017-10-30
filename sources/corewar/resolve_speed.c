@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 14:51:46 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/26 16:09:24 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/30 14:36:40 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int		check_if_good_speed(const char *value)
 
 	val = 0;
 	val = ft_atoi(value);
-	if (val == 50 || val == 100 || val == 200 || val == 250 || val == 25 || 
+	if (val == 50 || val == 100 || val == 200 || val == 250 || val == 25 ||
 		val == 1000)
 		return (val);
 	else

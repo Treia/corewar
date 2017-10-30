@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mressier <mressier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 12:08:13 by mressier          #+#    #+#             */
-/*   Updated: 2016/01/21 11:14:30 by mressier         ###   ########.fr       */
+/*   Updated: 2017/10/30 14:40:25 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,4 @@ void		*ft_memrchr(const void *mem_start, const void *mem_end, int c)
 		i--;
 	}
 	return (NULL);
-
 }

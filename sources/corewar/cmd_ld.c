@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_ld.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 13:49:51 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/29 18:28:46 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/30 14:38:20 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		cmd_lld(t_game *game, t_pc *pc, t_cycle *cycle)
 	get_param_code(game->arena, pc->addr, tab);
 	isind = tab[1];
 	next = get_next_addr(pc->addr, tab, 4, 2);
-	if ((tab[1] == 2 || tab[1] == 3) && tab[2] == 1) 
+	if ((tab[1] == 2 || tab[1] == 3) && tab[2] == 1)
 	{
 		if (get_param_value(game->arena, pc->addr, tab, 4) > 2)
 		{
