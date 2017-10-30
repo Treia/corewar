@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/30 14:54:16 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/30 15:38:56 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,6 +228,7 @@ void					set_max_check(unsigned int check, WINDOW *box);
 void					display_end_cycle(t_game *game, t_cycle *cycle);
 void					graph_print_winner(t_game *game);
 void					print_head_read(int index, t_game *game, int id);
+void					print_remove_head(int index, t_game *game, int id);
 void					move_head(int new_index, int old_index, t_game *game,
 																		int id);
 
