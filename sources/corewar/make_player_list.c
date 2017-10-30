@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 15:59:54 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/25 16:45:13 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/30 18:14:44 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static int			write_prog_in_arena(int index, int fd, t_game *game,
 	char	buffer[CHAMP_MAX_SIZE];
 	int		ret;
 
+	if (size > CHAMP_MAX_SIZE || size == 0)
+		return (-1);
 	if ((ret = read(fd, buffer, size)) < 0)
 		return (-1);
 	ft_memcpy(&game->arena[index], buffer, size);
