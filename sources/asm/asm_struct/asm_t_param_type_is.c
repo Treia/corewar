@@ -58,8 +58,9 @@ int			asm_param_is_register(const char *word)
 		word++;
 		while (word[i] && ft_isdigit(word[i]))
 			i++;
-		if (i != 0 && i <= REGISTER_LENGTH_MAX && (asm_is_param_separator(word[i])
-				|| ft_isspace(word[i]) || word[i] == '\0'))
+		if (i != 0 && i <= REGISTER_LENGTH_MAX
+				&& (asm_is_param_separator(word[i])
+					|| ft_isspace(word[i]) || word[i] == '\0'))
 			return (true);
 	}
 	return (false);
