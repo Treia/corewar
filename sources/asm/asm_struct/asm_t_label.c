@@ -34,7 +34,7 @@ void				asm_t_label_del(t_label **label)
 		ptr = *label;
 		asm_t_instruct_del_list(ptr->instruct_list);
 		ptr->instruct_list = NULL;
-		// asm_t_asm_instruct_del_list(&(ptr->asm_instruct_list));
+		asm_t_asm_instruct_del_list(ptr->asm_instruct_list);
 		ptr->asm_instruct_list = NULL;
 		ft_memdel((void **)label);
 	}

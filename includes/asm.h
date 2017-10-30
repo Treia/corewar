@@ -144,6 +144,7 @@ int							asm_is_param_separator(int c);
 ** asm_t_display.c
 */
 void						asm_t_asm_display(t_asm asm_content);
+void						asm_t_asm_init(t_asm *asm_content);
 void						asm_t_asm_del_content(t_asm asm_content);
 
 /*

@@ -28,7 +28,7 @@ int				main(int ac, char **av)
 	char		*file_content;
 	t_asm		asm_file_content;
 
-	asm_file_content.label_list = NULL;
+	asm_t_asm_init(&asm_file_content);
 	if (internal_get_filename_on_arg(ac, av, &filename) == EXIT_FAILURE)
 		return (asm_usage());
 	if (asm_get_file_content(filename, &file_content) == EXIT_FAILURE)
@@ -41,7 +41,6 @@ int				main(int ac, char **av)
 		return (EXIT_FAILURE);
 	}
 	asm_t_asm_instruct_init_list(&asm_file_content);
-	asm_t_label_display_list(asm_file_content.label_list);
 	if (asm_write_asm_to_file(&asm_file_content, filename) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	asm_t_label_display_list(asm_file_content.label_list);

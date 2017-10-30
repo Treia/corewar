@@ -20,6 +20,12 @@ void		asm_t_asm_display(t_asm asm_content)
 	asm_t_label_display_list(asm_content.label_list);
 }
 
+void		asm_t_asm_init(t_asm *asm_content)
+{
+	ft_bzero(asm_content, sizeof(t_asm));
+	asm_content->label_list = NULL;
+}
+
 void		asm_t_asm_del_content(t_asm asm_content)
 {
 	asm_t_label_del_list(asm_content.label_list);
