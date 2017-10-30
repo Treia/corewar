@@ -48,10 +48,7 @@ int			ft_read_file_with_filename(const char *filename,
 	int		fd;
 
 	if (filename == NULL || out_content == NULL)
-	{
-		ft_putstr_fd("Param error on "__FILE__, 2);
 		return (EXIT_FAILURE);
-	}
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (-1);
