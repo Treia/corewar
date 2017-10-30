@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "asm.h"
 
 static int		internal_get_nb_line(const char *start, const char *ptr)
 {
@@ -72,7 +73,7 @@ void			asm_error_get_word_error(const char *error_ptr,
 	char	*end_error_ptr;
 	int		size;
 
-	end_error_ptr = ft_str_first(error_ptr, ft_isspace);
+	end_error_ptr = ft_str_first(error_ptr, asm_is_param_separator);
 	size = end_error_ptr - error_ptr;
 	if (size > size_max)
 	{
@@ -83,7 +84,7 @@ void			asm_error_get_word_error(const char *error_ptr,
 	}
 	if (size > 0)
 		ft_strncpy(word_error, error_ptr, size);
-	else if (*end_error_ptr == '\n')
+	else if (asm_is_param_separator(*end_error_ptr))
 		ft_strncpy(word_error, error_ptr, 1);
 	else
 		ft_strcat(word_error, "(null)");
