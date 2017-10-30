@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_ld.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 13:49:51 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/30 14:55:46 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/30 18:08:11 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ int		cmd_ldi(t_game *game, t_pc *pc, t_cycle *cycle)
 			tab[2] = isreg[1] == 1 ? pc->reg[tab[2]] : tab[2];
 			pc->reg[tab[3]] = (int)read_nb(game->arena,
 					pc->addr + (tab[1] + tab[2]) % IDX_MOD, 4);
-			pc->carry = (pc->reg[tab[3]] == 0 ? 1 : 0);
 		}
 	}
 	pc->addr = new_addr(pc->addr, next, game, pc);

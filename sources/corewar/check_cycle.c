@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_cycle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 11:48:52 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/30 15:50:25 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/30 19:38:23 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@ void	destroy_pc(t_pc *pc, t_game *game)
 	free(pc);
 	print_pc_kill(game);
 	(game->nb_pc)--;
+}
+
+void	check_first_pc(t_cycle *cycle, t_game *game)
+{
+	t_pc	*tmp;
+
+	if (cycle->current >= game->pcs->last_live + cycle->to_die)
+	{
+		tmp = game->pcs;
+		game->pcs = game->pcs->next;
+		destroy_pc(tmp, game);
+	}
 }
 
 void	check_pc(t_cycle *cycle, t_game *game)
@@ -44,12 +56,7 @@ void	check_pc(t_cycle *cycle, t_game *game)
 			ptr = ptr->next;
 		}
 	}
-	if (cycle->current >= game->pcs->last_live + cycle->to_die)
-	{
-		tmp = game->pcs;
-		game->pcs = game->pcs->next;
-		destroy_pc(tmp, game);
-	}
+	check_first_pc(cycle, game);
 }
 
 void	reset_cycle(t_cycle *cycle, t_game *game)

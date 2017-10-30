@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_addsub.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 15:40:56 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/30 14:55:07 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/30 18:19:41 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		cmd_add(t_game *game, t_pc *pc, t_cycle *cycle)
 	(void)cycle;
 	get_param_code(game->arena, pc->addr, tab);
 	next = get_next_addr(pc->addr, tab, 4, 3);
-	if ((tab[0] & 252) == 84)
+	if (tab[1] == 1 && tab[2] == 1 && tab[3] == 1)
 	{
 		if (get_param_value(game->arena, pc->addr, tab, 4) > 3)
 		{
@@ -40,7 +40,7 @@ int		cmd_sub(t_game *game, t_pc *pc, t_cycle *cycle)
 	(void)cycle;
 	get_param_code(game->arena, pc->addr, tab);
 	next = get_next_addr(pc->addr, tab, 4, 3);
-	if ((tab[0] & 252) == 84)
+	if (tab[1] == 1 && tab[2] == 1 && tab[3] == 1)
 	{
 		if (get_param_value(game->arena, pc->addr, tab, 4) > 3)
 		{
