@@ -5,4 +5,4 @@
 	st		r1, 6
 l:
 	live	%0
-	zjmp	:
+	zjmp	%:l
