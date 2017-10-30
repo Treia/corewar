@@ -171,8 +171,8 @@ test_dump_end()
 	${MY_DIR}${COREWAR} ${CHAMP_1} ${CHAMP_2} -dump ${DUMP} 1> ${MY_STDOUT}
 	${REAL_DIR}${COREWAR} ${CHAMP_1} ${CHAMP_2} -d ${DUMP} 1> ${REAL_STDOUT}
 
-	typeset MY_GAME=$(cat ${MY_STDOUT} | grep -v "Introducing" | grep -v -- "->" | sed -E 's/^[[:alnum:]]{8}//g')
-	typeset REAL_GAME=$(cat ${REAL_STDOUT} | grep -v "Introducing" | grep -v -- "* Player" | sed -E 's/^0x[[:alnum:]]* : //g')
+	typeset MY_GAME=$(cat ${MY_STDOUT} | grep -E "^0x[[:alnum:]]{4}")
+	typeset REAL_GAME=$(cat ${REAL_STDOUT} | grep -E "^0x[[:alnum:]]{4}")
 
 	diff <(echo -e "${MY_GAME}") <(echo -e "${REAL_GAME}") > ${COMPARE_FILE}
 	typeset EXIT_STATUS=$?
