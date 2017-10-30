@@ -14,21 +14,25 @@ typeset -r REAL_STDERR="/tmp/realstderr"
 
 typeset -r COMPARE_FILE="/tmp/compare"
 
-
 typeset -i DUMP=1500
+
+typeset -r RED_C="\033[31m"
+typeset -r GREEN_C="\033[32m"
+typeset -r YELLOW_C="\033[33m"
+typeset -r CLEAR_C="\033[0m"
 error()
 {
-	echo -e "\033[31m[ERROR]\033[0m" $*
+	echo -e "${RED_C}[ERROR]${CLEAR_C}" $*
 }
 
 warning()
 {
-	echo -e "\033[33m[WARNING]\033[0m" $*
+	echo -e "${YELLOW_C}[WARNING]${CLEAR_C}" $*
 }
 
 success()
 {
-	echo -e "\033[32m[SUCCESS]\033[0m" $*
+	echo -e "${GREEN_C}[SUCCESS]${CLEAR_C}" $*
 }
 
 draw_line()
@@ -193,9 +197,11 @@ all_tests_corewar()
 
 	typeset -r CHAMP_1=$1
 	typeset -r CHAMP_2=$2
+	typeset -i ERROR_COUNT=0
 
 	test_winner "${CHAMP_1}" "${CHAMP_2}" || (( ERROR_COUNT ++ ))
 	test_dump_end "${CHAMP_1}" "${CHAMP_2}" || (( ERROR_COUNT ++ ))
+	return ${ERROR_COUNT}
 }
 
 test_corewar()
@@ -203,6 +209,7 @@ test_corewar()
 	typeset -r ALL_FILES=($*)
 	typeset -i INDEX=0
 	typeset -i ERROR_COUNT=0
+	typeset -i TEST_COUNT=0
 
 	draw_line ; echo -e "\t\t\t\tTEST COREWAR"; draw_line
 
@@ -210,15 +217,18 @@ test_corewar()
 	do
 		typeset VS_FILE_1=${ALL_FILES[$i]}
 
-		(( ${FILE_ALONE} )) && { all_tests_corewar "${VS_FILE_1}" ""; continue; }
+		(( ${FILE_ALONE} )) && { all_tests_corewar "${VS_FILE_1}" "" || (( ERROR_COUNT ++ )); (( TEST_COUNT ++ )); continue; }
 
 		for (( j = $i+1; j <= ${#ALL_FILES[@]}; j++ ))
 		do
 			typeset VS_FILE_2=${ALL_FILES[$j]}
-			all_tests_corewar "${VS_FILE_1}" "${VS_FILE_2}"
+			all_tests_corewar "${VS_FILE_1}" "${VS_FILE_2}" || (( ERROR_COUNT++ ))
+			(( TEST_COUNT ++ ))
 		done
-
 	done
+
+	(( ERROR_COUNT == 0 )) && { echo -e "${GREEN_C} ${TEST_COUNT} TESTS PASSED ${CLEAR_C}"; }
+	(( ERROR_COUNT == 0 )) || { echo -e "${GREEN_C} ${ERROR_COUNT} error / ${TEST_COUNT} tests ${CLEAR_C}"; }
 }
 
 shift $((OPTIND - 1))
