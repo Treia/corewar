@@ -14,6 +14,8 @@ typeset -r REAL_STDERR="/tmp/realstderr"
 
 typeset -r COMPARE_FILE="/tmp/compare"
 
+
+typeset -i DUMP=1500
 error()
 {
 	echo -e "\033[31m[ERROR]\033[0m" $*
@@ -122,10 +124,55 @@ test_asm()
 	done
 }
 
+## COREWAR
+
+## $0 first champion
+## $1 second champion
+test_winner()
+{
+	(( $# == 2 )) || echo "${FUNCNAME} need 2 champions"
+
+	typeset -r CHAMP_1=$1
+	typeset -r CHAMP_2=$2
+
+	${MY_DIR}${COREWAR} ${CHAMP_1} ${CHAMP_2} 1> ${MY_STDOUT}
+	${REAL_DIR}${COREWAR} ${CHAMP_1} ${CHAMP_2} 1> ${REAL_STDOUT}
+
+	typeset MY_RESULT_LINE=$(cat ${MY_STDOUT} | grep "And the winner is" | sed -E 's/^And the winner is (.*) !$/\1/')
+	typeset REAL_RESULT_LINE=$(cat ${REAL_STDOUT} | grep ", has won !" | sed -E 's/^.*, \"(.*)\", .*$/\1/')
+
+	if [ "${MY_RESULT_LINE}" = "${REAL_RESULT_LINE}" ]
+	then
+		success "${CHAMP_1} VS ${CHAMP_2} : ${MY_RESULT_LINE}"
+		return 0;
+	else
+		error "${CHAMP_1} VS ${CHAMP_2} - me : ${MY_RESULT_LINE}, real : ${REAL_RESULT_LINE}"
+		return 1;
+	fi
+}
+
+## $0 first champion
+## $1 second champion
+test_dump_end()
+{
+	(( $# == 2 )) || echo "${FUNCNAME} need 2 champions"
+
+	typeset -r CHAMP_1=$1
+	typeset -r CHAMP_2=$2
+
+	${MY_DIR}${COREWAR} ${CHAMP_1} ${CHAMP_2} -d 1500 1> ${MY_STDOUT}
+	${REAL_DIR}${COREWAR} ${CHAMP_1} ${CHAMP_2} -dump 1500 1> ${REAL_STDOUT}
+
+
+
+	return ;
+}
+
 test_corewar()
 {
 	typeset -r ALL_FILES=($*)
 	typeset -i INDEX=0
+	typeset -i ERROR_COUNT=0
 
 	draw_line ; echo -e "\t\t\t\tTEST COREWAR"; draw_line
 
@@ -136,18 +183,7 @@ test_corewar()
 		for (( j = $i+1; j <= ${#ALL_FILES[@]}; j++ ))
 		do
 			typeset VS_FILE_2=${ALL_FILES[$j]}
-			${MY_DIR}${COREWAR} ${VS_FILE_1} ${VS_FILE_2} 1> ${MY_STDOUT}
-			${REAL_DIR}${COREWAR} ${VS_FILE_1} ${VS_FILE_2} 1> ${REAL_STDOUT}
-
-			typeset MY_RESULT_LINE=$(cat ${MY_STDOUT} | grep "And the winner is" | sed -E 's/^And the winner is (.*) !$/\1/')
-			typeset REAL_RESULT_LINE=$(cat ${REAL_STDOUT} | grep ", has won !" | sed -E 's/^.*, \"(.*)\", .*$/\1/')
-
-			if [ "${MY_RESULT_LINE}" = "${REAL_RESULT_LINE}" ]
-			then
-				success "${VS_FILE_1} VS ${VS_FILE_2} : ${MY_RESULT_LINE}"
-			else
-				error "${VS_FILE_1} VS ${VS_FILE_2} - me : ${MY_RESULT_LINE}, real : ${REAL_RESULT_LINE}"
-			fi
+			test_winner "${VS_FILE_1}" "${VS_FILE_2}" || (( ERROR_COUNT ++ ))
 
 		done
 	done
