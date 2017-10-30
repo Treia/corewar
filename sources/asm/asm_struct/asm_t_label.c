@@ -78,10 +78,10 @@ void				asm_t_label_display_list(t_label *list)
 		ft_putstr("label (");
 		ft_putnbr(i);
 		ft_putstr(") : ");
-		ft_putendl(ptr->name);
+		ft_putstr(ptr->name);
 		ft_putstr(" (");
 		ft_putnbr(ptr->starting_byte);
-		ft_putstr(")");
+		ft_putendl(")");
 		asm_t_instruct_display_list(ptr->instruct_list, 1);
 		ptr = ptr->next;
 		i++;
