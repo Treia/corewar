@@ -61,7 +61,7 @@ void		asm_t_instruct_param_display(char **params, int tab)
 	int		type;
 
 	i = 0;
-	while (params[i])
+	while (i < PARAM_MAX)
 	{
 		if (params[i])
 		{
