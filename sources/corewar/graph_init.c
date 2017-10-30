@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 17:56:17 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/30 17:30:32 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/30 17:44:52 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void		init_color_set(void)
 
 static void		print_player(WINDOW *box, t_player *players)
 {
-	t_player 	*begin;
+	t_player	*begin;
 	int			index;
 	int			pos;
 	char		buff[MAX_LEN_NAME + 1];
