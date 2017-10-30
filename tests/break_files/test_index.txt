@@ -1,3 +1,30 @@
+header_error:
+	- name:
+		- name_twice_one_empty
+		- name_missing_one_quote
+		- name_missing_quote
+		- name_is_missing
+		- name_only
+		- name_several
+		- name_with_bad_instruct_after
+		- name_with_instruct_after
+		- name_too_long.s
+	- comment:
+		- comment_twice_one_empty
+		- comment_missing_one_quote
+		- comment_missing_quote
+		- comment_is_missing
+		- comment_only
+		- comment_several
+		- comment_with_bad_instruct_after
+		- comment_with_instruct_after
+		- comment_too_long
+
+header_success:
+	- comment_empty
+	- name_empty
+
+
 instruction_arg_error:
 	- too much argument
 	- invalid argument
@@ -70,6 +97,19 @@ param_error:
 		- indirect_follow_by_label
 		- indirect_follow_by_register
 		- indirect_follow_by_direct
+	- separator_char:
+		- separator_char_follow_by_eof
+		- separator_char_follow_by_eol
+		- separator_char_follow_by_comment
+		- separator_char_follow_by_label
+
+	- empty_param
+	- string_in_param
+	- command_comment_in_param
+	- command_name_in_param
+	- comment_char_on_param
+	- param_follow_by_label
+	- param_without_comma_inside
 
 
 param_success:

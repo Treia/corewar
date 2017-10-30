@@ -1,8 +1,8 @@
 	.name "basic"
 	.comment "just a basic living prog"
 
-	ld		%0, r10
-	st		r1, 6
+	ld		%0,r10
+	st		r1		6
 l:
-	live	r2
+	live	%0		
 	zjmp	%:l
