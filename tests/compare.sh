@@ -41,6 +41,8 @@ usage()
 	echo -e "$0 [-v] <files>"
 	echo -e "\t-v: verbose (display error output if error occur on files)"
 	echo -e "\t-vv: verbose (display hexdump of each success files)"
+	echo -e "\t-a: test for asm"
+	echo -e "\t-c: test for corewar"
 }
 
 typeset -r OPTION_LIST="vac"
@@ -144,9 +146,15 @@ test_winner()
 	if [ "${MY_RESULT_LINE}" = "${REAL_RESULT_LINE}" ]
 	then
 		success "${CHAMP_1} VS ${CHAMP_2} : ${MY_RESULT_LINE}"
+
+		unset MY_RESULT_LINE
+		unset REAL_RESULT_LINE
 		return 0;
 	else
 		error "${CHAMP_1} VS ${CHAMP_2} - me : ${MY_RESULT_LINE}, real : ${REAL_RESULT_LINE}"
+
+		unset MY_RESULT_LINE
+		unset REAL_RESULT_LINE
 		return 1;
 	fi
 }
@@ -160,11 +168,18 @@ test_dump_end()
 	typeset -r CHAMP_1=$1
 	typeset -r CHAMP_2=$2
 
-	${MY_DIR}${COREWAR} ${CHAMP_1} ${CHAMP_2} -d 1500 1> ${MY_STDOUT}
-	${REAL_DIR}${COREWAR} ${CHAMP_1} ${CHAMP_2} -dump 1500 1> ${REAL_STDOUT}
+	${MY_DIR}${COREWAR} ${CHAMP_1} ${CHAMP_2} -dump ${DUMP} 1> ${MY_STDOUT}
+	${REAL_DIR}${COREWAR} ${CHAMP_1} ${CHAMP_2} -d ${DUMP} 1> ${REAL_STDOUT}
 
+	typeset MY_GAME=$(cat ${MY_STDOUT} | grep -E "^0x[[:alnum:]]{4}")
+	typeset REAL_GAME=$(cat ${REAL_STDOUT} | grep -E "^0x[[:alnum:]]{4}")
 
-
+	diff <(echo -e "${MY_GAME}") <(echo -e "${REAL_GAME}") > ${COMPARE_FILE}
+	typeset EXIT_STATUS=$?
+	(( EXIT_STATUS == 0 )) && { success "${CHAMP_1} VS ${CHAMP_2} EQUAL at dump ${DUMP}"; }
+	(( EXIT_STATUS == 0 )) || { ((VERBOSE)) && diff <(echo -e "${MY_GAME}") <(echo -e "${REAL_GAME}") ; error "${CHAMP_1} VS ${CHAMP_2} NOT EQUAL at dump ${DUMP}"; }
+	# echo -e "${MY_GAME}"
+	# draw_line
 	return ;
 }
 
@@ -184,6 +199,7 @@ test_corewar()
 		do
 			typeset VS_FILE_2=${ALL_FILES[$j]}
 			test_winner "${VS_FILE_1}" "${VS_FILE_2}" || (( ERROR_COUNT ++ ))
+			test_dump_end "${VS_FILE_1}" "${VS_FILE_2}" || (( ERROR_COUNT ++ ))
 
 		done
 	done
