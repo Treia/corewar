@@ -184,8 +184,6 @@ test_dump_end()
 	typeset EXIT_STATUS=$?
 	(( EXIT_STATUS == 0 )) && { success "<${CHAMP_1}> VS <${CHAMP_2}> : EQUAL at dump ${DUMP}"; }
 	(( EXIT_STATUS == 0 )) || { ((VERBOSE)) && diff <(echo -e "${MY_GAME}") <(echo -e "${REAL_GAME}") ; error "<${CHAMP_1}> VS <${CHAMP_2}> NOT EQUAL at dump ${DUMP}"; }
-	# echo -e "${MY_GAME}"
-	# draw_line
 	return ;
 }
 
