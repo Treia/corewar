@@ -75,7 +75,7 @@ int				asm_t_instruct_param_is_valid(t_parser *parser,
 	asm_get_expected_params(asm_get_instruct_type(instruct->name),
 		expect_params);
 	param_nb = asm_t_instruct_param_count(instruct->param);
-	if (internal_one_param_is_valid(new_param,
+	if (param_nb >= PARAM_MAX || internal_one_param_is_valid(new_param,
 			expect_params[param_nb]) == EXIT_FAILURE)
 	{
 		return (asm_param_error(instruct, parser->file_content,

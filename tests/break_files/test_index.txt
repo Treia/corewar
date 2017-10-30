@@ -2,5 +2,5 @@ instruction_arg_error:
 	- too much argument
 	- invalid argument
 	- not enought argument
-	for:	live, ld, st
-	TODO: 	add, sub, and, or, xor, zjmp, ldi, sti, fork, lld, lldi, lfork, aff
+	for:	live, ld, st, add, sub,
+	TODO: 	and, or, xor, zjmp, ldi, sti, fork, lld, lldi, lfork, aff
