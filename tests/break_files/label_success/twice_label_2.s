@@ -1,9 +1,10 @@
 	.name "basic"
 	.comment "just a basic living prog"
 
+toto:
 	ld		%0, r10
 	st		r1, 6
-	st		r1, :r1
-r1:
+l:
+l:
 	live	%0
-	zjmp	%:r1
+	zjmp	%:l

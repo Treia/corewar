@@ -3,7 +3,6 @@
 
 	ld		%0, r10
 	st		r1, 6
-	st		r1, :r1
-r1:
+a: b: c: l: 
 	live	%0
-	zjmp	%:r1
+	zjmp	%:l

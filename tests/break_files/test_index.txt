@@ -2,5 +2,41 @@ instruction_arg_error:
 	- too much argument
 	- invalid argument
 	- not enought argument
-	for:	live, ld, st, add, sub,
-	TODO: 	and, or, xor, zjmp, ldi, sti, fork, lld, lldi, lfork, aff
+	for:	live, ld, st, add, sub, and,
+	TODO: 	or, xor, zjmp, ldi, sti, fork, lld, lldi, lfork, aff
+
+instruction_arg_success:
+	for: live, ld, st, add, sub, and, or, xor,
+	TODO: zjmp, ldi, sti, fork, lld, lldi, lfork, aff
+
+label_error:
+	- call inexist label
+	- call emptystring label
+	- emptystring label
+	- several_label_on_one_line
+	- several_label_char
+	- label_with_invalid_char
+	- direct_as_label
+
+label_success:
+	- only labels
+	- label_twice
+	- label_follow_by_comment_char
+	- register_as_label
+	- indirect_as_label
+
+instruction_error:
+	- big_string_instead_of_instruction
+	- direct_instead_of_instruction
+	- indirect_instead_of_instruction
+	- label_instead_of_instruction
+	- register_instead_of_instruction
+	- string_instead_of_instruction
+	- unknow_instruction
+	- unknow_long_instruction
+	- eof_after_instruction
+	- eol_after_instruction
+	- comment_after_instruction
+
+param_error:
+	-
