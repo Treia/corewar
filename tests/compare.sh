@@ -15,6 +15,8 @@ typeset -r REAL_STDERR="/tmp/realstderr"
 
 typeset -r COMPARE_FILE="/tmp/compare"
 
+[[ -x ${MY_ASM_DIR}${ASM} ]] || make -C ${MY_ASM_DIR}
+
 error()
 {
 	echo -e "\033[31m[ERROR]\033[0m" $*
@@ -45,7 +47,7 @@ do
 	[[ -e ${OUT_FILE} ]] && mv ${OUT_FILE} ${REAL_OUT_FILE}
 
 	## compare both exit status
-	(( ${MY_EXIT_STATUS} == ${REAL_EXIT_STATUS} )) || { warning "My exit status: ${MY_EXIT_STATUS}, real exit status: ${REAL_EXIT_STATUS}"; continue; }
+	(( ${MY_EXIT_STATUS} == ${REAL_EXIT_STATUS} )) || { warning "${FILE} : My exit status: ${MY_EXIT_STATUS}, real exit status: ${REAL_EXIT_STATUS}"; continue; }
 
 	## in case of success, compare out files
 	typeset COMPARE_COMMAND="diff ${MY_OUT_FILE} ${REAL_OUT_FILE}"
