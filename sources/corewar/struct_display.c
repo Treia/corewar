@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 16:10:49 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/24 17:13:44 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/30 17:00:28 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_display	*init_display(void)
 	if (ret == NULL)
 		return (NULL);
 	ret->box = subwin(stdscr, MAX_L, MAX_C, 0, 0);
-	ret->head = subwin(stdscr, 3, MAX_C, 0, 0);
+	ret->head = subwin(stdscr, 4, MAX_C, 0, 0);
 	return (ret);
 }
 
