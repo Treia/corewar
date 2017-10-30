@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_st.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 19:31:14 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/30 14:56:00 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/30 16:04:40 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int		cmd_sti(t_game *game, t_pc *pc, t_cycle *cycle)
 	isreg[0] = tab[2];
 	isreg[1] = tab[3];
 	next = get_next_addr(pc->addr, tab, 2, 3);
-	if (tab[1] == 1 && tab[2] != 0 && (tab[3] == 1 || tab[3] == 3))
+	if (tab[1] == 1 && tab[2] != 0 && (tab[3] == 1 || tab[3] == 2))
 	{
 		if (get_param_value(game->arena, pc->addr, tab, 2) > 3)
 		{
