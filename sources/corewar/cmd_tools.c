@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_tools.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 15:34:03 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/26 14:38:17 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/30 14:53:52 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+int		new_addr(int old_addr, int new_addr, t_game *game, t_pc *pc)
+{
+	if (game->verb == -1)
+		move_head(new_addr, old_addr, game, pc->id_player);
+	return (new_addr);
+}
 
 int		read_nb(char *arena, int addr, int size)
 {

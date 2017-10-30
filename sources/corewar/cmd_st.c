@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_st.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 19:31:14 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/26 14:38:51 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/30 14:56:00 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		cmd_st(t_game *game, t_pc *pc, t_cycle *cycle)
 				print_int(addr, game, pc->id_player);
 		}
 	}
-	pc->addr = next;
+	pc->addr = new_addr(pc->addr, next, game, pc);
 	return (0);
 }
 
@@ -78,6 +78,6 @@ int		cmd_sti(t_game *game, t_pc *pc, t_cycle *cycle)
 				print_int(addr, game, pc->id_player);
 		}
 	}
-	pc->addr = next;
+	pc->addr = new_addr(pc->addr, next, game, pc);
 	return (0);
 }

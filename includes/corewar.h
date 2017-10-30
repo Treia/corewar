@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 13:51:23 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/30 14:35:49 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/30 14:54:16 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,8 @@ void					check_cycle(t_cycle *cycle, t_game *game);
 /*
 **	cmd tools
 */
+int						new_addr(int old_addr, int new_addr, t_game *game,
+																	t_pc *pc);
 int						read_nb(char *arena, int addr, int size);
 void					get_param_code(char *arena, int addr, int *tab);
 int						get_next_addr(int addr, int *tab, int size, int nb);

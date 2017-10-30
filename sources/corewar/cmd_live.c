@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_live.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 13:11:32 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/29 18:28:08 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/30 14:59:11 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ int		cmd_live(t_game *game, t_pc *pc, t_cycle *cycle)
 		print_pc_live(game, live);
 	}
 	(game->nb_live)++;
-	pc->addr = ((pc->addr + 5) % MEM_SIZE);
+	pc->addr = new_addr(pc->addr, ((pc->addr + 5) % MEM_SIZE), game, pc);
 	return (0);
 }

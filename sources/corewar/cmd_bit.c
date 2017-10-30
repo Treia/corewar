@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_bit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 17:43:06 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/25 20:41:21 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/30 14:55:20 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		cmd_and(t_game *game, t_pc *pc, t_cycle *cycle)
 			pc->carry = (pc->reg[tab[3]] == 0 ? 1 : 0);
 		}
 	}
-	pc->addr = next;
+	pc->addr = new_addr(pc->addr, next, game, pc);
 	return (0);
 }
 
@@ -48,7 +48,7 @@ int		cmd_or(t_game *game, t_pc *pc, t_cycle *cycle)
 			pc->carry = (pc->reg[tab[3]] == 0 ? 1 : 0);
 		}
 	}
-	pc->addr = next;
+	pc->addr = new_addr(pc->addr, next, game, pc);
 	return (0);
 }
 
@@ -68,6 +68,6 @@ int		cmd_xor(t_game *game, t_pc *pc, t_cycle *cycle)
 			pc->carry = (pc->reg[tab[3]] == 0 ? 1 : 0);
 		}
 	}
-	pc->addr = next;
+	pc->addr = new_addr(pc->addr, next, game, pc);
 	return (0);
 }

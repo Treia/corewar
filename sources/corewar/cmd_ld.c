@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 13:49:51 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/30 14:38:20 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/30 14:55:46 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		cmd_ld(t_game *game, t_pc *pc, t_cycle *cycle)
 			pc->carry = (pc->reg[tab[2]] == 0 ? 1 : 0);
 		}
 	}
-	pc->addr = next;
+	pc->addr = new_addr(pc->addr, next, game, pc);
 	return (0);
 }
 
@@ -58,7 +58,7 @@ int		cmd_lld(t_game *game, t_pc *pc, t_cycle *cycle)
 			pc->carry = (pc->reg[tab[2]] == 0 ? 1 : 0);
 		}
 	}
-	pc->addr = next;
+	pc->addr = new_addr(pc->addr, next, game, pc);
 	return (0);
 }
 
@@ -84,7 +84,7 @@ int		cmd_ldi(t_game *game, t_pc *pc, t_cycle *cycle)
 			pc->carry = (pc->reg[tab[3]] == 0 ? 1 : 0);
 		}
 	}
-	pc->addr = next;
+	pc->addr = new_addr(pc->addr, next, game, pc);
 	return (0);
 }
 
@@ -110,6 +110,6 @@ int		cmd_lldi(t_game *game, t_pc *pc, t_cycle *cycle)
 			pc->carry = (pc->reg[tab[3]] == 0 ? 1 : 0);
 		}
 	}
-	pc->addr = next;
+	pc->addr = new_addr(pc->addr, next, game, pc);
 	return (0);
 }
