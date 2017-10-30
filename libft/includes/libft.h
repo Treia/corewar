@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 18:09:19 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/26 14:59:57 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/30 14:42:12 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <limits.h>
 # define BUFF_SIZE 512
 # define FD_MAX 100
+
 /*
 ** Error
 */
@@ -64,8 +65,8 @@ int			ft_strequ(char const *s1, char const *s2);
 char		*ft_strtrim(char const *str);
 char		*ft_strcpy(char *dst, const char *src);
 char		*ft_strcat(char *s1, const char *s2);
-char 		*ft_str_first_not(const char *str, int (*ft_is)(int));
-char 		*ft_str_first(const char *str, int (*ft_is)(int));
+char		*ft_str_first_not(const char *str, int (*ft_is)(int));
+char		*ft_str_first(const char *str, int (*ft_is)(int));
 
 int			get_next_line(const int fd, char **line);
 int			ft_read_file(int fd, char **out_content);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_memjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mressier <mressier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 13:14:16 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/20 19:51:39 by mressier         ###   ########.fr       */
+/*   Updated: 2017/10/30 14:39:06 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 #include "libft.h"
 
-void			*ft_memjoin(const void *p1, size_t s1, const void *p2, size_t s2)
+void			*ft_memjoin(const void *p1, size_t s1, const void *p2,
+																size_t s2)
 {
 	void		*new_mem;
 

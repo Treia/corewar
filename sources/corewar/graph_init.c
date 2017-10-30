@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 17:56:17 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/26 17:13:09 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/30 15:24:51 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ static void		init_color_set(void)
 	init_pair(7, 107, COLOR_BLACK);
 	init_pair(8, 208, COLOR_BLACK);
 	init_pair(9, 238, COLOR_BLACK);
+	init_pair(10, 255, COLOR_GREEN);
+	init_pair(11, 255, COLOR_CYAN);
+	init_pair(12, 255, COLOR_RED);
+	init_pair(13, 255, COLOR_BLUE);
+	init_pair(14, 255, COLOR_YELLOW);
+	init_pair(15, 255, COLOR_MAGENTA);
+	init_pair(16, 255, 107);
+	init_pair(17, 255, 208);
 }
 
 static void		print_header(t_game *game)

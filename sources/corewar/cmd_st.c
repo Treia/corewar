@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 19:31:14 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/26 14:38:51 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/30 16:04:40 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		cmd_st(t_game *game, t_pc *pc, t_cycle *cycle)
 				print_int(addr, game, pc->id_player);
 		}
 	}
-	pc->addr = next;
+	pc->addr = new_addr(pc->addr, next, game, pc);
 	return (0);
 }
 
@@ -66,7 +66,7 @@ int		cmd_sti(t_game *game, t_pc *pc, t_cycle *cycle)
 	isreg[0] = tab[2];
 	isreg[1] = tab[3];
 	next = get_next_addr(pc->addr, tab, 2, 3);
-	if (tab[1] == 1 && tab[2] != 0 && (tab[3] == 1 || tab[3] == 3))
+	if (tab[1] == 1 && tab[2] != 0 && (tab[3] == 1 || tab[3] == 2))
 	{
 		if (get_param_value(game->arena, pc->addr, tab, 2) > 3)
 		{
@@ -78,6 +78,6 @@ int		cmd_sti(t_game *game, t_pc *pc, t_cycle *cycle)
 				print_int(addr, game, pc->id_player);
 		}
 	}
-	pc->addr = next;
+	pc->addr = new_addr(pc->addr, next, game, pc);
 	return (0);
 }

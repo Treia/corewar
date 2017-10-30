@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 13:14:54 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/26 16:02:34 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/30 15:38:02 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		cmd_base(t_game *game, t_pc *pc, t_cycle *cycle)
 {
 	(void)game;
 	(void)cycle;
-	pc->addr = (pc->addr + 1) % MEM_SIZE;
+	pc->addr = new_addr(pc->addr, ((pc->addr + 1) % MEM_SIZE), game, pc);
 	return (0);
 }
 

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_not.c                                    :+:      :+:    :+:   */
+/*   ft_str_first_not.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 13:45:05 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/23 13:45:07 by mressier         ###   ########.fr       */
+/*   Updated: 2017/10/30 14:39:55 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char 	*ft_str_first(const char *str, int (*ft_is)(int))
+char	*ft_str_first(const char *str, int (*ft_is)(int))
 {
 	char	*ptr;
 
@@ -22,7 +22,7 @@ char 	*ft_str_first(const char *str, int (*ft_is)(int))
 	return (ptr);
 }
 
-char 	*ft_str_first_not(const char *str, int (*ft_is)(int))
+char	*ft_str_first_not(const char *str, int (*ft_is)(int))
 {
 	char	*ptr;
 

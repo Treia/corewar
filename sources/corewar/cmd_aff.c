@@ -6,7 +6,7 @@
 /*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 15:32:08 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/25 20:40:29 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/30 16:34:50 by pzarmehr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int		cmd_aff(t_game *game, t_pc *pc, t_cycle *cycle)
 	if (tab[1] == 1)
 	{
 		if (get_param_value(game->arena, pc->addr, tab, 4) > 1)
-			print_aff(game, tab[1] % 256);
+			print_aff(game, pc->reg[tab[1]] % 256);
 	}
-	pc->addr = next;
+	pc->addr = new_addr(pc->addr, next, game, pc);
 	return (0);
 }

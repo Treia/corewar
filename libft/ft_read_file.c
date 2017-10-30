@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_read_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 18:50:00 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/20 18:50:01 by mressier         ###   ########.fr       */
+/*   Updated: 2017/10/30 14:40:52 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int			ft_read_file(int fd, char **out_content)
 	while ((ret = read(fd, buf, BUF_READ)) > 0 && size >= 0)
 	{
 		buf[ret] = '\0';
-		temp = ft_memjoin(content, size, buf, ret + 1); // +1 for \0
+		temp = ft_memjoin(content, size, buf, ret + 1);
 		ft_memdel((void **)&content);
 		content = temp;
 		size += ret;
@@ -49,7 +49,7 @@ int			ft_read_file_with_filename(const char *filename,
 
 	if (filename == NULL || out_content == NULL)
 	{
-		ft_putstr_fd("Param error on "__FILE__ , 2);
+		ft_putstr_fd("Param error on "__FILE__, 2);
 		return (EXIT_FAILURE);
 	}
 	fd = open(filename, O_RDONLY);
