@@ -39,4 +39,38 @@ instruction_error:
 	- comment_after_instruction
 
 param_error:
-	-
+	- register:
+		- register_big_number
+		- register_char_only
+		- register_char_follow_by_eol
+		- register_char_follow_by_eof
+		- register_follow_by_direct_label
+		- register_follow_by_direct_number
+		- register_follow_by_indirect_label
+		- register_follow_by_random_string
+		- register_follow_by_comment
+	- direct:
+		- direct_char_follow_by_register
+		- direct_char_follow_by_label_char_only
+		- direct_char_follow_by_nothing
+		- direct_char_follow_by_string
+		- direct_char_follow_by_random_string
+		- direct_char_follow_by_eol
+		- direct_char_follow_by_eof
+		- direct_char_follow_by_label_and_direct_char
+		- direct_char_follow_by_comment
+		- direct_char_twice
+	- indirect:
+		- indirect_only_label_char
+		- indirect_mix_number_char
+
+
+
+param_success:
+	- direct:
+		- direct_char_follow_by_big_number
+		- direct_follow_by_comment
+	- indirect:
+		- indirect_big_number
+		- indirect_follow_by_comment
+
