@@ -1,4 +1,4 @@
-header_error:
+header_error:										OK (Monday: 07pm19)
 	- name:
 		- name_twice_one_empty
 		- name_missing_one_quote
@@ -20,23 +20,26 @@ header_error:
 		- comment_with_instruct_after
 		- comment_too_long
 
-header_success:
-	- comment_empty
-	- name_empty
+header_success:									OK
+	- empty_comment
+	- empty_name
+	- comment_at_start
+	- comment_is_long
+	- name_is_long
+	- several_lines
 
-
-instruction_arg_error:
+instruction_arg_error:							OK
 	- too much argument
 	- invalid argument
 	- not enought argument
 	for:	live, ld, st, add, sub, and,
 	TODO: 	or, xor, zjmp, ldi, sti, fork, lld, lldi, lfork, aff
 
-instruction_arg_success:
+instruction_arg_success:						OK
 	for: live, ld, st, add, sub, and, or, xor,
 	TODO: zjmp, ldi, sti, fork, lld, lldi, lfork, aff
 
-label_error:
+label_error:									OK
 	- call inexist label
 	- call emptystring label
 	- emptystring label
@@ -45,14 +48,14 @@ label_error:
 	- label_with_invalid_char
 	- direct_as_label
 
-label_success:
+label_success:									OK
 	- only labels
 	- label_twice
 	- label_follow_by_comment_char
 	- register_as_label
 	- indirect_as_label
 
-instruction_error:
+instruction_error:								OK
 	- big_string_instead_of_instruction
 	- direct_instead_of_instruction
 	- indirect_instead_of_instruction
@@ -65,7 +68,7 @@ instruction_error:
 	- eol_after_instruction
 	- comment_after_instruction
 
-param_error:
+param_error:								OK
 	- register:
 		- register_big_number
 		- register_char_only

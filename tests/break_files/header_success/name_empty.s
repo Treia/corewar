@@ -1,5 +1,5 @@
-	.name ""
-	.comment "just a basic living prog"
+.name ""
+.comment "just a basic living prog"
 
 	ld		%0, r10
 	st		r1, 6

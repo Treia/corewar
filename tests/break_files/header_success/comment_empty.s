@@ -1,4 +1,4 @@
-	.name "basic"
+.name "basic"
 	.comment ""
 
 	ld		%0, r10
