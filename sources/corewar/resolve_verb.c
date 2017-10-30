@@ -6,11 +6,22 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 16:48:54 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/21 18:37:59 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/30 16:54:42 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+static int		check_if_good_value(const char *value)
+{
+	int		val;
+
+	val = 0;
+	val = ft_atoi(value);
+	if (val < 0 || val > 7)
+		return (-1);
+	return (val);
+}
 
 static int		free_verb_and_val(t_argvparse *item)
 {
@@ -25,9 +36,9 @@ static int		for_first(t_argvparse **argv, int *dump)
 
 	while ((*argv) && ft_strequ((*argv)->name, "-v"))
 	{
-		if (ft_isnum((*argv)->next->name) == 0)
-			return (error(DUMPAV, -1));
-		*dump = ft_atoi((*argv)->next->name);
+		if (ft_isnum((*argv)->next->name) == 0 ||
+			((*dump = check_if_good_value((*argv)->next->name)) == -1))
+			return (error(VERBAV, -1));
 		tmp = (*argv);
 		(*argv) = (*argv)->next->next;
 		free_verb_and_val(tmp);
@@ -51,9 +62,9 @@ int				clear_verbose_option(int *dump, t_argvparse **argv)
 		{
 			if (begin->next->next == NULL)
 				return (0);
-			if (ft_isnum(begin->next->next->name) == 0)
-				return (error(DUMPAV, -1));
-			*dump = ft_atoi(begin->next->next->name);
+			if (ft_isnum(begin->next->next->name) == 0 ||
+				((*dump = check_if_good_value(begin->next->next->name)) == -1))
+				return (error(VERBAV, -1));
 			tmp = begin->next;
 			begin->next = begin->next->next->next;
 			free_verb_and_val(tmp);

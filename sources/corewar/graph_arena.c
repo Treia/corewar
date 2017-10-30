@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 17:25:46 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/30 15:38:33 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/30 17:01:46 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void			print_remove_head(int index, t_game *game, int id)
 
 	id = 0;
 	wattron(game->display->box, COLOR_PAIR(id));
-	line = ((index / NB_OCTET_DISPLAY) + 3);
-	col = ((index % NB_OCTET_DISPLAY) * 3) + 1;
+	line = ((index / NB_OCTET_GRAPH) + 4);
+	col = ((index % NB_OCTET_GRAPH) * 3) + 1;
 	mvwprintw(game->display->box, line, col, " ",
 						(unsigned char)game->arena[index]);
 	wattroff(game->display->box, COLOR_PAIR(id));
@@ -33,8 +33,8 @@ void			print_head_read(int index, t_game *game, int id)
 
 	id = id + 9;
 	wattron(game->display->box, COLOR_PAIR(id));
-	line = ((index / NB_OCTET_DISPLAY) + 3);
-	col = ((index % NB_OCTET_DISPLAY) * 3) + 1;
+	line = ((index / NB_OCTET_GRAPH) + 4);
+	col = ((index % NB_OCTET_GRAPH) * 3) + 1;
 	mvwprintw(game->display->box, line, col, ">",
 						(unsigned char)game->arena[index]);
 	wattroff(game->display->box, COLOR_PAIR(id));
@@ -55,8 +55,8 @@ void			print_char(int index, t_game *game, int id)
 	int		col;
 
 	wattron(game->display->box, COLOR_PAIR(id));
-	line = (index / NB_OCTET_DISPLAY) + 3;
-	col = ((index % NB_OCTET_DISPLAY) * 3) + 2;
+	line = (index / NB_OCTET_GRAPH) + 4;
+	col = ((index % NB_OCTET_GRAPH) * 3) + 2;
 	mvwprintw(game->display->box, line, col, "%02x ",
 									(unsigned char)game->arena[index]);
 	wattroff(game->display->box, COLOR_PAIR(id));
@@ -74,8 +74,8 @@ void			print_int(int index, t_game *game, int id)
 	while (octets < 4)
 	{
 		real_index = ((index + octets) % MEM_SIZE);
-		line = (real_index / NB_OCTET_DISPLAY) + 3;
-		col = ((real_index % NB_OCTET_DISPLAY) * 3) + 2;
+		line = (real_index / NB_OCTET_GRAPH) + 4;
+		col = ((real_index % NB_OCTET_GRAPH) * 3) + 2;
 		mvwprintw(game->display->box, line, col, "%02x ",
 									(unsigned char)game->arena[real_index]);
 		octets++;

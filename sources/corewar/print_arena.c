@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 12:00:48 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/23 16:43:30 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/30 16:38:26 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 static void			print_offset(unsigned int index)
 {
-	char	res[9];
+	char	res[7];
 	int		cmp;
 	int		len;
 
 	len = LEN_HEXA;
 	if (index == 0 || len == 0)
-		return (ft_putstr("00000000"));
-	cmp = 7;
-	res[8] = '\0';
-	while ((index / len) > 0 || cmp >= 7)
+		return (ft_putstr("0x0000"));
+	cmp = 5;
+	res[6] = '\0';
+	while ((index / len) > 0 || cmp >= 5)
 	{
 		res[cmp] = BASE_HEXA[(index % len)];
 		index /= len;
@@ -36,6 +36,8 @@ static void			print_offset(unsigned int index)
 		res[cmp] = BASE_HEXA[0];
 		cmp--;
 	}
+	res[0] = '0';
+	res[1] = 'x';
 	ft_putstr(res);
 }
 
@@ -78,7 +80,7 @@ void				print_arena(const char *arena, int nb_octet)
 	index = 0;
 	cmp = 0;
 	print_offset(index);
-	ft_putchar('\t');
+	ft_putstr(" : ");
 	while (cmp < MEM_SIZE)
 	{
 		if (nl == nb_octet)
@@ -86,7 +88,7 @@ void				print_arena(const char *arena, int nb_octet)
 			index = index + nb_octet;
 			ft_putchar('\n');
 			print_offset(index);
-			ft_putchar('\t');
+			ft_putstr(" : ");
 			nl = 0;
 		}
 		print_hexa((void *)&arena[cmp]);

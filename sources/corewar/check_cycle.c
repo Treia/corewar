@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 11:48:52 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/30 15:39:36 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/30 15:50:25 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,29 @@ void	check_pc(t_cycle *cycle, t_game *game)
 	t_pc	*ptr;
 	t_pc	*tmp;
 
-	if (game->pcs != 0)
+	if (game->pcs == NULL)
+		return ;
+	ptr = game->pcs;
+	tmp = game->pcs->next;
+	while (tmp != 0)
 	{
-		ptr = game->pcs;
-		tmp = game->pcs->next;
-		while (tmp != 0)
+		if (cycle->current >= tmp->last_live + cycle->to_die)
 		{
-			if (cycle->current >= tmp->last_live + cycle->to_die)
-			{
-				tmp = tmp->next;
-				destroy_pc(ptr->next, game);
-				ptr->next = tmp;
-			}
-			else
-			{
-				tmp = tmp->next;
-				ptr = ptr->next;
-			}
+			tmp = tmp->next;
+			destroy_pc(ptr->next, game);
+			ptr->next = tmp;
 		}
-		if (cycle->current >= game->pcs->last_live + cycle->to_die)
+		else
 		{
-			tmp = game->pcs;
-			game->pcs = game->pcs->next;
-			destroy_pc(tmp, game);
+			tmp = tmp->next;
+			ptr = ptr->next;
 		}
+	}
+	if (cycle->current >= game->pcs->last_live + cycle->to_die)
+	{
+		tmp = game->pcs;
+		game->pcs = game->pcs->next;
+		destroy_pc(tmp, game);
 	}
 }
 
