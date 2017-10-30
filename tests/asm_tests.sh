@@ -12,6 +12,7 @@ typeset -r SUCCESS_DIR=$(find ${TEST_DIR} -d -name "*_success")
 
 ## created files
 typeset -r TMP_OUT_FILE="/tmp/asm_out"
+typeset -r TMP_CPY_FILE="/tmp/asm_out_cpy"
 typeset -r TMP_ERR_FILE="/tmp/asm_err"
 typeset -r TMP_REAL_OUT_FILE="/tmp/asm_out_real"
 typeset -r TMP_REAL_ERR_FILE="/tmp/asm_err_real"
@@ -114,16 +115,20 @@ exec_file()
 	(( $# == 1 )) || { error "Missing argument in ${FUNCNAME}"; return 1; }
 
 	typeset -r FILE=$1
+	typeset -r OUT_FILE_NAME=${FILE%.s}.cor #cut the .s and add .cor
 
 	${FT_ASM} ${FILE} 1>${TMP_OUT_FILE} 2>${TMP_ERR_FILE}
 	typeset FT_EXIT_STATUS=$?
+	[[ -e ${OUT_FILE_NAME} ]] && mv ${OUT_FILE_NAME} ${TMP_CPY_FILE}
+
 	${REAL_ASM} ${FILE} 1>${TMP_REAL_OUT_FILE} 2>${TMP_REAL_ERR_FILE}
 	typeset REAL_EXIT_STATUS=$?
 
-	(( ${VERBOSE} > 1 )) && { echo -e "\n\t\t\t> asm output <"; cat ${TMP_ERR_FILE};
+	(( ${VERBOSE} > 1 )) && { echo -e "\n\t\t\t> asm error output <"; cat ${TMP_ERR_FILE};
 								echo -e "\n\t\t\t> official asm output <"; cat ${TMP_REAL_OUT_FILE} | head -n 10; echo ""; }
 
 	(( ${FT_EXIT_STATUS} == ${REAL_EXIT_STATUS} )) || { warning "personnal asm and official asm doesn't return the same exit status"; }
+
 	return ${FT_EXIT_STATUS}
 }
 
@@ -174,10 +179,17 @@ test_file_success()
 	(( $# == 1 )) || { error "Missing argument in ${FUNCNAME}"; return 1; }
 
 	typeset -r FILE=$1
+	typeset -r OUT_FILE_NAME=${FILE%.s}.cor #cut the .s and add .cor
 
 	exec_file ${FILE}
 	typeset EXIT_STATUS=$?
 	(( ${EXIT_STATUS} == 0 )) || { error "${FILE} : expect success"; return 1; }
+
+	diff "${OUT_FILE_NAME}" "${TMP_CPY_FILE}"
+	typeset EXIT_STATUS=$?
+	typeset VERIF_STRING="diff <(hexdump ${OUT_FILE_NAME}) <(hexdump ${TMP_CPY_FILE})"
+	(( ${EXIT_STATUS} == 0 )) || { error "OUTPUT FILES DOESN'T MATCH"; ((VERBOSE)) && echo "${VERIF_STRING}" && `${VERIF_STRING}`; }
+
 	success ${FILE}
 	(( ${VERBOSE} != 0 )) && draw_line
 	return 0
@@ -217,7 +229,7 @@ draw_line
 
 # delete temporary files
 
-rm -rf ${TMP_OUT_FILE} ${TMP_ERR_FILE} || { error "cannot delete ${TMP_OUT_FILE} ${TMP_ERR_FILE}"; exit 1; }
+rm -rf ${TMP_OUT_FILE} ${TMP_ERR_FILE} ${TMP_CPY_FILE} || { error "cannot delete ${TMP_OUT_FILE} ${TMP_ERR_FILE} ${TMP_CPY_FILE}"; exit 1; }
 rm -rf ${TMP_REAL_OUT_FILE} ${TMP_REAL_ERR_FILE} || { error "cannot delete ${TMP_REAL_OUT_FILE} ${TMP_REAL_ERR_FILE}"; exit 1; }
 rm -rf `find ${ERROR_DIR} -name *.cor` || { error "cannot delete .cor on ${ERROR_DIR}"; }
 rm -rf `find ${SUCCESS_DIR} -name *.cor` || { error "cannot delete .cor on ${ERROR_DIR}"; }
