@@ -59,11 +59,17 @@ param_error:
 		- direct_char_follow_by_eof
 		- direct_char_follow_by_label_and_direct_char
 		- direct_char_follow_by_comment
+		- direct_char_mix_number_and_char
 		- direct_char_twice
+		- direct_param_follow_by_label
+		- direct_param_follow_by_register
 	- indirect:
 		- indirect_only_label_char
 		- indirect_mix_number_char
-
+		- indirect_with_space_inside
+		- indirect_follow_by_label
+		- indirect_follow_by_register
+		- indirect_follow_by_direct
 
 
 param_success:
