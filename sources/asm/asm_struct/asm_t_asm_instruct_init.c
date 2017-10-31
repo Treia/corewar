@@ -6,14 +6,14 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 20:07:57 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/31 16:28:30 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/31 17:37:55 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include "libft.h"
 
-static void		internal_asm_t_asm_instruct_get_op_code_2(t_asm_instruct 
+static void		internal_asm_t_asm_instruct_get_op_code_2(t_asm_instruct
 					*asm_instruct, t_instruct *target)
 {
 	if (ft_strequ("lld", target->name))
@@ -26,7 +26,7 @@ static void		internal_asm_t_asm_instruct_get_op_code_2(t_asm_instruct
 		asm_instruct->op_code = 16;
 }
 
-static void		internal_asm_t_asm_instruct_get_op_code(t_asm_instruct 
+static void		internal_asm_t_asm_instruct_get_op_code(t_asm_instruct
 					*asm_instruct, t_instruct *target)
 {
 	if (ft_strequ("live", target->name))
@@ -91,7 +91,7 @@ void			asm_t_asm_instruct_init(t_asm_instruct *asm_instruct,
 	asm_instruct->starting_byte = current_byte;
 }
 
-void				asm_t_asm_instruct_init_list(t_asm *asm_file_content)
+void			asm_t_asm_instruct_init_list(t_asm *asm_file_content)
 {
 	t_label				*label;
 	t_instruct			*instruct;
