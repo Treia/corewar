@@ -6,7 +6,7 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 13:49:51 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/31 16:23:43 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/31 17:38:17 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ int		cmd_ldi(t_game *game, t_pc *pc, t_cycle *cycle)
 	{
 		if (get_param_value(game->arena, pc->addr, tab, 2) > 3)
 		{
-			// if (isreg[0] == 3)
-			// 	tab[1] = (int)read_nb(game->arena, pc->addr + tab[1], 4);
+			if (isreg[0] == 3)
+				tab[1] = (int)read_nb(game->arena, pc->addr + tab[1], 4);
 			tab[1] = isreg[0] == 1 ? pc->reg[tab[1]] : tab[1];
 			tab[2] = isreg[1] == 1 ? pc->reg[tab[2]] : tab[2];
 			pc->reg[tab[3]] = (int)read_nb(game->arena,
@@ -104,8 +104,8 @@ int		cmd_lldi(t_game *game, t_pc *pc, t_cycle *cycle)
 	{
 		if (get_param_value(game->arena, pc->addr, tab, 2) > 3)
 		{
-			// if (isreg[0] == 3)
-			// 	tab[1] = (int)read_nb(game->arena, pc->addr + tab[1], 4);
+			if (isreg[0] == 3)
+				tab[1] = (int)read_nb(game->arena, pc->addr + tab[1], 4);
 			tab[1] = isreg[0] == 1 ? pc->reg[tab[1]] : tab[1];
 			tab[2] = isreg[1] == 1 ? pc->reg[tab[2]] : tab[2];
 			pc->reg[tab[3]] = (int)read_nb(game->arena,
