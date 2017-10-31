@@ -228,4 +228,4 @@ typeset -r FILES=$*
 (( OPTION_COREWAR )) && test_corewar ${FILES}
 
 rm -rf ${MY_OUT_FILE} ${REAL_OUT_FILE} ${MY_STDOUT} ${MY_STDERR} ${REAL_STDOUT} ${REAL_STDERR}
-rm -f ./break_files/**/*.cor || error "Cannot delete break_files/**/*.cor";
+#rm -f ./break_files/**/*.cor || error "Cannot delete break_files/**/*.cor";
