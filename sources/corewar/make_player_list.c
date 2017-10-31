@@ -6,16 +6,15 @@
 /*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 15:59:54 by mdezitte          #+#    #+#             */
-/*   Updated: 2017/10/31 11:45:46 by mdezitte         ###   ########.fr       */
+/*   Updated: 2017/10/31 15:12:06 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 #include <stdio.h>
 
-static t_player		*error_and_close_file(const char *message,
-											const char *name, int fd,
-														t_player *players)
+static t_player		*error_release(const char *message, const char *name,
+												int fd, t_player *players)
 {
 	char		error[128];
 
@@ -74,9 +73,9 @@ t_player			*make_player(const char *file, int id, t_game *game,
 	player->live = id;
 	player->size_prog = header->prog_size;
 	if (write_prog_in_arena(index, fd, game, header->prog_size) < 0)
-		return (error_and_close_file("SYSTEM : Can't read : ", file, fd, player));
+		return (error_release("SYSTEM : Can't read : ", file, fd, player));
 	if (get_pcs_struct(&game->pcs, player, index) < 0)
-		return (error_and_close_file("SYSTEM : Can't make pc : ", file, fd, player));
+		return (error_release("SYSTEM : Can't make pc : ", file, fd, player));
 	close(fd);
 	return (player);
 }
