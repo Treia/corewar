@@ -6,7 +6,7 @@
 /*   By: mressier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 15:51:34 by mressier          #+#    #+#             */
-/*   Updated: 2017/10/29 03:57:54 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/31 17:56:35 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,11 @@ static int		internal_create_asm_file(char *filename)
 	}
 	asm_t_asm_instruct_init_list(&asm_file_content);
 	if (asm_write_asm_to_file(&asm_file_content, filename) == EXIT_FAILURE)
+	{
+		ft_memdel((void **)&file_content);
+		asm_t_asm_del_content(asm_file_content);
 		return (EXIT_FAILURE);
+	}
 	asm_t_asm_del_content(asm_file_content);
 	ft_memdel((void **)&file_content);
 	return (EXIT_SUCCESS);
