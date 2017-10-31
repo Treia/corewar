@@ -6,7 +6,7 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 20:07:57 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/29 04:22:25 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/31 16:28:30 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void		internal_asm_t_asm_instruct_get_op_code(t_asm_instruct
 	internal_asm_t_asm_instruct_get_op_code_2(asm_instruct, target);
 }
 
-void	asm_t_asm_instruct_init_params(t_asm *asm_file_content)
+void			asm_t_asm_instruct_init_params(t_asm *asm_file_content)
 {
 	t_label				*label;
 	t_instruct			*instruct;
@@ -78,15 +78,16 @@ void	asm_t_asm_instruct_init_params(t_asm *asm_file_content)
 	}
 }
 
-void	asm_t_asm_instruct_init(t_asm_instruct *asm_instruct,
-								t_instruct *target, unsigned int current_byte)
+void			asm_t_asm_instruct_init(t_asm_instruct *asm_instruct,
+			t_instruct *target, unsigned int current_byte)
 {
 	internal_asm_t_asm_instruct_get_op_code(asm_instruct, target);
 	if (asm_instruct->op_code == 1 || asm_instruct->op_code == 9 ||
 			asm_instruct->op_code == 12 || asm_instruct->op_code == 15)
 		asm_instruct->param_code = 0;
 	else
-		asm_instruct->param_code = asm_t_asm_instruct_get_param_code(target->param);
+		asm_instruct->param_code =
+			asm_t_asm_instruct_get_param_code(target->param);
 	asm_instruct->starting_byte = current_byte;
 }
 
@@ -108,7 +109,8 @@ void				asm_t_asm_instruct_init_list(t_asm *asm_file_content)
 			asm_instruct = asm_t_asm_instruct_new();
 			asm_t_asm_instruct_init(asm_instruct, instruct, current_byte);
 			asm_t_asm_instruct_byte_and_param_count(asm_instruct, instruct);
-			asm_t_asm_instruct_add_to_end(&label->asm_instruct_list, asm_instruct);
+			asm_t_asm_instruct_add_to_end(&label->asm_instruct_list,
+				asm_instruct);
 			current_byte += asm_instruct->byte_count;
 			instruct = instruct->next;
 		}
