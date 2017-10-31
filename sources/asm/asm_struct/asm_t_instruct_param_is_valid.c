@@ -78,7 +78,8 @@ int				asm_t_instruct_param_is_valid(t_parser *parser,
 	if (param_nb >= PARAM_MAX || internal_one_param_is_valid(new_param,
 			expect_params[param_nb]) == EXIT_FAILURE)
 	{
-		if (new_param != NULL && asm_get_word_type(new_param) == INVALID_WORD_TYPE)
+		if (new_param != NULL
+				&& asm_get_word_type(new_param) == INVALID_WORD_TYPE)
 		{
 			return (asm_message_error(LEXICAL_ERR, parser->file_content,
 				parser->current_ptr));
