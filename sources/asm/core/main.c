@@ -59,7 +59,6 @@ static int		internal_create_asm_file(char *filename)
 	asm_t_asm_instruct_init_list(&asm_file_content);
 	if (asm_write_asm_to_file(&asm_file_content, filename) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	// asm_t_label_display_list(asm_file_content.label_list);
 	asm_t_asm_del_content(asm_file_content);
 	ft_memdel((void **)&file_content);
 	return (EXIT_SUCCESS);
