@@ -147,8 +147,8 @@ test_winner()
 	typeset -r CHAMP_1=$1
 	typeset -r CHAMP_2=$2
 
-	${MY_DIR}${COREWAR} ${CHAMP_1} ${CHAMP_2} 1> ${MY_STDOUT}
-	${REAL_DIR}${COREWAR} ${CHAMP_1} ${CHAMP_2} 1> ${REAL_STDOUT}
+	${MY_DIR}${COREWAR} ${CHAMP_1} ${CHAMP_2} 1> ${MY_STDOUT} 2> ${MY_STDERR}
+	${REAL_DIR}${COREWAR} ${CHAMP_1} ${CHAMP_2} 1> ${REAL_STDOUT} 2> ${REAL_STDERR}
 
 	typeset MY_RESULT_LINE=$(cat ${MY_STDOUT} | grep "And the winner is" | sed -E 's/^And the winner is (.*) !$/\1/')
 	typeset REAL_RESULT_LINE=$(cat ${REAL_STDOUT} | grep ", has won !" | sed -E 's/^.*, \"(.*)\", .*$/\1/')
@@ -178,8 +178,8 @@ test_dump_end()
 	typeset -r CHAMP_1=$1
 	typeset -r CHAMP_2=$2
 
-	${MY_DIR}${COREWAR} ${CHAMP_1} ${CHAMP_2} -dump ${DUMP} 1> ${MY_STDOUT}
-	${REAL_DIR}${COREWAR} ${CHAMP_1} ${CHAMP_2} -d ${DUMP} 1> ${REAL_STDOUT}
+	${MY_DIR}${COREWAR} ${CHAMP_1} ${CHAMP_2} -dump ${DUMP} 1> ${MY_STDOUT} 2> ${MY_STDERR}
+	${REAL_DIR}${COREWAR} ${CHAMP_1} ${CHAMP_2} -d ${DUMP} 1> ${REAL_STDOUT} 2> ${REAL_STDERR}
 
 	typeset MY_GAME=$(cat ${MY_STDOUT} | grep -E "^0x[[:alnum:]]{4}")
 	typeset REAL_GAME=$(cat ${REAL_STDOUT} | grep -E "^0x[[:alnum:]]{4}")
@@ -238,4 +238,4 @@ typeset -r FILES=$*
 (( OPTION_COREWAR )) && test_corewar ${FILES}
 
 rm -rf ${MY_OUT_FILE} ${REAL_OUT_FILE} ${MY_STDOUT} ${MY_STDERR} ${REAL_STDOUT} ${REAL_STDERR}
-rm -f ./break_files/**/*.cor || error "Cannot delete break_files/**/*.cor";
+# rm -f ./break_files/**/*.cor || error "Cannot delete break_files/**/*.cor";
