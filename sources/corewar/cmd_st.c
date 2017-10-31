@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_st.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 19:31:14 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/30 20:52:09 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/31 14:27:13 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		write_arena(t_game *game, int addr1, int addr2, int n)
+int		write_arena(t_game *game, int addr1, int addr2, unsigned int n)
 {
 	int		addr;
 
