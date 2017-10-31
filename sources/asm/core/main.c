@@ -68,7 +68,9 @@ int				main(int ac, char **av)
 {
 	char		*filename;
 	int			i;
+	int			exit_status;
 
+	exit_status = EXIT_SUCCESS;
 	if (internal_check_arg_number(ac) == EXIT_FAILURE)
 		return (asm_usage());
 	i = 1;
@@ -83,9 +85,10 @@ int				main(int ac, char **av)
 			ft_putendl(":");
 		}
 		if (internal_create_asm_file(filename) == EXIT_FAILURE)
-			return (EXIT_FAILURE);
-		ft_putendl("\033[32mbinary file has been created\033[0m");
+			exit_status = EXIT_FAILURE;
+		else
+			ft_putendl("\033[32mbinary file has been created\033[0m");
 		i++;
 	}
-	return (EXIT_SUCCESS);
+	return (exit_status);
 }
