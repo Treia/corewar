@@ -6,7 +6,7 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 04:02:25 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/29 17:28:03 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/31 17:34:16 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ void	asm_t_asm_instruct_display_list(t_asm_instruct *list, int tab)
 		ft_putnbr(i);
 		ft_putstr(") | op_code = ");
 		ft_putnbr(ptr->op_code);
-		ft_putstr(" | (");
-		ft_putnbr(ptr->starting_byte);
-		ft_putendl(")");
+		ft_putchar('\n');
 		ft_putnchar(tab + 1, '\t');
 		ft_putstr("encoding byte = ");
 		ft_putnbr(ptr->param_code);
