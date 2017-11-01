@@ -6,7 +6,7 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 11:45:29 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/28 20:51:49 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/10/31 16:25:19 by mplanell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,5 @@ char			asm_t_asm_instruct_get_param_code(char **params)
 		param_code += internal_asm_param_type(params[1]) << 4;
 	if (params[2])
 		param_code += internal_asm_param_type(params[2]) << 2;
-
 	return (param_code);
 }

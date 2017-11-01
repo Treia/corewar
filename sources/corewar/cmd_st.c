@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_st.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pzarmehr <pzarmehr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdezitte <mdezitte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 19:31:14 by pzarmehr          #+#    #+#             */
-/*   Updated: 2017/10/30 20:52:09 by pzarmehr         ###   ########.fr       */
+/*   Updated: 2017/10/31 17:37:26 by mdezitte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ int		write_arena(t_game *game, int addr1, int addr2, int n)
 	game->arena[(addr + 2) % MEM_SIZE] = (n >> 8) & 0xFF;
 	game->arena[(addr + 3) % MEM_SIZE] = n & 0xFF;
 	return (addr);
+}
+
+void	print_st(int addr, t_game *game, int id)
+{
+	if (game->verb == -1)
+		print_int(addr, game, id);
 }
 
 int		cmd_st(t_game *game, t_pc *pc, t_cycle *cycle)
@@ -46,8 +52,7 @@ int		cmd_st(t_game *game, t_pc *pc, t_cycle *cycle)
 		{
 			addr = write_arena(game, pc->addr,
 				tab[2] % IDX_MOD, pc->reg[tab[1]]);
-			if (game->verb == -1)
-				print_int(addr, game, pc->id_player);
+			print_st(addr, game, pc->id_player);
 		}
 	}
 	pc->addr = new_addr(pc->addr, next, game, pc);
@@ -76,8 +81,7 @@ int		cmd_sti(t_game *game, t_pc *pc, t_cycle *cycle)
 			tab[3] = isreg[1] == 1 ? pc->reg[tab[3]] : tab[3];
 			addr = write_arena(game, pc->addr,
 				(tab[2] + tab[3]) % IDX_MOD, pc->reg[tab[1]]);
-			if (game->verb == -1)
-				print_int(addr, game, pc->id_player);
+			print_st(addr, game, pc->id_player);
 		}
 	}
 	pc->addr = new_addr(pc->addr, next, game, pc);

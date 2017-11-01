@@ -14,7 +14,7 @@ typeset -r REAL_STDERR="/tmp/realstderr"
 
 typeset -r COMPARE_FILE="/tmp/compare"
 
-typeset -i DUMP=1500
+typeset -i DUMP=2544
 
 typeset -r RED_C="\033[31m"
 typeset -r GREEN_C="\033[32m"
