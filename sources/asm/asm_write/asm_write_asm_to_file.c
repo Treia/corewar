@@ -6,7 +6,7 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 18:03:02 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/31 17:42:35 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/11/01 16:05:02 by mressier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ int			asm_write_asm_to_file(t_asm *asm_file_content,
 	int		fd;
 
 	if ((fd = internal_create_recipient_file(original_filename)) == -1)
+	{
 		return (print_error(EXIT_FAILURE,
 			"SYSTEM: Failed to create .cor file"));
+	}
 	asm_write_header_to_file(asm_file_content, fd);
 	asm_write_t_asm_instruct_list_to_file(asm_file_content->label_list, fd);
 	return (EXIT_SUCCESS);

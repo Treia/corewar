@@ -169,10 +169,10 @@ void						asm_t_label_del_list(t_label *label);
 t_label						*asm_t_label_add_end(t_label *list, t_label *add);
 void						asm_t_label_display_list(t_label *list);
 
-typedef int					(*asm_label_cmp)(t_label *, void *);
+typedef int					(*t_asm_label_cmp)(t_label *, void *);
 
 t_label						*asm_t_label_find(t_label *list,
-								void *data, asm_label_cmp find);
+								void *data, t_asm_label_cmp find);
 int							asm_is_label_name_equal(t_label *label, void *data);
 
 int							asm_t_label_init_from_file(t_parser *parser,
@@ -213,7 +213,7 @@ int							asm_t_instruct_param_init_from_file(t_parser *prs,
 int							asm_t_instruct_param_is_valid(t_parser *parser,
 								t_instruct *instruct, t_label *label_list,
 								const char *new_param);
-int							asm_t_instruct_param_number_is_valid(t_parser *parser,
+int							asm_t_instruct_param_number_is_valid(t_parser *prs,
 								t_instruct *instruct);
 
 /*
@@ -256,7 +256,6 @@ void						asm_t_asm_instruct_convert_label_address_to_bytes(
 								int param, char *dest, int size);
 void						asm_t_asm_instruct_convert_char_param_to_bytes(
 								char *param, char *dest, int size);
-
 
 /*
 ** WRITE

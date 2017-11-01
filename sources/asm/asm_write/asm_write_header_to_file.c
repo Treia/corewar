@@ -6,7 +6,7 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 18:49:05 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/29 03:25:10 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/11/01 16:04:29 by mressier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static int		internal_swap_endian(int data)
 {
-	return((data << 24) | ((data << 8) & 0x00FF0000) |
+	return ((data << 24) | ((data << 8) & 0x00FF0000) |
 									((data >> 8) & 0x0000FF00) | (data >> 24));
 }
 

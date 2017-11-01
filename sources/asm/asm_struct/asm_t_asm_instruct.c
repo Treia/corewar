@@ -6,19 +6,21 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 10:33:34 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/29 02:42:29 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/11/01 16:03:36 by mressier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include "libft.h"
 
+#define PARAM_SIZE		(PARAM_MAX * 4)
+
 t_asm_instruct		*asm_t_asm_instruct_new(void)
 {
 	t_asm_instruct	*asm_instruct;
 
 	asm_instruct = (t_asm_instruct *)ft_memalloc(sizeof(t_asm_instruct));
-	ft_bzero(asm_instruct->param, PARAM_MAX * 4);
+	ft_bzero(asm_instruct->param, PARAM_SIZE);
 	asm_instruct->next = NULL;
 	return (asm_instruct);
 }

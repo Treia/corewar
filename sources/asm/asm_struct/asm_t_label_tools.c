@@ -24,7 +24,7 @@ int			asm_is_label_name_equal(t_label *label, void *data)
 	return (false);
 }
 
-t_label		*asm_t_label_find(t_label *list, void *data, asm_label_cmp find)
+t_label		*asm_t_label_find(t_label *list, void *data, t_asm_label_cmp find)
 {
 	t_label		*ptr;
 

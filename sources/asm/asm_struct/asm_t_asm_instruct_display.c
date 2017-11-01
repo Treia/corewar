@@ -6,7 +6,7 @@
 /*   By: mplanell <mplanell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 04:02:25 by mplanell          #+#    #+#             */
-/*   Updated: 2017/10/31 17:34:16 by mplanell         ###   ########.fr       */
+/*   Updated: 2017/11/01 16:04:14 by mressier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	asm_t_asm_instruct_display_list(t_asm_instruct *list, int tab)
 {
 	t_asm_instruct	*ptr;
-	int			i;
+	int				i;
 
 	ptr = list;
 	i = 0;
