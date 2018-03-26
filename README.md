@@ -1,6 +1,20 @@
-[Page projet](https://projects.intra.42.fr/projects/corewar)
+Corewar
+======
 
-[Sujet](https://cdn.intra.42.fr/pdf/pdf/30/corewar.pdf)
+The corewar is a game where small programs written in assembly fights each other in the memory of a virtual machine.
+The project is composed of 3 parts :
 
-[Cheatsheet ASM Corewar](https://docs.google.com/spreadsheets/d/1pFwSCne-mh-u5ZLsjZS8VI9QvecYk-gWTyNaPstjpLE/)
+  * The assembler that parses assembly files and converts them to byte code.
+  * The virtual machine where the fight takes place
+  * The champion, a program that fights in the arena
+  
+Mark : 118/100
 
+Authors :
+Paul Zarmehrzamin
+
+Mathilde Ressier
+
+Mathias Dezitter
+
+Marc Planelles
