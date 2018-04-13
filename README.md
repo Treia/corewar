@@ -1,16 +1,17 @@
 Corewar
 ======
 
-The corewar is a game where small programs written in assembly fights each other in the memory of a virtual machine.
+The corewar is a game where small programs written in assembly fight each other in the memory of a virtual machine.
 The project is composed of 3 parts :
 
   * The assembler that parses assembly files and converts them to byte code.
   * The virtual machine where the fight takes place
   * The champion, a program that fights in the arena
   
-Mark : 118/100
+**Mark :** 118/100
 
-Authors :
+**Authors :**
+
 Paul Zarmehrzamin
 
 Mathilde Ressier
